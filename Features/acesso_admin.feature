@@ -7,9 +7,10 @@ Quero acessar o sistema com minhas credenciais
 A fim de ter acesso às ferramentas de gerenciamento.
 
 Cenário: Login bem-sucedido do Administrador
+    Contexto:
+        Dado que eu sou um administrador cadastrado com o e-mail "admin@meusistema.com" e a senha "senhaSuperSecretaAdmin"
+        E eu estou na página de login
 
-    Dado que eu sou um administrador cadastrado com o e-mail "admin@meusistema.com" e a senha "senhaSuperSecretaAdmin"
-    E eu estou na página de login
     Quando eu insiro "admin@meusistema.com" no campo de usuário
     E insiro "senhaSuperSecretaAdmin" no campo de senha
     E clico no botão "Entrar"
@@ -17,9 +18,10 @@ Cenário: Login bem-sucedido do Administrador
     E o menu de navegação lateral deve exibir a opção "Gerenciamento".
 
 Cenário: Tentativa de login de administrador com senha errada
-
-    Dado que eu sou um administrador cadastrado com o e-mail "admin@meusistema.com"
-    E eu estou na página de login
+    Contexto:
+        Dado que eu sou um administrador cadastrado com o e-mail "admin@meusistema.com"
+        E eu estou na página de login
+    
     Quando eu insiro "admin@meusistema.com" no campo de usuário
     E insiro "senha-errada" no campo de senha
     E clico no botão "Entrar"

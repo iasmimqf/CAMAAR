@@ -7,9 +7,10 @@ Quero acessar o sistema utilizando um e-mail ou matrícula e uma senha já cadas
 A fim de responder formulários.
 
 Cenário: Login bem-sucedido com e-mail
-
-    Dado que eu sou um usuário padrão cadastrado com o e-mail "joao.silva@email.com" e a senha "senha123"
-    E eu estou na página de login
+    Contexto:
+        Dado que eu sou um usuário padrão cadastrado com o e-mail "joao.silva@email.com" e a senha "senha123"
+        E eu estou na página de login
+    
     Quando eu insiro "joao.silva@email.com" no campo de usuário
     E insiro "senha123" no campo de senha
     E clico no botão "Entrar"
@@ -17,9 +18,10 @@ Cenário: Login bem-sucedido com e-mail
     E o menu de navegação não deve exibir a opção "Gerenciamento".
 
 Cenário: Login bem-sucedido com matrícula
-
-    Dado que eu sou um usuário padrão cadastrado com a matrícula "98765" e a senha "senha123"
-    E eu estou na página de login
+    Contexto:
+        Dado que eu sou um usuário padrão cadastrado com a matrícula "98765" e a senha "senha123"
+        E eu estou na página de login
+    
     Quando eu insiro "98765" no campo de usuário
     E insiro "senha123" no campo de senha
     E clico no botão "Entrar"
@@ -27,9 +29,10 @@ Cenário: Login bem-sucedido com matrícula
     E o menu de navegação não deve exibir a opção "Gerenciamento".
 
 Cenário: Tentativa de login com credenciais inválidas
-
-    Dado que eu estou na página de login
-    Quando eu insiro "usuario.inexistente@email.com" no campo de usuário
+    Contexto:
+        Dado que eu estou na página de login
+        Quando eu insiro "usuario.inexistente@email.com" no campo de usuário
+    
     E insiro "senha123" no campo de senha
     E clico no botão "Entrar"
     Então devo ver uma mensagem de erro indicando que "O usuário ou a senha estão incorretos"

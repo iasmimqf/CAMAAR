@@ -9,7 +9,7 @@ A fim de organizar os templates existentes
 Cenário: Edição bem-sucedida de template
     Contexto:
     	Dado que eu sou um administrador autenticado
-	E que eu esteja na página de gerenciamento - templates
+	E que eu esteja na página de "Gerenciamento - Templates"
     	E que existe um template chamado "Avaliação exemplo"
 
     Quando eu acesso a lista de templates
@@ -22,7 +22,7 @@ Cenário: Edição bem-sucedida de template
 Cenário: Exclusão de template sem afetar formulários existentes
     Contexto:    
 	Dado que eu sou um administrador autenticado
-	E que eu esteja na página de gerenciamento - templates
+	E que eu esteja na página de "Gerenciamento - Templates"
         E que existe um template chamado "Template exemplo"
 	E que já existem formulários criados a partir desse template
     

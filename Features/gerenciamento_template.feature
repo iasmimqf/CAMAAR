@@ -10,7 +10,7 @@ Cenário: Edição bem-sucedida de template
     Contexto:
     	Dado que eu sou um administrador autenticado
 	E que eu esteja na página de gerenciamento - templates
-    	E que existe um template chamado "Avaliação exemplo" criado por mim
+    	E que existe um template chamado "Avaliação exemplo"
 
     Quando eu acesso a lista de templates
     E clico em "Editar" no template "Avaliação exemplo"
@@ -23,7 +23,7 @@ Cenário: Exclusão de template sem afetar formulários existentes
     Contexto:    
 	Dado que eu sou um administrador autenticado
 	E que eu esteja na página de gerenciamento - templates
-        E que existe um template chamado "Template exemplo" criado por mim
+        E que existe um template chamado "Template exemplo"
 	E que já existem formulários criados a partir desse template
     
     Quando eu acesso a lista de templates

@@ -31,3 +31,18 @@ Cenário: Exclusão de template sem afetar formulários existentes
     E confirmo a exclusão
     Então devo receber uma mensagem de sucesso como "O template foi excluído com sucesso."
     E os formulários criados a partir deste devem continuar acessíveis
+
+Cenário: Falha ao editar template por erro de título
+    Contexto: 
+   	Dado que eu sou um administrador autenticado
+    	E que eu esteja na página de "Gerenciamento - Templates"
+    	E que exista um template chamado "Avaliação exemplo"
+
+    Quando eu acesso a lista de templates
+    E clico em "Editar" no template "Avaliação exemplo"
+    E apago o conteúdo do campo "Título"
+    E clico em "Salvar"
+    Então eu devo receber uma mensagem de erro como "O título é obrigatório."
+    E o template não deve ser atualizado
+    E os formulários já criados não devem ser afetados
+    

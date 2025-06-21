@@ -62,14 +62,7 @@ Nesta primeira sprint, utilizamos uma única branch compartilhada para desenvolv
 - **`bdd`**: Branch temporária contendo todas as especificações BDD
 - **`main`**: Branch protegida (versão estável)
 
-### Observação sobre a Branch Atual
-
-A branch `bdd` será mantida temporariamente como referência até que:
-
-- **Validação completa** dos cenários BDD pelo Product Owner  
-- **Transição concluída** para o novo fluxo de branches (com `develop` e branches por feature)  
-
-*Esta branch será deletada assim que esses marcos forem atingidos.*
+*A branch `bdd` será mantida temporariamente como referência até que a transição para o novo fluxo de branches (com `develop` e branches por feature) seja concluída*
 
 ---
 
@@ -80,9 +73,8 @@ A branch `bdd` será mantida temporariamente como referência até que:
 - **Pontos concluídos:** 32 (100%)
 - **Média por membro:** 8 pontos
 
-## 📌 Resumo da Sprint 1
+## Resumo da Sprint 1
 
-### ✅ Conquistas
 - **Especificação completa** de 13 funcionalidades em BDD
 - **Alinhamento** das histórias com o protótipo do Figma
 - **Cobertura** de cenários felizes e tristes para cada feature

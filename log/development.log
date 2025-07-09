@@ -1,0 +1,437 @@
+  [1m[35m (6.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY) /*application='Camaar'*/[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-07-09 13:12:39.845444', '2025-07-09 13:12:39.845447') RETURNING "key" /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+Migrating to CreateUsuarios (20250709130312)
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Camaar'*/[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE TABLE "usuarios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "matricula" varchar, "nome" varchar, "perfil" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250709130312') RETURNING "version" /*application='Camaar'*/[0m
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Camaar'*/[0m
+Migrating to CreateTurmas (20250709130406)
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Camaar'*/[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250709130406') RETURNING "version" /*application='Camaar'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Camaar'*/[0m
+Migrating to CreateFormularios (20250709130503)
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Camaar'*/[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE TABLE "formularios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar, "ehTemplate" boolean, "status" varchar, "estruturaJSON" text, "dataDeExpiracao" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250709130503') RETURNING "version" /*application='Camaar'*/[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Camaar'*/[0m
+Migrating to CreateRespostas (20250709130805)
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Camaar'*/[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE TABLE "respostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6), "respostasJSON" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250709130805') RETURNING "version" /*application='Camaar'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+Migrating to AddProfessorToTurmas (20250709131337)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aturmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "aturmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at" FROM "turmas" /*application='Camaar'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "turmas" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL) /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "turmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at" FROM "aturmas" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aturmas" /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_turmas_on_professor_id" ON "turmas" ("professor_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aturmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL) /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aturmas_on_professor_id" ON "aturmas" ("professor_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "aturmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id" FROM "turmas" /*application='Camaar'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "turmas" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL, CONSTRAINT "fk_rails_4f2278ddee"
+FOREIGN KEY ("professor_id")
+  REFERENCES "professors" ("id")
+) /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_turmas_on_professor_id" ON "turmas" ("professor_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "turmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id" FROM "aturmas" /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Camaar'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK TRANSACTION /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+Migrating to CreateRespostas (20250709130805)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Camaar'*/[0m
+  [1m[35m (2.7ms)[0m  [1m[35mDROP TABLE "respostas" /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.1ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20250709130805' /*application='Camaar'*/[0m
+  [1m[36mTRANSACTION (5.4ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+Migrating to CreateRespostas (20250709130805)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Camaar'*/[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "respostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6), "respostasJSON" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250709130805') RETURNING "version" /*application='Camaar'*/[0m
+  [1m[36mTRANSACTION (7.9ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Camaar'*/[0m
+Migrating to AddProfessorToTurmas (20250709131337)
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Camaar'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aturmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Camaar'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "aturmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at" FROM "turmas" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "turmas" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL) /*application='Camaar'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "turmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at" FROM "aturmas" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aturmas" /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_turmas_on_professor_id" ON "turmas" ("professor_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Camaar'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aturmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL) /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aturmas_on_professor_id" ON "aturmas" ("professor_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "aturmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id" FROM "turmas" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "turmas" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL, CONSTRAINT "fk_rails_4f2278ddee"
+FOREIGN KEY ("professor_id")
+  REFERENCES "professors" ("id")
+) /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_turmas_on_professor_id" ON "turmas" ("professor_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "turmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id" FROM "aturmas" /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Camaar'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK TRANSACTION /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+Migrating to CreateRespostas (20250709130805)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Camaar'*/[0m
+  [1m[35m (3.2ms)[0m  [1m[35mDROP TABLE "respostas" /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.1ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20250709130805' /*application='Camaar'*/[0m
+  [1m[36mTRANSACTION (8.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+Migrating to CreateRespostas (20250709130805)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Camaar'*/[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "respostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6), "respostasJSON" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250709130805') RETURNING "version" /*application='Camaar'*/[0m
+  [1m[36mTRANSACTION (7.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Camaar'*/[0m
+Migrating to AddProfessorToTurmas (20250709131337)
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aturmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Camaar'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "aturmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at" FROM "turmas" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "turmas" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL) /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "turmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at" FROM "aturmas" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aturmas" /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_turmas_on_professor_id" ON "turmas" ("professor_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aturmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL) /*application='Camaar'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE INDEX "tindex_aturmas_on_professor_id" ON "aturmas" ("professor_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "aturmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id" FROM "turmas" /*application='Camaar'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "turmas" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL, CONSTRAINT "fk_rails_4f2278ddee"
+FOREIGN KEY ("professor_id")
+  REFERENCES "professors" ("id")
+) /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_turmas_on_professor_id" ON "turmas" ("professor_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "turmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id" FROM "aturmas" /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Camaar'*/[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[31mROLLBACK TRANSACTION /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Camaar'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "formularios" /*application='Camaar'*/[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE TABLE "formularios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar, "ehTemplate" boolean, "status" varchar, "estruturaJSON" text, "dataDeExpiracao" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Camaar'*/[0m
+  [1m[35m (1.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "turmas" /*application='Camaar'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Camaar'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE IF EXISTS "usuarios" /*application='Camaar'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "usuarios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "matricula" varchar, "nome" varchar, "perfil" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Camaar'*/[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY) /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20250709130503) /*application='Camaar'*/[0m
+  [1m[35m (1.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20250709130406),
+(20250709130312); /*application='Camaar'*/[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-07-09 13:24:39.952831', '2025-07-09 13:24:39.952833') RETURNING "key" /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'schema_sha1' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '86668f61d997119bd91d96f9cb7fcf99109993a7', '2025-07-09 13:24:39.960289', '2025-07-09 13:24:39.960291') RETURNING "key" /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+Migrating to CreateRespostas (20250709130805)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Camaar'*/[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "respostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6), "respostasJSON" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250709130805') RETURNING "version" /*application='Camaar'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Camaar'*/[0m
+Migrating to AddProfessorToTurmas (20250709131337)
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aturmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Camaar'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "aturmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at" FROM "turmas" /*application='Camaar'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "turmas" /*application='Camaar'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL) /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "turmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at" FROM "aturmas" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aturmas" /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_turmas_on_professor_id" ON "turmas" ("professor_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aturmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL) /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aturmas_on_professor_id" ON "aturmas" ("professor_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "aturmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id" FROM "turmas" /*application='Camaar'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "turmas" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL, CONSTRAINT "fk_rails_4f2278ddee"
+FOREIGN KEY ("professor_id")
+  REFERENCES "professors" ("id")
+) /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_turmas_on_professor_id" ON "turmas" ("professor_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "turmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id" FROM "aturmas" /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Camaar'*/[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[31mROLLBACK TRANSACTION /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Camaar'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "formularios" /*application='Camaar'*/[0m
+  [1m[35m (6.1ms)[0m  [1m[35mCREATE TABLE "formularios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar, "ehTemplate" boolean, "status" varchar, "estruturaJSON" text, "dataDeExpiracao" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Camaar'*/[0m
+  [1m[35m (1.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "turmas" /*application='Camaar'*/[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Camaar'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "usuarios" /*application='Camaar'*/[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "usuarios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "matricula" varchar, "nome" varchar, "perfil" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Camaar'*/[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY) /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+  [1m[35m (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20250709130503) /*application='Camaar'*/[0m
+  [1m[35m (1.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20250709130406),
+(20250709130312); /*application='Camaar'*/[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-07-09 13:27:31.466639', '2025-07-09 13:27:31.466642') RETURNING "key" /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'schema_sha1' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '86668f61d997119bd91d96f9cb7fcf99109993a7', '2025-07-09 13:27:31.473754', '2025-07-09 13:27:31.473756') RETURNING "key" /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+Migrating to CreateRespostas (20250709130805)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Camaar'*/[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "respostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6), "respostasJSON" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250709130805') RETURNING "version" /*application='Camaar'*/[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Camaar'*/[0m
+Migrating to AddProfessorToTurmas (20250709131337)
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Camaar'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aturmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Camaar'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "aturmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at" FROM "turmas" /*application='Camaar'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "turmas" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL) /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "turmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at" FROM "aturmas" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aturmas" /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_turmas_on_professor_id" ON "turmas" ("professor_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aturmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL) /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aturmas_on_professor_id" ON "aturmas" ("professor_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "aturmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id" FROM "turmas" /*application='Camaar'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "turmas" /*application='Camaar'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL, CONSTRAINT "fk_rails_4f2278ddee"
+FOREIGN KEY ("professor_id")
+  REFERENCES "usuarios" ("id")
+) /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_turmas_on_professor_id" ON "turmas" ("professor_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "turmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id" FROM "aturmas" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aturmas" /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250709131337') RETURNING "version" /*application='Camaar'*/[0m
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Camaar'*/[0m
+Migrating to AddCriadorToFormularios (20250709131350)
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Camaar'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aformularios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar, "ehTemplate" boolean, "status" varchar, "estruturaJSON" text, "dataDeExpiracao" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "aformularios" ("id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at")
+                     SELECT "id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at" FROM "formularios" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "formularios" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "formularios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar, "ehTemplate" boolean, "status" varchar, "estruturaJSON" text, "dataDeExpiracao" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "criador_id" integer NOT NULL) /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "formularios" ("id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at")
+                     SELECT "id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at" FROM "aformularios" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aformularios" /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_formularios_on_criador_id" ON "formularios" ("criador_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aformularios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar, "ehTemplate" boolean, "status" varchar, "estruturaJSON" text, "dataDeExpiracao" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "criador_id" integer NOT NULL) /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aformularios_on_criador_id" ON "aformularios" ("criador_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "aformularios" ("id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id")
+                     SELECT "id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id" FROM "formularios" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "formularios" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "formularios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar, "ehTemplate" boolean, "status" varchar, "estruturaJSON" text, "dataDeExpiracao" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "criador_id" integer NOT NULL, CONSTRAINT "fk_rails_df6b852d1e"
+FOREIGN KEY ("criador_id")
+  REFERENCES "usuarios" ("id")
+) /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_formularios_on_criador_id" ON "formularios" ("criador_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "formularios" ("id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id")
+                     SELECT "id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id" FROM "aformularios" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aformularios" /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250709131350') RETURNING "version" /*application='Camaar'*/[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Camaar'*/[0m
+Migrating to AddFormularioAndAvaliadorToRespostas (20250709131356)
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Camaar'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "arespostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6), "respostasJSON" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "arespostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at" FROM "respostas" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "respostas" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "respostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6), "respostasJSON" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL) /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "respostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at" FROM "arespostas" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "arespostas" /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_formulario_id" ON "respostas" ("formulario_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "arespostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6), "respostasJSON" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL) /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_arespostas_on_formulario_id" ON "arespostas" ("formulario_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "arespostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id" FROM "respostas" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "respostas" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "respostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6), "respostasJSON" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, CONSTRAINT "fk_rails_bd8b529c1e"
+FOREIGN KEY ("formulario_id")
+  REFERENCES "formularios" ("id")
+) /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_formulario_id" ON "respostas" ("formulario_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "respostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id" FROM "arespostas" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "arespostas" /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "arespostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6), "respostasJSON" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL) /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_arespostas_on_formulario_id" ON "arespostas" ("formulario_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "arespostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id" FROM "respostas" /*application='Camaar'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "respostas" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "respostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6), "respostasJSON" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, "avaliador_id" integer NOT NULL, CONSTRAINT "fk_rails_bd8b529c1e"
+FOREIGN KEY ("formulario_id")
+  REFERENCES "formularios" ("id")
+) /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_formulario_id" ON "respostas" ("formulario_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "respostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id" FROM "arespostas" /*application='Camaar'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "arespostas" /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_avaliador_id" ON "respostas" ("avaliador_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "arespostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6), "respostasJSON" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, "avaliador_id" integer NOT NULL) /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_arespostas_on_avaliador_id" ON "arespostas" ("avaliador_id") /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_arespostas_on_formulario_id" ON "arespostas" ("formulario_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "arespostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id" FROM "respostas" /*application='Camaar'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "respostas" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "respostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6), "respostasJSON" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, "avaliador_id" integer NOT NULL, CONSTRAINT "fk_rails_bd8b529c1e"
+FOREIGN KEY ("formulario_id")
+  REFERENCES "formularios" ("id")
+, CONSTRAINT "fk_rails_293f7d6c26"
+FOREIGN KEY ("avaliador_id")
+  REFERENCES "usuarios" ("id")
+) /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_formulario_id" ON "respostas" ("formulario_id") /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_avaliador_id" ON "respostas" ("avaliador_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "respostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id" FROM "arespostas" /*application='Camaar'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "arespostas" /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Camaar'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250709131356') RETURNING "version" /*application='Camaar'*/[0m
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Camaar'*/[0m
+Migrating to CreateJoinTableFormulariosTurmas (20250709131405)
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Camaar'*/[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE TABLE "formularios_turmas" ("formulario_id" integer NOT NULL, "turma_id" integer NOT NULL) /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250709131405') RETURNING "version" /*application='Camaar'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Camaar'*/[0m
+Migrating to CreateJoinTableUsuariosTurmas (20250709131421)
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Camaar'*/[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE TABLE "turmas_usuarios" ("usuario_id" integer NOT NULL, "turma_id" integer NOT NULL) /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250709131421') RETURNING "version" /*application='Camaar'*/[0m
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m

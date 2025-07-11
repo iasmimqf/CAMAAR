@@ -1,7 +1,7 @@
 # spec/factories/usuarios.rb
 FactoryBot.define do
   factory :usuario do # Nome do modelo em minúsculo
-    nome_completo { Faker::Name.name }
+    nome { Faker::Name.name }
     email { Faker::Internet.unique.email }
     matricula { Faker::Number.unique.number(digits: 9).to_s }
     password { 'senha123' }

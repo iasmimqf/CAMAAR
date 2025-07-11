@@ -4,6 +4,9 @@
 
 # Ignore os arquivos temporários.
 /tmp
+/tmp/*
+*.tmp
+*.temp
 
 # Ignore os arquivos do banco de dados SQLite.
 # Cada membro da equipe terá o seu próprio.

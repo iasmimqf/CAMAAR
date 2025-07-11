@@ -25,9 +25,14 @@ end
 
 # --- QUANDO ---
 
+Quando('eu preencho o campo {string} com {string}') do |nome_do_campo, valor|
+  fill_in nome_do_campo, with: valor
+end
+
 Quando('eu insiro {string} no campo de {string}') do |valor, nome_do_campo|
   fill_in nome_do_campo, with: valor
 end
+
 
 Quando('clico no botão {string}') do |nome_do_botao|
   click_button nome_do_botao

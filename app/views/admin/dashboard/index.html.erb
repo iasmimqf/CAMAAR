@@ -1,0 +1,29 @@
+<body>
+<h1>Dashboard de Administração</h1>
+<p>Bem-vindo ao painel de controle.</p>
+<% if usuario_signed_in? %>
+  <nav id="side-nav">
+    <p>Bem-vindo, <%= current_usuario.nome || current_usuario.email %>!</p>
+
+    <ul>
+      <%# Este link só aparece se o usuário for admin %>
+      <% if current_usuario.admin? %>
+        <li><a href="/admin/dashboard">Gerenciamento</a></li>
+      <% end %>
+
+      <li>
+        <%# O link de logout do Devise %>
+        <%= button_to "Sair", destroy_usuario_session_path, method: :delete %>
+      </li>
+    </ul>
+  </nav>
+<% end %>
+<%# --- FIM DO MENU DE NAVEGAÇÃO --- %>
+
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<%= yield %>
+
+</body>

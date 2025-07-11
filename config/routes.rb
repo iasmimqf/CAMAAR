@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   devise_for :usuarios
   get "home/index"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
+  namespace :admin do
+    # Isso cria a rota GET /admin/dashboard que aponta para a ação 'index'
+    # do controller 'dashboard' dentro do módulo 'admin'
+    get 'dashboard', to: 'dashboard#index' , as: 'dashboard'
+  end
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.

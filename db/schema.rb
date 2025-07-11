@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_10_235626) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_11_024732) do
   create_table "formularios", force: :cascade do |t|
     t.string "titulo"
     t.boolean "ehTemplate"
@@ -58,7 +58,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_10_235626) do
   create_table "usuarios", force: :cascade do |t|
     t.string "matricula"
     t.string "nome"
-    t.string "perfil"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false

@@ -1,7 +1,5 @@
 Funcionalidade: Importar dados do SIGAA
 
-História de usuário:
-
 Como um Administrador do sistema
 Quero importar dados atualizados do SIGAA
 A fim de manter a base de dados consistente 

@@ -1,0 +1,13 @@
+<h1>Importar Alunos para Turma</h1>
+<p>Selecione o arquivo JSON contendo os dados dos alunos.</p>
+
+<%= form_with url: admin_import_alunos_path, method: :post do |form| %>
+  <div class="field">
+    <%= form.label :file, "Selecione o arquivo de alunos" %>
+    <%= form.file_field :file, accept: ".json" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Enviar Alunos" %>
+  </div>
+<% end %>

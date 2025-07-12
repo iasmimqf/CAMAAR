@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_11_024732) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_12_022803) do
+  create_table "disciplinas", force: :cascade do |t|
+    t.string "codigo", null: false
+    t.string "nome", null: false
+    t.text "descricao"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["codigo"], name: "index_disciplinas_on_codigo", unique: true
+  end
+
   create_table "formularios", force: :cascade do |t|
     t.string "titulo"
     t.boolean "ehTemplate"
@@ -40,13 +49,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_11_024732) do
   end
 
   create_table "turmas", force: :cascade do |t|
-    t.string "nomeDaTurma"
-    t.string "semestre"
-    t.boolean "ativo"
-    t.text "descricao"
+    t.string "codigo_turma", null: false
+    t.string "semestre", null: false
+    t.string "horario"
+    t.integer "disciplina_id", null: false
+    t.integer "professor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "professor_id", null: false
+    t.index ["disciplina_id", "codigo_turma", "semestre"], name: "index_turmas_on_unique_keys", unique: true
+    t.index ["disciplina_id"], name: "index_turmas_on_disciplina_id"
     t.index ["professor_id"], name: "index_turmas_on_professor_id"
   end
 
@@ -73,5 +84,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_11_024732) do
   add_foreign_key "formularios", "usuarios", column: "criador_id"
   add_foreign_key "respostas", "formularios"
   add_foreign_key "respostas", "usuarios", column: "avaliador_id"
+  add_foreign_key "turmas", "disciplinas"
   add_foreign_key "turmas", "usuarios", column: "professor_id"
 end

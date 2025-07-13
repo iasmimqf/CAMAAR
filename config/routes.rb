@@ -1,9 +1,9 @@
 # config/routes.rb
 Rails.application.routes.draw do
-  devise_for :usuarios, controllers: {
-    passwords: 'password_resets' # Aponta para app/controllers/password_resets_controller.rb
-  }
+  # Esta linha agora usa os controllers PADRÃO do Devise, que funcionam corretamente.
+  devise_for :usuarios
 
+  # As suas outras rotas permanecem iguais.
   get "home/index"
 
   namespace :admin do
@@ -14,19 +14,12 @@ Rails.application.routes.draw do
     end
   end
 
-  # --- ALTERAÇÃO AQUI: Envolver a rota customizada em devise_scope ---
-  devise_scope :usuario do # O nome do seu mapeamento Devise (singular, minúsculo)
-    get 'definir-senha', to: 'password_resets#edit', as: 'definir_senha'
-    # Se você precisar submeter o formulário para este controller customizado,
-    # também adicione as rotas PATCH/PUT dentro deste bloco:
-    # patch 'definir-senha', to: 'password_resets#update'
-    # put 'definir-senha', to: 'password_resets#update'
+  # Mantemos a sua URL amigável, mas agora ela aponta para o controller correto do Devise.
+  devise_scope :usuario do
+    get 'definir-senha', to: 'devise/passwords#edit', as: 'definir_senha'
   end
-  # --- FIM DA ALTERAÇÃO ---
 
   get 'erro-link-invalido', to: 'pages#link_invalido', as: 'erro_link_invalido'
-
   get "up" => "rails/health#show", as: :rails_health_check
-
-  root "home#index"
+  root to: "home#index"
 end

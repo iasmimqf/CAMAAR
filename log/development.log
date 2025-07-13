@@ -5096,3 +5096,787 @@ Processing by Devise::SessionsController#new as HTML
 Completed 200 OK in 448ms (Views: 22.5ms | ActiveRecord: 0.0ms | Allocations: 2715)
 
 
+Started GET "/definir-senha?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 12:29:52 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PasswordResetsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering password_resets/edit.html.erb within layouts/application
+DEPRECATION WARNING: [Devise] `DeviseHelper#devise_error_messages!` is deprecated and will be
+removed in the next major version.
+
+Devise now uses a partial under "devise/shared/error_messages" to display
+error messages by default, and make them easier to customize. Update your
+views changing calls from:
+
+    <%= devise_error_messages! %>
+
+to:
+
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+To start customizing how errors are displayed, you can copy the partial
+from devise to your `app/views` folder. Alternatively, you can run
+`rails g devise:views` which will copy all of them again to your app.
+ (called from _app_views_password_resets_edit_html_erb___2895213790110168471_12024 at /mnt/c/GitHub/CAMAAR/app/views/password_resets/edit.html.erb:4)
+  Rendered password_resets/edit.html.erb within layouts/application (Duration: 14.0ms | Allocations: 1668)
+  Rendered layout layouts/application.html.erb (Duration: 81.1ms | Allocations: 12318)
+Completed 200 OK in 2111ms (Views: 99.3ms | ActiveRecord: 29.3ms | Allocations: 316642)
+
+
+Started GET "/assets/application-892b7ed4.css" for 127.0.0.1 at 2025-07-13 12:29:55 -0300
+Started GET "/assets/application-bfcdf840.js" for 127.0.0.1 at 2025-07-13 12:29:55 -0300
+Started GET "/assets/controllers/application-3affb389.js" for 127.0.0.1 at 2025-07-13 12:29:55 -0300
+Started GET "/assets/controllers/hello_controller-708796bd.js" for 127.0.0.1 at 2025-07-13 12:29:55 -0300
+Started GET "/assets/controllers/index-ee64e1f1.js" for 127.0.0.1 at 2025-07-13 12:29:55 -0300
+Started GET "/assets/controllers/modal_controller-e8a8279d.js" for 127.0.0.1 at 2025-07-13 12:29:55 -0300
+Started GET "/assets/stimulus-loading-1fc53fe7.js" for 127.0.0.1 at 2025-07-13 12:29:55 -0300
+Started GET "/assets/stimulus.min-4b1e420e.js" for 127.0.0.1 at 2025-07-13 12:29:55 -0300
+Started GET "/assets/turbo.min-3a2e143f.js" for 127.0.0.1 at 2025-07-13 12:29:55 -0300
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-07-13 12:29:56 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started PATCH "/usuarios/password" for 127.0.0.1 at 2025-07-13 12:29:56 -0300
+Processing by PasswordResetsController#update as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "usuario" => {"reset_password_token" => "[FILTERED]", "password" => "[FILTERED]", "password_confirmation" => "[FILTERED]"}, "commit" => "Salvar Senha"}
+  [1m[36mUsuario Load (0.7ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."reset_password_token" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["reset_password_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/password_resets_controller.rb:14:in 'PasswordResetsController#update'
+Completed 500 Internal Server Error in 646ms (ActiveRecord: 0.7ms | Allocations: 4894)
+
+
+  
+NoMethodError (undefined method 'reset_password_token_valid?' for an instance of Usuario):
+  
+app/controllers/password_resets_controller.rb:19:in 'PasswordResetsController#update'
+Started GET "/definir-senha?token=[FILTERED]" for 127.0.0.1 at 2025-07-13 12:30:01 -0300
+Processing by PasswordResetsController#edit as HTML
+  Parameters: {"token" => "[FILTERED]"}
+Redirected to http://127.0.0.1:3000/usuarios/sign_in
+Filter chain halted as :assert_reset_token_passed rendered or redirected
+Completed 302 Found in 448ms (ActiveRecord: 0.0ms | Allocations: 1128)
+
+
+Started GET "/usuarios/sign_in" for 127.0.0.1 at 2025-07-13 12:30:02 -0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/sessions/new.html.erb within layouts/application
+  Rendered usuarios/shared/_links.html.erb (Duration: 2.8ms | Allocations: 393)
+  Rendered usuarios/sessions/new.html.erb within layouts/application (Duration: 21.1ms | Allocations: 1759)
+  Rendered layout layouts/application.html.erb (Duration: 22.3ms | Allocations: 2129)
+Completed 200 OK in 467ms (Views: 34.0ms | ActiveRecord: 0.0ms | Allocations: 3244)
+
+
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 12:51:09 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PasswordResetsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering password_resets/edit.html.erb within layouts/application
+DEPRECATION WARNING: [Devise] `DeviseHelper#devise_error_messages!` is deprecated and will be
+removed in the next major version.
+
+Devise now uses a partial under "devise/shared/error_messages" to display
+error messages by default, and make them easier to customize. Update your
+views changing calls from:
+
+    <%= devise_error_messages! %>
+
+to:
+
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+To start customizing how errors are displayed, you can copy the partial
+from devise to your `app/views` folder. Alternatively, you can run
+`rails g devise:views` which will copy all of them again to your app.
+ (called from _app_views_password_resets_edit_html_erb__843094260125330216_12024 at /mnt/c/GitHub/CAMAAR/app/views/password_resets/edit.html.erb:4)
+  Rendered password_resets/edit.html.erb within layouts/application (Duration: 15.4ms | Allocations: 1669)
+  Rendered layout layouts/application.html.erb (Duration: 83.9ms | Allocations: 12319)
+Completed 200 OK in 2027ms (Views: 102.0ms | ActiveRecord: 18.4ms | Allocations: 316628)
+
+
+Started GET "/assets/application-892b7ed4.css" for 127.0.0.1 at 2025-07-13 12:51:11 -0300
+Started GET "/assets/application-bfcdf840.js" for 127.0.0.1 at 2025-07-13 12:51:11 -0300
+Started GET "/assets/turbo.min-3a2e143f.js" for 127.0.0.1 at 2025-07-13 12:51:11 -0300
+Started GET "/assets/controllers/hello_controller-708796bd.js" for 127.0.0.1 at 2025-07-13 12:51:11 -0300
+Started GET "/assets/controllers/index-ee64e1f1.js" for 127.0.0.1 at 2025-07-13 12:51:11 -0300
+Started GET "/assets/controllers/modal_controller-e8a8279d.js" for 127.0.0.1 at 2025-07-13 12:51:11 -0300
+Started GET "/assets/stimulus-loading-1fc53fe7.js" for 127.0.0.1 at 2025-07-13 12:51:12 -0300
+Started GET "/assets/stimulus.min-4b1e420e.js" for 127.0.0.1 at 2025-07-13 12:51:12 -0300
+Started GET "/assets/controllers/application-3affb389.js" for 127.0.0.1 at 2025-07-13 12:51:12 -0300
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-07-13 12:51:12 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started PATCH "/usuarios/password" for 127.0.0.1 at 2025-07-13 12:51:12 -0300
+Processing by PasswordResetsController#update as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "usuario" => {"reset_password_token" => "[FILTERED]", "password" => "[FILTERED]", "password_confirmation" => "[FILTERED]"}, "commit" => "Salvar Senha"}
+  [1m[36mUsuario Load (0.5ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."reset_password_token" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["reset_password_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/password_resets_controller.rb:14:in 'PasswordResetsController#update'
+Completed 500 Internal Server Error in 520ms (ActiveRecord: 0.5ms | Allocations: 4864)
+
+
+  
+NoMethodError (undefined method 'reset_password_token_valid?' for an instance of Usuario):
+  
+app/controllers/password_resets_controller.rb:19:in 'PasswordResetsController#update'
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 12:51:17 -0300
+Processing by PasswordResetsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering password_resets/edit.html.erb within layouts/application
+DEPRECATION WARNING: [Devise] `DeviseHelper#devise_error_messages!` is deprecated and will be
+removed in the next major version.
+
+Devise now uses a partial under "devise/shared/error_messages" to display
+error messages by default, and make them easier to customize. Update your
+views changing calls from:
+
+    <%= devise_error_messages! %>
+
+to:
+
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+To start customizing how errors are displayed, you can copy the partial
+from devise to your `app/views` folder. Alternatively, you can run
+`rails g devise:views` which will copy all of them again to your app.
+ (called from _app_views_password_resets_edit_html_erb__843094260125330216_12024 at /mnt/c/GitHub/CAMAAR/app/views/password_resets/edit.html.erb:4)
+  Rendered password_resets/edit.html.erb within layouts/application (Duration: 1.3ms | Allocations: 526)
+  Rendered layout layouts/application.html.erb (Duration: 2.7ms | Allocations: 889)
+Completed 200 OK in 392ms (Views: 3.9ms | ActiveRecord: 0.0ms | Allocations: 1445)
+
+
+Started PATCH "/usuarios/password" for 127.0.0.1 at 2025-07-13 12:51:18 -0300
+Processing by PasswordResetsController#update as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "usuario" => {"reset_password_token" => "[FILTERED]", "password" => "[FILTERED]", "password_confirmation" => "[FILTERED]"}, "commit" => "Salvar Senha"}
+  [1m[36mUsuario Load (0.6ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."reset_password_token" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["reset_password_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/password_resets_controller.rb:14:in 'PasswordResetsController#update'
+Completed 500 Internal Server Error in 450ms (ActiveRecord: 0.5ms | Allocations: 1702)
+
+
+  
+NoMethodError (undefined method 'reset_password_token_valid?' for an instance of Usuario):
+  
+app/controllers/password_resets_controller.rb:19:in 'PasswordResetsController#update'
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 12:51:23 -0300
+Processing by PasswordResetsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering password_resets/edit.html.erb within layouts/application
+DEPRECATION WARNING: [Devise] `DeviseHelper#devise_error_messages!` is deprecated and will be
+removed in the next major version.
+
+Devise now uses a partial under "devise/shared/error_messages" to display
+error messages by default, and make them easier to customize. Update your
+views changing calls from:
+
+    <%= devise_error_messages! %>
+
+to:
+
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+To start customizing how errors are displayed, you can copy the partial
+from devise to your `app/views` folder. Alternatively, you can run
+`rails g devise:views` which will copy all of them again to your app.
+ (called from _app_views_password_resets_edit_html_erb__843094260125330216_12024 at /mnt/c/GitHub/CAMAAR/app/views/password_resets/edit.html.erb:4)
+  Rendered password_resets/edit.html.erb within layouts/application (Duration: 1.4ms | Allocations: 525)
+  Rendered layout layouts/application.html.erb (Duration: 2.6ms | Allocations: 888)
+Completed 200 OK in 419ms (Views: 3.7ms | ActiveRecord: 0.0ms | Allocations: 1434)
+
+
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 12:56:58 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 2.0ms | Allocations: 148)
+  Rendered usuarios/shared/_links.html.erb (Duration: 3.0ms | Allocations: 391)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 24.2ms | Allocations: 1777)
+  Rendered layout layouts/application.html.erb (Duration: 45.4ms | Allocations: 4453)
+Completed 200 OK in 530ms (Views: 56.3ms | ActiveRecord: 0.0ms | Allocations: 9995)
+
+
+Started GET "/assets/application-892b7ed4.css" for 127.0.0.1 at 2025-07-13 12:56:59 -0300
+Started GET "/assets/application-bfcdf840.js" for 127.0.0.1 at 2025-07-13 12:56:59 -0300
+Started GET "/assets/stimulus.min-4b1e420e.js" for 127.0.0.1 at 2025-07-13 12:56:59 -0300
+Started GET "/assets/controllers/hello_controller-708796bd.js" for 127.0.0.1 at 2025-07-13 12:56:59 -0300
+Started GET "/assets/controllers/index-ee64e1f1.js" for 127.0.0.1 at 2025-07-13 12:56:59 -0300
+Started GET "/assets/controllers/modal_controller-e8a8279d.js" for 127.0.0.1 at 2025-07-13 12:56:59 -0300
+Started GET "/assets/turbo.min-3a2e143f.js" for 127.0.0.1 at 2025-07-13 12:57:00 -0300
+Started GET "/assets/stimulus-loading-1fc53fe7.js" for 127.0.0.1 at 2025-07-13 12:57:00 -0300
+Started GET "/assets/controllers/application-3affb389.js" for 127.0.0.1 at 2025-07-13 12:57:00 -0300
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-07-13 12:57:12 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 12:57:17 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.3ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 3.9ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 5.5ms | Allocations: 972)
+Completed 200 OK in 442ms (Views: 7.7ms | ActiveRecord: 0.0ms | Allocations: 1455)
+
+
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 12:57:11 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.6ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 2.9ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 4.0ms | Allocations: 972)
+Completed 200 OK in 391ms (Views: 5.0ms | ActiveRecord: 0.0ms | Allocations: 1455)
+
+
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:01:54 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.2ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 5.0ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 7.5ms | Allocations: 972)
+Completed 200 OK in 484ms (Views: 9.2ms | ActiveRecord: 0.0ms | Allocations: 1455)
+
+
+Started GET "/assets/application-892b7ed4.css" for 127.0.0.1 at 2025-07-13 13:01:55 -0300
+Started GET "/assets/application-bfcdf840.js" for 127.0.0.1 at 2025-07-13 13:01:55 -0300
+Started GET "/assets/controllers/application-3affb389.js" for 127.0.0.1 at 2025-07-13 13:01:55 -0300
+Started GET "/assets/controllers/hello_controller-708796bd.js" for 127.0.0.1 at 2025-07-13 13:01:55 -0300
+Started GET "/assets/controllers/index-ee64e1f1.js" for 127.0.0.1 at 2025-07-13 13:01:55 -0300
+Started GET "/assets/controllers/modal_controller-e8a8279d.js" for 127.0.0.1 at 2025-07-13 13:01:55 -0300
+Started GET "/assets/stimulus-loading-1fc53fe7.js" for 127.0.0.1 at 2025-07-13 13:01:55 -0300
+Started GET "/assets/stimulus.min-4b1e420e.js" for 127.0.0.1 at 2025-07-13 13:01:55 -0300
+Started GET "/assets/turbo.min-3a2e143f.js" for 127.0.0.1 at 2025-07-13 13:01:55 -0300
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-07-13 13:02:08 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:02:01 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.2ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 2.1ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 3.6ms | Allocations: 972)
+Completed 200 OK in 504ms (Views: 5.0ms | ActiveRecord: 0.0ms | Allocations: 1459)
+
+
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:02:07 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.2ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 2.0ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 3.2ms | Allocations: 972)
+Completed 200 OK in 462ms (Views: 4.5ms | ActiveRecord: 0.0ms | Allocations: 1458)
+
+
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:03:39 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 2.6ms | Allocations: 162)
+  Rendered usuarios/shared/_links.html.erb (Duration: 2.8ms | Allocations: 393)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 37.5ms | Allocations: 2618)
+  Rendered layout layouts/application.html.erb (Duration: 112.0ms | Allocations: 13256)
+Completed 200 OK in 2263ms (Views: 134.4ms | ActiveRecord: 27.8ms | Allocations: 317282)
+
+
+Started GET "/assets/application-892b7ed4.css" for 127.0.0.1 at 2025-07-13 13:03:42 -0300
+Started GET "/assets/application-bfcdf840.js" for 127.0.0.1 at 2025-07-13 13:03:42 -0300
+Started GET "/assets/turbo.min-3a2e143f.js" for 127.0.0.1 at 2025-07-13 13:03:42 -0300
+Started GET "/assets/controllers/hello_controller-708796bd.js" for 127.0.0.1 at 2025-07-13 13:03:42 -0300
+Started GET "/assets/controllers/index-ee64e1f1.js" for 127.0.0.1 at 2025-07-13 13:03:42 -0300
+Started GET "/assets/controllers/modal_controller-e8a8279d.js" for 127.0.0.1 at 2025-07-13 13:03:42 -0300
+Started GET "/assets/stimulus.min-4b1e420e.js" for 127.0.0.1 at 2025-07-13 13:03:43 -0300
+Started GET "/assets/controllers/application-3affb389.js" for 127.0.0.1 at 2025-07-13 13:03:43 -0300
+Started GET "/assets/stimulus-loading-1fc53fe7.js" for 127.0.0.1 at 2025-07-13 13:03:43 -0300
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-07-13 13:03:43 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:03:48 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.2ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 3.0ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 4.3ms | Allocations: 972)
+Completed 200 OK in 510ms (Views: 6.1ms | ActiveRecord: 0.0ms | Allocations: 1465)
+
+
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:03:54 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.1ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 2.2ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 3.5ms | Allocations: 972)
+Completed 200 OK in 451ms (Views: 4.7ms | ActiveRecord: 0.0ms | Allocations: 1454)
+
+
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:05:44 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.2ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 2.5ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 3.9ms | Allocations: 972)
+Completed 200 OK in 502ms (Views: 5.3ms | ActiveRecord: 0.0ms | Allocations: 1455)
+
+
+Started GET "/assets/application-892b7ed4.css" for 127.0.0.1 at 2025-07-13 13:05:45 -0300
+Started GET "/assets/application-bfcdf840.js" for 127.0.0.1 at 2025-07-13 13:05:45 -0300
+Started GET "/assets/turbo.min-3a2e143f.js" for 127.0.0.1 at 2025-07-13 13:05:45 -0300
+Started GET "/assets/controllers/hello_controller-708796bd.js" for 127.0.0.1 at 2025-07-13 13:05:45 -0300
+Started GET "/assets/controllers/index-ee64e1f1.js" for 127.0.0.1 at 2025-07-13 13:05:45 -0300
+Started GET "/assets/controllers/modal_controller-e8a8279d.js" for 127.0.0.1 at 2025-07-13 13:05:45 -0300
+Started GET "/assets/controllers/application-3affb389.js" for 127.0.0.1 at 2025-07-13 13:05:45 -0300
+Started GET "/assets/stimulus-loading-1fc53fe7.js" for 127.0.0.1 at 2025-07-13 13:05:45 -0300
+Started GET "/assets/stimulus.min-4b1e420e.js" for 127.0.0.1 at 2025-07-13 13:05:45 -0300
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-07-13 13:05:45 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:05:51 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.2ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 2.1ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 3.3ms | Allocations: 972)
+Completed 200 OK in 522ms (Views: 4.5ms | ActiveRecord: 0.0ms | Allocations: 1458)
+
+
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:05:57 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.3ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 2.5ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 3.9ms | Allocations: 972)
+Completed 200 OK in 488ms (Views: 5.2ms | ActiveRecord: 0.0ms | Allocations: 1458)
+
+
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:09:35 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.3ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 3.0ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 4.7ms | Allocations: 972)
+Completed 200 OK in 474ms (Views: 6.2ms | ActiveRecord: 0.0ms | Allocations: 1457)
+
+
+Started GET "/assets/application-892b7ed4.css" for 127.0.0.1 at 2025-07-13 13:09:36 -0300
+Started GET "/assets/application-bfcdf840.js" for 127.0.0.1 at 2025-07-13 13:09:36 -0300
+Started GET "/assets/controllers/application-3affb389.js" for 127.0.0.1 at 2025-07-13 13:09:36 -0300
+Started GET "/assets/controllers/hello_controller-708796bd.js" for 127.0.0.1 at 2025-07-13 13:09:36 -0300
+Started GET "/assets/controllers/index-ee64e1f1.js" for 127.0.0.1 at 2025-07-13 13:09:36 -0300
+Started GET "/assets/controllers/modal_controller-e8a8279d.js" for 127.0.0.1 at 2025-07-13 13:09:36 -0300
+Started GET "/assets/stimulus-loading-1fc53fe7.js" for 127.0.0.1 at 2025-07-13 13:09:36 -0300
+Started GET "/assets/stimulus.min-4b1e420e.js" for 127.0.0.1 at 2025-07-13 13:09:36 -0300
+Started GET "/assets/turbo.min-3a2e143f.js" for 127.0.0.1 at 2025-07-13 13:09:36 -0300
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-07-13 13:09:37 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:09:42 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.1ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 2.0ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 3.1ms | Allocations: 972)
+Completed 200 OK in 462ms (Views: 4.3ms | ActiveRecord: 0.0ms | Allocations: 1460)
+
+
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:09:48 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.2ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 2.1ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 4.1ms | Allocations: 972)
+Completed 200 OK in 454ms (Views: 5.5ms | ActiveRecord: 0.0ms | Allocations: 1455)
+
+
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:10:58 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 2.8ms | Allocations: 162)
+  Rendered usuarios/shared/_links.html.erb (Duration: 3.1ms | Allocations: 393)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 40.6ms | Allocations: 2618)
+  Rendered layout layouts/application.html.erb (Duration: 112.9ms | Allocations: 13255)
+Completed 200 OK in 2181ms (Views: 132.3ms | ActiveRecord: 21.2ms | Allocations: 317275)
+
+
+Started GET "/assets/application-892b7ed4.css" for 127.0.0.1 at 2025-07-13 13:11:01 -0300
+Started GET "/assets/application-bfcdf840.js" for 127.0.0.1 at 2025-07-13 13:11:01 -0300
+Started GET "/assets/turbo.min-3a2e143f.js" for 127.0.0.1 at 2025-07-13 13:11:01 -0300
+Started GET "/assets/controllers/hello_controller-708796bd.js" for 127.0.0.1 at 2025-07-13 13:11:13 -0300
+Started GET "/assets/controllers/index-ee64e1f1.js" for 127.0.0.1 at 2025-07-13 13:11:13 -0300
+Started GET "/assets/controllers/modal_controller-e8a8279d.js" for 127.0.0.1 at 2025-07-13 13:11:13 -0300
+Started GET "/assets/controllers/application-3affb389.js" for 127.0.0.1 at 2025-07-13 13:11:02 -0300
+Started GET "/assets/stimulus-loading-1fc53fe7.js" for 127.0.0.1 at 2025-07-13 13:11:02 -0300
+Started GET "/assets/stimulus.min-4b1e420e.js" for 127.0.0.1 at 2025-07-13 13:11:02 -0300
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-07-13 13:11:02 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:11:07 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.3ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 3.1ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 4.5ms | Allocations: 972)
+Completed 200 OK in 500ms (Views: 6.0ms | ActiveRecord: 0.0ms | Allocations: 1465)
+
+
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:11:13 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.2ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 2.4ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 4.0ms | Allocations: 972)
+Completed 200 OK in 496ms (Views: 6.3ms | ActiveRecord: 0.0ms | Allocations: 1461)
+
+
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:16:29 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.2ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 2.4ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | Allocations: 972)
+Completed 200 OK in 493ms (Views: 5.0ms | ActiveRecord: 0.0ms | Allocations: 1457)
+
+
+Started GET "/assets/application-892b7ed4.css" for 127.0.0.1 at 2025-07-13 13:16:30 -0300
+Started GET "/assets/application-bfcdf840.js" for 127.0.0.1 at 2025-07-13 13:16:30 -0300
+Started GET "/assets/turbo.min-3a2e143f.js" for 127.0.0.1 at 2025-07-13 13:16:30 -0300
+Started GET "/assets/controllers/hello_controller-708796bd.js" for 127.0.0.1 at 2025-07-13 13:16:30 -0300
+Started GET "/assets/controllers/index-ee64e1f1.js" for 127.0.0.1 at 2025-07-13 13:16:30 -0300
+Started GET "/assets/controllers/modal_controller-e8a8279d.js" for 127.0.0.1 at 2025-07-13 13:16:30 -0300
+Started GET "/assets/controllers/application-3affb389.js" for 127.0.0.1 at 2025-07-13 13:16:30 -0300
+Started GET "/assets/stimulus-loading-1fc53fe7.js" for 127.0.0.1 at 2025-07-13 13:16:30 -0300
+Started GET "/assets/stimulus.min-4b1e420e.js" for 127.0.0.1 at 2025-07-13 13:16:30 -0300
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-07-13 13:16:31 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:16:36 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.2ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 2.0ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 3.2ms | Allocations: 972)
+Completed 200 OK in 522ms (Views: 4.3ms | ActiveRecord: 0.0ms | Allocations: 1454)
+
+
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:16:42 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.2ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 2.2ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 3.2ms | Allocations: 972)
+Completed 200 OK in 502ms (Views: 4.4ms | ActiveRecord: 0.0ms | Allocations: 1454)
+
+
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:17:21 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 2.5ms | Allocations: 162)
+  Rendered usuarios/shared/_links.html.erb (Duration: 2.6ms | Allocations: 403)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 37.3ms | Allocations: 2633)
+  Rendered layout layouts/application.html.erb (Duration: 108.3ms | Allocations: 13270)
+Completed 200 OK in 1114ms (Views: 128.0ms | ActiveRecord: 25.3ms | Allocations: 25084)
+
+
+Started GET "/assets/application-892b7ed4.css" for 127.0.0.1 at 2025-07-13 13:17:22 -0300
+Started GET "/assets/turbo.min-3a2e143f.js" for 127.0.0.1 at 2025-07-13 13:17:22 -0300
+Started GET "/assets/application-bfcdf840.js" for 127.0.0.1 at 2025-07-13 13:17:22 -0300
+Started GET "/assets/controllers/hello_controller-708796bd.js" for 127.0.0.1 at 2025-07-13 13:17:22 -0300
+Started GET "/assets/controllers/index-ee64e1f1.js" for 127.0.0.1 at 2025-07-13 13:17:22 -0300
+Started GET "/assets/controllers/modal_controller-e8a8279d.js" for 127.0.0.1 at 2025-07-13 13:17:22 -0300
+Started GET "/assets/controllers/application-3affb389.js" for 127.0.0.1 at 2025-07-13 13:17:23 -0300
+Started GET "/assets/stimulus-loading-1fc53fe7.js" for 127.0.0.1 at 2025-07-13 13:17:23 -0300
+Started GET "/assets/stimulus.min-4b1e420e.js" for 127.0.0.1 at 2025-07-13 13:17:23 -0300
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-07-13 13:17:23 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:17:28 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.2ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 3.9ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 5.5ms | Allocations: 972)
+Completed 200 OK in 467ms (Views: 6.8ms | ActiveRecord: 0.0ms | Allocations: 1459)
+
+
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:17:34 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.3ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 4.1ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 5.8ms | Allocations: 972)
+Completed 200 OK in 566ms (Views: 7.4ms | ActiveRecord: 0.0ms | Allocations: 1461)
+
+
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:23:38 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 2.4ms | Allocations: 162)
+  Rendered usuarios/shared/_links.html.erb (Duration: 2.5ms | Allocations: 403)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 35.2ms | Allocations: 2632)
+  Rendered layout layouts/application.html.erb (Duration: 97.8ms | Allocations: 13269)
+Completed 200 OK in 1004ms (Views: 118.5ms | ActiveRecord: 18.1ms | Allocations: 25079)
+
+
+Started GET "/assets/application-892b7ed4.css" for 127.0.0.1 at 2025-07-13 13:23:40 -0300
+Started GET "/assets/application-bfcdf840.js" for 127.0.0.1 at 2025-07-13 13:23:40 -0300
+Started GET "/assets/turbo.min-3a2e143f.js" for 127.0.0.1 at 2025-07-13 13:23:40 -0300
+Started GET "/assets/controllers/hello_controller-708796bd.js" for 127.0.0.1 at 2025-07-13 13:23:40 -0300
+Started GET "/assets/controllers/index-ee64e1f1.js" for 127.0.0.1 at 2025-07-13 13:23:40 -0300
+Started GET "/assets/controllers/modal_controller-e8a8279d.js" for 127.0.0.1 at 2025-07-13 13:23:40 -0300
+Started GET "/assets/stimulus-loading-1fc53fe7.js" for 127.0.0.1 at 2025-07-13 13:23:40 -0300
+Started GET "/assets/stimulus.min-4b1e420e.js" for 127.0.0.1 at 2025-07-13 13:23:40 -0300
+Started GET "/assets/controllers/application-3affb389.js" for 127.0.0.1 at 2025-07-13 13:23:40 -0300
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-07-13 13:23:41 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:23:46 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.3ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 4.5ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 6.4ms | Allocations: 972)
+Completed 200 OK in 527ms (Views: 8.6ms | ActiveRecord: 0.0ms | Allocations: 1463)
+
+
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:23:52 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.1ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 2.0ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 3.1ms | Allocations: 972)
+Completed 200 OK in 446ms (Views: 4.3ms | ActiveRecord: 0.0ms | Allocations: 1461)
+
+
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:25:31 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.2ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 3.2ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 4.5ms | Allocations: 972)
+Completed 200 OK in 447ms (Views: 5.8ms | ActiveRecord: 0.0ms | Allocations: 1454)
+
+
+Started GET "/assets/application-892b7ed4.css" for 127.0.0.1 at 2025-07-13 13:25:31 -0300
+Started GET "/assets/application-bfcdf840.js" for 127.0.0.1 at 2025-07-13 13:25:31 -0300
+Started GET "/assets/controllers/application-3affb389.js" for 127.0.0.1 at 2025-07-13 13:25:31 -0300
+Started GET "/assets/controllers/hello_controller-708796bd.js" for 127.0.0.1 at 2025-07-13 13:25:32 -0300
+Started GET "/assets/controllers/index-ee64e1f1.js" for 127.0.0.1 at 2025-07-13 13:25:32 -0300
+Started GET "/assets/controllers/modal_controller-e8a8279d.js" for 127.0.0.1 at 2025-07-13 13:25:32 -0300
+Started GET "/assets/turbo.min-3a2e143f.js" for 127.0.0.1 at 2025-07-13 13:25:32 -0300
+Started GET "/assets/stimulus-loading-1fc53fe7.js" for 127.0.0.1 at 2025-07-13 13:25:32 -0300
+Started GET "/assets/stimulus.min-4b1e420e.js" for 127.0.0.1 at 2025-07-13 13:25:32 -0300
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-07-13 13:25:32 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:25:37 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.2ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 2.3ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 3.4ms | Allocations: 972)
+Completed 200 OK in 414ms (Views: 4.7ms | ActiveRecord: 0.0ms | Allocations: 1458)
+
+
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:25:43 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.1ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 1.9ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 3.0ms | Allocations: 972)
+Completed 200 OK in 388ms (Views: 4.0ms | ActiveRecord: 0.0ms | Allocations: 1455)
+
+
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:39:05 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 2.0ms | Allocations: 162)
+  Rendered usuarios/shared/_links.html.erb (Duration: 2.6ms | Allocations: 403)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 33.2ms | Allocations: 2632)
+  Rendered layout layouts/application.html.erb (Duration: 123.9ms | Allocations: 13269)
+Completed 200 OK in 1030ms (Views: 142.0ms | ActiveRecord: 24.9ms | Allocations: 25087)
+
+
+Started GET "/assets/application-892b7ed4.css" for 127.0.0.1 at 2025-07-13 13:39:06 -0300
+Started GET "/assets/application-bfcdf840.js" for 127.0.0.1 at 2025-07-13 13:39:06 -0300
+Started GET "/assets/turbo.min-3a2e143f.js" for 127.0.0.1 at 2025-07-13 13:39:06 -0300
+Started GET "/assets/controllers/hello_controller-708796bd.js" for 127.0.0.1 at 2025-07-13 13:39:06 -0300
+Started GET "/assets/controllers/index-ee64e1f1.js" for 127.0.0.1 at 2025-07-13 13:39:07 -0300
+Started GET "/assets/controllers/modal_controller-e8a8279d.js" for 127.0.0.1 at 2025-07-13 13:39:07 -0300
+Started GET "/assets/controllers/application-3affb389.js" for 127.0.0.1 at 2025-07-13 13:39:07 -0300
+Started GET "/assets/stimulus-loading-1fc53fe7.js" for 127.0.0.1 at 2025-07-13 13:39:07 -0300
+Started GET "/assets/stimulus.min-4b1e420e.js" for 127.0.0.1 at 2025-07-13 13:39:07 -0300
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-07-13 13:39:07 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:39:12 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.2ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 2.6ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 3.9ms | Allocations: 972)
+Completed 200 OK in 440ms (Views: 6.3ms | ActiveRecord: 0.0ms | Allocations: 1460)
+
+
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:39:18 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.1ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 2.1ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 3.3ms | Allocations: 972)
+Completed 200 OK in 447ms (Views: 4.6ms | ActiveRecord: 0.0ms | Allocations: 1461)
+
+
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:45:45 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 2.3ms | Allocations: 162)
+  Rendered usuarios/shared/_links.html.erb (Duration: 2.6ms | Allocations: 403)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 34.5ms | Allocations: 2633)
+  Rendered layout layouts/application.html.erb (Duration: 95.7ms | Allocations: 13270)
+Completed 200 OK in 1013ms (Views: 114.6ms | ActiveRecord: 26.4ms | Allocations: 25083)
+
+
+Started GET "/assets/application-892b7ed4.css" for 127.0.0.1 at 2025-07-13 13:45:46 -0300
+Started GET "/assets/application-bfcdf840.js" for 127.0.0.1 at 2025-07-13 13:45:46 -0300
+Started GET "/assets/turbo.min-3a2e143f.js" for 127.0.0.1 at 2025-07-13 13:45:46 -0300
+Started GET "/assets/controllers/hello_controller-708796bd.js" for 127.0.0.1 at 2025-07-13 13:45:46 -0300
+Started GET "/assets/controllers/index-ee64e1f1.js" for 127.0.0.1 at 2025-07-13 13:45:46 -0300
+Started GET "/assets/controllers/modal_controller-e8a8279d.js" for 127.0.0.1 at 2025-07-13 13:45:46 -0300
+Started GET "/assets/stimulus.min-4b1e420e.js" for 127.0.0.1 at 2025-07-13 13:45:47 -0300
+Started GET "/assets/controllers/application-3affb389.js" for 127.0.0.1 at 2025-07-13 13:45:47 -0300
+Started GET "/assets/stimulus-loading-1fc53fe7.js" for 127.0.0.1 at 2025-07-13 13:45:47 -0300
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-07-13 13:45:47 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:45:52 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.2ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 2.9ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 4.4ms | Allocations: 972)
+Completed 200 OK in 445ms (Views: 5.8ms | ActiveRecord: 0.0ms | Allocations: 1466)
+
+
+Started GET "/usuarios/password/edit?reset_password_token=[FILTERED]" for 127.0.0.1 at 2025-07-13 13:45:58 -0300
+Processing by Devise::PasswordsController#edit as HTML
+  Parameters: {"reset_password_token" => "[FILTERED]"}
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/passwords/edit.html.erb within layouts/application
+  Rendered usuarios/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered usuarios/shared/_links.html.erb (Duration: 0.1ms | Allocations: 98)
+  Rendered usuarios/passwords/edit.html.erb within layouts/application (Duration: 2.0ms | Allocations: 609)
+  Rendered layout layouts/application.html.erb (Duration: 3.2ms | Allocations: 972)
+Completed 200 OK in 465ms (Views: 4.5ms | ActiveRecord: 0.0ms | Allocations: 1458)
+
+

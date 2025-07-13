@@ -84,9 +84,9 @@ end
 # --- Passos "Então" (Then) ---
 
 Então('eu devo ver uma mensagem de sucesso como {string}') do |mensagem|
-  # WORKAROUND: Procura a mensagem de sucesso padrão em Inglês do Devise.
-  expect(page).to have_content("Your password has been changed successfully")
+  expect(page).to have_content(mensagem)
 end
+
 
 Então('devo ser redirecionado para a página de login.') do
   # O Devise, por padrão, redireciona para a rota raiz após o reset de senha e faz o login.
@@ -105,10 +105,6 @@ Então('eu devo ver uma mensagem de erro na tela, como {string}') do |mensagem_e
 end
 
 Então('devo ser direcionado para uma página de erro informando: {string}') do |mensagem_erro|
-  # WORKAROUND: Procura a mensagem de erro de token inválido em Inglês.
-  if mensagem_erro == "Este link é inválido ou já expirou."
-    expect(page).to have_content("Reset password token is invalid")
-  else
-    expect(page).to have_content(mensagem_erro)
-  end
+  expect(page).to have_content(mensagem_erro)
 end
+

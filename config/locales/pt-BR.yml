@@ -3,7 +3,10 @@ pt-BR:
     errors:
       messages:
         record_invalid: "A validação falhou: %{errors}"
-        # Adicione outras traduções de erro comuns se precisar
         taken: "já está em uso"
         blank: "não pode ficar em branco"
         confirmation: "não corresponde à confirmação"
+  devise:
+    errors:
+      messages:
+        invalid_token: "Este link é inválido ou já expirou."

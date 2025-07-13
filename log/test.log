@@ -20775,3 +20775,661 @@ Content-Transfer-Encoding: 7bit
   [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas';[0m
   [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
   [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.3ms)[0m  [1m[35mTRUNCATE TABLE "disciplinas"[0m
+  [1m[35m (4.3ms)[0m  [1m[31mDELETE FROM "disciplinas"[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.3ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'disciplinas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "formularios_turmas"[0m
+  [1m[35m (0.7ms)[0m  [1m[31mDELETE FROM "formularios_turmas"[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.3ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios_turmas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "turmas_usuarios"[0m
+  [1m[35m (0.5ms)[0m  [1m[31mDELETE FROM "turmas_usuarios"[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.3ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas_usuarios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "usuarios"[0m
+  [1m[35m (0.9ms)[0m  [1m[31mDELETE FROM "usuarios"[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.3ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'usuarios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "formularios"[0m
+  [1m[35m (0.7ms)[0m  [1m[31mDELETE FROM "formularios"[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.3ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "password_reset_tokens"[0m
+  [1m[35m (0.8ms)[0m  [1m[31mDELETE FROM "password_reset_tokens"[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.3ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'password_reset_tokens';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "respostas"[0m
+  [1m[35m (0.8ms)[0m  [1m[31mDELETE FROM "respostas"[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.3ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'respostas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "turmas"[0m
+  [1m[35m (1.1ms)[0m  [1m[31mDELETE FROM "turmas"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.3ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas';[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUsuario Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "usuarios" WHERE "usuarios"."email" = ? LIMIT ?[0m  [["email", "teste-9128e9c2@exemplo.com"], ["LIMIT", 1]]
+  [1m[36mUsuario Create (1.1ms)[0m  [1m[32mINSERT INTO "usuarios" ("matricula", "nome", "created_at", "updated_at", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "admin") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["matricula", "203202"], ["nome", "Utilizador de Teste"], ["created_at", "2025-07-13 18:57:48.200059"], ["updated_at", "2025-07-13 18:57:48.200059"], ["email", "teste-9128e9c2@exemplo.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["admin", nil]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUsuario Load (2.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."reset_password_token" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["reset_password_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUsuario Update (1.5ms)[0m  [1m[33mUPDATE "usuarios" SET "updated_at" = ?, "reset_password_token" = ?, "reset_password_sent_at" = ? WHERE "usuarios"."id" = ?[0m  [["updated_at", "2025-07-13 18:57:48.263553"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["id", 1]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[36mcommit transaction[0m
+  Rendering usuarios/mailer/reset_password_instructions.html.erb
+  Rendered usuarios/mailer/reset_password_instructions.html.erb (Duration: 4.5ms | Allocations: 636)
+Devise::Mailer#reset_password_instructions: processed outbound mail in 1054.9ms
+Delivered mail 687401ad51058_127438c022435@Kamuratt.mail (15.2ms)
+Date: Sun, 13 Jul 2025 15:57:49 -0300
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: teste-9128e9c2@exemplo.com
+Message-ID: <687401ad51058_127438c022435@Kamuratt.mail>
+Subject: =?UTF-8?Q?Instru=C3=A7=C3=B5es_de_redefini=C3=A7=C3=A3o_de_senha?=
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Hello teste-9128e9c2@exemplo.com!</p>
+
+<p>Someone has requested a link to change your password. You can do this through the link below.</p>
+
+<p><a href="http://localhost:3000/usuarios/password/edit?reset_password_token=7oSYeMBA5tPK2CDtgE6S">Change my password</a></p>
+
+<p>If you didn't request this, please ignore this email.</p>
+<p>Your password won't change until you access the link above and create a new one.</p>
+
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "disciplinas"[0m
+  [1m[35m (0.8ms)[0m  [1m[31mDELETE FROM "disciplinas"[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'disciplinas';[0m
+  [1m[35m (0.3ms)[0m  [1m[35mTRUNCATE TABLE "formularios_turmas"[0m
+  [1m[35m (0.8ms)[0m  [1m[31mDELETE FROM "formularios_turmas"[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.5ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios_turmas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "turmas_usuarios"[0m
+  [1m[35m (0.7ms)[0m  [1m[31mDELETE FROM "turmas_usuarios"[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas_usuarios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "usuarios"[0m
+  [1m[35m (1.1ms)[0m  [1m[31mDELETE FROM "usuarios"[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.6ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'usuarios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "formularios"[0m
+  [1m[35m (1.3ms)[0m  [1m[31mDELETE FROM "formularios"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.7ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios';[0m
+  [1m[35m (0.3ms)[0m  [1m[35mTRUNCATE TABLE "password_reset_tokens"[0m
+  [1m[35m (1.6ms)[0m  [1m[31mDELETE FROM "password_reset_tokens"[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.5ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'password_reset_tokens';[0m
+  [1m[35m (0.4ms)[0m  [1m[35mTRUNCATE TABLE "respostas"[0m
+  [1m[35m (1.3ms)[0m  [1m[31mDELETE FROM "respostas"[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'respostas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "turmas"[0m
+  [1m[35m (1.3ms)[0m  [1m[31mDELETE FROM "turmas"[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas';[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "disciplinas"[0m
+  [1m[35m (1.1ms)[0m  [1m[31mDELETE FROM "disciplinas"[0m
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.6ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'disciplinas';[0m
+  [1m[35m (0.3ms)[0m  [1m[35mTRUNCATE TABLE "formularios_turmas"[0m
+  [1m[35m (0.9ms)[0m  [1m[31mDELETE FROM "formularios_turmas"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios_turmas';[0m
+  [1m[35m (0.3ms)[0m  [1m[35mTRUNCATE TABLE "turmas_usuarios"[0m
+  [1m[35m (0.7ms)[0m  [1m[31mDELETE FROM "turmas_usuarios"[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas_usuarios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "usuarios"[0m
+  [1m[35m (1.0ms)[0m  [1m[31mDELETE FROM "usuarios"[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'usuarios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "formularios"[0m
+  [1m[35m (0.8ms)[0m  [1m[31mDELETE FROM "formularios"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "password_reset_tokens"[0m
+  [1m[35m (1.1ms)[0m  [1m[31mDELETE FROM "password_reset_tokens"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.5ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'password_reset_tokens';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "respostas"[0m
+  [1m[35m (1.1ms)[0m  [1m[31mDELETE FROM "respostas"[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'respostas';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "turmas"[0m
+  [1m[35m (1.3ms)[0m  [1m[31mDELETE FROM "turmas"[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas';[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUsuario Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "usuarios" WHERE "usuarios"."email" = ? LIMIT ?[0m  [["email", "teste-7f4f4233@exemplo.com"], ["LIMIT", 1]]
+  [1m[36mUsuario Create (0.3ms)[0m  [1m[32mINSERT INTO "usuarios" ("matricula", "nome", "created_at", "updated_at", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "admin") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["matricula", "677574"], ["nome", "Utilizador de Teste"], ["created_at", "2025-07-13 18:57:58.613232"], ["updated_at", "2025-07-13 18:57:58.613232"], ["email", "teste-7f4f4233@exemplo.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["admin", nil]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUsuario Load (0.8ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."reset_password_token" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["reset_password_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUsuario Update (0.5ms)[0m  [1m[33mUPDATE "usuarios" SET "updated_at" = ?, "reset_password_token" = ?, "reset_password_sent_at" = ? WHERE "usuarios"."id" = ?[0m  [["updated_at", "2025-07-13 18:57:58.617561"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["id", 1]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[36mcommit transaction[0m
+  Rendering usuarios/mailer/reset_password_instructions.html.erb
+  Rendered usuarios/mailer/reset_password_instructions.html.erb (Duration: 0.3ms | Allocations: 76)
+Devise::Mailer#reset_password_instructions: processed outbound mail in 2.1ms
+Delivered mail 687401b697f98_127438c022542@Kamuratt.mail (1.0ms)
+Date: Sun, 13 Jul 2025 15:57:58 -0300
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: teste-7f4f4233@exemplo.com
+Message-ID: <687401b697f98_127438c022542@Kamuratt.mail>
+Subject: =?UTF-8?Q?Instru=C3=A7=C3=B5es_de_redefini=C3=A7=C3=A3o_de_senha?=
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Hello teste-7f4f4233@exemplo.com!</p>
+
+<p>Someone has requested a link to change your password. You can do this through the link below.</p>
+
+<p><a href="http://localhost:3000/usuarios/password/edit?reset_password_token=sxUjbJ1NnaXszqrBdo2f">Change my password</a></p>
+
+<p>If you didn't request this, please ignore this email.</p>
+<p>Your password won't change until you access the link above and create a new one.</p>
+
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "disciplinas"[0m
+  [1m[35m (1.6ms)[0m  [1m[31mDELETE FROM "disciplinas"[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.5ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'disciplinas';[0m
+  [1m[35m (0.3ms)[0m  [1m[35mTRUNCATE TABLE "formularios_turmas"[0m
+  [1m[35m (0.8ms)[0m  [1m[31mDELETE FROM "formularios_turmas"[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.6ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios_turmas';[0m
+  [1m[35m (0.3ms)[0m  [1m[35mTRUNCATE TABLE "turmas_usuarios"[0m
+  [1m[35m (1.0ms)[0m  [1m[31mDELETE FROM "turmas_usuarios"[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.6ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas_usuarios';[0m
+  [1m[35m (0.3ms)[0m  [1m[35mTRUNCATE TABLE "usuarios"[0m
+  [1m[35m (1.1ms)[0m  [1m[31mDELETE FROM "usuarios"[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.8ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'usuarios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "formularios"[0m
+  [1m[35m (1.7ms)[0m  [1m[31mDELETE FROM "formularios"[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "password_reset_tokens"[0m
+  [1m[35m (1.2ms)[0m  [1m[31mDELETE FROM "password_reset_tokens"[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'password_reset_tokens';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "respostas"[0m
+  [1m[35m (1.2ms)[0m  [1m[31mDELETE FROM "respostas"[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'respostas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "turmas"[0m
+  [1m[35m (1.5ms)[0m  [1m[31mDELETE FROM "turmas"[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.5ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "disciplinas"[0m
+  [1m[35m (0.9ms)[0m  [1m[31mDELETE FROM "disciplinas"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.5ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'disciplinas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "formularios_turmas"[0m
+  [1m[35m (0.6ms)[0m  [1m[31mDELETE FROM "formularios_turmas"[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios_turmas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "turmas_usuarios"[0m
+  [1m[35m (0.7ms)[0m  [1m[31mDELETE FROM "turmas_usuarios"[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas_usuarios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "usuarios"[0m
+  [1m[35m (1.2ms)[0m  [1m[31mDELETE FROM "usuarios"[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.5ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'usuarios';[0m
+  [1m[35m (0.3ms)[0m  [1m[35mTRUNCATE TABLE "formularios"[0m
+  [1m[35m (1.0ms)[0m  [1m[31mDELETE FROM "formularios"[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "password_reset_tokens"[0m
+  [1m[35m (1.1ms)[0m  [1m[31mDELETE FROM "password_reset_tokens"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'password_reset_tokens';[0m
+  [1m[35m (0.9ms)[0m  [1m[35mTRUNCATE TABLE "respostas"[0m
+  [1m[35m (1.1ms)[0m  [1m[31mDELETE FROM "respostas"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'respostas';[0m
+  [1m[35m (0.4ms)[0m  [1m[35mTRUNCATE TABLE "turmas"[0m
+  [1m[35m (1.4ms)[0m  [1m[31mDELETE FROM "turmas"[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.5ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas';[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUsuario Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "usuarios" WHERE "usuarios"."email" = ? LIMIT ?[0m  [["email", "teste-44166bb4@exemplo.com"], ["LIMIT", 1]]
+  [1m[36mUsuario Create (0.2ms)[0m  [1m[32mINSERT INTO "usuarios" ("matricula", "nome", "created_at", "updated_at", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "admin") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["matricula", "511381"], ["nome", "Utilizador de Teste"], ["created_at", "2025-07-13 18:57:59.388774"], ["updated_at", "2025-07-13 18:57:59.388774"], ["email", "teste-44166bb4@exemplo.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["admin", nil]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUsuario Load (1.0ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."reset_password_token" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["reset_password_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUsuario Update (0.6ms)[0m  [1m[33mUPDATE "usuarios" SET "updated_at" = ?, "reset_password_token" = ?, "reset_password_sent_at" = ? WHERE "usuarios"."id" = ?[0m  [["updated_at", "2025-07-13 18:57:59.393746"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["id", 1]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[36mcommit transaction[0m
+  Rendering usuarios/mailer/reset_password_instructions.html.erb
+  Rendered usuarios/mailer/reset_password_instructions.html.erb (Duration: 0.3ms | Allocations: 69)
+Devise::Mailer#reset_password_instructions: processed outbound mail in 2.1ms
+Delivered mail 687401b7617ce_127438c02262d@Kamuratt.mail (1.1ms)
+Date: Sun, 13 Jul 2025 15:57:59 -0300
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: teste-44166bb4@exemplo.com
+Message-ID: <687401b7617ce_127438c02262d@Kamuratt.mail>
+Subject: =?UTF-8?Q?Instru=C3=A7=C3=B5es_de_redefini=C3=A7=C3=A3o_de_senha?=
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Hello teste-44166bb4@exemplo.com!</p>
+
+<p>Someone has requested a link to change your password. You can do this through the link below.</p>
+
+<p><a href="http://localhost:3000/usuarios/password/edit?reset_password_token=nmFee857RUFkoNpBgRoK">Change my password</a></p>
+
+<p>If you didn't request this, please ignore this email.</p>
+<p>Your password won't change until you access the link above and create a new one.</p>
+
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUsuario Update (2.3ms)[0m  [1m[33mUPDATE "usuarios" SET "updated_at" = ?, "reset_password_sent_at" = ? WHERE "usuarios"."id" = ?[0m  [["updated_at", "2025-07-13 18:57:59.401454"], ["reset_password_sent_at", "[FILTERED]"], ["id", 1]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.3ms)[0m  [1m[35mTRUNCATE TABLE "disciplinas"[0m
+  [1m[35m (1.2ms)[0m  [1m[31mDELETE FROM "disciplinas"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'disciplinas';[0m
+  [1m[35m (0.3ms)[0m  [1m[35mTRUNCATE TABLE "formularios_turmas"[0m
+  [1m[35m (0.6ms)[0m  [1m[31mDELETE FROM "formularios_turmas"[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios_turmas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "turmas_usuarios"[0m
+  [1m[35m (0.6ms)[0m  [1m[31mDELETE FROM "turmas_usuarios"[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas_usuarios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "usuarios"[0m
+  [1m[35m (1.0ms)[0m  [1m[31mDELETE FROM "usuarios"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.8ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'usuarios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "formularios"[0m
+  [1m[35m (1.2ms)[0m  [1m[31mDELETE FROM "formularios"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "password_reset_tokens"[0m
+  [1m[35m (1.2ms)[0m  [1m[31mDELETE FROM "password_reset_tokens"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'password_reset_tokens';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "respostas"[0m
+  [1m[35m (1.0ms)[0m  [1m[31mDELETE FROM "respostas"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'respostas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "turmas"[0m
+  [1m[35m (1.1ms)[0m  [1m[31mDELETE FROM "turmas"[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.5ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas';[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.3ms)[0m  [1m[35mTRUNCATE TABLE "disciplinas"[0m
+  [1m[35m (5.6ms)[0m  [1m[31mDELETE FROM "disciplinas"[0m
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'disciplinas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "formularios_turmas"[0m
+  [1m[35m (0.8ms)[0m  [1m[31mDELETE FROM "formularios_turmas"[0m
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios_turmas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "turmas_usuarios"[0m
+  [1m[35m (0.7ms)[0m  [1m[31mDELETE FROM "turmas_usuarios"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas_usuarios';[0m
+  [1m[35m (0.3ms)[0m  [1m[35mTRUNCATE TABLE "usuarios"[0m
+  [1m[35m (1.1ms)[0m  [1m[31mDELETE FROM "usuarios"[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'usuarios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "formularios"[0m
+  [1m[35m (0.8ms)[0m  [1m[31mDELETE FROM "formularios"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "password_reset_tokens"[0m
+  [1m[35m (1.1ms)[0m  [1m[31mDELETE FROM "password_reset_tokens"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'password_reset_tokens';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "respostas"[0m
+  [1m[35m (1.0ms)[0m  [1m[31mDELETE FROM "respostas"[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'respostas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "turmas"[0m
+  [1m[35m (1.3ms)[0m  [1m[31mDELETE FROM "turmas"[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas';[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUsuario Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "usuarios" WHERE "usuarios"."email" = ? LIMIT ?[0m  [["email", "teste-a6f17c67@exemplo.com"], ["LIMIT", 1]]
+  [1m[36mUsuario Create (1.0ms)[0m  [1m[32mINSERT INTO "usuarios" ("matricula", "nome", "created_at", "updated_at", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "admin") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["matricula", "314476"], ["nome", "Utilizador de Teste"], ["created_at", "2025-07-13 19:11:40.382842"], ["updated_at", "2025-07-13 19:11:40.382842"], ["email", "teste-a6f17c67@exemplo.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["admin", nil]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUsuario Load (2.7ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."reset_password_token" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["reset_password_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUsuario Update (0.9ms)[0m  [1m[33mUPDATE "usuarios" SET "updated_at" = ?, "reset_password_token" = ?, "reset_password_sent_at" = ? WHERE "usuarios"."id" = ?[0m  [["updated_at", "2025-07-13 19:11:40.448104"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["id", 1]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[36mcommit transaction[0m
+  Rendering usuarios/mailer/reset_password_instructions.html.erb
+  Rendered usuarios/mailer/reset_password_instructions.html.erb (Duration: 6.4ms | Allocations: 636)
+Devise::Mailer#reset_password_instructions: processed outbound mail in 1093.3ms
+Delivered mail 687404ed8815f_134e68c0806e7@Kamuratt.mail (19.9ms)
+Date: Sun, 13 Jul 2025 16:11:41 -0300
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: teste-a6f17c67@exemplo.com
+Message-ID: <687404ed8815f_134e68c0806e7@Kamuratt.mail>
+Subject: =?UTF-8?Q?Instru=C3=A7=C3=B5es_de_redefini=C3=A7=C3=A3o_de_senha?=
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Hello teste-a6f17c67@exemplo.com!</p>
+
+<p>Someone has requested a link to change your password. You can do this through the link below.</p>
+
+<p><a href="http://localhost:3000/usuarios/password/edit?reset_password_token=CY8YEjSwzfENpC8yssWz">Change my password</a></p>
+
+<p>If you didn't request this, please ignore this email.</p>
+<p>Your password won't change until you access the link above and create a new one.</p>
+
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "disciplinas"[0m
+  [1m[35m (0.8ms)[0m  [1m[31mDELETE FROM "disciplinas"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.5ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'disciplinas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "formularios_turmas"[0m
+  [1m[35m (0.8ms)[0m  [1m[31mDELETE FROM "formularios_turmas"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios_turmas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "turmas_usuarios"[0m
+  [1m[35m (0.7ms)[0m  [1m[31mDELETE FROM "turmas_usuarios"[0m
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas_usuarios';[0m
+  [1m[35m (0.3ms)[0m  [1m[35mTRUNCATE TABLE "usuarios"[0m
+  [1m[35m (1.1ms)[0m  [1m[31mDELETE FROM "usuarios"[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.7ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'usuarios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "formularios"[0m
+  [1m[35m (1.4ms)[0m  [1m[31mDELETE FROM "formularios"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "password_reset_tokens"[0m
+  [1m[35m (1.0ms)[0m  [1m[31mDELETE FROM "password_reset_tokens"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'password_reset_tokens';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "respostas"[0m
+  [1m[35m (1.1ms)[0m  [1m[31mDELETE FROM "respostas"[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'respostas';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "turmas"[0m
+  [1m[35m (1.3ms)[0m  [1m[31mDELETE FROM "turmas"[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas';[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "disciplinas"[0m
+  [1m[35m (0.8ms)[0m  [1m[31mDELETE FROM "disciplinas"[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'disciplinas';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "formularios_turmas"[0m
+  [1m[35m (0.8ms)[0m  [1m[31mDELETE FROM "formularios_turmas"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios_turmas';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "turmas_usuarios"[0m
+  [1m[35m (0.6ms)[0m  [1m[31mDELETE FROM "turmas_usuarios"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.5ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas_usuarios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "usuarios"[0m
+  [1m[35m (1.3ms)[0m  [1m[31mDELETE FROM "usuarios"[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'usuarios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "formularios"[0m
+  [1m[35m (0.9ms)[0m  [1m[31mDELETE FROM "formularios"[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.5ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios';[0m
+  [1m[35m (0.3ms)[0m  [1m[35mTRUNCATE TABLE "password_reset_tokens"[0m
+  [1m[35m (1.0ms)[0m  [1m[31mDELETE FROM "password_reset_tokens"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'password_reset_tokens';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "respostas"[0m
+  [1m[35m (1.1ms)[0m  [1m[31mDELETE FROM "respostas"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'respostas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "turmas"[0m
+  [1m[35m (1.4ms)[0m  [1m[31mDELETE FROM "turmas"[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas';[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUsuario Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "usuarios" WHERE "usuarios"."email" = ? LIMIT ?[0m  [["email", "teste-7f4216bf@exemplo.com"], ["LIMIT", 1]]
+  [1m[36mUsuario Create (0.2ms)[0m  [1m[32mINSERT INTO "usuarios" ("matricula", "nome", "created_at", "updated_at", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "admin") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["matricula", "823721"], ["nome", "Utilizador de Teste"], ["created_at", "2025-07-13 19:11:51.187516"], ["updated_at", "2025-07-13 19:11:51.187516"], ["email", "teste-7f4216bf@exemplo.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["admin", nil]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUsuario Load (0.9ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."reset_password_token" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["reset_password_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUsuario Update (0.6ms)[0m  [1m[33mUPDATE "usuarios" SET "updated_at" = ?, "reset_password_token" = ?, "reset_password_sent_at" = ? WHERE "usuarios"."id" = ?[0m  [["updated_at", "2025-07-13 19:11:51.191985"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["id", 1]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[36mcommit transaction[0m
+  Rendering usuarios/mailer/reset_password_instructions.html.erb
+  Rendered usuarios/mailer/reset_password_instructions.html.erb (Duration: 0.3ms | Allocations: 76)
+Devise::Mailer#reset_password_instructions: processed outbound mail in 1.9ms
+Delivered mail 687404f730241_134e68c08071e@Kamuratt.mail (1.5ms)
+Date: Sun, 13 Jul 2025 16:11:51 -0300
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: teste-7f4216bf@exemplo.com
+Message-ID: <687404f730241_134e68c08071e@Kamuratt.mail>
+Subject: =?UTF-8?Q?Instru=C3=A7=C3=B5es_de_redefini=C3=A7=C3=A3o_de_senha?=
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Hello teste-7f4216bf@exemplo.com!</p>
+
+<p>Someone has requested a link to change your password. You can do this through the link below.</p>
+
+<p><a href="http://localhost:3000/usuarios/password/edit?reset_password_token=N43y2nw8_YfBFjcFf-5W">Change my password</a></p>
+
+<p>If you didn't request this, please ignore this email.</p>
+<p>Your password won't change until you access the link above and create a new one.</p>
+
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "disciplinas"[0m
+  [1m[35m (1.3ms)[0m  [1m[31mDELETE FROM "disciplinas"[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'disciplinas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "formularios_turmas"[0m
+  [1m[35m (0.6ms)[0m  [1m[31mDELETE FROM "formularios_turmas"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios_turmas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "turmas_usuarios"[0m
+  [1m[35m (0.6ms)[0m  [1m[31mDELETE FROM "turmas_usuarios"[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas_usuarios';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "usuarios"[0m
+  [1m[35m (1.1ms)[0m  [1m[31mDELETE FROM "usuarios"[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.6ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'usuarios';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "formularios"[0m
+  [1m[35m (1.3ms)[0m  [1m[31mDELETE FROM "formularios"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "password_reset_tokens"[0m
+  [1m[35m (1.4ms)[0m  [1m[31mDELETE FROM "password_reset_tokens"[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.6ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'password_reset_tokens';[0m
+  [1m[35m (0.3ms)[0m  [1m[35mTRUNCATE TABLE "respostas"[0m
+  [1m[35m (1.1ms)[0m  [1m[31mDELETE FROM "respostas"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'respostas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "turmas"[0m
+  [1m[35m (1.2ms)[0m  [1m[31mDELETE FROM "turmas"[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas';[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "disciplinas"[0m
+  [1m[35m (0.8ms)[0m  [1m[31mDELETE FROM "disciplinas"[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.6ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'disciplinas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "formularios_turmas"[0m
+  [1m[35m (0.6ms)[0m  [1m[31mDELETE FROM "formularios_turmas"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios_turmas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "turmas_usuarios"[0m
+  [1m[35m (0.7ms)[0m  [1m[31mDELETE FROM "turmas_usuarios"[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas_usuarios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "usuarios"[0m
+  [1m[35m (1.1ms)[0m  [1m[31mDELETE FROM "usuarios"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.5ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'usuarios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "formularios"[0m
+  [1m[35m (0.9ms)[0m  [1m[31mDELETE FROM "formularios"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "password_reset_tokens"[0m
+  [1m[35m (1.0ms)[0m  [1m[31mDELETE FROM "password_reset_tokens"[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'password_reset_tokens';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "respostas"[0m
+  [1m[35m (1.0ms)[0m  [1m[31mDELETE FROM "respostas"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'respostas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "turmas"[0m
+  [1m[35m (1.2ms)[0m  [1m[31mDELETE FROM "turmas"[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas';[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUsuario Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "usuarios" WHERE "usuarios"."email" = ? LIMIT ?[0m  [["email", "teste-53e086f6@exemplo.com"], ["LIMIT", 1]]
+  [1m[36mUsuario Create (0.3ms)[0m  [1m[32mINSERT INTO "usuarios" ("matricula", "nome", "created_at", "updated_at", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "admin") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["matricula", "433166"], ["nome", "Utilizador de Teste"], ["created_at", "2025-07-13 19:11:51.929703"], ["updated_at", "2025-07-13 19:11:51.929703"], ["email", "teste-53e086f6@exemplo.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["admin", nil]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUsuario Load (1.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."reset_password_token" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["reset_password_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUsuario Update (0.8ms)[0m  [1m[33mUPDATE "usuarios" SET "updated_at" = ?, "reset_password_token" = ?, "reset_password_sent_at" = ? WHERE "usuarios"."id" = ?[0m  [["updated_at", "2025-07-13 19:11:51.934986"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["id", 1]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[36mcommit transaction[0m
+  Rendering usuarios/mailer/reset_password_instructions.html.erb
+  Rendered usuarios/mailer/reset_password_instructions.html.erb (Duration: 0.2ms | Allocations: 69)
+Devise::Mailer#reset_password_instructions: processed outbound mail in 1.8ms
+Delivered mail 687404f7e57da_134e68c08084f@Kamuratt.mail (0.8ms)
+Date: Sun, 13 Jul 2025 16:11:51 -0300
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: teste-53e086f6@exemplo.com
+Message-ID: <687404f7e57da_134e68c08084f@Kamuratt.mail>
+Subject: =?UTF-8?Q?Instru=C3=A7=C3=B5es_de_redefini=C3=A7=C3=A3o_de_senha?=
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Hello teste-53e086f6@exemplo.com!</p>
+
+<p>Someone has requested a link to change your password. You can do this through the link below.</p>
+
+<p><a href="http://localhost:3000/usuarios/password/edit?reset_password_token=TvQb1g6sEUVJJJcMnrcz">Change my password</a></p>
+
+<p>If you didn't request this, please ignore this email.</p>
+<p>Your password won't change until you access the link above and create a new one.</p>
+
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUsuario Update (1.8ms)[0m  [1m[33mUPDATE "usuarios" SET "updated_at" = ?, "reset_password_sent_at" = ? WHERE "usuarios"."id" = ?[0m  [["updated_at", "2025-07-13 19:11:51.941692"], ["reset_password_sent_at", "[FILTERED]"], ["id", 1]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "disciplinas"[0m
+  [1m[35m (1.6ms)[0m  [1m[31mDELETE FROM "disciplinas"[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'disciplinas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "formularios_turmas"[0m
+  [1m[35m (0.8ms)[0m  [1m[31mDELETE FROM "formularios_turmas"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.5ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios_turmas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "turmas_usuarios"[0m
+  [1m[35m (0.8ms)[0m  [1m[31mDELETE FROM "turmas_usuarios"[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas_usuarios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "usuarios"[0m
+  [1m[35m (1.0ms)[0m  [1m[31mDELETE FROM "usuarios"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.7ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'usuarios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "formularios"[0m
+  [1m[35m (1.7ms)[0m  [1m[31mDELETE FROM "formularios"[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "password_reset_tokens"[0m
+  [1m[35m (1.3ms)[0m  [1m[31mDELETE FROM "password_reset_tokens"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'password_reset_tokens';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "respostas"[0m
+  [1m[35m (1.2ms)[0m  [1m[31mDELETE FROM "respostas"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'respostas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "turmas"[0m
+  [1m[35m (1.3ms)[0m  [1m[31mDELETE FROM "turmas"[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas';[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m

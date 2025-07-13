@@ -1,6 +1,13 @@
 <h1>Defina sua Senha</h1>
 
-<%# Exibe mensagens de erro do Devise %>
+<%# Exibe mensagem de token inválido/expirado personalizada %>
+<% if resource.errors[:reset_password_token].present? %>
+  <div class="alert alert-danger">
+    <%= t('devise.errors.messages.invalid_token') %>
+  </div>
+<% end %>
+
+<%# Exibe outras mensagens de erro padrão do Devise %>
 <%= devise_error_messages! %>
 
 <%# As mensagens flash (sucesso/alerta) serão exibidas no layout principal (application.html.erb) %>

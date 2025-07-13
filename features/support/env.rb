@@ -4,6 +4,13 @@ require 'cucumber/rails'
 require 'factory_bot_rails'
 require 'database_cleaner/active_record'
 
+# --- FORÇA O CARREGAMENTO DOS FICHEIROS DE TRADUÇÃO ---
+# Esta é uma abordagem "agressiva" para garantir que o Rails encontre
+# os seus ficheiros de tradução (locales) no ambiente de teste.
+I18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+I18n.reload!
+# ----------------------------------------------------
+
 # --- Configuração do Capybara e Selenium ---
 require 'capybara/cucumber'
 require 'selenium-webdriver'
@@ -23,7 +30,7 @@ World(FactoryBot::Syntax::Methods)
 # --- Hooks do Cucumber (Antes e Depois de cada cenário) ---
 
 # O Around hook garante que todo o código dentro de um cenário
-# seja executado com o idioma correto.
+# seja executado com o idioma correto. Esta é a forma mais robusta.
 Around do |scenario, block|
   I18n.with_locale(:'pt-BR', &block)
 end

@@ -1,0 +1,121 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="max-w-2xl mx-auto">
+    <div class="mb-6">
+      <h1 class="text-3xl font-bold text-gray-900">Editar Template</h1>
+      <p class="mt-2 text-sm text-gray-600">Edite o template de formulário. Formulários já criados não serão afetados.</p>
+    </div>
+
+    <%= form_with(model: [:admin, @template], local: true, class: "space-y-6") do |form| %>
+      <% if @template.errors.any? %>
+        <div class="bg-red-50 border border-red-200 rounded-md p-4">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <svg class="h-5 w-5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+              </svg>
+            </div>
+            <div class="ml-3">
+              <h3 class="text-sm font-medium text-red-800">Foram encontrados os seguintes erros:</h3>
+              <div class="mt-2 text-sm text-red-700">
+                <ul class="list-disc pl-5 space-y-1">
+                  <% @template.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <div>
+        <%= form.label :titulo, "Título do Template", class: "block text-sm font-medium text-gray-700" %>
+        <%= form.text_field :titulo, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-3">Questões</label>
+        
+        <div id="questoes-container">
+          <%= form.fields_for :questoes do |questao_form| %>
+            <%= render 'questao_fields', f: questao_form %>
+          <% end %>
+        </div>
+
+        <button type="button" id="adicionar-questao" class="mt-3 inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"></path>
+          </svg>
+          Adicionar Questão
+        </button>
+      </div>
+
+      <div class="flex justify-end space-x-3">
+        <%= link_to 'Cancelar', admin_templates_path, class: 'bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' %>
+        <%= form.submit "Salvar", class: 'bg-indigo-600 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const container = document.getElementById('questoes-container');
+  const addButton = document.getElementById('adicionar-questao');
+  let questaoIndex = <%= @template.questoes.size %>;
+
+  addButton.addEventListener('click', function() {
+    const template = `
+      <div class="questao-item border border-gray-200 rounded-lg p-4 mb-4">
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Enunciado</label>
+            <input type="text" name="template[questoes_attributes][${questaoIndex}][enunciado]" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Tipo</label>
+            <select name="template[questoes_attributes][${questaoIndex}][tipo]" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+              <option value="">Selecione...</option>
+              <option value="Escala">Escala</option>
+              <option value="Texto">Texto</option>
+            </select>
+          </div>
+        </div>
+        <div class="mt-4 grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Opções (para escalas, separadas por vírgula)</label>
+            <input type="text" name="template[questoes_attributes][${questaoIndex}][opcoes]" placeholder="5,4,3,2,1" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          </div>
+          <div class="flex items-center">
+            <input type="hidden" name="template[questoes_attributes][${questaoIndex}][obrigatoria]" value="false">
+            <input type="checkbox" name="template[questoes_attributes][${questaoIndex}][obrigatoria]" value="true" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+            <label class="ml-2 block text-sm text-gray-900">Questão obrigatória</label>
+          </div>
+        </div>
+        <div class="mt-2 flex justify-end">
+          <button type="button" class="remover-questao text-red-600 hover:text-red-800 text-sm">Remover</button>
+        </div>
+      </div>
+    `;
+    
+    container.insertAdjacentHTML('beforeend', template);
+    questaoIndex++;
+  });
+
+  container.addEventListener('click', function(e) {
+    if (e.target.classList.contains('remover-questao')) {
+      const questaoItem = e.target.closest('.questao-item');
+      const destroyField = questaoItem.querySelector('input[name$="[_destroy]"]');
+      
+      if (destroyField) {
+        // Se é uma questão existente, marca para destruição
+        destroyField.value = '1';
+        questaoItem.style.display = 'none';
+      } else {
+        // Se é uma questão nova, remove do DOM
+        questaoItem.remove();
+      }
+    }
+  });
+});
+</script>

@@ -45,5 +45,6 @@
 .DS_Store
 Thumbs.db
 
+/src/node_modules
 # Ignore os relatórios de cobertura de testes.
 /coverage/

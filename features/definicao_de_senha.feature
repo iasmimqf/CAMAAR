@@ -14,8 +14,8 @@ Funcionalidade: Definição de Senha para Novo Usuário
     E eu preencho o campo de senha "Nova Senha" com "SenhaForte123!"
     E eu preencho o campo de senha "Confirmar Senha" com "SenhaForte123!"
     E clico no botão de formulário de senha "Salvar Senha"
-    Então eu devo ver uma mensagem de sucesso como "Senha definida com sucesso! Você já pode acessar o sistema."
-    E devo ser redirecionado para a página de login.
+    Então devo ser redirecionado para a página de login.
+    E eu devo ver uma mensagem de sucesso como "Senha definida com sucesso! Você já pode acessar o sistema."
 
     # --- Cenário de Erro: Senhas Não Conferem ---
   Cenário: Tentativa de definir senhas que não conferem

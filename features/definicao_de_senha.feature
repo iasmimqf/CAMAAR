@@ -11,9 +11,9 @@ Funcionalidade: Definição de Senha para Novo Usuário
     Dado que sou um usuário recém-criado sem senha definida
     E que recebi um link válido para definir minha senha
     Quando eu clico no link e sou direcionado para a página "Defina sua Senha"
-    E eu preencho o campo "Nova Senha" com "SenhaForte123!"
-    E eu preencho o campo "Confirmar Senha" com "SenhaForte123!"
-    E clico no botão "Salvar Senha"
+    E eu preencho o campo de senha "Nova Senha" com "SenhaForte123!"
+    E eu preencho o campo de senha "Confirmar Senha" com "SenhaForte123!"
+    E clico no botão de formulário de senha "Salvar Senha"
     Então eu devo ver uma mensagem de sucesso como "Senha definida com sucesso! Você já pode acessar o sistema."
     E devo ser redirecionado para a página de login.
 

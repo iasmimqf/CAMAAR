@@ -12,7 +12,10 @@ require 'factory_bot_rails'
 @current_token = nil
 @current_token_expires_at = nil
 @response = nil
-@used_tokens = []
+
+Before do
+   @used_tokens = [] # Isso garante que @used_tokens seja uma lista vazia antes de CADA cenário
+end
 
 # --- Funções Auxiliares (Simulando Interação com Backend/API) ---
 
@@ -101,31 +104,24 @@ end
 
 Quando('eu clico no link e sou direcionado para a página "Defina sua Senha"') do
   # O link seria construído e enviado por e-mail. Para o teste, vamos usá-lo diretamente.
-  @link_definicao = "#{Capybara.app_host}/definir-senha?token=#{@current_token}"
+  @link_definicao = "#{Capybara.app_host}/definir-senha?reset_password_token=#{@current_token}"
   visit @link_definicao
   expect(page).to have_content("Defina sua Senha")
   expect(current_url).to include("/definir-senha")
   puts "    [Teste] Navegou para a página 'Defina sua Senha' através do link."
 end
 
-Quando('eu preencho o campo {string} com {string}') do |campo, valor|
+Quando('eu preencho o campo de senha {string} com {string}') do |campo, valor|
   fill_in campo, with: valor
-  puts "    [Teste] Preencheu o campo '#{campo}' com o valor."
+  # puts "    [Teste] Preencheu o campo de senha '#{campo}' com o valor." # Opcional: para debug
 end
 
-Quando('clico no botão {string}') do |botao|
+Quando('clico no botão de formulário de senha {string}') do |botao|
   click_button botao
-  puts "    [Teste] Clicou no botão '#{botao}'."
-
-  # Neste ponto, em um teste de UI real, o frontend enviaria a requisição para o backend.
-  # Aqui, para simular a chamada API de forma direta (para fazer o teste passar no TDD).
-  # Em sua implementação real, isso seria uma chamada JavaScript do frontend para sua API.
   token_from_url = URI.parse(current_url).query.split('=').last rescue @current_token
-  # Supondo que você pegaria as senhas dos campos do navegador via Capybara para a chamada API.
-  # Exemplo: new_pass = find_field("Nova Senha").value; confirm_pass = find_field("Confirmar Senha").value
-  # Para este cenário, usamos os valores fixos do Feature.
   define_password_via_api(token_from_url, "SenhaForte123!", "SenhaForte123!")
 end
+
 
 Então('eu devo ver uma mensagem de sucesso como {string}') do |mensagem|
   expect(page).to have_content(mensagem)

@@ -1,19 +1,36 @@
 <h1>Defina sua Senha</h1>
 
-<%= form_with model: @usuario, url: usuario_password_path, method: :patch, local: true do |form| %>
-  <%= form.hidden_field :reset_password_token %>
+<%# Exibe mensagens de erro do Devise (se houver erros de validação) %>
+<%= devise_error_messages! %>
 
-  <div>
-    <%= form.label :password, "Nova Senha" %>
-    <%= form.password_field :password, required: true %>
-  </div>
+<%# Adicionado para exibir mensagens flash de sucesso ou alerta %>
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+<% if flash[:alert] %>
+  <p class="alert"><%= flash[:alert] %></p>
+<% end %>
 
-  <div>
-    <%= form.label :password_confirmation, "Confirmar Senha" %>
-    <%= form.password_field :password_confirmation, required: true %>
-  </div>
+<% if @password_reset_successful %>
+  <p>Sua senha foi definida com sucesso! Você já pode acessar o sistema.</p>
+  <%= link_to "Ir para a página de login", new_usuario_session_path %>
+<% else %>
+  <%# Exibe o formulário SOMENTE se a redefinição NÃO foi um sucesso ainda %>
+  <%= form_with model: @usuario, url: usuario_password_path, method: :patch, local: true do |form| %>
+    <%= form.hidden_field :reset_password_token, value: params[:reset_password_token] %>
 
-  <div>
-    <%= form.submit "Salvar Senha" %>
-  </div>
+    <div>
+      <%= form.label :password, "Nova Senha" %>
+      <%= form.password_field :password, autofocus: true, autocomplete: "new-password", required: true %>
+    </div>
+
+    <div>
+      <%= form.label :password_confirmation, "Confirmar Senha" %>
+      <%= form.password_field :password_confirmation, autocomplete: "new-password", required: true %>
+    </div>
+
+    <div>
+      <%= form.submit "Salvar Senha" %>
+    </div>
+  <% end %>
 <% end %>

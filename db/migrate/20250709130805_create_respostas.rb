@@ -1,4 +1,4 @@
-class CreateRespostas < ActiveRecord::Migration[8.0]
+class CreateRespostas < ActiveRecord::Migration[7.1]
   def change
     create_table :respostas do |t|
       t.datetime :dataDeSubmissao

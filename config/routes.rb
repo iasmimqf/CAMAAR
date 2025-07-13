@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     # do controller 'dashboard' dentro do módulo 'admin'
     get 'dashboard', to: 'dashboard#index' , as: 'dashboard'
     post 'importacoes/importar_turmas', to: 'importacoes#importar_turmas'
+    
+    # Rotas para gerenciamento de templates
+    resources :templates
+    
     namespace :import do
       # Routes for importing Turmas
       resources :turmas, only: [:new, :create]

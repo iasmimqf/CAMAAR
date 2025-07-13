@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_12_022803) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_13_154717) do
   create_table "disciplinas", force: :cascade do |t|
     t.string "codigo", null: false
     t.string "nome", null: false
@@ -29,12 +29,26 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_12_022803) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "criador_id", null: false
+    t.integer "template_id"
     t.index ["criador_id"], name: "index_formularios_on_criador_id"
+    t.index ["template_id"], name: "index_formularios_on_template_id"
   end
 
   create_table "formularios_turmas", id: false, force: :cascade do |t|
     t.integer "formulario_id", null: false
     t.integer "turma_id", null: false
+  end
+
+  create_table "questoes", force: :cascade do |t|
+    t.text "enunciado", null: false
+    t.string "tipo", null: false
+    t.boolean "obrigatoria", default: false
+    t.string "opcoes"
+    t.integer "template_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["template_id", "created_at"], name: "index_questoes_on_template_id_and_created_at"
+    t.index ["template_id"], name: "index_questoes_on_template_id"
   end
 
   create_table "respostas", force: :cascade do |t|
@@ -46,6 +60,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_12_022803) do
     t.integer "avaliador_id", null: false
     t.index ["avaliador_id"], name: "index_respostas_on_avaliador_id"
     t.index ["formulario_id"], name: "index_respostas_on_formulario_id"
+  end
+
+  create_table "templates", force: :cascade do |t|
+    t.string "titulo", null: false
+    t.integer "criador_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["criador_id"], name: "index_templates_on_criador_id"
+    t.index ["titulo"], name: "index_templates_on_titulo", unique: true
   end
 
   create_table "turmas", force: :cascade do |t|
@@ -81,9 +104,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_12_022803) do
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "formularios", "templates"
   add_foreign_key "formularios", "usuarios", column: "criador_id"
+  add_foreign_key "questoes", "templates"
   add_foreign_key "respostas", "formularios"
   add_foreign_key "respostas", "usuarios", column: "avaliador_id"
+  add_foreign_key "templates", "usuarios", column: "criador_id"
   add_foreign_key "turmas", "disciplinas"
   add_foreign_key "turmas", "usuarios", column: "professor_id"
 end

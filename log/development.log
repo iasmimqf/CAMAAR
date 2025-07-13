@@ -1669,3 +1669,56 @@ Migrating to AddIdToDisciplinas (20250712022803)
   [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250712022803') RETURNING "version" /*application='Camaar'*/[0m
   [1m[36mTRANSACTION (4.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Camaar'*/[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+Migrating to CreateTemplates (20250713154715)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Camaar'*/[0m
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE TABLE "templates" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar NOT NULL, "criador_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_e06924aa79"
+FOREIGN KEY ("criador_id")
+  REFERENCES "usuarios" ("id")
+) /*application='Camaar'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_templates_on_criador_id" ON "templates" ("criador_id") /*application='Camaar'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_templates_on_titulo" ON "templates" ("titulo") /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250713154715') RETURNING "version" /*application='Camaar'*/[0m
+  [1m[36mTRANSACTION (4.5ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Camaar'*/[0m
+Migrating to CreateQuestoes (20250713154716)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Camaar'*/[0m
+  [1m[35m (4.9ms)[0m  [1m[35mCREATE TABLE "questoes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "enunciado" text NOT NULL, "tipo" varchar NOT NULL, "obrigatoria" boolean DEFAULT 0, "opcoes" varchar, "template_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_480482cabf"
+FOREIGN KEY ("template_id")
+  REFERENCES "templates" ("id")
+) /*application='Camaar'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_questoes_on_template_id" ON "questoes" ("template_id") /*application='Camaar'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_questoes_on_template_id_and_created_at" ON "questoes" ("template_id", "created_at") /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250713154716') RETURNING "version" /*application='Camaar'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Camaar'*/[0m
+Migrating to AddTemplateToFormularios (20250713154717)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Camaar'*/[0m
+  [1m[35m (8.2ms)[0m  [1m[35mALTER TABLE "formularios" ADD "template_id" integer /*application='Camaar'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_formularios_on_template_id" ON "formularios" ("template_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mPRAGMA foreign_keys /*application='Camaar'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='Camaar'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='Camaar'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aformularios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar, "ehTemplate" boolean, "status" varchar, "estruturaJSON" text, "dataDeExpiracao" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "criador_id" integer NOT NULL, "template_id" integer) /*application='Camaar'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "tindex_aformularios_on_template_id" ON "aformularios" ("template_id") /*application='Camaar'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "tindex_aformularios_on_criador_id" ON "aformularios" ("criador_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "aformularios" ("id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id","template_id")
+                     SELECT "id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id","template_id" FROM "formularios" /*application='Camaar'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE "formularios" /*application='Camaar'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "formularios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar, "ehTemplate" boolean, "status" varchar, "estruturaJSON" text, "dataDeExpiracao" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "criador_id" integer NOT NULL, "template_id" integer, CONSTRAINT "fk_rails_df6b852d1e"
+FOREIGN KEY ("criador_id")
+  REFERENCES "usuarios" ("id")
+, CONSTRAINT "fk_rails_93cfa19b36"
+FOREIGN KEY ("template_id")
+  REFERENCES "templates" ("id")
+) /*application='Camaar'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_formularios_on_criador_id" ON "formularios" ("criador_id") /*application='Camaar'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_formularios_on_template_id" ON "formularios" ("template_id") /*application='Camaar'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "formularios" ("id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id","template_id")
+                     SELECT "id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id","template_id" FROM "aformularios" /*application='Camaar'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "aformularios" /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='Camaar'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250713154717') RETURNING "version" /*application='Camaar'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m

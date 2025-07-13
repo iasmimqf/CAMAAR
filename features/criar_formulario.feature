@@ -1,3 +1,4 @@
+# language: pt
 Funcionalidade: Criação de formulário para avaliação de turmas
 
 	Como administrador,

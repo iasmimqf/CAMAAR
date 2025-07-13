@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_07_12_231037) do
+ActiveRecord::Schema[7.1].define(version: 2025_07_13_060339) do
   create_table "disciplinas", force: :cascade do |t|
     t.string "codigo", null: false
     t.string "nome", null: false
@@ -35,6 +35,17 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_12_231037) do
   create_table "formularios_turmas", id: false, force: :cascade do |t|
     t.integer "formulario_id", null: false
     t.integer "turma_id", null: false
+  end
+
+  create_table "password_reset_tokens", force: :cascade do |t|
+    t.integer "usuario_id", null: false
+    t.string "token", null: false
+    t.datetime "expires_at", null: false
+    t.boolean "used", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["token"], name: "index_password_reset_tokens_on_token", unique: true
+    t.index ["usuario_id"], name: "index_password_reset_tokens_on_usuario_id"
   end
 
   create_table "respostas", force: :cascade do |t|
@@ -82,6 +93,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_12_231037) do
   end
 
   add_foreign_key "formularios", "usuarios", column: "criador_id"
+  add_foreign_key "password_reset_tokens", "usuarios"
   add_foreign_key "respostas", "formularios"
   add_foreign_key "respostas", "usuarios", column: "avaliador_id"
   add_foreign_key "turmas", "disciplinas"

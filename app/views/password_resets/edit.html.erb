@@ -1,0 +1,19 @@
+<h1>Defina sua Senha</h1>
+
+<%= form_with model: @usuario, url: usuario_password_path, method: :patch, local: true do |form| %>
+  <%= form.hidden_field :reset_password_token %>
+
+  <div>
+    <%= form.label :password, "Nova Senha" %>
+    <%= form.password_field :password, required: true %>
+  </div>
+
+  <div>
+    <%= form.label :password_confirmation, "Confirmar Senha" %>
+    <%= form.password_field :password_confirmation, required: true %>
+  </div>
+
+  <div>
+    <%= form.submit "Salvar Senha" %>
+  </div>
+<% end %>

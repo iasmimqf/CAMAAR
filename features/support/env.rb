@@ -21,7 +21,7 @@ Capybara.configure do |config|
 
   # Define o host da sua aplicação Rails. Certifique-se que seu servidor Rails
   # esteja rodando nesta URL (ex: `rails s` ou `rails s -p 3000`).
-  config.app_host = 'http://localhost:3000'
+  config.app_host = 'http://127.0.0.1:3000'
 
   # Tempo máximo que o Capybara vai esperar por um elemento na página.
   config.default_max_wait_time = 5 # segundos

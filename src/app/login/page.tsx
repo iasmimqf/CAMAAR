@@ -10,16 +10,56 @@ import { useRouter } from "next/navigation"
 
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
+  const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(''); // State to hold the error message
+  const [isLoading, setIsLoading] = useState(false); // State to disable button during login
+  const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // logica do login aqui
-    console.log('Login attempt:', { email, password });
+    setError(''); // Clear previous errors
+    setIsLoading(true); // Disable the button
+
+    try {
+      const response = await fetch('http://localhost:3001/usuarios/sign_in.json', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          usuario: {
+            login: login,
+            password: password,
+          },
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // SUCCESSFUL LOGIN
+        // The backend should return user data, including an 'admin' flag.
+        if (data.data.admin) {
+          // If admin, redirect to admin page
+          router.push('/admin'); // This is your AdminPage()
+        } else {
+          // If not admin, redirect to user page
+          router.push('/aluno'); // This is your AlunoPage()
+        }
+      } else {
+        // FAILED LOGIN
+        // Set the error message from the server's JSON response
+        setError(data.error || 'Login ou senha inválidos.');
+      }
+    } catch (err) {
+      // Network or server error
+      setError('Não foi possível conectar ao servidor. Tente novamente mais tarde.');
+    } finally {
+      setIsLoading(false); // Re-enable the button
+    }
   };
 
-  const router = useRouter()
 
   return (
     <div className="min-h-screen bg-gray-300 flex items-center justify-center p-4">
@@ -34,20 +74,18 @@ export default function LoginPage() {
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
-                  <Label
-                    htmlFor="email"
-                    className="text-sm font-medium text-gray-700"
-                  >
-                    Email
+                  <Label htmlFor="login" className="text-sm font-medium text-gray-700">
+                    Email ou Matrícula
                   </Label>
                   <Input
-                    id="email"
-                    type="email"
-                    value={email}
-                    placeholder="aluno@aluno.unb.br"
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    required
+                      id="login"  // Mudamos para um nome genérico
+                      name="login" // Adicionamos name para formulários
+                      type="text"  // Tipo genérico para ambos
+                      value={login} // Estado renomeado para algo mais genérico
+                      placeholder="aluno@aluno.unb.br ou sua matrícula"
+                      onChange={(e) => setLogin(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      required
                   />
                 </div>
 

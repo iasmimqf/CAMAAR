@@ -1677,3 +1677,875 @@ Migrating to RemoveNotNullOnActiveStorageBlobsChecksum (20250713022254)
   [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250713022254') RETURNING "version"[0m
   [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUsuario Load (0.8ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."email" = ? LIMIT ?[0m  [["email", "admin@email.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUsuario Load (1.0ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."email" = ? LIMIT ?[0m  [["email", "admin@email.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUsuario Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "usuarios" WHERE "usuarios"."email" = ? LIMIT ?[0m  [["email", "admin@email.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUsuario Load (0.9ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."email" = ? LIMIT ?[0m  [["email", "admin@email.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUsuario Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "usuarios" WHERE "usuarios"."email" = ? LIMIT ?[0m  [["email", "admin@email.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "formularios"[0m
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE TABLE "formularios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar, "ehTemplate" boolean, "status" varchar, "estruturaJSON" text, "dataDeExpiracao" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "criador_id" integer NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_formularios_on_criador_id" ON "formularios" ("criador_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "formularios_turmas"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "formularios_turmas" ("formulario_id" integer NOT NULL, "turma_id" integer NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "respostas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "respostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6), "respostasJSON" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, "avaliador_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_avaliador_id" ON "respostas" ("avaliador_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_formulario_id" ON "respostas" ("formulario_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "turmas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_turmas_on_professor_id" ON "turmas" ("professor_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "turmas_usuarios"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "turmas_usuarios" ("usuario_id" integer NOT NULL, "turma_id" integer NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "usuarios"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "usuarios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "matricula" varchar, "nome" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime(6), "remember_created_at" datetime(6), "admin" boolean)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_usuarios_on_email" ON "usuarios" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_usuarios_on_reset_password_token" ON "usuarios" ("reset_password_token")[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aformularios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar DEFAULT NULL, "ehTemplate" boolean DEFAULT NULL, "status" varchar DEFAULT NULL, "estruturaJSON" text DEFAULT NULL, "dataDeExpiracao" datetime(6) DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "criador_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aformularios_on_criador_id" ON "aformularios" ("criador_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "aformularios" ("id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id")
+                     SELECT "id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id" FROM "formularios"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "formularios"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "formularios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar DEFAULT NULL, "ehTemplate" boolean DEFAULT NULL, "status" varchar DEFAULT NULL, "estruturaJSON" text DEFAULT NULL, "dataDeExpiracao" datetime(6) DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "criador_id" integer NOT NULL, CONSTRAINT "fk_rails_df6b852d1e"
+FOREIGN KEY ("criador_id")
+  REFERENCES "usuarios" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_formularios_on_criador_id" ON "formularios" ("criador_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "formularios" ("id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id")
+                     SELECT "id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id" FROM "aformularios"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aformularios"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "arespostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6) DEFAULT NULL, "respostasJSON" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, "avaliador_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_arespostas_on_formulario_id" ON "arespostas" ("formulario_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_arespostas_on_avaliador_id" ON "arespostas" ("avaliador_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "arespostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id" FROM "respostas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "respostas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "respostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6) DEFAULT NULL, "respostasJSON" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, "avaliador_id" integer NOT NULL, CONSTRAINT "fk_rails_bd8b529c1e"
+FOREIGN KEY ("formulario_id")
+  REFERENCES "formularios" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_avaliador_id" ON "respostas" ("avaliador_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_formulario_id" ON "respostas" ("formulario_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "respostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id" FROM "arespostas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "arespostas"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "arespostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6) DEFAULT NULL, "respostasJSON" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, "avaliador_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_arespostas_on_formulario_id" ON "arespostas" ("formulario_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_arespostas_on_avaliador_id" ON "arespostas" ("avaliador_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "arespostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id" FROM "respostas"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "respostas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "respostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6) DEFAULT NULL, "respostasJSON" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, "avaliador_id" integer NOT NULL, CONSTRAINT "fk_rails_bd8b529c1e"
+FOREIGN KEY ("formulario_id")
+  REFERENCES "formularios" ("id")
+, CONSTRAINT "fk_rails_293f7d6c26"
+FOREIGN KEY ("avaliador_id")
+  REFERENCES "usuarios" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_avaliador_id" ON "respostas" ("avaliador_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_formulario_id" ON "respostas" ("formulario_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "respostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id" FROM "arespostas"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "arespostas"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aturmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar DEFAULT NULL, "semestre" varchar DEFAULT NULL, "ativo" boolean DEFAULT NULL, "descricao" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aturmas_on_professor_id" ON "aturmas" ("professor_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "aturmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id" FROM "turmas"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "turmas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar DEFAULT NULL, "semestre" varchar DEFAULT NULL, "ativo" boolean DEFAULT NULL, "descricao" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL, CONSTRAINT "fk_rails_4f2278ddee"
+FOREIGN KEY ("professor_id")
+  REFERENCES "usuarios" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_turmas_on_professor_id" ON "turmas" ("professor_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "turmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id" FROM "aturmas"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aturmas"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20250713022254)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20250713022253),
+(20250713022252),
+(20250711024732),
+(20250710235626),
+(20250710235014),
+(20250709131421),
+(20250709131405),
+(20250709131356),
+(20250709131350),
+(20250709131337),
+(20250709130805),
+(20250709130503),
+(20250709130406),
+(20250709130312);[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-07-13 05:57:20.643934', '2025-07-13 05:57:20.643941') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '446d32fc9b5f37e8b3c9b9b5f5c0d98071229424', '2025-07-13 05:57:20.649424', '2025-07-13 05:57:20.649429') RETURNING "key"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "formularios"[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE TABLE "formularios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar, "ehTemplate" boolean, "status" varchar, "estruturaJSON" text, "dataDeExpiracao" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "criador_id" integer NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_formularios_on_criador_id" ON "formularios" ("criador_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "formularios_turmas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "formularios_turmas" ("formulario_id" integer NOT NULL, "turma_id" integer NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "respostas"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "respostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6), "respostasJSON" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, "avaliador_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_avaliador_id" ON "respostas" ("avaliador_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_formulario_id" ON "respostas" ("formulario_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "turmas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_turmas_on_professor_id" ON "turmas" ("professor_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "turmas_usuarios"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "turmas_usuarios" ("usuario_id" integer NOT NULL, "turma_id" integer NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "usuarios"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "usuarios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "matricula" varchar, "nome" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime(6), "remember_created_at" datetime(6), "admin" boolean)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_usuarios_on_email" ON "usuarios" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_usuarios_on_reset_password_token" ON "usuarios" ("reset_password_token")[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aformularios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar DEFAULT NULL, "ehTemplate" boolean DEFAULT NULL, "status" varchar DEFAULT NULL, "estruturaJSON" text DEFAULT NULL, "dataDeExpiracao" datetime(6) DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "criador_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aformularios_on_criador_id" ON "aformularios" ("criador_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aformularios" ("id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id")
+                     SELECT "id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id" FROM "formularios"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "formularios"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "formularios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar DEFAULT NULL, "ehTemplate" boolean DEFAULT NULL, "status" varchar DEFAULT NULL, "estruturaJSON" text DEFAULT NULL, "dataDeExpiracao" datetime(6) DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "criador_id" integer NOT NULL, CONSTRAINT "fk_rails_df6b852d1e"
+FOREIGN KEY ("criador_id")
+  REFERENCES "usuarios" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_formularios_on_criador_id" ON "formularios" ("criador_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "formularios" ("id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id")
+                     SELECT "id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id" FROM "aformularios"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aformularios"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "arespostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6) DEFAULT NULL, "respostasJSON" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, "avaliador_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_arespostas_on_formulario_id" ON "arespostas" ("formulario_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_arespostas_on_avaliador_id" ON "arespostas" ("avaliador_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "arespostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id" FROM "respostas"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "respostas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "respostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6) DEFAULT NULL, "respostasJSON" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, "avaliador_id" integer NOT NULL, CONSTRAINT "fk_rails_bd8b529c1e"
+FOREIGN KEY ("formulario_id")
+  REFERENCES "formularios" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_avaliador_id" ON "respostas" ("avaliador_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_formulario_id" ON "respostas" ("formulario_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "respostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id" FROM "arespostas"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "arespostas"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "arespostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6) DEFAULT NULL, "respostasJSON" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, "avaliador_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_arespostas_on_formulario_id" ON "arespostas" ("formulario_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_arespostas_on_avaliador_id" ON "arespostas" ("avaliador_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "arespostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id" FROM "respostas"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "respostas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "respostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6) DEFAULT NULL, "respostasJSON" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, "avaliador_id" integer NOT NULL, CONSTRAINT "fk_rails_bd8b529c1e"
+FOREIGN KEY ("formulario_id")
+  REFERENCES "formularios" ("id")
+, CONSTRAINT "fk_rails_293f7d6c26"
+FOREIGN KEY ("avaliador_id")
+  REFERENCES "usuarios" ("id")
+)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_avaliador_id" ON "respostas" ("avaliador_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_formulario_id" ON "respostas" ("formulario_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "respostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id" FROM "arespostas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "arespostas"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aturmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar DEFAULT NULL, "semestre" varchar DEFAULT NULL, "ativo" boolean DEFAULT NULL, "descricao" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aturmas_on_professor_id" ON "aturmas" ("professor_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "aturmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id" FROM "turmas"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "turmas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar DEFAULT NULL, "semestre" varchar DEFAULT NULL, "ativo" boolean DEFAULT NULL, "descricao" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL, CONSTRAINT "fk_rails_4f2278ddee"
+FOREIGN KEY ("professor_id")
+  REFERENCES "usuarios" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_turmas_on_professor_id" ON "turmas" ("professor_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "turmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id" FROM "aturmas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aturmas"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20250713022254)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20250713022253),
+(20250713022252),
+(20250711024732),
+(20250710235626),
+(20250710235014),
+(20250709131421),
+(20250709131405),
+(20250709131356),
+(20250709131350),
+(20250709131337),
+(20250709130805),
+(20250709130503),
+(20250709130406),
+(20250709130312);[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-07-13 05:57:20.772873', '2025-07-13 05:57:20.772877') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Update (0.1ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2025-07-13 05:57:20.774452' WHERE "ar_internal_metadata"."key" = 'environment'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '446d32fc9b5f37e8b3c9b9b5f5c0d98071229424', '2025-07-13 05:57:20.775784', '2025-07-13 05:57:20.775788') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."email" = ? LIMIT ?[0m  [["email", "admin@email.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUsuario Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "usuarios" WHERE "usuarios"."email" = ? LIMIT ?[0m  [["email", "admin@email.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "formularios"[0m
+  [1m[35m (16.5ms)[0m  [1m[35mCREATE TABLE "formularios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar, "ehTemplate" boolean, "status" varchar, "estruturaJSON" text, "dataDeExpiracao" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "criador_id" integer NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE INDEX "index_formularios_on_criador_id" ON "formularios" ("criador_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "formularios_turmas"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "formularios_turmas" ("formulario_id" integer NOT NULL, "turma_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "respostas"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "respostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6), "respostasJSON" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, "avaliador_id" integer NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_avaliador_id" ON "respostas" ("avaliador_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_formulario_id" ON "respostas" ("formulario_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "turmas"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_turmas_on_professor_id" ON "turmas" ("professor_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "turmas_usuarios"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "turmas_usuarios" ("usuario_id" integer NOT NULL, "turma_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "usuarios"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "usuarios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "matricula" varchar, "nome" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime(6), "remember_created_at" datetime(6), "admin" boolean)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_usuarios_on_email" ON "usuarios" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_usuarios_on_reset_password_token" ON "usuarios" ("reset_password_token")[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aformularios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar DEFAULT NULL, "ehTemplate" boolean DEFAULT NULL, "status" varchar DEFAULT NULL, "estruturaJSON" text DEFAULT NULL, "dataDeExpiracao" datetime(6) DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "criador_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aformularios_on_criador_id" ON "aformularios" ("criador_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "aformularios" ("id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id")
+                     SELECT "id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id" FROM "formularios"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "formularios"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "formularios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar DEFAULT NULL, "ehTemplate" boolean DEFAULT NULL, "status" varchar DEFAULT NULL, "estruturaJSON" text DEFAULT NULL, "dataDeExpiracao" datetime(6) DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "criador_id" integer NOT NULL, CONSTRAINT "fk_rails_df6b852d1e"
+FOREIGN KEY ("criador_id")
+  REFERENCES "usuarios" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_formularios_on_criador_id" ON "formularios" ("criador_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "formularios" ("id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id")
+                     SELECT "id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id" FROM "aformularios"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aformularios"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "arespostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6) DEFAULT NULL, "respostasJSON" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, "avaliador_id" integer NOT NULL)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE INDEX "tindex_arespostas_on_formulario_id" ON "arespostas" ("formulario_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "tindex_arespostas_on_avaliador_id" ON "arespostas" ("avaliador_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "arespostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id" FROM "respostas"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE "respostas"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "respostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6) DEFAULT NULL, "respostasJSON" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, "avaliador_id" integer NOT NULL, CONSTRAINT "fk_rails_bd8b529c1e"
+FOREIGN KEY ("formulario_id")
+  REFERENCES "formularios" ("id")
+)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_avaliador_id" ON "respostas" ("avaliador_id")[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_formulario_id" ON "respostas" ("formulario_id")[0m
+  [1m[35m (0.4ms)[0m  [1m[32mINSERT INTO "respostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id" FROM "arespostas"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE "arespostas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "arespostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6) DEFAULT NULL, "respostasJSON" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, "avaliador_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_arespostas_on_formulario_id" ON "arespostas" ("formulario_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_arespostas_on_avaliador_id" ON "arespostas" ("avaliador_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "arespostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id" FROM "respostas"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "respostas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "respostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6) DEFAULT NULL, "respostasJSON" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, "avaliador_id" integer NOT NULL, CONSTRAINT "fk_rails_bd8b529c1e"
+FOREIGN KEY ("formulario_id")
+  REFERENCES "formularios" ("id")
+, CONSTRAINT "fk_rails_293f7d6c26"
+FOREIGN KEY ("avaliador_id")
+  REFERENCES "usuarios" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_avaliador_id" ON "respostas" ("avaliador_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_formulario_id" ON "respostas" ("formulario_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "respostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id" FROM "arespostas"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "arespostas"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aturmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar DEFAULT NULL, "semestre" varchar DEFAULT NULL, "ativo" boolean DEFAULT NULL, "descricao" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aturmas_on_professor_id" ON "aturmas" ("professor_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "aturmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id" FROM "turmas"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "turmas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar DEFAULT NULL, "semestre" varchar DEFAULT NULL, "ativo" boolean DEFAULT NULL, "descricao" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL, CONSTRAINT "fk_rails_4f2278ddee"
+FOREIGN KEY ("professor_id")
+  REFERENCES "usuarios" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_turmas_on_professor_id" ON "turmas" ("professor_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "turmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id" FROM "aturmas"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "aturmas"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20250713022254)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20250713022253),
+(20250713022252),
+(20250711024732),
+(20250710235626),
+(20250710235014),
+(20250709131421),
+(20250709131405),
+(20250709131356),
+(20250709131350),
+(20250709131337),
+(20250709130805),
+(20250709130503),
+(20250709130406),
+(20250709130312);[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-07-13 05:58:33.862039', '2025-07-13 05:58:33.862045') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '446d32fc9b5f37e8b3c9b9b5f5c0d98071229424', '2025-07-13 05:58:33.864866', '2025-07-13 05:58:33.864870') RETURNING "key"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "formularios"[0m
+  [1m[35m (7.4ms)[0m  [1m[35mCREATE TABLE "formularios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar, "ehTemplate" boolean, "status" varchar, "estruturaJSON" text, "dataDeExpiracao" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "criador_id" integer NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE INDEX "index_formularios_on_criador_id" ON "formularios" ("criador_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "formularios_turmas"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "formularios_turmas" ("formulario_id" integer NOT NULL, "turma_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "respostas"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "respostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6), "respostasJSON" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, "avaliador_id" integer NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_avaliador_id" ON "respostas" ("avaliador_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_formulario_id" ON "respostas" ("formulario_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "turmas"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_turmas_on_professor_id" ON "turmas" ("professor_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "turmas_usuarios"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "turmas_usuarios" ("usuario_id" integer NOT NULL, "turma_id" integer NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "usuarios"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "usuarios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "matricula" varchar, "nome" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime(6), "remember_created_at" datetime(6), "admin" boolean)[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_usuarios_on_email" ON "usuarios" ("email")[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_usuarios_on_reset_password_token" ON "usuarios" ("reset_password_token")[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (2.4ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aformularios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar DEFAULT NULL, "ehTemplate" boolean DEFAULT NULL, "status" varchar DEFAULT NULL, "estruturaJSON" text DEFAULT NULL, "dataDeExpiracao" datetime(6) DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "criador_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aformularios_on_criador_id" ON "aformularios" ("criador_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "aformularios" ("id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id")
+                     SELECT "id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id" FROM "formularios"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "formularios"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "formularios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar DEFAULT NULL, "ehTemplate" boolean DEFAULT NULL, "status" varchar DEFAULT NULL, "estruturaJSON" text DEFAULT NULL, "dataDeExpiracao" datetime(6) DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "criador_id" integer NOT NULL, CONSTRAINT "fk_rails_df6b852d1e"
+FOREIGN KEY ("criador_id")
+  REFERENCES "usuarios" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_formularios_on_criador_id" ON "formularios" ("criador_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "formularios" ("id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id")
+                     SELECT "id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id" FROM "aformularios"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aformularios"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "arespostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6) DEFAULT NULL, "respostasJSON" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, "avaliador_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_arespostas_on_formulario_id" ON "arespostas" ("formulario_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_arespostas_on_avaliador_id" ON "arespostas" ("avaliador_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "arespostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id" FROM "respostas"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "respostas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "respostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6) DEFAULT NULL, "respostasJSON" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, "avaliador_id" integer NOT NULL, CONSTRAINT "fk_rails_bd8b529c1e"
+FOREIGN KEY ("formulario_id")
+  REFERENCES "formularios" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_avaliador_id" ON "respostas" ("avaliador_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_formulario_id" ON "respostas" ("formulario_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "respostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id" FROM "arespostas"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "arespostas"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "arespostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6) DEFAULT NULL, "respostasJSON" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, "avaliador_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_arespostas_on_formulario_id" ON "arespostas" ("formulario_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_arespostas_on_avaliador_id" ON "arespostas" ("avaliador_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "arespostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id" FROM "respostas"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "respostas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "respostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6) DEFAULT NULL, "respostasJSON" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, "avaliador_id" integer NOT NULL, CONSTRAINT "fk_rails_bd8b529c1e"
+FOREIGN KEY ("formulario_id")
+  REFERENCES "formularios" ("id")
+, CONSTRAINT "fk_rails_293f7d6c26"
+FOREIGN KEY ("avaliador_id")
+  REFERENCES "usuarios" ("id")
+)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_avaliador_id" ON "respostas" ("avaliador_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_formulario_id" ON "respostas" ("formulario_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "respostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id" FROM "arespostas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "arespostas"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aturmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar DEFAULT NULL, "semestre" varchar DEFAULT NULL, "ativo" boolean DEFAULT NULL, "descricao" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aturmas_on_professor_id" ON "aturmas" ("professor_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "aturmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id" FROM "turmas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "turmas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar DEFAULT NULL, "semestre" varchar DEFAULT NULL, "ativo" boolean DEFAULT NULL, "descricao" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL, CONSTRAINT "fk_rails_4f2278ddee"
+FOREIGN KEY ("professor_id")
+  REFERENCES "usuarios" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_turmas_on_professor_id" ON "turmas" ("professor_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "turmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id" FROM "aturmas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aturmas"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20250713022254)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20250713022253),
+(20250713022252),
+(20250711024732),
+(20250710235626),
+(20250710235014),
+(20250709131421),
+(20250709131405),
+(20250709131356),
+(20250709131350),
+(20250709131337),
+(20250709130805),
+(20250709130503),
+(20250709130406),
+(20250709130312);[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-07-13 05:58:34.083062', '2025-07-13 05:58:34.083069') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Update (0.1ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2025-07-13 05:58:34.086857' WHERE "ar_internal_metadata"."key" = 'environment'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '446d32fc9b5f37e8b3c9b9b5f5c0d98071229424', '2025-07-13 05:58:34.089854', '2025-07-13 05:58:34.089859') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUsuario Load (0.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."email" = ? LIMIT ?[0m  [["email", "admin@email.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUsuario Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "usuarios" WHERE "usuarios"."email" = ? LIMIT ?[0m  [["email", "admin@email.com"], ["LIMIT", 1]]
+  [1m[36mUsuario Create (0.2ms)[0m  [1m[32mINSERT INTO "usuarios" ("matricula", "nome", "created_at", "updated_at", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "admin") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["matricula", nil], ["nome", "Admin do Sistema"], ["created_at", "2025-07-13 05:58:34.307279"], ["updated_at", "2025-07-13 05:58:34.307279"], ["email", "admin@email.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["admin", 1]]
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUsuario Load (0.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."email" = ? LIMIT ?[0m  [["email", "aluno@email.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUsuario Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "usuarios" WHERE "usuarios"."email" = ? LIMIT ?[0m  [["email", "aluno@email.com"], ["LIMIT", 1]]
+  [1m[36mUsuario Create (0.1ms)[0m  [1m[32mINSERT INTO "usuarios" ("matricula", "nome", "created_at", "updated_at", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "admin") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["matricula", "02"], ["nome", "Aluno Teste"], ["created_at", "2025-07-13 05:58:34.499135"], ["updated_at", "2025-07-13 05:58:34.499135"], ["email", "aluno@email.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:07:57 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "admin@email.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "admin@email.com", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'admin@email.com' OR lower(matricula) = 'admin@email.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 328ms (Views: 7.0ms | ActiveRecord: 2.2ms | Allocations: 13260)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:08:11 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "5677877878", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "5677877878", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '5677877878' OR lower(matricula) = '5677877878') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 13ms (ActiveRecord: 0.2ms | Allocations: 947)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:08:15 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "5677877878", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "5677877878", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '5677877878' OR lower(matricula) = '5677877878') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 13ms (ActiveRecord: 0.2ms | Allocations: 937)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:08:16 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "5677877878", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "5677877878", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '5677877878' OR lower(matricula) = '5677877878') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 13ms (ActiveRecord: 0.2ms | Allocations: 926)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:08:16 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "5677877878", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "5677877878", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '5677877878' OR lower(matricula) = '5677877878') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 12ms (ActiveRecord: 0.2ms | Allocations: 926)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:08:19 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "5677877878", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "5677877878", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '5677877878' OR lower(matricula) = '5677877878') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 12ms (ActiveRecord: 0.2ms | Allocations: 926)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:08:19 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "5677877878", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "5677877878", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '5677877878' OR lower(matricula) = '5677877878') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 13ms (ActiveRecord: 0.2ms | Allocations: 926)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:08:34 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'aluno@email.com' OR lower(matricula) = 'aluno@email.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 191ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 1174)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:08:49 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "01", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "01", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '01' OR lower(matricula) = '01') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 13ms (ActiveRecord: 0.2ms | Allocations: 926)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:09:01 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "01", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "01", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '01' OR lower(matricula) = '01') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 13ms (ActiveRecord: 0.2ms | Allocations: 926)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:09:04 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "01", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "01", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '01' OR lower(matricula) = '01') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 12ms (ActiveRecord: 0.2ms | Allocations: 926)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:09:04 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "01", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "01", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '01' OR lower(matricula) = '01') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 13ms (ActiveRecord: 0.2ms | Allocations: 926)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:09:05 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "01", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "01", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '01' OR lower(matricula) = '01') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 12ms (ActiveRecord: 0.2ms | Allocations: 926)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:09:05 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "01", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "01", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '01' OR lower(matricula) = '01') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 12ms (ActiveRecord: 0.2ms | Allocations: 926)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:09:05 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "01", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "01", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '01' OR lower(matricula) = '01') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 12ms (ActiveRecord: 0.2ms | Allocations: 926)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:09:07 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "01", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "01", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '01' OR lower(matricula) = '01') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 15ms (ActiveRecord: 0.1ms | Allocations: 926)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:09:07 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "01", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "01", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '01' OR lower(matricula) = '01') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 12ms (ActiveRecord: 0.2ms | Allocations: 926)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:09:11 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "02", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "02", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '02' OR lower(matricula) = '02') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 187ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 1140)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:09:16 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+Completed 401 Unauthorized in 11ms (ActiveRecord: 0.0ms | Allocations: 363)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:09:20 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "01", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "01", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '01' OR lower(matricula) = '01') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 12ms (ActiveRecord: 0.2ms | Allocations: 926)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:18:04 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "01", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "01", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (12.4ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '01' OR lower(matricula) = '01') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 38ms (ActiveRecord: 19.9ms | Allocations: 1146)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:18:07 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "01fffefe", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "01fffefe", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '01fffefe' OR lower(matricula) = '01fffefe') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 13ms (ActiveRecord: 0.2ms | Allocations: 926)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:18:08 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "01fffefe", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "01fffefe", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '01fffefe' OR lower(matricula) = '01fffefe') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 12ms (ActiveRecord: 0.2ms | Allocations: 926)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:18:08 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "01fffefe", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "01fffefe", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '01fffefe' OR lower(matricula) = '01fffefe') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 13ms (ActiveRecord: 0.2ms | Allocations: 926)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:18:08 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "01fffefe", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "01fffefe", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '01fffefe' OR lower(matricula) = '01fffefe') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 12ms (ActiveRecord: 0.2ms | Allocations: 926)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:18:09 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "01fffefe", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "01fffefe", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '01fffefe' OR lower(matricula) = '01fffefe') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 13ms (ActiveRecord: 0.2ms | Allocations: 926)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:21:59 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "02", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "02", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (10.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '02' OR lower(matricula) = '02') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 215ms (Views: 1.4ms | ActiveRecord: 10.2ms | Allocations: 1141)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:23:34 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "admin@email.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "admin@email.com", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (9.9ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'admin@email.com' OR lower(matricula) = 'admin@email.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 215ms (Views: 0.3ms | ActiveRecord: 9.9ms | Allocations: 1128)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:24:57 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "02", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "02", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '02' OR lower(matricula) = '02') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 187ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 1140)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:31:17 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "02", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "02", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (49.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '02' OR lower(matricula) = '02') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:31:18 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "02", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "02", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (12.9ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '02' OR lower(matricula) = '02') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 912ms (Views: 78.7ms | ActiveRecord: 60.6ms | Allocations: 5116)
+
+
+Completed 200 OK in 266ms (Views: 1.0ms | ActiveRecord: 20.8ms | Allocations: 1548)
+
+
+Started POST "/usuarios/sign_in.json" for 127.0.0.1 at 2025-07-13 03:31:40 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "admin@email.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "admin@email.com", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3000) didn't match request.base_url (http://localhost:3001)
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'admin@email.com' OR lower(matricula) = 'admin@email.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:26:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 199ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 1128)
+
+
+Started GET "/admin/gerenciamento" for 127.0.0.1 at 2025-07-13 03:36:46 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/admin/gerenciamento"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-07-13 03:36:47 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  

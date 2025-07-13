@@ -24,6 +24,7 @@ gem 'devise-i18n'
 gem "tailwindcss-rails", "~> 2.0"
 gem "cssbundling-rails"
 gem 'jsbundling-rails'
+gem "rack-cors"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]

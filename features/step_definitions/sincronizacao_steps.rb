@@ -42,7 +42,7 @@ end
 
 Quando('eu anexo o arquivo {string} ao campo {string}') do  |nome_arquivo, nome_campo|
   # Anexa um arquivo de teste (que deve estar em features/support/) ao campo de upload.
-  attach_file(nome_campo, Rails.root.join('features', 'support', nome_arquivo))
+  attach_file(nome_campo, Rails.root.join('import_files', nome_arquivo))
 end
 
 
@@ -64,10 +64,11 @@ Então('a turma de {string} deve ser criada no sistema.') do |nome_disciplina|
   expect(turma).not_to be_nil, "A turma 'TA' para a disciplina '#{nome_disciplina}' não foi encontrada."
 end
 
-Então('o usuário {string} deve ser criado e associado à turma {string}.') do |nome_usuario, nome_turma|
+Então('o usuário {string} deve ser criado e associado à turma {string} de {string} do semestre {string}.') do |nome_usuario, codigo_turma, nome_disciplina, semestre|
   # 1. Find the user and the class in the database.
-  usuario = Usuario.find_by(nome_completo: nome_usuario)
-  turma = Turma.find_by(name: nome_turma)
+  usuario = Usuario.find_by(nome: nome_usuario)
+  disciplina = Disciplina.find_by(nome: nome_disciplina)
+  turma = disciplina.turmas.find_by(codigo_turma: codigo_turma, semestre: semestre)
 
   # 2. Check that both were actually found.
   expect(usuario).not_to be_nil
@@ -79,10 +80,7 @@ Então('o usuário {string} deve ser criado e associado à turma {string}.') do 
 end
 
 Então('o modal de importação deve ser fechado') do
-  # This step checks that the element with the ID 'import-modal' is NOT visible.
-  # The 'visible: :hidden' option tells Capybara to assert that the element
-  # might exist in the HTML but is not visible to the user (e.g., display: none).
-  expect(page).to have_selector('#import-modal', visible: :hidden)
+  expect(page).to have_no_selector('#import-modal[data-controller="modal"]:not(.hidden)', visible: true, wait: 5)
 end
 
 Então('eu devo permanecer na página de Gerenciamento.') do

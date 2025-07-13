@@ -1,0 +1,17 @@
+{
+  "code": "CIC0097",
+  "classCode": "TA",
+  "semester": "2021.2",
+  "dicente": {
+    {
+      "nome": "Ana Clara Jordao Perna",
+      "email": "acjpjvjp@gmail.com",
+      "matricula": "190084006"
+    }, 
+    {
+      "nome": "Andre Carvalho de Roure",
+      "email": "andreCarvalhoroure@gmail.com",
+      "matricula": "200033522"
+    }
+  },
+}

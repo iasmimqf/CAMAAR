@@ -10,6 +10,8 @@ class Turma < ApplicationRecord
   validates_uniqueness_of :codigo_turma,
                           scope: [:disciplina_id, :semestre],
                           message: 'já existe uma turma com esta combinação'
+
+  has_and_belongs_to_many :usuarios
   def nome_completo
     "#{disciplina.nome} - #{codigo_turma} (#{semestre})"
   end

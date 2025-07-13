@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     # Isso cria a rota GET /admin/dashboard que aponta para a ação 'index'
     # do controller 'dashboard' dentro do módulo 'admin'
     get 'dashboard', to: 'dashboard#index' , as: 'dashboard'
-    post 'importacoes/importar_turmas', to: 'importacoes#importar_turmas'
     namespace :import do
       # Routes for importing Turmas
       resources :turmas, only: [:new, :create]

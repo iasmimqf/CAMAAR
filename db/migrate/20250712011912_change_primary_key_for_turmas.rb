@@ -1,4 +1,4 @@
-class ChangePrimaryKeyForTurmas < ActiveRecord::Migration[8.0]
+class ChangePrimaryKeyForTurmas < ActiveRecord::Migration[7.1]
   def change
     # Passo 1: Apaga a tabela 'turmas' existente, se ela existir.
     drop_table :turmas, if_exists: true

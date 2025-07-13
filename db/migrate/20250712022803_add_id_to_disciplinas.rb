@@ -1,4 +1,4 @@
-class AddIdToDisciplinas < ActiveRecord::Migration[8.0]
+class AddIdToDisciplinas < ActiveRecord::Migration[7.1]
   def change
     drop_table :disciplinas, if_exists: true
     create_table :disciplinas do |t|

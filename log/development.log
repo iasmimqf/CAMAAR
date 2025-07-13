@@ -1669,3 +1669,307 @@ Migrating to AddIdToDisciplinas (20250712022803)
   [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250712022803') RETURNING "version" /*application='Camaar'*/[0m
   [1m[36mTRANSACTION (4.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Camaar'*/[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (4.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-07-12 23:14:12.732939', '2025-07-12 23:14:12.732943') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsuarios (20250709130312)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "usuarios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "matricula" varchar, "nome" varchar, "perfil" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250709130312') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateTurmas (20250709130406)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar, "semestre" varchar, "ativo" boolean, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250709130406') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateFormularios (20250709130503)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "formularios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar, "ehTemplate" boolean, "status" varchar, "estruturaJSON" text, "dataDeExpiracao" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250709130503') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateRespostas (20250709130805)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "respostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6), "respostasJSON" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250709130805') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddProfessorToTurmas (20250709131337)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aturmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar DEFAULT NULL, "semestre" varchar DEFAULT NULL, "ativo" boolean DEFAULT NULL, "descricao" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "aturmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at" FROM "turmas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "turmas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar DEFAULT NULL, "semestre" varchar DEFAULT NULL, "ativo" boolean DEFAULT NULL, "descricao" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "turmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at" FROM "aturmas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aturmas"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_turmas_on_professor_id" ON "turmas" ("professor_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aturmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar DEFAULT NULL, "semestre" varchar DEFAULT NULL, "ativo" boolean DEFAULT NULL, "descricao" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aturmas_on_professor_id" ON "aturmas" ("professor_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "aturmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id" FROM "turmas"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "turmas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nomeDaTurma" varchar DEFAULT NULL, "semestre" varchar DEFAULT NULL, "ativo" boolean DEFAULT NULL, "descricao" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "professor_id" integer NOT NULL, CONSTRAINT "fk_rails_4f2278ddee"
+FOREIGN KEY ("professor_id")
+  REFERENCES "usuarios" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_turmas_on_professor_id" ON "turmas" ("professor_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "turmas" ("id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id")
+                     SELECT "id","nomeDaTurma","semestre","ativo","descricao","created_at","updated_at","professor_id" FROM "aturmas"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aturmas"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250709131337') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddCriadorToFormularios (20250709131350)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aformularios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar DEFAULT NULL, "ehTemplate" boolean DEFAULT NULL, "status" varchar DEFAULT NULL, "estruturaJSON" text DEFAULT NULL, "dataDeExpiracao" datetime(6) DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "aformularios" ("id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at")
+                     SELECT "id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at" FROM "formularios"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "formularios"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "formularios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar DEFAULT NULL, "ehTemplate" boolean DEFAULT NULL, "status" varchar DEFAULT NULL, "estruturaJSON" text DEFAULT NULL, "dataDeExpiracao" datetime(6) DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "criador_id" integer NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "formularios" ("id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at")
+                     SELECT "id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at" FROM "aformularios"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aformularios"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_formularios_on_criador_id" ON "formularios" ("criador_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aformularios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar DEFAULT NULL, "ehTemplate" boolean DEFAULT NULL, "status" varchar DEFAULT NULL, "estruturaJSON" text DEFAULT NULL, "dataDeExpiracao" datetime(6) DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "criador_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aformularios_on_criador_id" ON "aformularios" ("criador_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "aformularios" ("id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id")
+                     SELECT "id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id" FROM "formularios"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "formularios"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "formularios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar DEFAULT NULL, "ehTemplate" boolean DEFAULT NULL, "status" varchar DEFAULT NULL, "estruturaJSON" text DEFAULT NULL, "dataDeExpiracao" datetime(6) DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "criador_id" integer NOT NULL, CONSTRAINT "fk_rails_df6b852d1e"
+FOREIGN KEY ("criador_id")
+  REFERENCES "usuarios" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_formularios_on_criador_id" ON "formularios" ("criador_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "formularios" ("id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id")
+                     SELECT "id","titulo","ehTemplate","status","estruturaJSON","dataDeExpiracao","created_at","updated_at","criador_id" FROM "aformularios"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aformularios"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250709131350') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddFormularioAndAvaliadorToRespostas (20250709131356)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "arespostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6) DEFAULT NULL, "respostasJSON" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "arespostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at" FROM "respostas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "respostas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "respostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6) DEFAULT NULL, "respostasJSON" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "respostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at" FROM "arespostas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "arespostas"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_formulario_id" ON "respostas" ("formulario_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "arespostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6) DEFAULT NULL, "respostasJSON" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_arespostas_on_formulario_id" ON "arespostas" ("formulario_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "arespostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id" FROM "respostas"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "respostas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "respostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6) DEFAULT NULL, "respostasJSON" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, CONSTRAINT "fk_rails_bd8b529c1e"
+FOREIGN KEY ("formulario_id")
+  REFERENCES "formularios" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_formulario_id" ON "respostas" ("formulario_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "respostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id" FROM "arespostas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "arespostas"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "arespostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6) DEFAULT NULL, "respostasJSON" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_arespostas_on_formulario_id" ON "arespostas" ("formulario_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "arespostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id" FROM "respostas"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "respostas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "respostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6) DEFAULT NULL, "respostasJSON" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, "avaliador_id" integer NOT NULL, CONSTRAINT "fk_rails_bd8b529c1e"
+FOREIGN KEY ("formulario_id")
+  REFERENCES "formularios" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_formulario_id" ON "respostas" ("formulario_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "respostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id" FROM "arespostas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "arespostas"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_avaliador_id" ON "respostas" ("avaliador_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "arespostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6) DEFAULT NULL, "respostasJSON" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, "avaliador_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_arespostas_on_avaliador_id" ON "arespostas" ("avaliador_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_arespostas_on_formulario_id" ON "arespostas" ("formulario_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "arespostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id" FROM "respostas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "respostas"[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "respostas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "dataDeSubmissao" datetime(6) DEFAULT NULL, "respostasJSON" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "formulario_id" integer NOT NULL, "avaliador_id" integer NOT NULL, CONSTRAINT "fk_rails_bd8b529c1e"
+FOREIGN KEY ("formulario_id")
+  REFERENCES "formularios" ("id")
+, CONSTRAINT "fk_rails_293f7d6c26"
+FOREIGN KEY ("avaliador_id")
+  REFERENCES "usuarios" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_formulario_id" ON "respostas" ("formulario_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_respostas_on_avaliador_id" ON "respostas" ("avaliador_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "respostas" ("id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id")
+                     SELECT "id","dataDeSubmissao","respostasJSON","created_at","updated_at","formulario_id","avaliador_id" FROM "arespostas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "arespostas"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250709131356') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateJoinTableFormulariosTurmas (20250709131405)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "formularios_turmas" ("formulario_id" integer NOT NULL, "turma_id" integer NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250709131405') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateJoinTableUsuariosTurmas (20250709131421)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "turmas_usuarios" ("usuario_id" integer NOT NULL, "turma_id" integer NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250709131421') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddDeviseToUsuarios (20250710235014)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mALTER TABLE "usuarios" ADD "email" varchar DEFAULT '' NOT NULL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "usuarios" ADD "encrypted_password" varchar DEFAULT '' NOT NULL[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "usuarios" ADD "reset_password_token" varchar[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "usuarios" ADD "reset_password_sent_at" datetime(6)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "usuarios" ADD "remember_created_at" datetime(6)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_usuarios_on_email" ON "usuarios" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_usuarios_on_reset_password_token" ON "usuarios" ("reset_password_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250710235014') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddAdminToUsuarios (20250710235626)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "usuarios" ADD "admin" boolean[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250710235626') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to RemovePerfilFromUsuarios (20250711024732)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "ausuarios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "matricula" varchar DEFAULT NULL, "nome" varchar DEFAULT NULL, "perfil" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar DEFAULT NULL, "reset_password_sent_at" datetime(6) DEFAULT NULL, "remember_created_at" datetime(6) DEFAULT NULL, "admin" boolean DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_ausuarios_on_reset_password_token" ON "ausuarios" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_ausuarios_on_email" ON "ausuarios" ("email")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "ausuarios" ("id","matricula","nome","perfil","created_at","updated_at","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","admin")
+                     SELECT "id","matricula","nome","perfil","created_at","updated_at","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","admin" FROM "usuarios"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "usuarios"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "usuarios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "matricula" varchar DEFAULT NULL, "nome" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar DEFAULT NULL, "reset_password_sent_at" datetime(6) DEFAULT NULL, "remember_created_at" datetime(6) DEFAULT NULL, "admin" boolean DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_usuarios_on_email" ON "usuarios" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_usuarios_on_reset_password_token" ON "usuarios" ("reset_password_token")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "usuarios" ("id","matricula","nome","created_at","updated_at","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","admin")
+                     SELECT "id","matricula","nome","created_at","updated_at","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","admin" FROM "ausuarios"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "ausuarios"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250711024732') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to DropTurmas (20250711170937)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mDROP TABLE "turmas"[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250711170937') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateDisciplinasAndTurmas (20250711171304)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "disciplinas" ("codigo" varchar, "true" varchar, "nome" varchar NOT NULL, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_disciplinas_on_codigo" ON "disciplinas" ("codigo")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "turmas" ("codigo_turma" varchar NOT NULL, "semestre" varchar NOT NULL, "horario" varchar, "disciplina_codigo" varchar NOT NULL, "professor_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "[:disciplina_codigo, :codigo_turma, :semestre]" integer PRIMARY KEY AUTOINCREMENT NOT NULL, CONSTRAINT "fk_rails_4f2278ddee"
+FOREIGN KEY ("professor_id")
+  REFERENCES "usuarios" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_turmas_on_professor_id" ON "turmas" ("professor_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_turmas_on_disciplina_codigo" ON "turmas" ("disciplina_codigo")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250711171304') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to ChangePrimaryKeyForTurmas (20250712011912)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "turmas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "codigo_turma" varchar NOT NULL, "semestre" varchar NOT NULL, "horario" varchar, "disciplina_id" integer NOT NULL, "professor_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_76e53910e3"
+FOREIGN KEY ("disciplina_id")
+  REFERENCES "disciplinas" ("id")
+, CONSTRAINT "fk_rails_4f2278ddee"
+FOREIGN KEY ("professor_id")
+  REFERENCES "usuarios" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_turmas_on_disciplina_id" ON "turmas" ("disciplina_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_turmas_on_professor_id" ON "turmas" ("professor_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_turmas_on_unique_keys" ON "turmas" ("disciplina_id", "codigo_turma", "semestre")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250712011912') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to RecreateTurmasWithCorrectSchema (20250712021220)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "turmas"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "codigo_turma" varchar NOT NULL, "semestre" varchar NOT NULL, "horario" varchar, "disciplina_id" integer NOT NULL, "professor_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_76e53910e3"
+FOREIGN KEY ("disciplina_id")
+  REFERENCES "disciplinas" ("id")
+, CONSTRAINT "fk_rails_4f2278ddee"
+FOREIGN KEY ("professor_id")
+  REFERENCES "usuarios" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_turmas_on_disciplina_id" ON "turmas" ("disciplina_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_turmas_on_professor_id" ON "turmas" ("professor_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_turmas_on_unique_keys" ON "turmas" ("disciplina_id", "codigo_turma", "semestre")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250712021220') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddIdToDisciplinas (20250712022803)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "disciplinas"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "disciplinas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "codigo" varchar NOT NULL, "nome" varchar NOT NULL, "descricao" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_disciplinas_on_codigo" ON "disciplinas" ("codigo")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250712022803') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddServiceNameToActiveStorageBlobs (20250712231035)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250712231035') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateActiveStorageVariantRecords (20250712231036)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250712231036') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to RemoveNotNullOnActiveStorageBlobsChecksum (20250712231037)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250712231037') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m

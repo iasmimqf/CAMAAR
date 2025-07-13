@@ -1,0 +1,32 @@
+{
+  "name": "camaar",
+  "version": "1.0.0",
+  "description": "Sistema para avaliação de atividades acadêmicas remotas do CIC",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iasmimqf/CAMAAR.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iasmimqf/CAMAAR/issues"
+  },
+  "homepage": "https://github.com/iasmimqf/CAMAAR#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "esbuild": "^0.25.6",
+    "esbuild-rails": "^1.0.7",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.11"
+  }
+}

@@ -1,0 +1,43 @@
+<body>
+<h1>Dashboard de Administração</h1>
+<p>Bem-vindo ao painel de controle.</p>
+
+<% if usuario_signed_in? %>
+  <nav id="side-nav">
+    <p>Bem-vindo, <%= current_usuario.nome || current_usuario.email %>!</p>
+
+    <ul>
+      <%# Este link só aparece se o usuário for admin %>
+      <% if current_usuario.admin? %>
+        <li><a href="/admin/dashboard">Gerenciamento</a></li>
+      <% end %>
+
+      <li>
+        <%# O link de logout do Devise %>
+        <%= button_to "Sair", destroy_usuario_session_path, method: :delete %>
+      </li>
+    </ul>
+  </nav>
+<% end %>
+<%# --- FIM DO MENU DE NAVEGAÇÃO --- %>
+
+
+<hr>
+<button type="button" data-action="click->modal#open">Importar Dados</button>
+
+<div id="import-modal" data-controller="modal" class="hidden">
+  <div class="modal-background" data-action="click->modal#close"></div>
+  <div class="modal-content">
+    <h3>Selecione o Tipo de Importação</h3>
+    <p>Para qual finalidade é a importação de dados?</p>
+
+    <%= link_to "Importar Turmas", new_admin_import_turma_path, class: "button", data: { turbo: false } %>
+    <%= link_to "Importar Alunos", new_admin_import_aluno_path, class: "button", data: { turbo: false } %>
+
+    <button type="button" data-action="click->modal#close">Cancelar</button>
+  </div>
+</div>
+
+<%= yield %>
+
+</body>

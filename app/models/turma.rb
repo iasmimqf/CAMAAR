@@ -1,0 +1,18 @@
+class Turma < ApplicationRecord
+  belongs_to :disciplina,
+             foreign_key: :disciplina_id,
+             primary_key: :id,
+             inverse_of: :turmas
+
+  belongs_to :professor, class_name: 'Usuario', optional: true
+
+  validates :codigo_turma, :semestre, :disciplina_id, presence: true
+  validates_uniqueness_of :codigo_turma,
+                          scope: [:disciplina_id, :semestre],
+                          message: 'já existe uma turma com esta combinação'
+
+  has_and_belongs_to_many :usuarios
+  def nome_completo
+    "#{disciplina.nome} - #{codigo_turma} (#{semestre})"
+  end
+end

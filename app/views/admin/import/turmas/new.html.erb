@@ -1,0 +1,13 @@
+<h1>Importar Novas Turmas</h1>
+<p>Selecione o arquivo JSON contendo os dados das turmas.</p>
+
+<%= form_with url: admin_import_turmas_path, method: :post do |form| %>
+  <div class="field">
+    <%= form.label :file, "Selecione o arquivo de turmas" %>
+    <%= form.file_field :file, accept: ".json" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Enviar Turmas" %>
+  </div>
+<% end %>

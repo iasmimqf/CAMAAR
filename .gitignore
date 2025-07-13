@@ -1,0 +1,49 @@
+# Ignore os arquivos de log. Eles são específicos do seu ambiente local.
+/log/*
+!/log/.keep
+
+# Ignore os arquivos temporários.
+/tmp
+/tmp/*
+*.tmp
+*.temp
+
+# Ignore os arquivos do banco de dados SQLite.
+# Cada membro da equipe terá o seu próprio.
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+# Ignore o arquivo que guarda o schema em formato SQL.
+# O db/schema.rb é a fonte da verdade.
+/db/*.sqlite
+/db/schema.sql
+
+# Ignore arquivos de configuração de ambiente que contêm segredos.
+# NUNCA envie senhas ou chaves de API para o Git.
+.env
+.env.*
+!.env.example
+
+# Ignore a pasta onde as gems são instaladas pelo Bundler.
+/vendor/bundle
+
+# Ignore dependências de JavaScript.
+/node_modules
+/yarn-error.log
+/package-lock.json
+
+# Ignore arquivos de armazenamento do Active Storage.
+/storage/*
+!/storage/.keep
+
+# Ignore os assets pré-compilados. Eles são gerados em produção.
+/public/assets
+/public/packs
+/public/packs-test
+
+# Ignore arquivos de sistema operacional.
+.DS_Store
+Thumbs.db
+
+# Ignore os relatórios de cobertura de testes.
+/coverage/

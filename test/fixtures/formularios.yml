@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  titulo: MyString
+  ehTemplate: false
+  status: MyString
+  estruturaJSON: MyText
+  dataDeExpiracao: 2025-07-09 10:05:03
+
+two:
+  titulo: MyString
+  ehTemplate: false
+  status: MyString
+  estruturaJSON: MyText
+  dataDeExpiracao: 2025-07-09 10:05:03

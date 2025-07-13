@@ -1,0 +1,104 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="max-w-4xl mx-auto">
+    <div class="flex justify-between items-center mb-6">
+      <h1 class="text-3xl font-bold text-gray-900">Criar Formulário</h1>
+      <%= link_to 'Voltar', admin_formularios_path, class: 'bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded' %>
+    </div>
+
+    <% if @templates.empty? || @turmas.empty? %>
+      <div class="bg-yellow-50 border border-yellow-200 rounded-md p-4 mb-6">
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <svg class="h-5 w-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+            </svg>
+          </div>
+          <div class="ml-3">
+            <h3 class="text-sm font-medium text-yellow-800">
+              Não é possível criar um formulário sem templates e turmas
+            </h3>
+            <div class="mt-2 text-sm text-yellow-700">
+              <% if @templates.empty? %>
+                <p>• Nenhum template foi encontrado. <%= link_to 'Criar template', new_admin_template_path, class: 'underline' %></p>
+              <% end %>
+              <% if @turmas.empty? %>
+                <p>• Nenhuma turma foi encontrada.</p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="bg-white shadow-md rounded-lg p-6">
+      <%= form_with model: [:admin, @formulario], local: true, class: "space-y-6" do |form| %>
+        <% if @formulario.errors.any? %>
+          <div class="bg-red-50 border border-red-200 rounded-md p-4">
+            <div class="flex">
+              <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div class="ml-3">
+                <h3 class="text-sm font-medium text-red-800">Foram encontrados os seguintes erros:</h3>
+                <div class="mt-2 text-sm text-red-700">
+                  <ul class="list-disc pl-5 space-y-1">
+                    <% @formulario.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Seleção de Template -->
+          <div class="space-y-2">
+            <%= form.label :template_id, "Template", class: "block text-sm font-medium text-gray-700" %>
+            <%= form.select :template_id, 
+                options_from_collection_for_select(@templates, :id, :titulo, @formulario.template_id),
+                { prompt: "Selecione um template" },
+                { class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" } %>
+          </div>
+
+          <!-- Seleção de Turmas -->
+          <div class="space-y-2">
+            <%= form.label :turma_ids, "Turmas", class: "block text-sm font-medium text-gray-700" %>
+            <div class="border border-gray-300 rounded-md p-3 max-h-60 overflow-y-auto">
+              <% if @turmas.any? %>
+                <% @turmas.group_by(&:disciplina).each do |disciplina, turmas_disciplina| %>
+                  <div class="mb-4">
+                    <h4 class="font-medium text-gray-800 mb-2"><%= disciplina.nome %></h4>
+                    <% turmas_disciplina.each do |turma| %>
+                      <div class="flex items-center mb-2">
+                        <%= check_box_tag "formulario[turma_ids][]", turma.id, 
+                            @formulario.turma_ids.include?(turma.id), 
+                            { id: "turma_#{turma.id}", class: "mr-2" } %>
+                        <%= label_tag "turma_#{turma.id}", "#{turma.codigo_turma} (#{turma.semestre})", 
+                            class: "text-sm text-gray-700" %>
+                      </div>
+                    <% end %>
+                  </div>
+                <% end %>
+              <% else %>
+                <p class="text-gray-500 text-sm">Nenhuma turma disponível</p>
+              <% end %>
+            </div>
+            <%= hidden_field_tag "formulario[turma_ids][]", "", class: "hidden" %>
+          </div>
+        </div>
+
+        <div class="flex justify-end space-x-3">
+          <%= link_to 'Cancelar', admin_formularios_path, 
+              class: 'bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded' %>
+          <%= form.submit "Criar Formulário", 
+              class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded #{'opacity-50 cursor-not-allowed' if @templates.empty? || @turmas.empty?}",
+              disabled: @templates.empty? || @turmas.empty? %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

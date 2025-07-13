@@ -5,6 +5,9 @@ class Turma < ApplicationRecord
              inverse_of: :turmas
 
   belongs_to :professor, class_name: 'Usuario', optional: true
+  
+  # Relacionamento Muitos-para-Muitos: uma turma pode ter vários formulários
+  has_and_belongs_to_many :formularios
 
   validates :codigo_turma, :semestre, :disciplina_id, presence: true
   validates_uniqueness_of :codigo_turma,

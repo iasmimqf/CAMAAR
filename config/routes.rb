@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     # Rotas para gerenciamento de templates
     resources :templates
     
+    # Rotas para gerenciamento de formulários
+    resources :formularios
+    
     namespace :import do
       # Routes for importing Turmas
       resources :turmas, only: [:new, :create]

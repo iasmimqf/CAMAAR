@@ -25,9 +25,13 @@ Dado('que eu esteja na página de {string}') do |nome_pagina|
 end
 
 Dado('que já existem formulários criados a partir desse template') do
-  # Cria alguns formulários baseados no template
-  @formulario1 = create(:formulario, template: @existing_template)
-  @formulario2 = create(:formulario, template: @existing_template)
+  # Cria turmas primeiro
+  turma1 = create(:turma, codigo_turma: '001', disciplina: create(:disciplina, nome: 'POO'))
+  turma2 = create(:turma, codigo_turma: '002', disciplina: create(:disciplina, nome: 'ES'))
+  
+  # Cria formulários e associa as turmas manualmente
+  @formulario1 = create(:formulario, template: @existing_template, turmas: [turma1])
+  @formulario2 = create(:formulario, template: @existing_template, turmas: [turma2])
 end
 
 # --- AÇÕES ---

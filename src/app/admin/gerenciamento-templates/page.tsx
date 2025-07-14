@@ -23,9 +23,15 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { useRouter } from 'next/navigation';
+
+interface Template {
+  id: number;
+  titulo: string;
+  created_at: string;
+}
 
 interface Question {
   id: number;
@@ -33,6 +39,9 @@ interface Question {
   text: string;
   options?: string;
 }
+
+// URL base da sua API Ruby. Ajuste a porta se necessário (geralmente 3000 ou 3001)
+const API_BASE_URL = 'http://localhost:3000/api/v1'; // Esta linha está correta!
 
 export default function GerenciamentoTemplatesPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -44,13 +53,42 @@ export default function GerenciamentoTemplatesPage() {
     { id: 2, type: 'texto', text: '' },
   ]);
 
-  const templates = [
-    { id: 1, name: 'Template 1', semester: 'semestre' },
-    { id: 2, name: 'Template 1', semester: 'semestre' },
-    { id: 3, name: 'Template 1', semester: 'semestre' },
-    { id: 4, name: 'Template 1', semester: 'semestre' },
-    { id: 5, name: 'Template 1', semester: 'semestre' },
-  ];
+  const [templates, setTemplates] = useState<Template[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchTemplates = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      // ADICIONADO PARA DEBUGAR: Verifique o console do navegador
+      console.log("DEBUG: Tentando buscar templates de:", `${API_BASE_URL}/templates`);
+
+      const response = await fetch(`${API_BASE_URL}/templates`);
+      if (!response.ok) {
+        // Se a resposta não for 2xx (e.g., 404, 500, 400), lance um erro
+        // Tente ler a mensagem de erro do backend se disponível
+        const errorBody = await response.text(); // Use .text() para ver o corpo bruto
+        throw new Error(`Erro HTTP! Status: ${response.status} - ${errorBody}`);
+      }
+      const data: Template[] = await response.json();
+      setTemplates(data);
+    } catch (err: any) {
+      console.error("Erro ao buscar templates:", err);
+      // Se for um erro de rede (tipo 'Failed to fetch'), a mensagem será diferente
+      if (err.message.includes("Failed to fetch")) {
+        setError("Não foi possível conectar ao servidor da API. Verifique se o Rails está rodando na porta 3000 e se o CORS está configurado.");
+      } else {
+        setError(`Erro ao carregar templates: ${err.message}`);
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchTemplates();
+  }, []);
 
   const handleLogout = () => {
     console.log('Admin logout clicked');
@@ -98,9 +136,58 @@ export default function GerenciamentoTemplatesPage() {
     );
   };
 
-  const handleSaveTemplate = () => {
-    console.log('Save template:', { templateName, questions });
-    setEditModalOpen(false);
+  const handleSaveTemplate = async () => {
+    const payload = {
+      template: {
+        titulo: templateName,
+        questoes_attributes: questions.map(q => ({
+          tipo: q.type,
+          enunciado: q.text,
+          obrigatoria: true,
+          opcoes: q.options ? q.options.split(',').map(item => item.trim()) : [] as string[]
+        }))
+      }
+    };
+
+    try {
+      let csrfToken = '';
+      const csrfMeta = document.querySelector("meta[name='csrf-token']");
+      if (csrfMeta) {
+        csrfToken = csrfMeta.getAttribute("content") || '';
+      }
+      
+      const response = await fetch(`${API_BASE_URL}/templates`, { 
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(csrfToken && { 'X-CSRF-Token': csrfToken })
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        alert(result.mensagem);
+        setEditModalOpen(false);
+        fetchTemplates();
+      } else {
+        const errorData = await response.json();
+        let errorMessage = "Erro desconhecido ao salvar template.";
+        if (errorData.erro) {
+            errorMessage = errorData.erro;
+        } else if (errorData.errors) {
+            errorMessage = Object.entries(errorData.errors)
+                                .map(([field, messages]) => `${field}: ${(messages as string[]).join(', ')}`)
+                                .join('\n');
+        } else if (errorData.message) {
+            errorMessage = errorData.message;
+        }
+        alert(`Erro ao salvar:\n${errorMessage}`);
+      }
+    } catch (error) {
+      console.error('Falha na comunicação com o servidor:', error);
+      alert('Não foi possível conectar ao servidor. Tente novamente.');
+    }
   };
 
   const router = useRouter();
@@ -149,7 +236,6 @@ export default function GerenciamentoTemplatesPage() {
                   className="cursor-pointer text-red-600 focus:text-red-600"
                 >
                   <LogOut className="mr-2 h-4 w-4" />
-                  <span>Sair</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -201,9 +287,19 @@ export default function GerenciamentoTemplatesPage() {
 
         {/* Main Content */}
         <main className="flex-1 p-6">
+          {isLoading && <p>Carregando templates...</p>}
+          {error && <p className="text-red-500">{error}</p>}
+
+          {!isLoading && !error && templates.length === 0 && (
+            <div className="text-center text-gray-500 py-10">
+              <p className="text-lg">Nenhum template foi encontrado. 🙁</p>
+              <p className="text-sm mt-2">Clique no card "<Plus className="inline h-4 w-4" />" para adicionar um novo.</p>
+            </div>
+          )}
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Template Cards */}
-            {templates.map((template) => (
+            {!isLoading && !error && templates.map((template) => (
               <div
                 key={template.id}
                 className="bg-white rounded-lg shadow-sm border p-6 hover:shadow-md transition-shadow relative"
@@ -228,9 +324,11 @@ export default function GerenciamentoTemplatesPage() {
                 </div>
                 <div className="space-y-2 pr-12">
                   <h3 className="font-semibold text-gray-900 text-lg">
-                    {template.name}
+                    {template.titulo}
                   </h3>
-                  <p className="text-sm text-gray-500">{template.semester}</p>
+                  <p className="text-sm text-gray-500">
+                    Criado em: {new Date(template.created_at).toLocaleDateString()}
+                  </p>
                 </div>
               </div>
             ))}
@@ -246,7 +344,7 @@ export default function GerenciamentoTemplatesPage() {
         </main>
       </div>
 
-      {/* Template Editor Modal */}
+      {/* Template Editor Modal (Mantido como estava, mas com pequenas correções no Save) */}
       <Dialog open={editModalOpen} onOpenChange={setEditModalOpen}>
         <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
@@ -286,9 +384,9 @@ export default function GerenciamentoTemplatesPage() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="radio">Radio</SelectItem>
-                        <SelectItem value="texto">Texto</SelectItem>
-                        <SelectItem value="checkbox">Checkbox</SelectItem>
+                        <SelectItem value="Escala">Escala</SelectItem>
+                        <SelectItem value="Texto">Texto</SelectItem>
+                        <SelectItem value="Checkbox">Checkbox</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -305,11 +403,11 @@ export default function GerenciamentoTemplatesPage() {
                   />
                 </div>
 
-                {question.type === 'radio' && (
+                {(question.type === 'Escala' || question.type === 'radio') && (
                   <div className="space-y-2">
-                    <Label>Opções:</Label>
+                    <Label>Opções (separadas por vírgula):</Label>
                     <Input
-                      placeholder="Placeholder"
+                      placeholder="Ex: 5, 4, 3, 2, 1"
                       value={question.options || ''}
                       onChange={(e) =>
                         handleQuestionChange(
@@ -323,16 +421,6 @@ export default function GerenciamentoTemplatesPage() {
                 )}
 
                 <div className="flex justify-center">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="w-8 h-8 bg-gray-400 rounded-full text-white hover:bg-gray-500"
-                    onClick={() => {
-                      /* Add option logic */
-                    }}
-                  >
-                    <Plus className="h-4 w-4" />
-                  </Button>
                 </div>
               </div>
             ))}

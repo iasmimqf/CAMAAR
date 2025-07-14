@@ -1,4 +1,4 @@
-class CreateDisciplinasAndTurmas < ActiveRecord::Migration[8.0]
+class CreateDisciplinasAndTurmas < ActiveRecord::Migration[7.1]
   def change
     create_table :disciplinas, id: false do |t|  # desabilita o id autoincrementado
       t.string :codigo, primary_key=true  # Ex: "CIC0097"

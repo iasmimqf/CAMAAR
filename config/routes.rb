@@ -1,3 +1,4 @@
+# config/routes.rb
 Rails.application.routes.draw do
   devise_for :usuarios
   get "home/index"
@@ -8,7 +9,7 @@ Rails.application.routes.draw do
     get 'dashboard', to: 'dashboard#index' , as: 'dashboard'
     post 'importacoes/importar_turmas', to: 'importacoes#importar_turmas'
     
-    # Rotas para gerenciamento de templates
+    # Rotas para gerenciamento de templates (para o painel ADMIN, HTML)
     resources :templates
     
     namespace :import do
@@ -19,6 +20,21 @@ Rails.application.routes.draw do
       resources :alunos, only: [:new, :create]
     end
   end
+
+  # --- NOVO BLOCO DE ROTAS DA API ABAIXO ---
+  # Rotas para a API (para o frontend React)
+  namespace :api do
+    namespace :v1 do
+      # Este `resources :templates` é para a API RESTful
+      # Ele vai mapear para `Api::V1::TemplatesController`
+      resources :templates, only: [:index, :create, :update, :destroy] do
+        # Se no futuro suas questões forem um recurso aninhado na API:
+        # resources :questoes, only: [:index, :show, :create, :update, :destroy]
+      end
+    end
+  end
+  # --- FIM DO NOVO BLOCO DE ROTAS DA API ---
+
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.

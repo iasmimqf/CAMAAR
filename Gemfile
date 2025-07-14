@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 gem 'hotwire-rails'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 8.0.2"
+gem "rails", "~> 7.1.5"
 # Handle user authentication
 gem 'devise'
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
@@ -20,8 +20,15 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 gem 'devise-i18n'
+gem 'rack-cors'
+gem 'browser'
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
+# Gemfile
+
+gem "importmap-rails"
+gem "tailwindcss-rails", "~> 3.3.1"
+gem "turbo-rails"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]

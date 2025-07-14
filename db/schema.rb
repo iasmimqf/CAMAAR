@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_13_154717) do
+ActiveRecord::Schema[7.1].define(version: 2025_07_14_021650) do
   create_table "disciplinas", force: :cascade do |t|
     t.string "codigo", null: false
     t.string "nome", null: false
@@ -64,7 +64,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_13_154717) do
 
   create_table "templates", force: :cascade do |t|
     t.string "titulo", null: false
-    t.integer "criador_id", null: false
+    t.integer "criador_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["criador_id"], name: "index_templates_on_criador_id"

@@ -1,4 +1,4 @@
-class CreateJoinTableFormulariosTurmas < ActiveRecord::Migration[8.0]
+class CreateJoinTableFormulariosTurmas < ActiveRecord::Migration[7.1]
   def change
     create_join_table :formularios, :turmas do |t|
       # t.index [:formulario_id, :turma_id]

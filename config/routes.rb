@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       # Este `resources :templates` é para a API RESTful
       # Ele vai mapear para `Api::V1::TemplatesController`
-      resources :templates, only: [:index, :create, :update, :destroy] do
+      resources :templates, only: [:index, :create, :update, :destroy, :show] do
         # Se no futuro suas questões forem um recurso aninhado na API:
         # resources :questoes, only: [:index, :show, :create, :update, :destroy]
       end

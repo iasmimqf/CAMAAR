@@ -2,8 +2,9 @@
 module Api
   module V1
     class TemplatesController < ApplicationController
-      # MUITO IMPORTANTE: Adicionar :update e :destroy para pular a verificação CSRF
-      skip_before_action :verify_authenticity_token, only: [:create, :update, :index]
+      # MUITO IMPORTANTE: Ajuste do skip_before_action para incluir :destroy
+      # e remover :index (pois GET não precisa de CSRF token)
+      skip_before_action :verify_authenticity_token, only: [:create, :update, :destroy]
       # Considerar autenticação aqui, ex: before_action :authenticate_request
       # Por enquanto, para teste, você pode deixar sem autenticação se for rodar localmente
       # Se você tiver um método de autenticação, adicione-o aqui, por exemplo:
@@ -19,7 +20,6 @@ module Api
       end
 
       # GET /api/v1/templates/:id
-      # NOVO: Método para buscar um template específico por ID
       def show
         template = Template.find(params[:id]) # Encontra o template pelo ID
         # Renderiza o template como JSON, incluindo suas questões associadas
@@ -54,7 +54,6 @@ module Api
       end
 
       # PUT/PATCH /api/v1/templates/:id
-      # NOVO: Método para atualizar um template existente
       def update
         template = Template.find(params[:id]) # Encontra o template pelo ID
         # Tenta atualizar o template com os novos parâmetros
@@ -73,11 +72,24 @@ module Api
         render json: { erro: e.message }, status: :bad_request
       end
 
-      # TODO: Implementar o método destroy futuramente
+      # NOVO: Método para excluir um template
       # DELETE /api/v1/templates/:id
-      # def destroy
-      #   # Lógica para excluir um template
-      # end
+      def destroy
+        template = Template.find(params[:id]) # Encontra o template pelo ID
+        # Aqui você pode adicionar uma lógica de negócio, como:
+        # - Verificar se existem formulários associados (conforme seu Gherkin)
+        #   if template.formularios.any?
+        #     render json: { erro: "Não é possível excluir o template pois existem formulários associados a ele." }, status: :conflict
+        #     return # Interrompe a execução aqui
+        #   end
+
+        template.destroy # Exclui o template e suas questões (devido a dependent: :destroy no modelo Template)
+        render json: { mensagem: "Template '#{template.titulo}' excluído com sucesso" }, status: :no_content # 204 No Content para sucesso sem retorno de corpo
+      rescue ActiveRecord::RecordNotFound
+        render json: { error: "Template não encontrado" }, status: :not_found
+      rescue => e
+        render json: { error: "Ocorreu um erro ao excluir o template: #{e.message}" }, status: :internal_server_error
+      end
 
       private
 

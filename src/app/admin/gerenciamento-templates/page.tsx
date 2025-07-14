@@ -143,25 +143,73 @@ export default function GerenciamentoTemplatesPage() {
   };
 
   // MODIFICADO: handleEditTemplate para setar o ID e carregar os dados
+  // FUNÇÃO 1: handleEditTemplate (chama quando clica no lápis)
   const handleEditTemplate = (templateId: number) => {
-    console.log('Edit template:', templateId);
-    setEditingTemplateId(templateId); // Define qual template estamos editando
-    loadTemplateForEdit(templateId); // Carrega os dados do template do Rails
-    setEditModalOpen(true); // Abre o modal
+    console.log('DEBUG: Clicou em Editar Template ID:', templateId);
+    setEditingTemplateId(templateId); // <--- AQUI O ID DO TEMPLATE É SETADO!
+    loadTemplateForEdit(templateId);
+    setEditModalOpen(true);
   };
 
-  const handleDeleteTemplate = (templateId: number) => {
-    console.log('Delete template:', templateId);
-    // Implementar a lógica de exclusão via API aqui
+  const handleDeleteTemplate = async (templateId: number) => {
+    // NOVO: Log de depuração para confirmar que a função foi chamada
+    console.log('DEBUG: handleDeleteTemplate foi chamado para o ID:', templateId);
+
+    // Adiciona uma confirmação antes de tentar excluir
+    if (!window.confirm('Tem certeza que deseja excluir este template? Esta ação é irreversível.')) {
+      console.log('DEBUG: Exclusão cancelada pelo usuário.'); // NOVO: Log se o usuário cancelar
+      return; // Sai da função se o usuário cancelar
+    }
+
+    try {
+      console.log(`DEBUG: Enviando requisição DELETE para: ${API_BASE_URL}/templates/${templateId}`); // NOVO: Log da URL da requisição
+
+      const response = await fetch(`${API_BASE_URL}/templates/${templateId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          // Se precisar de CSRF para DELETE, adicione aqui, mas geralmente não é necessário para APIs RESTful
+          // let csrfToken = '';
+          // const csrfMeta = document.querySelector("meta[name='csrf-token']");
+          // if (csrfMeta) {
+          //   csrfToken = csrfMeta.getAttribute("content") || '';
+          // }
+          // ...(csrfToken && { 'X-CSRF-Token': csrfToken })
+        },
+      });
+
+      if (response.ok) { // Sucesso é status 200 ou 204 (No Content)
+        alert('Template excluído com sucesso!');
+        console.log('DEBUG: Template excluído com sucesso. Recarregando lista...'); // NOVO: Log de sucesso
+        fetchTemplates(); // Recarrega a lista para remover o template excluído da UI
+      } else {
+        const errorBody = await response.text(); // Pega o corpo da resposta de erro
+        let errorMessage = "Erro desconhecido ao excluir template.";
+        try { // Tenta parsear como JSON se for um erro formatado
+          const errorData = JSON.parse(errorBody);
+          if (errorData.erro) {
+              errorMessage = errorData.erro;
+          } else if (errorData.message) {
+              errorMessage = errorData.message;
+          }
+        } catch (e) {
+          // Se não for JSON, usa o corpo da resposta como mensagem
+          errorMessage = errorBody || "Mensagem de erro não disponível.";
+        }
+        console.error('DEBUG: Erro ao excluir template:', response.status, errorMessage); // NOVO: Log de erro
+        alert(`Erro ao excluir template:\nStatus: ${response.status}\nDetalhes: ${errorMessage}`);
+      }
+    } catch (error: any) {
+      console.error('DEBUG: Falha na comunicação com o servidor ao excluir:', error); // NOVO: Log para erros de rede
+      alert('Não foi possível conectar ao servidor para excluir o template.');
+    }
   };
 
   // MODIFICADO: handleAddTemplate para garantir que é um NOVO template
   const handleAddTemplate = () => {
-    console.log('Add new template');
-    setEditingTemplateId(null); // Define como null para indicar que é um novo template (criação)
-    setTemplateName(''); // Limpa o nome para um novo template
-    // Limpa as questões e inicia com uma nova vazia para um novo template.
-    // Usamos Date.now() para garantir um ID temporário único para novas questões no frontend.
+    console.log('DEBUG: Clicou em Adicionar Novo Template');
+    setEditingTemplateId(null); // <--- AQUI O ID É DEFINIDO COMO NULO PARA CRIAÇÃO!
+    setTemplateName('');
     setQuestions([{ id: Date.now(), type: 'texto', text: '', obrigatoria: false, options: '' }]);
     setEditModalOpen(true);
   };
@@ -199,19 +247,27 @@ export default function GerenciamentoTemplatesPage() {
 
 
   const handleSaveTemplate = async () => {
-    // MODIFICADO: Determine o método HTTP e a URL com base em editingTemplateId
+    // ESTES CONSOLE.LOGs SÃO CRÍTICOS PARA ENTENDER O QUE ESTÁ ACONTECENDO!
+    console.log("DEBUG: Valor de editingTemplateId ao salvar:", editingTemplateId); // Mostra o ID no momento do clique
+
     const method = editingTemplateId ? 'PUT' : 'POST';
     const url = editingTemplateId ? `${API_BASE_URL}/templates/${editingTemplateId}` : `${API_BASE_URL}/templates`;
 
-    // Filtra questões marcadas para _destroy e adiciona a propriedade _destroy
-    const questionsToSend = questions.filter(q => !q._destroy).map(q => ({
-      id: q.id < 0 || typeof q.id !== 'number' ? undefined : q.id, // Não envia IDs temporários (<0 ou não numéricos) para o backend
-      tipo: q.type,
-      enunciado: q.text,
-      obrigatoria: q.obrigatoria,
-      opcoes: q.options ? q.options.split(',').map(item => item.trim()) : [],
-      _destroy: q._destroy // Inclui _destroy para que o Rails processe a remoção de questões aninhadas
-    }));
+    console.log(`DEBUG: Requisição Final: Método ${method}, URL ${url}`); // Mostra qual requisição será feita
+
+    const questionsToSend = questions.map(q => {
+      if (q._destroy) {
+        return { id: q.id, _destroy: true };
+      }
+      return {
+        id: typeof q.id === 'number' && q.id > 0 ? q.id : undefined,
+        tipo: q.type,
+        enunciado: q.text,
+        obrigatoria: q.obrigatoria,
+        opcoes: q.options ? q.options.split(',').map(item => item.trim()) : [],
+      };
+    }).filter(q => q.enunciado.trim() !== '' || q._destroy);
+
 
     const payload = {
       template: {
@@ -220,6 +276,8 @@ export default function GerenciamentoTemplatesPage() {
       }
     };
 
+    console.log("DEBUG: Enviando payload:", payload); // Mostra o que será enviado para o Rails
+
     try {
       let csrfToken = '';
       const csrfMeta = document.querySelector("meta[name='csrf-token']");
@@ -227,9 +285,7 @@ export default function GerenciamentoTemplatesPage() {
         csrfToken = csrfMeta.getAttribute("content") || '';
       }
       
-      console.log("DEBUG: Enviando payload:", payload, " para URL:", url, " com método:", method);
-
-      const response = await fetch(url, { // MODIFICADO: Usa 'url' e 'method' dinamicamente
+      const response = await fetch(url, {
         method: method,
         headers: {
           'Content-Type': 'application/json',
@@ -242,7 +298,7 @@ export default function GerenciamentoTemplatesPage() {
         const result = await response.json();
         alert(result.mensagem);
         setEditModalOpen(false);
-        fetchTemplates(); // Recarrega a lista para mostrar as alterações/nova criação
+        fetchTemplates();
       } else {
         const errorData = await response.json();
         let errorMessage = "Erro desconhecido ao salvar template.";

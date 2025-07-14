@@ -517,7 +517,6 @@ export default function GerenciamentoTemplatesPage() {
                         <SelectItem value="Escala">Escala</SelectItem>
                         <SelectItem value="Texto">Texto</SelectItem>
                         <SelectItem value="Checkbox">Checkbox</SelectItem>
-                        <SelectItem value="Radio">Radio</SelectItem> {/* NOVO: Adicionado Radio */}
                       </SelectContent>
                     </Select>
                   </div>

@@ -3360,3 +3360,98 @@ Processing by Api::V1::TemplatesController#show as */*
 Completed 200 OK in 660ms (Views: 0.2ms | ActiveRecord: 3.7ms | Allocations: 11616)
 
 
+Started GET "/api/v1/templates" for ::1 at 2025-07-14 00:51:38 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+Processing by Api::V1::TemplatesController#index as */*
+  [1m[36mTemplate Load (1.3ms)[0m  [1m[34mSELECT "templates".* FROM "templates" /*action='index',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:16:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 1194ms (Views: 0.4ms | ActiveRecord: 33.7ms | Allocations: 10151)
+
+
+Started DELETE "/api/v1/templates/1" for ::1 at 2025-07-14 00:51:56 -0300
+Processing by Api::V1::TemplatesController#destroy as */*
+  Parameters: {"id" => "1", "template" => {}}
+  [1m[36mTemplate Load (0.5ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."id" = 1 LIMIT 1 /*action='destroy',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:78:in 'Api::V1::TemplatesController#destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:86:in 'Api::V1::TemplatesController#destroy'
+  [1m[36mQuestao Load (0.1ms)[0m  [1m[34mSELECT "questoes".* FROM "questoes" WHERE "questoes"."template_id" = 1 /*action='destroy',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:86:in 'Api::V1::TemplatesController#destroy'
+  [1m[36mQuestao Destroy (0.3ms)[0m  [1m[31mDELETE FROM "questoes" WHERE "questoes"."id" = 1 /*action='destroy',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:86:in 'Api::V1::TemplatesController#destroy'
+  [1m[36mTemplate Destroy (0.1ms)[0m  [1m[31mDELETE FROM "templates" WHERE "templates"."id" = 1 /*action='destroy',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:86:in 'Api::V1::TemplatesController#destroy'
+  [1m[36mTRANSACTION (6.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:86:in 'Api::V1::TemplatesController#destroy'
+Completed 204 No Content in 685ms (Views: 0.2ms | ActiveRecord: 10.1ms | Allocations: 14216)
+
+
+Started GET "/api/v1/templates" for ::1 at 2025-07-14 00:51:47 -0300
+Processing by Api::V1::TemplatesController#index as */*
+  [1m[36mTemplate Load (0.7ms)[0m  [1m[34mSELECT "templates".* FROM "templates" /*action='index',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:16:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 582ms (Views: 2.0ms | ActiveRecord: 0.7ms | Allocations: 959)
+
+
+Started DELETE "/api/v1/templates/2" for ::1 at 2025-07-14 00:51:51 -0300
+Processing by Api::V1::TemplatesController#destroy as */*
+  Parameters: {"id" => "2", "template" => {}}
+  [1m[36mTemplate Load (0.4ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."id" = 2 LIMIT 1 /*action='destroy',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:78:in 'Api::V1::TemplatesController#destroy'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:86:in 'Api::V1::TemplatesController#destroy'
+  [1m[36mQuestao Load (1.6ms)[0m  [1m[34mSELECT "questoes".* FROM "questoes" WHERE "questoes"."template_id" = 2 /*action='destroy',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:86:in 'Api::V1::TemplatesController#destroy'
+  [1m[36mQuestao Destroy (0.3ms)[0m  [1m[31mDELETE FROM "questoes" WHERE "questoes"."id" = 2 /*action='destroy',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:86:in 'Api::V1::TemplatesController#destroy'
+  [1m[36mQuestao Destroy (0.0ms)[0m  [1m[31mDELETE FROM "questoes" WHERE "questoes"."id" = 3 /*action='destroy',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:86:in 'Api::V1::TemplatesController#destroy'
+  [1m[36mTemplate Destroy (0.1ms)[0m  [1m[31mDELETE FROM "templates" WHERE "templates"."id" = 2 /*action='destroy',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:86:in 'Api::V1::TemplatesController#destroy'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:86:in 'Api::V1::TemplatesController#destroy'
+Completed 204 No Content in 554ms (Views: 0.2ms | ActiveRecord: 4.1ms | Allocations: 4386)
+
+
+Started GET "/api/v1/templates" for ::1 at 2025-07-14 00:52:30 -0300
+Processing by Api::V1::TemplatesController#index as */*
+  [1m[36mTemplate Load (0.8ms)[0m  [1m[34mSELECT "templates".* FROM "templates" /*action='index',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:16:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 619ms (Views: 2.1ms | ActiveRecord: 0.8ms | Allocations: 894)
+
+
+Started DELETE "/api/v1/templates/3" for ::1 at 2025-07-14 00:52:34 -0300
+Processing by Api::V1::TemplatesController#destroy as */*
+  Parameters: {"id" => "3", "template" => {}}
+  [1m[36mTemplate Load (0.9ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."id" = 3 LIMIT 1 /*action='destroy',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:78:in 'Api::V1::TemplatesController#destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:86:in 'Api::V1::TemplatesController#destroy'
+  [1m[36mQuestao Load (2.4ms)[0m  [1m[34mSELECT "questoes".* FROM "questoes" WHERE "questoes"."template_id" = 3 /*action='destroy',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:86:in 'Api::V1::TemplatesController#destroy'
+  [1m[36mQuestao Destroy (0.2ms)[0m  [1m[31mDELETE FROM "questoes" WHERE "questoes"."id" = 4 /*action='destroy',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:86:in 'Api::V1::TemplatesController#destroy'
+  [1m[36mQuestao Destroy (0.0ms)[0m  [1m[31mDELETE FROM "questoes" WHERE "questoes"."id" = 5 /*action='destroy',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:86:in 'Api::V1::TemplatesController#destroy'
+  [1m[36mTemplate Destroy (0.1ms)[0m  [1m[31mDELETE FROM "templates" WHERE "templates"."id" = 3 /*action='destroy',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:86:in 'Api::V1::TemplatesController#destroy'
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:86:in 'Api::V1::TemplatesController#destroy'
+Completed 204 No Content in 598ms (Views: 0.2ms | ActiveRecord: 5.5ms | Allocations: 4383)
+
+
+Started GET "/api/v1/templates" for ::1 at 2025-07-14 00:52:35 -0300
+Processing by Api::V1::TemplatesController#index as */*
+  [1m[36mTemplate Load (1.1ms)[0m  [1m[34mSELECT "templates".* FROM "templates" /*action='index',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:16:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 588ms (Views: 1.8ms | ActiveRecord: 1.1ms | Allocations: 830)
+
+
+Started GET "/api/v1/templates" for ::1 at 2025-07-14 00:58:46 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+Processing by Api::V1::TemplatesController#index as */*
+  [1m[36mTemplate Load (1.3ms)[0m  [1m[34mSELECT "templates".* FROM "templates" /*action='index',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:16:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 1289ms (Views: -6.7ms | ActiveRecord: 31.6ms | Allocations: 5430)
+
+

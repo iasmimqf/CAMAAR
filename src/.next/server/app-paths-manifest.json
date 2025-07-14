@@ -1,1 +1,3 @@
-{}
+{
+  "/admin/gerenciamento-templates/page": "app/admin/gerenciamento-templates/page.js"
+}

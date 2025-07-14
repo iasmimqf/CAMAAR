@@ -2694,3 +2694,426 @@ Processing by Api::V1::TemplatesController#index as */*
 Completed 200 OK in 552ms (Views: 3.9ms | ActiveRecord: 0.6ms | Allocations: 962)
 
 
+Started GET "/" for 127.0.0.1 at 2025-07-13 23:36:35 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+Processing by HomeController#index as HTML
+Started GET "/api/v1/templates" for ::1 at 2025-07-13 23:36:37 -0300
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 238)
+  Rendered layout layouts/application.html.erb (Duration: 122.5ms | Allocations: 17805)
+Completed 200 OK in 2877ms (Views: 148.6ms | ActiveRecord: 0.0ms | Allocations: 316632)
+
+
+Processing by Api::V1::TemplatesController#index as */*
+Completed 404 Not Found in 3ms (ActiveRecord: 0.0ms | Allocations: 909)
+
+
+  
+AbstractController::ActionNotFound (The destroy action could not be found for the :verify_authenticity_token
+callback on Api::V1::TemplatesController, but it is listed in the controller's
+:only option.
+
+Raising for missing callback actions is a new default in Rails 7.1, if you'd
+like to turn this off you can delete the option from the environment configurations
+or set `config.action_controller.raise_on_missing_callback_actions` to `false`.
+):
+  
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:62:in 'AbstractController::Callbacks::ActionFilter#match?'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:432:in 'block in ActiveSupport::Callbacks::CallTemplate::ObjectCall#inverted_lambda'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:182:in 'block (2 levels) in ActiveSupport::Callbacks::Filters::Before.halting_and_conditional'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:182:in 'Array#all?'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:182:in 'block in ActiveSupport::Callbacks::Filters::Before.halting_and_conditional'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'block in ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'Array#each'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:119:in 'block in ActiveSupport::Callbacks#run_callbacks'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:141:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:258:in 'AbstractController::Callbacks#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/rescue.rb:25:in 'ActionController::Rescue#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:74:in 'block in ActionController::Instrumentation#process_action'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (7.1.5.1) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'ActiveSupport::Notifications.instrument'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:73:in 'ActionController::Instrumentation#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/params_wrapper.rb:261:in 'ActionController::ParamsWrapper#process_action'
+activerecord (7.1.5.1) lib/active_record/railties/controller_runtime.rb:32:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (7.1.5.1) lib/abstract_controller/base.rb:160:in 'AbstractController::Base#process'
+actionview (7.1.5.1) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:227:in 'ActionController::Metal#dispatch'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:309:in 'ActionController::Metal.dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:49:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:32:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:51:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:131:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'Array#each'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:32:in 'ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:882:in 'ActionDispatch::Routing::RouteSet#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.1.16) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.16) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.16) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.16) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/permissions_policy.rb:36:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/content_security_policy.rb:36:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/cookies.rb:689:in 'ActionDispatch::Cookies#call'
+activerecord (7.1.5.1) lib/active_record/migration.rb:655:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:29:in 'block in ActionDispatch::Callbacks#call'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:28:in 'ActionDispatch::Callbacks#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in 'ActionDispatch::ShowExceptions#call'
+railties (7.1.5.1) lib/rails/rack/logger.rb:37:in 'Rails::Rack::Logger#call_app'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'block in Rails::Rack::Logger#call'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'block in ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:39:in 'ActiveSupport::TaggedLogging::Formatter#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/broadcast_logger.rb:241:in 'ActiveSupport::BroadcastLogger#method_missing'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'Rails::Rack::Logger#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/remote_ip.rb:92:in 'ActionDispatch::RemoteIp#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/request_id.rb:28:in 'ActionDispatch::RequestId#call'
+rack (3.1.16) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.16) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:59:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:24:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:58:in 'ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/static.rb:25:in 'ActionDispatch::Static#call'
+rack (3.1.16) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/host_authorization.rb:141:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (7.1.5.1) lib/rails/engine.rb:536:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+Started GET "/" for 127.0.0.1 at 2025-07-13 23:40:48 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+Processing by HomeController#index as HTML
+Started GET "/api/v1/templates" for ::1 at 2025-07-13 23:40:50 -0300
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 2.3ms | Allocations: 160)
+  Rendered layout layouts/application.html.erb (Duration: 111.4ms | Allocations: 17690)
+Completed 200 OK in 2832ms (Views: 135.2ms | ActiveRecord: 0.0ms | Allocations: 316863)
+
+
+Processing by Api::V1::TemplatesController#index as */*
+Completed 404 Not Found in 3ms (ActiveRecord: 0.0ms | Allocations: 909)
+
+
+  
+AbstractController::ActionNotFound (The destroy action could not be found for the :verify_authenticity_token
+callback on Api::V1::TemplatesController, but it is listed in the controller's
+:only option.
+
+Raising for missing callback actions is a new default in Rails 7.1, if you'd
+like to turn this off you can delete the option from the environment configurations
+or set `config.action_controller.raise_on_missing_callback_actions` to `false`.
+):
+  
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:62:in 'AbstractController::Callbacks::ActionFilter#match?'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:432:in 'block in ActiveSupport::Callbacks::CallTemplate::ObjectCall#inverted_lambda'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:182:in 'block (2 levels) in ActiveSupport::Callbacks::Filters::Before.halting_and_conditional'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:182:in 'Array#all?'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:182:in 'block in ActiveSupport::Callbacks::Filters::Before.halting_and_conditional'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'block in ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'Array#each'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:119:in 'block in ActiveSupport::Callbacks#run_callbacks'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:141:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:258:in 'AbstractController::Callbacks#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/rescue.rb:25:in 'ActionController::Rescue#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:74:in 'block in ActionController::Instrumentation#process_action'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (7.1.5.1) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'ActiveSupport::Notifications.instrument'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:73:in 'ActionController::Instrumentation#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/params_wrapper.rb:261:in 'ActionController::ParamsWrapper#process_action'
+activerecord (7.1.5.1) lib/active_record/railties/controller_runtime.rb:32:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (7.1.5.1) lib/abstract_controller/base.rb:160:in 'AbstractController::Base#process'
+actionview (7.1.5.1) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:227:in 'ActionController::Metal#dispatch'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:309:in 'ActionController::Metal.dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:49:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:32:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:51:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:131:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'Array#each'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:32:in 'ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:882:in 'ActionDispatch::Routing::RouteSet#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.1.16) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.16) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.16) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.16) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/permissions_policy.rb:36:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/content_security_policy.rb:36:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/cookies.rb:689:in 'ActionDispatch::Cookies#call'
+activerecord (7.1.5.1) lib/active_record/migration.rb:655:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:29:in 'block in ActionDispatch::Callbacks#call'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:28:in 'ActionDispatch::Callbacks#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in 'ActionDispatch::ShowExceptions#call'
+railties (7.1.5.1) lib/rails/rack/logger.rb:37:in 'Rails::Rack::Logger#call_app'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'block in Rails::Rack::Logger#call'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'block in ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:39:in 'ActiveSupport::TaggedLogging::Formatter#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/broadcast_logger.rb:241:in 'ActiveSupport::BroadcastLogger#method_missing'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'Rails::Rack::Logger#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/remote_ip.rb:92:in 'ActionDispatch::RemoteIp#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/request_id.rb:28:in 'ActionDispatch::RequestId#call'
+rack (3.1.16) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.16) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:59:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:24:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:58:in 'ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/static.rb:25:in 'ActionDispatch::Static#call'
+rack (3.1.16) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/host_authorization.rb:141:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (7.1.5.1) lib/rails/engine.rb:536:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+Started GET "/" for 127.0.0.1 at 2025-07-13 23:42:05 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+Processing by HomeController#index as HTML
+Started GET "/api/v1/templates" for ::1 at 2025-07-13 23:41:54 -0300
+Processing by Api::V1::TemplatesController#index as */*
+Completed 404 Not Found in 9ms (ActiveRecord: 0.0ms | Allocations: 1229)
+
+
+  
+AbstractController::ActionNotFound (The destroy action could not be found for the :verify_authenticity_token
+callback on Api::V1::TemplatesController, but it is listed in the controller's
+:only option.
+
+Raising for missing callback actions is a new default in Rails 7.1, if you'd
+like to turn this off you can delete the option from the environment configurations
+or set `config.action_controller.raise_on_missing_callback_actions` to `false`.
+):
+  
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:62:in 'AbstractController::Callbacks::ActionFilter#match?'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:432:in 'block in ActiveSupport::Callbacks::CallTemplate::ObjectCall#inverted_lambda'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:182:in 'block (2 levels) in ActiveSupport::Callbacks::Filters::Before.halting_and_conditional'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:182:in 'Array#all?'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:182:in 'block in ActiveSupport::Callbacks::Filters::Before.halting_and_conditional'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'block in ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'Array#each'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:119:in 'block in ActiveSupport::Callbacks#run_callbacks'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:141:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:258:in 'AbstractController::Callbacks#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/rescue.rb:25:in 'ActionController::Rescue#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:74:in 'block in ActionController::Instrumentation#process_action'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (7.1.5.1) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'ActiveSupport::Notifications.instrument'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:73:in 'ActionController::Instrumentation#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/params_wrapper.rb:261:in 'ActionController::ParamsWrapper#process_action'
+activerecord (7.1.5.1) lib/active_record/railties/controller_runtime.rb:32:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (7.1.5.1) lib/abstract_controller/base.rb:160:in 'AbstractController::Base#process'
+actionview (7.1.5.1) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:227:in 'ActionController::Metal#dispatch'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:309:in 'ActionController::Metal.dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:49:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:32:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:51:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:131:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'Array#each'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:32:in 'ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:882:in 'ActionDispatch::Routing::RouteSet#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.1.16) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.16) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.16) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.16) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/permissions_policy.rb:36:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/content_security_policy.rb:36:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/cookies.rb:689:in 'ActionDispatch::Cookies#call'
+activerecord (7.1.5.1) lib/active_record/migration.rb:655:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:29:in 'block in ActionDispatch::Callbacks#call'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:28:in 'ActionDispatch::Callbacks#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in 'ActionDispatch::ShowExceptions#call'
+railties (7.1.5.1) lib/rails/rack/logger.rb:37:in 'Rails::Rack::Logger#call_app'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'block in Rails::Rack::Logger#call'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'block in ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:39:in 'ActiveSupport::TaggedLogging::Formatter#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/broadcast_logger.rb:241:in 'ActiveSupport::BroadcastLogger#method_missing'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'Rails::Rack::Logger#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/remote_ip.rb:92:in 'ActionDispatch::RemoteIp#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/request_id.rb:28:in 'ActionDispatch::RequestId#call'
+rack (3.1.16) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.16) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:59:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:24:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:58:in 'ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/static.rb:25:in 'ActionDispatch::Static#call'
+rack (3.1.16) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/host_authorization.rb:141:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (7.1.5.1) lib/rails/engine.rb:536:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 2.3ms | Allocations: 259)
+  Rendered layout layouts/application.html.erb (Duration: 148.4ms | Allocations: 23959)
+Completed 200 OK in 4384ms (Views: 244.3ms | ActiveRecord: 0.0ms | Allocations: 682629)
+
+
+Started GET "/" for 127.0.0.1 at 2025-07-13 23:44:17 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 2.6ms | Allocations: 158)
+  Rendered layout layouts/application.html.erb (Duration: 148.9ms | Allocations: 17472)
+Completed 200 OK in 2649ms (Views: 172.4ms | ActiveRecord: 0.0ms | Allocations: 314594)
+
+
+Started GET "/api/v1/templates" for ::1 at 2025-07-13 23:44:20 -0300
+Processing by Api::V1::TemplatesController#index as */*
+  [1m[36mTemplate Load (1.0ms)[0m  [1m[34mSELECT "templates".* FROM "templates" /*action='index',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:15:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 759ms (Views: -0.5ms | ActiveRecord: 35.0ms | Allocations: 8139)
+
+
+Started POST "/api/v1/templates" for ::1 at 2025-07-13 23:45:00 -0300
+Processing by Api::V1::TemplatesController#create as */*
+  Parameters: {"template" => {"titulo" => "Template 1", "questoes_attributes" => [{"tipo" => "Texto", "enunciado" => "45454", "obrigatoria" => true, "opcoes" => []}, {"tipo" => "Escala", "enunciado" => "qferaesdf", "obrigatoria" => true, "opcoes" => ["5"]}]}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:40:in 'Api::V1::TemplatesController#create'
+  [1m[36mTemplate Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "templates" WHERE "templates"."titulo" = 'Template 1' LIMIT 1 /*action='create',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:40:in 'Api::V1::TemplatesController#create'
+  [1m[36mTemplate Create (4.3ms)[0m  [1m[32mINSERT INTO "templates" ("titulo", "criador_id", "created_at", "updated_at") VALUES ('Template 1', NULL, '2025-07-14 02:45:01.394636', '2025-07-14 02:45:01.394636') RETURNING "id" /*action='create',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:40:in 'Api::V1::TemplatesController#create'
+  [1m[36mQuestao Create (0.3ms)[0m  [1m[32mINSERT INTO "questoes" ("enunciado", "tipo", "obrigatoria", "opcoes", "template_id", "created_at", "updated_at") VALUES ('45454', 'Texto', 1, '[]', 2, '2025-07-14 02:45:01.402674', '2025-07-14 02:45:01.402674') RETURNING "id" /*action='create',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:40:in 'Api::V1::TemplatesController#create'
+  [1m[36mQuestao Create (0.2ms)[0m  [1m[32mINSERT INTO "questoes" ("enunciado", "tipo", "obrigatoria", "opcoes", "template_id", "created_at", "updated_at") VALUES ('qferaesdf', 'Escala', 1, '["5"]', 2, '2025-07-14 02:45:01.405753', '2025-07-14 02:45:01.405753') RETURNING "id" /*action='create',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:40:in 'Api::V1::TemplatesController#create'
+  [1m[36mTRANSACTION (7.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:40:in 'Api::V1::TemplatesController#create'
+Completed 201 Created in 707ms (Views: 0.3ms | ActiveRecord: 16.5ms | Allocations: 20778)
+
+
+Started GET "/api/v1/templates" for ::1 at 2025-07-13 23:45:03 -0300
+Processing by Api::V1::TemplatesController#index as */*
+  [1m[36mTemplate Load (1.6ms)[0m  [1m[34mSELECT "templates".* FROM "templates" /*action='index',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:15:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 562ms (Views: 2.1ms | ActiveRecord: 1.6ms | Allocations: 946)
+
+
+Started POST "/api/v1/templates" for ::1 at 2025-07-13 23:45:31 -0300
+Processing by Api::V1::TemplatesController#create as */*
+  Parameters: {"template" => {"titulo" => "Template 1", "questoes_attributes" => [{"tipo" => "Texto", "enunciado" => "45454", "obrigatoria" => true, "opcoes" => []}, {"tipo" => "Escala", "enunciado" => "qferaesdf", "obrigatoria" => true, "opcoes" => ["5"]}]}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:40:in 'Api::V1::TemplatesController#create'
+  [1m[36mTemplate Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "templates" WHERE "templates"."titulo" = 'Template 1' LIMIT 1 /*action='create',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:40:in 'Api::V1::TemplatesController#create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:40:in 'Api::V1::TemplatesController#create'
+Completed 422 Unprocessable Content in 524ms (Views: 0.2ms | ActiveRecord: 2.4ms | Allocations: 3885)
+
+
+Started POST "/api/v1/templates" for ::1 at 2025-07-13 23:45:39 -0300
+Processing by Api::V1::TemplatesController#create as */*
+  Parameters: {"template" => {"titulo" => "Template 2", "questoes_attributes" => [{"tipo" => "Texto", "enunciado" => "45454", "obrigatoria" => true, "opcoes" => []}, {"tipo" => "Escala", "enunciado" => "qferaesdf", "obrigatoria" => true, "opcoes" => ["5"]}]}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:40:in 'Api::V1::TemplatesController#create'
+  [1m[36mTemplate Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "templates" WHERE "templates"."titulo" = 'Template 2' LIMIT 1 /*action='create',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:40:in 'Api::V1::TemplatesController#create'
+  [1m[36mTemplate Create (0.3ms)[0m  [1m[32mINSERT INTO "templates" ("titulo", "criador_id", "created_at", "updated_at") VALUES ('Template 2', NULL, '2025-07-14 02:45:39.933126', '2025-07-14 02:45:39.933126') RETURNING "id" /*action='create',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:40:in 'Api::V1::TemplatesController#create'
+  [1m[36mQuestao Create (0.1ms)[0m  [1m[32mINSERT INTO "questoes" ("enunciado", "tipo", "obrigatoria", "opcoes", "template_id", "created_at", "updated_at") VALUES ('45454', 'Texto', 1, '[]', 3, '2025-07-14 02:45:39.934973', '2025-07-14 02:45:39.934973') RETURNING "id" /*action='create',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:40:in 'Api::V1::TemplatesController#create'
+  [1m[36mQuestao Create (0.1ms)[0m  [1m[32mINSERT INTO "questoes" ("enunciado", "tipo", "obrigatoria", "opcoes", "template_id", "created_at", "updated_at") VALUES ('qferaesdf', 'Escala', 1, '["5"]', 3, '2025-07-14 02:45:39.937029', '2025-07-14 02:45:39.937029') RETURNING "id" /*action='create',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:40:in 'Api::V1::TemplatesController#create'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:40:in 'Api::V1::TemplatesController#create'
+Completed 201 Created in 538ms (Views: 0.2ms | ActiveRecord: 4.6ms | Allocations: 5285)
+
+
+Started GET "/api/v1/templates" for ::1 at 2025-07-13 23:45:41 -0300
+Processing by Api::V1::TemplatesController#index as */*
+  [1m[36mTemplate Load (1.2ms)[0m  [1m[34mSELECT "templates".* FROM "templates" /*action='index',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:15:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 530ms (Views: 2.2ms | ActiveRecord: 1.1ms | Allocations: 1000)
+
+
+Started GET "/" for 127.0.0.1 at 2025-07-13 23:53:57 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+Processing by HomeController#index as HTML
+Started GET "/api/v1/templates" for ::1 at 2025-07-13 23:54:11 -0300
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 2.7ms | Allocations: 238)
+  Rendered layout layouts/application.html.erb (Duration: 101.4ms | Allocations: 17800)
+Completed 200 OK in 2772ms (Views: 125.2ms | ActiveRecord: 0.0ms | Allocations: 316661)
+
+
+Processing by Api::V1::TemplatesController#index as */*
+  [1m[36mTemplate Load (1.3ms)[0m  [1m[34mSELECT "templates".* FROM "templates" /*action='index',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:15:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 695ms (Views: 2.6ms | ActiveRecord: 26.3ms | Allocations: 8271)
+
+

@@ -1,13 +1,15 @@
 # Wiki - Projeto CAMAAR  
-*(Sprint 2: Implementaçã### Formulários & Relatórios 🔄
+*(Sprint 2: Implementação Autenticação & Formulários & Relatórios 🔄
 
 | Funcionalidade               | Status | Responsável | Observações |
 |------------------------------|--------|-------------|-------------|
-| Criar Formulário             | ✅ DONE | Marcus | Interface e backend integrados |
-| Responder Formulário         | ✅ DONE | Marcus | Fluxo completo implementado |
-| Visualizar Formulários Pendentes | ✅ DONE | Marcus | Interface responsiva |
+| Sistema de Login e Autenticação             | ✅ DONE | Iasmin (Back) + Luis (Front) | Interface e backend integrados |
+| Sistema de Definição de Senhas             | 🔄 DOING | Hudson (Back) + Luis (Front) | Interface e backend integrados |
+| Criar Formulário             | ✅ DONE | Marcus (Back) + Luis (Front) | Interface e backend integrados |
+| Responder Formulário         | ✅ DONE | Marcus (Back) + Luis (Front) | Fluxo completo implementado |
+| Visualizar Formulários Pendentes | ✅ DONE | Marcus (Back) + Luis (Front) | Interface responsiva |
 | Gerar Relatório              | 📋 SPRINT 3 | A definir | Pendente: CSV export completo |
-| Visualizar Resultados        | 📋 SPRINT 3 | A definir | Pendente: Dashboard e gráficos |lários & Relatórios 🔄
+| Visualizar Resultados        | 📋 SPRINT 3 | A definir | Pendente: Dashboard e gráficos |ures)*  
 
 ## Equipe  
 
@@ -46,26 +48,26 @@ O projeto utiliza a interface de projetos do GitHub com as seguintes lanes:
 
 | Funcionalidade               | Status | Responsável | Observações |
 |------------------------------|--------|-------------|-------------|
-| Sistema de Login             | ✅ DONE | Luis Gustavo (Front) + Iasmin (Back) | Interface completa + validações Devise |
-| Sistema de Definição de Senha| 🔄 DOING | Hudson (Back) + Luis Gustavo (Front) | Validações backend + formulários responsivos |
+| Sistema de Login e Autenticação | ✅ DONE | Iasmim + Hudson + Luis (Front) | Sistema completo + validações Devise + interface |
+| Sistema de Definição de Senha| 🔄 DOING | Hudson + Iasmim + Luis (Front) | Validações backend + formulários responsivos |
 
 ### Gestão de Templates ✅
 
 | Funcionalidade               | Status | Responsável | Observações |
 |------------------------------|--------|-------------|-------------|
 | Criar Template               | ✅ DONE | Marcus (Back) + Luis (Front) + Iasmim (Integração) | CRUD completo, interface integrada |
-| Editar/Deletar Template      | ✅ DONE | Marcus (Back + Testes) + Luis (Interface) | Validações, permissões e UX completos |
-| Visualizar Templates         | ✅ DONE | Marcus | Interface administrativa responsiva |
+| Editar/Deletar Template      | ✅ DONE | Marcus (Back + Testes) + Luis (Front) | Validações, permissões e UX completos |
+| Visualizar Templates         | ✅ DONE | Marcus (Back) + Luis (Front) | Interface administrativa responsiva |
 
 ### Formulários & Relatórios 🔄
 
-| Funcionalidade               | Status | Responsável | Pontos | Observações |
-|------------------------------|--------|-------------|--------|-------------|
-| Criar Formulário             | ✅ DONE |  Marcus | 3      | Interface e backend integrados |
-| Responder Formulário         | ✅ DONE | Marcus | 3      | Fluxo completo implementado |
-| Visualizar Formulários Pendentes | ✅ DONE | Marcus | 2      | Interface responsiva |
-| Gerar Relatório              | � SPRINT 3 | A definir | 3      | Pendente: CSV export completo |
-| Visualizar Resultados        | 📋 SPRINT 3 | A definir | 5      | Pendente: Dashboard e gráficos |
+| Funcionalidade               | Status | Responsável  Observações |
+|------------------------------|--------|--------------------------|
+| Criar Formulário             | ✅ DONE |  Marcus | Interface e backend integrados |
+| Responder Formulário         | ✅ DONE | Marcus | Fluxo completo implementado |
+| Visualizar Formulários Pendentes | ✅ DONE | Marcus | Interface responsiva |
+| Gerar Relatório              | � SPRINT 3 | A definir | Pendente: CSV export completo |
+| Visualizar Resultados        | 📋 SPRINT 3 | A definir | Pendente: Dashboard e gráficos |
 
 ### Integração 📋
 
@@ -119,9 +121,8 @@ O projeto utiliza a interface de projetos do GitHub com as seguintes lanes:
 
 ### Processo de Desenvolvimento
 1. **Feature branches** criadas a partir de `main`
-2. **Pull requests** para revisão de código
+2. **Push** para branches específica
 3. **Testes automáticos** executados no CI
-4. **Merge** após aprovação
 
 ---
 
@@ -154,7 +155,7 @@ O projeto utiliza a interface de projetos do GitHub com as seguintes lanes:
 | Luis Gustavo | Front-end & Interface | ✅ Meta superada |
 | Marcus | Back-end & Testes | ✅ Meta superada |
 | Iasmim | Integração & Coordenação | ✅ Meta atingida |
-| Hudson | Verificação & Validação | ✅ Meta atingida |
+| Hudson | Verificação & Validação | ✅ Meta atingida | 
 
 ## Resumo da Sprint 2
 
@@ -199,8 +200,76 @@ O projeto utiliza a interface de projetos do GitHub com as seguintes lanes:
    - Performance optimization
    - **Responsável:** Iasmim (coordenação) + Hudson (validação)
 
-### 🔄 Distribuição Sprint 3
-- **Luis Gustavo:** Dashboard e visualizações
-- **Marcus:** APIs de relatórios e arquitetura de testes
-- **Iasmim:** Coordenação e integração de componentes
-- **Hudson:** Validação de requisitos e UX
+## 8. Próximas Iterações
+
+### Sprint 3: Expansão e Refinamento
+**Período:** Março 2025  
+**Foco:** Aprimoramento da experiência do usuário e novas funcionalidades
+
+#### Funcionalidades Planejadas:
+- **Relatórios Avançados** (gerar_relatorio.feature)
+  - Exportação para múltiplos formatos (CSV, PDF, Excel)
+  - Filtros e personalização de relatórios
+  - Responsável: Marcus + Luis (interface)
+
+- **Sincronização SIGAA** (sincronizacao_sigaa.feature)
+  - API de integração com SIGAA
+  - Atualização automática de dados acadêmicos
+  - Responsável: Hudson + Iasmim
+
+- **Dashboard Administrativo** (admin features)
+  - Visão geral de todas as avaliações
+  - Métricas e estatísticas
+  - Responsável: Luis + Marcus
+
+### Sprint 4: Otimização e Deploy
+**Período:** Abril 2025  
+**Foco:** Performance, segurança e produção
+
+#### Objetivos:
+- Otimização de performance
+- Testes de carga e stress
+- Deploy em produção
+- Documentação final do usuário
+
+## 9. Lições Aprendidas
+
+### Sucessos 📈
+- **Colaboração Efetiva:** Time trabalhou de forma sincronizada
+- **BDD/TDD:** Abordagem orientada a testes reduziu bugs significativamente
+- **Arquitetura Rails:** Framework facilitou desenvolvimento rápido
+- **Divisão de Responsabilidades:** Cada membro contribuiu com suas especialidades
+
+### Desafios Superados 🎯
+- **Integração:** Merge de diferentes componentes sem conflitos
+- **Testes:** Implementação de suite de testes abrangente
+- **UI/UX:** Interface intuitiva apesar da complexidade do domínio
+- **Prazo:** Entrega dentro do cronograma estabelecido
+
+### Melhorias para Próximos Sprints 🔧
+- **Code Review:** Processo mais sistemático
+- **Documentação:** Manter docs sempre atualizadas
+- **Performance:** Monitoramento proativo
+- **Testes:** Cobertura ainda mais ampla
+
+## 10. Conclusão
+
+O **Sprint 2** foi um marco importante no desenvolvimento do sistema CAMAAR. A equipe conseguiu implementar com sucesso os sistemas fundamentais de **autenticação** e **formulários**, estabelecendo uma base sólida para as próximas iterações.
+
+### Principais Conquistas:
+✅ **Sistema de autenticação robusto** com controle de acesso  
+✅ **CRUD completo de templates** com interface intuitiva  
+✅ **Sistema de formulários funcionais** pronto para uso  
+✅ **85% dos testes BDD** passando com sucesso  
+✅ **Documentação técnica** abrangente e atualizada  
+
+### Próximos Passos:
+🎯 Implementação de relatórios avançados  
+🎯 Integração com SIGAA  
+🎯 Dashboard administrativo  
+🎯 Otimização para produção  
+
+---
+
+**CAMAAR Team - Sprint 2 concluído com sucesso! 🚀**  
+*Próxima iteração: Sprint 3 - Março 2025*

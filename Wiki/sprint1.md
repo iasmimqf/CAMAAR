@@ -1,5 +1,13 @@
 # Wiki - Projeto CAMAAR  
-*(Sprint 1: Especificação BDD)*  
+*(Sprint 2: Implementaçã### Formulários & Relatórios 🔄
+
+| Funcionalidade               | Status | Responsável | Observações |
+|------------------------------|--------|-------------|-------------|
+| Criar Formulário             | ✅ DONE | Marcus | Interface e backend integrados |
+| Responder Formulário         | ✅ DONE | Marcus | Fluxo completo implementado |
+| Visualizar Formulários Pendentes | ✅ DONE | Marcus | Interface responsiva |
+| Gerar Relatório              | 📋 SPRINT 3 | A definir | Pendente: CSV export completo |
+| Visualizar Resultados        | 📋 SPRINT 3 | A definir | Pendente: Dashboard e gráficos |lários & Relatórios 🔄
 
 ## Equipe  
 
@@ -12,78 +20,187 @@
 
 ---
 ## Link do repositório - https://github.com/iasmimqf/CAMAAR
-## Todas as Funcionalidades  
 
-### Autenticação  
+## Sprint 2 - Objetivos e Resultados
 
-| Funcionalidade               | Regras de Negócio                          | Responsável | Pontos |  
-|------------------------------|-------------------------------------------|-------------|--------|  
-| Sistema de Login             | - Validação de credenciais                | Luis Gustavo| 3      |  
-| Sistema de Definição de Senha| - Senha mínima 6 caracteres               | Marcus      | 3      |  
+### Objetivos da Sprint 2
+- **Implementação das features** cujos cenários BDD foram especificados na Sprint 1
+- **Desenvolvimento dos controllers, views e models** necessários
+- **Integração e validação** das funcionalidades implementadas
+- **Documentação atualizada** das features na Wiki do repositório
+- **Kanban organizado** usando a interface de projetos do GitHub
 
-### Gestão de Templates  
+### Metodologia de Testes
+**Nota sobre RSpec:** Embora inicialmente planejado o uso de RSpec para testes unitários, a equipe optou por focar na implementação das funcionalidades usando Cucumber para testes BDD durante esta sprint. **O RSpec será implementado na Sprint 3** para complementar a cobertura de testes com testes unitários e de integração.
 
-| Funcionalidade               | Regras de Negócio                          | Responsável | Pontos |  
-|------------------------------|-------------------------------------------|-------------|--------|  
-| Criar Template               | - Admin logado, título e questões válidas | Iasmim      | 3      |  
-| Editar/Deletar Template      | - Apenas admin criador pode editar        | Marcus      | 5      |  
-| Visualizar Templates         | - Filtros por disciplina                  | Luis Gustavo| 2      |  
+### Kanban - Organização do Trabalho
+O projeto utiliza a interface de projetos do GitHub com as seguintes lanes:
+- **Backlog**: Features planejadas para implementação
+- **Doing**: Features em desenvolvimento ativo
+- **Done**: Features implementadas e testadas
+- **Accepted**: Features validadas e aceitas pelo Product Owner
 
-### Formulários & Relatórios  
+## Status das Funcionalidades - Sprint 2  
 
-| Funcionalidade               | Regras de Negócio                          | Responsável | Pontos |  
-|------------------------------|-------------------------------------------|-------------|--------|  
-| Criar Formulário             | - Requer template e turma existentes      | Iasmim      | 3      |  
-| Responder Formulário         | - Progresso não é salvo parcialmente      | Hudson      | 3      |  
-| Visualizar Formulários Pendentes | - Mostra apenas não respondidos/ativos | Iasmim      | 2      |  
-| Gerar Relatório              | - Requer ≥1 formulário respondido         | Iasmim      | 3      |  
-| Visualizar Resultados        | - Gráficos para questões numéricas        | Marcus      | 5      |  
+### Autenticação ✅
 
-### Integração  
+| Funcionalidade               | Status | Responsável | Observações |
+|------------------------------|--------|-------------|-------------|
+| Sistema de Login             | ✅ DONE | Luis Gustavo (Front) + Iasmin (Back) | Interface completa + validações Devise |
+| Sistema de Definição de Senha| 🔄 DOING | Hudson (Back) + Luis Gustavo (Front) | Validações backend + formulários responsivos |
 
-| Funcionalidade               | Regras de Negócio                          | Responsável | Pontos |  
-|------------------------------|-------------------------------------------|-------------|--------|  
-| Importar Dados do SIGAA      | - Sincronização semanal automática        | Hudson      | 3      |  
-| Atualizar Base com SIGAA     | - Campos mapeados: turmas/disciplinas     | Luis Gustavo| 5      |  
+### Gestão de Templates ✅
 
-### Gestão de Usuários  
+| Funcionalidade               | Status | Responsável | Observações |
+|------------------------------|--------|-------------|-------------|
+| Criar Template               | ✅ DONE | Marcus (Back) + Luis (Front) + Iasmim (Integração) | CRUD completo, interface integrada |
+| Editar/Deletar Template      | ✅ DONE | Marcus (Back + Testes) + Luis (Interface) | Validações, permissões e UX completos |
+| Visualizar Templates         | ✅ DONE | Marcus | Interface administrativa responsiva |
 
-| Funcionalidade               | Regras de Negócio                          | Responsável | Pontos |  
-|------------------------------|-------------------------------------------|-------------|--------|  
-| Cadastrar Usuários           | - Tipos: admin/professor/aluno            | Hudson      | 5      |  
+### Formulários & Relatórios 🔄
 
----
+| Funcionalidade               | Status | Responsável | Pontos | Observações |
+|------------------------------|--------|-------------|--------|-------------|
+| Criar Formulário             | ✅ DONE |  Marcus | 3      | Interface e backend integrados |
+| Responder Formulário         | ✅ DONE | Marcus | 3      | Fluxo completo implementado |
+| Visualizar Formulários Pendentes | ✅ DONE | Marcus | 2      | Interface responsiva |
+| Gerar Relatório              | � SPRINT 3 | A definir | 3      | Pendente: CSV export completo |
+| Visualizar Resultados        | 📋 SPRINT 3 | A definir | 5      | Pendente: Dashboard e gráficos |
 
-## Política de Branching - Sprint 1
+### Integração 📋
 
-### Branching Atual
-Nesta primeira sprint, utilizamos uma única branch compartilhada para desenvolvimento:
+| Funcionalidade               | Status | Responsável | Observações |
+|------------------------------|--------|-------------|-------------|
+| Integrar Front-end com Backend (Formulários/Templates) | 🔄 DOING | Iasmim + Hudson | Conexão de interfaces com APIs |
+| Importar Dados do SIGAA      | 📋 SPRINT 2 | Hudson | Análise completa, implementação pendente |
+| Atualizar Base com SIGAA     | 📋 SPRINT 2 | Iasmim | Arquitetura planejada |
 
-- **`bdd`**: Branch temporária contendo todas as especificações BDD
+
+## Implementações Técnicas Realizadas
+
+### Models & Backend (Marcus)
+- **Template**: Modelo consolidado com documentação completa e scopes
+- **Questao**: Modelo português ativo (Question em inglês removido)
+- **Usuario**: Sistema de autenticação com Devise integrado
+- **Formulario**: Relacionamentos e validações implementadas
+- **Turma/Disciplina**: Estrutura base com foreign keys
+
+### Controllers & API (Marcus)
+- **Admin::TemplatesController**: CRUD completo para templates
+- **Admin::FormulariosController**: Gestão de formulários e relatórios
+- **ApplicationController**: Autenticação e autorização base
+- **HomeController**: Endpoints principais
+
+### Front-end & Interface (Luis Gustavo)
+- **Interface administrativa**: Layout completo e responsivo
+- **Formulários dinâmicos**: Criação e edição de templates
+- **Páginas de listagem**: Filtros e paginação
+- **Componentes reutilizáveis**: Botões, modais, navegação
+- **UX/UI**: Design consistente e intuitivo
+
+### Integração & Coordenação (Iasmim & Hudson)
+- **Fluxos end-to-end**: Validação de funcionalidades completas
+- **Coordenação técnica**: Integração entre front e back
+- **Verificação de requisitos**: Validação com critérios de aceitação
+- **Testes de aceitação**: Validação de cenários de usuário
+
+### Testes & Quality Assurance (Marcus + Equipe)
+- **13 features BDD**: Especificadas em Gherkin/Cucumber
+- **Testes de formulários**: Cobertura de cenários críticos
+- **85% de aprovação**: Nos testes implementados
+- **Testes de integração**: Validação de fluxos completos
+
+## Política de Branching - Sprint 2
+
+### Fluxo Atual
 - **`main`**: Branch protegida (versão estável)
+- **`feature/F7-F8`**: Branch de desenvolvimento ativa
+- **Branches específicas** por funcionalidade
 
-*A branch `bdd` será mantida temporariamente como referência até que a transição para o novo fluxo de branches (com `develop` e branches por feature) seja concluída*
+### Processo de Desenvolvimento
+1. **Feature branches** criadas a partir de `main`
+2. **Pull requests** para revisão de código
+3. **Testes automáticos** executados no CI
+4. **Merge** após aprovação
 
 ---
 
-## Velocity da Sprint 1
+### Distribuição de Responsabilidades - Sprint 2
 
-### Métricas Chave
-- **Total de pontos planejados:** 32
-- **Pontos concluídos:** 32 (100%)
-- **Média por membro:** 8 pontos
+#### Front-end 🎨
+**Luis Gustavo** - Desenvolvedor Front-end
+- Interface administrativa completa
+- Layouts responsivos
+- Componentes de formulários
+- Navegação e UX
 
-## Resumo da Sprint 1
+#### Back-end & Testes 🔧
+**Marcus** - Desenvolvedor Back-end
+- Models consolidados (Template, Questao)
+- Controllers implementados
+- Testes BDD de formulários
+- Validações e regras de negócio
 
-- **Especificação completa** de 13 funcionalidades em BDD
-- **Alinhamento** das histórias com o protótipo do Figma
-- **Cobertura** de cenários felizes e tristes para cada feature
+#### Integração & Verificação 🔗
+**Iasmim** (Scrum Master) & **Hudson** (Product Owner)
+- Integração de telas e funcionalidades
+- Verificação de requisitos
+- Coordenação entre front-end e back-end
+- Validação de fluxos completos
 
+### Distribuição por Membro
+| Membro | Responsabilidade Principal | Status |
+|--------|---------------------------|---------|
+| Luis Gustavo | Front-end & Interface | ✅ Meta superada |
+| Marcus | Back-end & Testes | ✅ Meta superada |
+| Iasmim | Integração & Coordenação | ✅ Meta atingida |
+| Hudson | Verificação & Validação | ✅ Meta atingida |
 
-### Melhorias no Versionamento
-- **Branch `develop` será criada** para integração contínua
-- **Branches específicas por tipo de trabalho**:
-  ```markdown
-  feat/    # Para novas funcionalidades (ex: feat/login)
-  fix/     # Para correções (ex: fix/export-csv)
-  docs/    # Para documentação
+## Resumo da Sprint 2
+
+### ✅ Sucessos
+- **Front-end completo** desenvolvido por Luis Gustavo
+- **Back-end robusto** implementado por Marcus com testes BDD
+- **Integração eficiente** coordenada por Iasmim e Hudson
+- **Interface administrativa** completamente funcional
+- **Consolidação dos models** com nomenclatura consistente
+- **Colaboração excepcional** entre as equipes
+
+### 🔄 Funcionalidades Principais Implementadas
+- **Sistema de Templates:** CRUD completo com validações
+- **Gestão de Formulários:** Interface administrativa funcional
+- **Autenticação:** Sistema seguro com Devise
+- **Estrutura de Dados:** Models consolidados e relacionamentos
+
+### 📋 Roadmap Sprint 3 - Prioridades
+
+#### 🎯 Funcionalidades Críticas
+1. **Relatórios Avançados**
+   - Exportação CSV completa
+   - Filtros e agregações
+   - **Responsável:** Marcus (back-end) + Luis Gustavo (front-end)
+
+2. **Visualização de Resultados**
+   - Gráficos interativos
+   - Dashboard analítico
+   - Métricas em tempo real
+   - **Responsável:** Luis Gustavo (front-end) + Marcus (API)
+
+#### 🧪 Melhoria de Testes
+3. **Refatoração de Testes**
+   - Implementação de RSpec (testes unitários)
+   - Ampliação da cobertura BDD
+   - Testes de integração
+   - **Responsável:** Marcus (liderança) + toda equipe
+
+4. **Qualidade de Código**
+   - Code review sistemático
+   - Documentação técnica
+   - Performance optimization
+   - **Responsável:** Iasmim (coordenação) + Hudson (validação)
+
+### 🔄 Distribuição Sprint 3
+- **Luis Gustavo:** Dashboard e visualizações
+- **Marcus:** APIs de relatórios e arquitetura de testes
+- **Iasmim:** Coordenação e integração de componentes
+- **Hudson:** Validação de requisitos e UX

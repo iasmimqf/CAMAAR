@@ -1,4 +1,5 @@
-História de Usuário:
+# language: pt
+Funcionalidade: Atualizar banco de dados
 
 Como um Administrador
 Quero atualizar a base de dados já existente com os dados atuais do SIGAA

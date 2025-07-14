@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_13_154717) do
+ActiveRecord::Schema[7.1].define(version: 2025_07_13_225002) do
   create_table "disciplinas", force: :cascade do |t|
     t.string "codigo", null: false
     t.string "nome", null: false
@@ -49,6 +49,28 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_13_154717) do
     t.datetime "updated_at", null: false
     t.index ["template_id", "created_at"], name: "index_questoes_on_template_id_and_created_at"
     t.index ["template_id"], name: "index_questoes_on_template_id"
+  end
+
+  create_table "resposta_formularios", force: :cascade do |t|
+    t.integer "formulario_id", null: false
+    t.integer "respondente_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["formulario_id", "respondente_id"], name: "index_resposta_formularios_on_formulario_id_and_respondente_id", unique: true
+    t.index ["formulario_id"], name: "index_resposta_formularios_on_formulario_id"
+    t.index ["respondente_id"], name: "index_resposta_formularios_on_respondente_id"
+  end
+
+  create_table "resposta_questoes", force: :cascade do |t|
+    t.integer "resposta_formulario_id", null: false
+    t.integer "questao_id", null: false
+    t.integer "valor_resposta"
+    t.text "texto_resposta"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["questao_id"], name: "index_resposta_questoes_on_questao_id"
+    t.index ["resposta_formulario_id", "questao_id"], name: "idx_on_resposta_formulario_id_questao_id_44e6e07b0e", unique: true
+    t.index ["resposta_formulario_id"], name: "index_resposta_questoes_on_resposta_formulario_id"
   end
 
   create_table "respostas", force: :cascade do |t|
@@ -107,6 +129,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_13_154717) do
   add_foreign_key "formularios", "templates"
   add_foreign_key "formularios", "usuarios", column: "criador_id"
   add_foreign_key "questoes", "templates"
+  add_foreign_key "resposta_formularios", "formularios"
+  add_foreign_key "resposta_formularios", "usuarios", column: "respondente_id"
+  add_foreign_key "resposta_questoes", "questoes", column: "questao_id"
+  add_foreign_key "resposta_questoes", "resposta_formularios"
   add_foreign_key "respostas", "formularios"
   add_foreign_key "respostas", "usuarios", column: "avaliador_id"
   add_foreign_key "templates", "usuarios", column: "criador_id"

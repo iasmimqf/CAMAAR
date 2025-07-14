@@ -2,6 +2,13 @@ Rails.application.routes.draw do
   devise_for :usuarios
   get "home/index"
 
+  # Rotas para alunos responderem formulários
+  resources :formularios, only: [:index, :show] do
+    member do
+      post :create_resposta
+    end
+  end
+
   namespace :admin do
     # Isso cria a rota GET /admin/dashboard que aponta para a ação 'index'
     # do controller 'dashboard' dentro do módulo 'admin'
@@ -12,7 +19,11 @@ Rails.application.routes.draw do
     resources :templates
     
     # Rotas para gerenciamento de formulários
-    resources :formularios
+    resources :formularios do
+      collection do
+        get :resultados
+      end
+    end
     
     namespace :import do
       # Routes for importing Turmas

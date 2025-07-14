@@ -1,4 +1,4 @@
-class RecreateTurmasWithCorrectSchema < ActiveRecord::Migration[8.0]
+class RecreateTurmasWithCorrectSchema < ActiveRecord::Migration[7.1]
   def change
     # Apaga a tabela 'turmas' antiga, se ela existir.
     drop_table :turmas, if_exists: true

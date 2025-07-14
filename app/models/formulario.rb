@@ -7,6 +7,9 @@ class Formulario < ApplicationRecord
   
   # Relação de um formulário que pertence a um template.
   belongs_to :template
+  
+  # Relacionamento com respostas
+  has_many :resposta_formularios, dependent: :destroy
 
   # Relação de um formulário que tem muitas respostas.
   has_many :respostas

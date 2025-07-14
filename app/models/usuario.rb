@@ -2,12 +2,31 @@ class Usuario < ApplicationRecord
   # Cria o atributo virtual 'login' para ser usado no formulário
   attr_writer :login
 
+  # Relacionamentos
+  has_many :resposta_formularios, foreign_key: 'respondente_id', dependent: :destroy
+  has_and_belongs_to_many :turmas
+  has_many :formularios, foreign_key: 'criador_id', dependent: :destroy
+
   def login
     @login || self.email || self.matricula
   end
 
   def admin?
     self.admin == true
+  end
+
+  # Método para buscar formulários pendentes para o aluno
+  def formularios_pendentes
+    return Formulario.none if self.turmas.empty?
+    
+    # Busca formulários das turmas do aluno que ainda não foram respondidos
+    formularios_das_turmas = Formulario.joins(:turmas)
+                                      .where(turmas: { id: self.turmas.pluck(:id) })
+                                      .distinct
+    
+    # Remove formulários já respondidos por este aluno
+    formularios_respondidos_ids = self.resposta_formularios.pluck(:formulario_id)
+    formularios_das_turmas.where.not(id: formularios_respondidos_ids)
   end
 
   # Include default devise modules. Others available are:

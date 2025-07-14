@@ -6,6 +6,10 @@ class Admin::FormulariosController < ApplicationController
     @formularios = Formulario.includes(:template, :turmas, :criador).order(created_at: :desc)
   end
 
+  def resultados
+    @formularios = Formulario.includes(:template, :turmas, :criador).order(created_at: :desc)
+  end
+
   def show
   end
 

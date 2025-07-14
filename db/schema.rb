@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_07_13_225002) do
+ActiveRecord::Schema[7.1].define(version: 2025_07_14_010118) do
   create_table "disciplinas", force: :cascade do |t|
     t.string "codigo", null: false
     t.string "nome", null: false
@@ -30,6 +30,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_13_225002) do
     t.datetime "updated_at", null: false
     t.integer "criador_id", null: false
     t.integer "template_id"
+    t.date "prazo_limite"
+    t.string "nome"
     t.index ["criador_id"], name: "index_formularios_on_criador_id"
     t.index ["template_id"], name: "index_formularios_on_template_id"
   end

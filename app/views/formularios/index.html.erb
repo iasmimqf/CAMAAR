@@ -1,51 +1,65 @@
 <div class="container mx-auto px-4 py-8">
   <div class="flex justify-between items-center mb-6">
-    <h1 class="text-3xl font-bold text-gray-900">Formulários Pendentes</h1>
+    <h1 class="text-3xl font-bold text-gray-900">Meus Formulários</h1>
   </div>
 
   <% if @formularios_pendentes.any? %>
     <div class="bg-white shadow overflow-hidden sm:rounded-md">
-      <ul class="divide-y divide-gray-200">
-        <% @formularios_pendentes.each do |formulario| %>
-          <li>
-            <div class="px-4 py-4 sm:px-6">
-              <div class="flex items-center justify-between">
-                <div class="flex-1">
-                  <p class="text-lg font-medium text-indigo-600 truncate">
-                    <%= formulario.template.titulo %>
-                  </p>
-                  <div class="mt-2 flex flex-wrap gap-4">
-                    <div class="flex items-center text-sm text-gray-500">
-                      <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                      </svg>
-                      <%= pluralize(formulario.template.questoes.count, 'questão', 'questões') %>
-                    </div>
-                    <div class="flex items-center text-sm text-gray-500">
-                      <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
-                      </svg>
-                      Criado em <%= formulario.created_at.strftime("%d/%m/%Y") %>
-                    </div>
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome do formulário</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Matéria associada</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Turma associada</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data limite para resposta</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <% @formularios_pendentes.each do |formulario| %>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="text-sm font-medium text-gray-900">
+                    <%= formulario.nome || formulario.template.titulo %>
                   </div>
-                  <% if formulario.turmas.any? %>
-                    <div class="mt-2">
-                      <p class="text-sm text-gray-600">
-                        <strong>Turmas:</strong>
-                        <%= formulario.turmas.map { |t| "#{t.disciplina.nome} - #{t.codigo_turma}" }.join(', ') %>
-                      </p>
-                    </div>
-                  <% end %>
-                </div>
-                <div class="flex space-x-2">
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="text-sm text-gray-900">
+                    <% if formulario.turmas.any? %>
+                      <%= formulario.turmas.first.disciplina.nome %>
+                    <% else %>
+                      -
+                    <% end %>
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="text-sm text-gray-900">
+                    <% if formulario.turmas.any? %>
+                      <%= formulario.turmas.map(&:codigo_turma).join(', ') %>
+                    <% else %>
+                      -
+                    <% end %>
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="text-sm text-gray-900">
+                    <% if formulario.prazo_limite %>
+                      <%= formulario.prazo_limite.strftime("%d/%m/%Y") %>
+                    <% else %>
+                      Sem prazo definido
+                    <% end %>
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                   <%= link_to 'Responder', formulario_path(formulario), 
                       class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
-                </div>
-              </div>
-            </div>
-          </li>
-        <% end %>
-      </ul>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
   <% else %>
     <div class="bg-white shadow sm:rounded-lg">
@@ -54,10 +68,7 @@
           <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
           </svg>
-          <h3 class="mt-2 text-sm font-medium text-gray-900">Nenhum formulário pendente</h3>
-          <p class="mt-1 text-sm text-gray-500">
-            Você não possui formulários para responder no momento.
-          </p>
+          <h3 class="mt-2 text-sm font-medium text-gray-900">Você não possui formulários pendentes no momento</h3>
         </div>
       </div>
     </div>

@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     resources :formularios do
       collection do
         get :resultados
+        post :gerar_csv
       end
     end
     

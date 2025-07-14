@@ -1,18 +1,18 @@
+# language: pt
 Funcionalidade: Exportação de resultados de formulários  
     Eu como Administrador  
     Quero baixar um arquivo CSV com resultados  
     Para analisar o desempenho das turmas  
 
     Contexto:  
-        Dado que estou autenticado como administrador  
+        Dado que estou autenticado como administrador para relatórios  
         E existem turmas com formulários enviados  
 
     Cenário: Exportar CSV para turmas selecionadas  
         Dado que acesso a página "Resultados"  
-        Quando seleciono as turmas:  
-        - "Turma 01 (Banco de Dados)"  
-        - "Turma 02 (Banco de Dados)"  
-        E clico em "Gerar CSV"  
+        Quando seleciono a turma "Turma 01 (Banco de Dados)"
+        E seleciono a turma "Turma 02 (Banco de Dados)"
+        E clico em "Gerar CSV" para gerar relatório  
         Então um arquivo CSV deve ser baixado com nome "resultados_turmas_1_2_banco_de_dados.csv"  
         E o arquivo deve conter:  
         | Turma       | Disciplina      | Média Professor | Média Disciplina | Respondidos/Enviados |  

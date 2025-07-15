@@ -18,19 +18,17 @@ module Api
         # Em produção, você registraria este erro.
         render json: { error: "Ocorreu um erro ao buscar templates: #{e.message}" }, status: :internal_server_error
       end
-
-      # GET /api/v1/templates/:id
       def show
-        template = Template.find(params[:id]) # Encontra o template pelo ID
-        # Renderiza o template como JSON, incluindo suas questões associadas
+        template = Template.find(params[:id])
+        # MUITO IMPORTANTE: incluir as questoes na resposta JSON
         render json: template.as_json(include: :questoes), status: :ok
       rescue ActiveRecord::RecordNotFound
-        # Se o template não for encontrado, retorna 404 Not Found
         render json: { error: "Template não encontrado" }, status: :not_found
       rescue => e
-        # Captura outros erros inesperados
         render json: { error: "Ocorreu um erro ao buscar o template: #{e.message}" }, status: :internal_server_error
       end
+      # GET /api/v1/templates/:id
+    
 
       # POST /api/v1/templates
       def create

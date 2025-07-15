@@ -27,30 +27,29 @@ import { useState, useEffect } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-// MODIFICADO: Interface Template para incluir 'questoes' com todas as propriedades
 interface Template {
   id: number;
   titulo: string;
   created_at: string;
-  questoes: Array<{ // Inclui as questões aninhadas
-    id: number; // Questões já existentes terão ID
+  questoes: Array<{
+    id?: number;
     tipo: string;
     enunciado: string;
     obrigatoria: boolean;
-    opcoes?: string; // Mantém como string para o Input, depois será splitada
+    opcoes?: string;
+    _destroy?: boolean;
   }>;
 }
 
-// MODIFICADO: Interface Question para incluir 'obrigatoria'
 interface Question {
   id: number;
   type: string;
   text: string;
   options?: string;
-  obrigatoria: boolean; // NOVO: Adicionado campo obrigatoria
+  obrigatoria: boolean;
+  _destroy?: boolean;
 }
 
-// URL base da sua API Ruby. Ajuste a porta se necessário (geralmente 3000 ou 3001)
 const API_BASE_URL = 'http://localhost:3000/api/v1';
 
 export default function GerenciamentoTemplatesPage() {
@@ -58,11 +57,8 @@ export default function GerenciamentoTemplatesPage() {
   const [activeSection, setActiveSection] = useState('gerenciamento');
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [templateName, setTemplateName] = useState('');
-
-  // NOVO ESTADO: Para guardar o ID do template que está sendo editado. null = criação.
   const [editingTemplateId, setEditingTemplateId] = useState<number | null>(null);
 
-  // MODIFICADO: Questões iniciais com obrigatoriedade padrão
   const [questions, setQuestions] = useState<Question[]>([
     { id: Date.now(), type: 'texto', text: '', obrigatoria: false, options: '' },
   ]);
@@ -99,9 +95,13 @@ export default function GerenciamentoTemplatesPage() {
     fetchTemplates();
   }, []);
 
-  // NOVO: Função para carregar os detalhes de um template específico para edição
+  // NOVO: useEffect para depurar o editingTemplateId
+  useEffect(() => {
+    console.log("DEBUG: editingTemplateId mudou para:", editingTemplateId);
+  }, [editingTemplateId]);
+
   const loadTemplateForEdit = async (id: number) => {
-    setIsLoading(true); // Pode ser um loading específico para o modal
+    setIsLoading(true);
     setError(null);
     try {
       console.log(`DEBUG: Carregando detalhes do template ID: ${id}`);
@@ -113,20 +113,22 @@ export default function GerenciamentoTemplatesPage() {
       const data: Template = await response.json();
 
       setTemplateName(data.titulo);
-      // Mapeia as questões do backend para o formato do estado 'questions' do frontend
+      // MODIFICADO: Mapeia as questões do backend para o formato do estado 'questions' do frontend
+      // Garante que 'id' é um número para questões existentes
+      // e que todos os campos necessários estão presentes e tipados corretamente.
       setQuestions(
         data.questoes.map(q => ({
-          id: q.id, // Usa o ID do banco para questões existentes
+          id: q.id as number, // Confia que o ID do backend é um número
           type: q.tipo,
           text: q.enunciado,
           obrigatoria: q.obrigatoria,
-          options: q.opcoes || '' // Garante que options é string vazia se undefined
+          options: q.opcoes || ''
         }))
       );
     } catch (err: any) {
       console.error("Erro ao carregar template para edição:", err);
       setError(`Não foi possível carregar os detalhes do template: ${err.message}`);
-      setEditModalOpen(false); // Fecha o modal se houver erro ao carregar
+      setEditModalOpen(false);
     } finally {
       setIsLoading(false);
     }
@@ -142,50 +144,35 @@ export default function GerenciamentoTemplatesPage() {
     console.log('Navigating to:', section);
   };
 
-  // MODIFICADO: handleEditTemplate para setar o ID e carregar os dados
-  // FUNÇÃO 1: handleEditTemplate (chama quando clica no lápis)
   const handleEditTemplate = (templateId: number) => {
     console.log('DEBUG: Clicou em Editar Template ID:', templateId);
-    setEditingTemplateId(templateId); // <--- AQUI O ID DO TEMPLATE É SETADO!
+    setEditingTemplateId(templateId);
     loadTemplateForEdit(templateId);
     setEditModalOpen(true);
   };
 
   const handleDeleteTemplate = async (templateId: number) => {
-    // NOVO: Log de depuração para confirmar que a função foi chamada
     console.log('DEBUG: handleDeleteTemplate foi chamado para o ID:', templateId);
-
-    // Adiciona uma confirmação antes de tentar excluir
     if (!window.confirm('Tem certeza que deseja excluir este template? Esta ação é irreversível.')) {
-      console.log('DEBUG: Exclusão cancelada pelo usuário.'); // NOVO: Log se o usuário cancelar
-      return; // Sai da função se o usuário cancelar
+      console.log('DEBUG: Exclusão de template cancelada pelo usuário.');
+      return;
     }
 
     try {
-      console.log(`DEBUG: Enviando requisição DELETE para: ${API_BASE_URL}/templates/${templateId}`); // NOVO: Log da URL da requisição
-
+      console.log(`DEBUG: Enviando requisição DELETE para: ${API_BASE_URL}/templates/${templateId}`);
       const response = await fetch(`${API_BASE_URL}/templates/${templateId}`, {
         method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          // Se precisar de CSRF para DELETE, adicione aqui, mas geralmente não é necessário para APIs RESTful
-          // let csrfToken = '';
-          // const csrfMeta = document.querySelector("meta[name='csrf-token']");
-          // if (csrfMeta) {
-          //   csrfToken = csrfMeta.getAttribute("content") || '';
-          // }
-          // ...(csrfToken && { 'X-CSRF-Token': csrfToken })
-        },
+        headers: { 'Content-Type': 'application/json' },
       });
 
-      if (response.ok) { // Sucesso é status 200 ou 204 (No Content)
+      if (response.ok) {
         alert('Template excluído com sucesso!');
-        console.log('DEBUG: Template excluído com sucesso. Recarregando lista...'); // NOVO: Log de sucesso
-        fetchTemplates(); // Recarrega a lista para remover o template excluído da UI
+        console.log('DEBUG: Template excluído com sucesso. Recarregando lista...');
+        fetchTemplates();
       } else {
-        const errorBody = await response.text(); // Pega o corpo da resposta de erro
+        const errorBody = await response.text();
         let errorMessage = "Erro desconhecido ao excluir template.";
-        try { // Tenta parsear como JSON se for um erro formatado
+        try {
           const errorData = JSON.parse(errorBody);
           if (errorData.erro) {
               errorMessage = errorData.erro;
@@ -193,33 +180,31 @@ export default function GerenciamentoTemplatesPage() {
               errorMessage = errorData.message;
           }
         } catch (e) {
-          // Se não for JSON, usa o corpo da resposta como mensagem
           errorMessage = errorBody || "Mensagem de erro não disponível.";
         }
-        console.error('DEBUG: Erro ao excluir template:', response.status, errorMessage); // NOVO: Log de erro
+        console.error('DEBUG: Erro ao excluir template:', response.status, errorMessage);
         alert(`Erro ao excluir template:\nStatus: ${response.status}\nDetalhes: ${errorMessage}`);
       }
     } catch (error: any) {
-      console.error('DEBUG: Falha na comunicação com o servidor ao excluir:', error); // NOVO: Log para erros de rede
+      console.error('DEBUG: Falha na comunicação com o servidor ao excluir:', error);
       alert('Não foi possível conectar ao servidor para excluir o template.');
     }
   };
 
-  // MODIFICADO: handleAddTemplate para garantir que é um NOVO template
   const handleAddTemplate = () => {
     console.log('DEBUG: Clicou em Adicionar Novo Template');
-    setEditingTemplateId(null); // <--- AQUI O ID É DEFINIDO COMO NULO PARA CRIAÇÃO!
-    setTemplateName('');
-    setQuestions([{ id: Date.now(), type: 'texto', text: '', obrigatoria: false, options: '' }]);
+    setEditingTemplateId(null); // Define como null para indicar que é um novo template (criação)
+    setTemplateName(''); // Limpa o nome para um novo template
+    setQuestions([{ id: Date.now(), type: 'texto', text: '', obrigatoria: false, options: '' }]); // Limpa questões
     setEditModalOpen(true);
   };
 
   const handleAddQuestion = () => {
     const newQuestion: Question = {
-      id: Date.now(), // NOVO: ID único para novas questões no frontend
+      id: Date.now(), // ID único para novas questões no frontend
       type: 'texto',
       text: '',
-      obrigatoria: false, // NOVO: Valor padrão para obrigatoriedade
+      obrigatoria: false,
       options: '',
     };
     setQuestions([...questions, newQuestion]);
@@ -228,80 +213,125 @@ export default function GerenciamentoTemplatesPage() {
   const handleQuestionChange = (
     questionId: number,
     field: string,
-    value: string | boolean // MODIFICADO: 'value' pode ser string ou boolean para 'obrigatoria'
+    value: string | boolean
   ) => {
     setQuestions(
       questions.map((q) => (q.id === questionId ? { ...q, [field]: value } : q))
     );
   };
 
-  // NOVO: Função para remover uma questão do formulário
   const handleRemoveQuestion = (idToRemove: number) => {
-    // Se a questão tiver um ID do banco de dados, marcamos ela para _destroy no payload.
-    // Se não tiver (foi recém-adicionada no frontend), simplesmente a removemos.
-    const updatedQuestions = questions
-      .map(q => q.id === idToRemove && typeof q.id === 'number' ? { ...q, _destroy: true } : q)
-      .filter(q => !(q.id === idToRemove && typeof q.id !== 'number')); // Remove questões sem ID do banco na hora
-    setQuestions(updatedQuestions);
+    setQuestions(prevQuestions => {
+      return prevQuestions
+        .map(q => {
+          if (q.id === idToRemove) {
+            // Se a questão já tem ID do banco (não é um ID temporário), marque para _destroy
+            if (typeof q.id === 'number' && q.id > 0) {
+              console.log(`DEBUG: Marcando questão ID ${q.id} para _destroy.`);
+              return { ...q, _destroy: true };
+            } else {
+              // Se é uma questão nova (ID temporário) e está sendo removida,
+              // simplesmente a removemos do estado (não precisa enviar para Rails).
+              console.log(`DEBUG: Removendo nova questão ID ${q.id} do frontend.`);
+              return null; // Marcar para remoção na filtragem
+            }
+          }
+          return q;
+        })
+        .filter(q => q !== null); // Filtra as questões marcadas como null (as novas removidas)
+    });
   };
 
+const handleSaveTemplate = async () => {
+  console.log("DEBUG: Valor de editingTemplateId ao salvar:", editingTemplateId);
 
-  const handleSaveTemplate = async () => {
-    // ESTES CONSOLE.LOGs SÃO CRÍTICOS PARA ENTENDER O QUE ESTÁ ACONTECENDO!
-    console.log("DEBUG: Valor de editingTemplateId ao salvar:", editingTemplateId); // Mostra o ID no momento do clique
+  // NOVO: Validação de Frontend para Título
+  if (!templateName.trim()) { // .trim() remove espaços e verifica se a string é vazia
+    alert('O título do template é obrigatório.');
+    console.log('DEBUG: Salvamento interrompido: Título vazio.');
+    return; // Interrompe a função se o título estiver vazio
+  }
 
-    const method = editingTemplateId ? 'PUT' : 'POST';
-    const url = editingTemplateId ? `${API_BASE_URL}/templates/${editingTemplateId}` : `${API_BASE_URL}/templates`;
+  // NOVO: Validação de Frontend para pelo menos uma questão válida
+  // Conta apenas as questões que NÃO estão marcadas para destruir (q._destroy é falsey)
+  // e que têm um enunciado não vazio.
+  const activeQuestions = questions.filter(q => !q._destroy);
+  const hasValidActiveQuestions = activeQuestions.some(q => q.enunciado && q.enunciado.trim() !== '');
 
-    console.log(`DEBUG: Requisição Final: Método ${method}, URL ${url}`); // Mostra qual requisição será feita
+  if (activeQuestions.length === 0 || !hasValidActiveQuestions) {
+    alert('Adicione pelo menos uma questão válida ao template.');
+    console.log('DEBUG: Salvamento interrompido: Nenhuma questão válida presente.');
+    return; // Interrompe a função se não houver questões válidas
+  }
 
-    const questionsToSend = questions.map(q => {
-      if (q._destroy) {
-        return { id: q.id, _destroy: true };
-      }
-      return {
-        id: typeof q.id === 'number' && q.id > 0 ? q.id : undefined,
-        tipo: q.type,
-        enunciado: q.text,
-        obrigatoria: q.obrigatoria,
-        opcoes: q.options ? q.options.split(',').map(item => item.trim()) : [],
-      };
-    }).filter(q => q.enunciado.trim() !== '' || q._destroy);
+  const method = editingTemplateId ? 'PUT' : 'POST';
+  const url = editingTemplateId ? `${API_BASE_URL}/templates/${editingTemplateId}` : `${API_BASE_URL}/templates`;
 
+  console.log(`DEBUG: Requisição Final: Método ${method}, URL ${url}`);
 
-    const payload = {
-      template: {
-        titulo: templateName,
-        questoes_attributes: questionsToSend
-      }
+  // Refinado: Mapeia e filtra as questões que serão enviadas para o Rails
+  const questionsToSend = questions.filter(q => {
+    // Filtrar questões que são nulas (removidas do frontend por handleRemoveQuestion para novas questões).
+    if (q === null) return false;
+
+    // Se a questão está marcada para _destroy, ela deve ser incluída no payload APENAS se tiver um ID real.
+    if (q._destroy) {
+      return typeof q.id === 'number' && q.id > 0; // Só envia _destroy para questões existentes
+    }
+    
+    // Se a questão NÃO está marcada para _destroy, ela deve ser válida (enunciado não vazio).
+    return q.enunciado !== undefined && q.enunciado !== null && q.enunciado.trim() !== '';
+  }).map(q => {
+    if (q._destroy) {
+      return { id: q.id, _destroy: true };
+    }
+    // Para questões a serem salvas/atualizadas:
+    return {
+      // AJUSTE CRUCIAL AQUI: O ID da questão só é enviado se o TEMPLATE PAI JÁ EXISTE (editingTemplateId não é null)
+      // E se o ID da questão for um número válido (não um ID temporário do Date.now()).
+      id: (editingTemplateId && typeof q.id === 'number' && q.id > 0) ? q.id : undefined,
+      tipo: q.type,
+      enunciado: q.enunciado,
+      obrigatoria: q.obrigatoria,
+      opcoes: q.options ? q.options.split(',').map(item => item.trim()) : [],
     };
+  });
 
-    console.log("DEBUG: Enviando payload:", payload); // Mostra o que será enviado para o Rails
+  const payload = {
+    template: {
+      titulo: templateName,
+      questoes_attributes: questionsToSend
+    }
+  };
 
-    try {
-      let csrfToken = '';
-      const csrfMeta = document.querySelector("meta[name='csrf-token']");
-      if (csrfMeta) {
-        csrfToken = csrfMeta.getAttribute("content") || '';
-      }
-      
-      const response = await fetch(url, {
-        method: method,
-        headers: {
-          'Content-Type': 'application/json',
-          ...(csrfToken && { 'X-CSRF-Token': csrfToken })
-        },
-        body: JSON.stringify(payload)
-      });
+  console.log("DEBUG: Enviando payload:", payload, " para URL:", url, " com método:", method);
 
-      if (response.ok) {
-        const result = await response.json();
-        alert(result.mensagem);
-        setEditModalOpen(false);
-        fetchTemplates();
-      } else {
-        const errorData = await response.json();
-        let errorMessage = "Erro desconhecido ao salvar template.";
+  try {
+    let csrfToken = '';
+    const csrfMeta = document.querySelector("meta[name='csrf-token']");
+    if (csrfMeta) {
+      csrfToken = csrfMeta.getAttribute("content") || '';
+    }
+    
+    const response = await fetch(url, {
+      method: method,
+      headers: {
+        'Content-Type': 'application/json',
+        ...(csrfToken && { 'X-CSRF-Token': csrfToken })
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (response.ok) {
+      const result = await response.json();
+      alert(result.mensagem);
+      setEditModalOpen(false);
+      fetchTemplates();
+    } else {
+      const errorBody = await response.text();
+      let errorMessage = "Erro desconhecido ao salvar template.";
+      try {
+        const errorData = JSON.parse(errorBody);
         if (errorData.erro) {
             errorMessage = errorData.erro;
         } else if (errorData.errors) {
@@ -311,13 +341,17 @@ export default function GerenciamentoTemplatesPage() {
         } else if (errorData.message) {
             errorMessage = errorData.message;
         }
-        alert(`Erro ao salvar:\n${errorMessage}`);
+      } catch (e) {
+        errorMessage = errorBody || "Mensagem de erro não disponível.";
       }
-    } catch (error) {
-      console.error('Falha na comunicação com o servidor:', error);
-      alert('Não foi possível conectar ao servidor. Tente novamente.');
+      console.error('DEBUG: Erro ao salvar template:', response.status, errorMessage);
+      alert(`Erro ao salvar:\nStatus: ${response.status}\nDetalhes: ${errorMessage}`);
     }
-  };
+  } catch (error) {
+    console.error('DEBUG: Falha na comunicação com o servidor:', error);
+    alert('Não foi possível conectar ao servidor. Tente novamente.');
+  }
+};
 
   const router = useRouter();
 
@@ -421,7 +455,7 @@ export default function GerenciamentoTemplatesPage() {
 
           {!isLoading && !error && templates.length === 0 && (
             <div className="text-center text-gray-500 py-10">
-              <p className="text-lg">Nenhum template foi encontrado.</p>
+              <p className="text-lg">Nenhum template foi encontrado. 🙁</p>
               <p className="text-sm mt-2">Clique no card "<Plus className="inline h-4 w-4" />" para adicionar um novo.</p>
             </div>
           )}
@@ -438,7 +472,8 @@ export default function GerenciamentoTemplatesPage() {
                     variant="ghost"
                     size="icon"
                     className="h-6 w-6 hover:bg-gray-100"
-                    onClick={() => handleEditTemplate(template.id)}
+                    onClick={(e) => { e.preventDefault(); handleEditTemplate(template.id); }}
+                    type="button"
                   >
                     <Edit className="h-4 w-4 text-gray-600" />
                   </Button>
@@ -446,7 +481,8 @@ export default function GerenciamentoTemplatesPage() {
                     variant="ghost"
                     size="icon"
                     className="h-6 w-6 hover:bg-gray-100"
-                    onClick={() => handleDeleteTemplate(template.id)}
+                    onClick={(e) => { e.preventDefault(); handleDeleteTemplate(template.id); }}
+                    type="button"
                   >
                     <Trash2 className="h-4 w-4 text-gray-600" />
                   </Button>
@@ -477,7 +513,6 @@ export default function GerenciamentoTemplatesPage() {
       <Dialog open={editModalOpen} onOpenChange={setEditModalOpen}>
         <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
-            {/* MODIFICADO: Título dinâmico do modal */}
             <DialogTitle>{editingTemplateId ? 'Editar Template' : 'Criar Novo Template'}</DialogTitle>
           </DialogHeader>
 
@@ -494,7 +529,8 @@ export default function GerenciamentoTemplatesPage() {
             </div>
 
             {/* Questions */}
-            {questions.map((question, index) => (
+            {/* MODIFICADO: Filtra questões marcadas para _destroy para não renderizá-las */}
+            {questions.filter(q => !q._destroy).map((question, index) => (
               <div
                 key={question.id} // Chave única para cada questão
                 className="space-y-4 p-4 border rounded-lg"
@@ -520,7 +556,6 @@ export default function GerenciamentoTemplatesPage() {
                       </SelectContent>
                     </Select>
                   </div>
-                  {/* NOVO: Campo para Obrigatoriedade */}
                   <div className="space-y-2 flex items-center gap-2 mt-4">
                     <input
                       type="checkbox"
@@ -546,7 +581,7 @@ export default function GerenciamentoTemplatesPage() {
                   />
                 </div>
 
-                {(question.type === 'Escala' || question.type === 'Radio') && ( // MODIFICADO: 'radio' para 'Radio'
+                {(question.type === 'Escala' || question.type === 'Radio') && (
                   <div className="space-y-2">
                     <Label>Opções (separadas por vírgula):</Label>
                     <Input
@@ -564,7 +599,6 @@ export default function GerenciamentoTemplatesPage() {
                 )}
 
                 <div className="flex justify-center">
-                  {/* NOVO: Botão para remover questão */}
                   <Button
                     type="button"
                     variant="ghost"
@@ -585,6 +619,7 @@ export default function GerenciamentoTemplatesPage() {
                 size="icon"
                 className="w-8 h-8 bg-purple-700 rounded-full text-white hover:bg-purple-800"
                 onClick={handleAddQuestion}
+                type="button"
               >
                 <Plus className="h-4 w-4" />
               </Button>
@@ -595,8 +630,8 @@ export default function GerenciamentoTemplatesPage() {
               <Button
                 onClick={handleSaveTemplate}
                 className="bg-green-500 hover:bg-green-600 text-white px-8"
+                type="button"
               >
-                {/* MODIFICADO: Texto do botão dinâmico */}
                 {editingTemplateId ? 'Salvar Alterações' : 'Criar'}
               </Button>
             </div>

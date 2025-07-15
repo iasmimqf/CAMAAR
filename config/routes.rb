@@ -9,8 +9,12 @@ Rails.application.routes.draw do
     get 'dashboard', to: 'dashboard#index' , as: 'dashboard'
     post 'importacoes/importar_turmas', to: 'importacoes#importar_turmas'
     
-    # Rotas para gerenciamento de templates (para o painel ADMIN, HTML)
-    resources :templates
+    # MODIFICADO: Rotas para gerenciamento de templates (para o painel ADMIN, HTML)
+    # Removendo :edit, :show e :destroy para evitar conflitos com a API e garantir que
+    # o frontend React controle essas ações.
+    resources :templates, only: [:index, :create]
+    # Se você não usa NADA HTML para templates, pode comentar a linha acima inteira:
+    # # resources :templates
     
     namespace :import do
       # Routes for importing Turmas
@@ -27,7 +31,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       # Este `resources :templates` é para a API RESTful
       # Ele vai mapear para `Api::V1::TemplatesController`
-      resources :templates, only: [:index, :create, :update, :destroy, :show] do
+      # Mantenha todos os métodos da API aqui, incluindo :show, :update, :destroy
+      resources :templates, only: [:index, :create, :show, :update, :destroy] do
         # Se no futuro suas questões forem um recurso aninhado na API:
         # resources :questoes, only: [:index, :show, :create, :update, :destroy]
       end

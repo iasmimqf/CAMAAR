@@ -30,7 +30,7 @@ class Template < ApplicationRecord
     
     valid_questoes = questoes.reject do |q|
       q._destroy || # Se está marcada para ser destruída, não conta como presente.
-      (q.enunciado.blank? && q.enunciado.blank?) # Se enunciado está vazio, é inválida para contagem.
+      (q.enunciado.blank? && q.tipo.blank?) # Se enunciado está vazio, é inválida para contagem.
     end
 
     errors.add(:base, "Adicione pelo menos uma questão ao template") if valid_questoes.empty?

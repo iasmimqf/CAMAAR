@@ -248,118 +248,74 @@ export default function GerenciamentoTemplatesPage() {
   };
 
   const handleSaveTemplate = async () => {
-    console.log("DEBUG: Valor de editingTemplateId ao salvar:", editingTemplateId);
+  if (!templateName.trim()) {
+    alert('O título do template é obrigatório.');
+    return;
+  }
 
-    // NOVO: Validação de Frontend para Título
-    if (!templateName.trim()) {
-      alert('O título do template é obrigatório.');
-      console.log('DEBUG: Salvamento interrompido: Título vazio.');
-      return;
+  // Mapeia e filtra as questões que realmente serão enviadas para o Rails
+  const questionsToSend = questions.filter(q => {
+    if (q === null) return false;
+
+    if (q._destroy) {
+      return typeof q.id === 'number' && q.id > 0;
     }
-
-    // Refinado: Mapeia e filtra as questões que realmente serão enviadas para o Rails
-    const questionsToSend = questions.filter(q => {
-      // Filtrar questões que são nulas (removidas do frontend por handleRemoveQuestion para novas questões).
-      if (q === null) return false;
-
-      // Se a questão está marcada para _destroy, ela deve ser incluída no payload APENAS se tiver um ID real.
-      if (q._destroy) {
-        return typeof q.id === 'number' && q.id > 0; // Só envia _destroy para questões existentes
-      }
-      
-      // Se a questão NÃO está marcada para _destroy, ela deve ser válida (enunciado não vazio).
-      return q.enunciado !== undefined && q.enunciado !== null && q.enunciado.trim() !== '';
-    }).map(q => {
-      if (q._destroy) {
-        // Se a questão foi marcada para destruição, enviamos o ID e o _destroy: true.
-        return { id: q.id as number, _destroy: true }; // Cast para number, pois já filtramos que tem ID real
-      }
-      // Para questões que NÃO foram marcadas para destruição (serão salvas ou atualizadas):
-      return {
-        // AJUSTE CRUCIAL AQUI: O ID da questão SÓ é incluído no payload se:
-        // 1. Estivermos em modo de EDIÇÃO (editingTemplateId não é null) E
-        // 2. O 'id' da questão for um número válido (> 0), indicando que é um ID do banco de dados.
-        // Caso contrário (modo de criação ou nova questão em edição), o 'id' será 'undefined'
-        // para que o Rails crie um novo.
-        id: (editingTemplateId !== null && typeof q.id === 'number' && q.id > 0) ? q.id as number : undefined, // Cast para number se for enviado
-        tipo: q.type,
-        enunciado: q.enunciado,
-        obrigatoria: q.obrigatoria,
-        opcoes: q.options ? q.options.split(',').map(item => item.trim()) : [],
-      };
-    });
-
-    // NOVO: Validação de Frontend para pelo menos uma questão válida (após filtragem para o payload)
-    // Conta apenas as questões que não estão marcadas para destruir E que não são nulas
-    // Filtra novamente, para ter certeza que só conta as que VÃO ser salvas (não destruídas)
-    const activeQuestionsAfterFilter = questionsToSend.filter(q => !q._destroy);
-
-    if (activeQuestionsAfterFilter.length === 0) { // Se não sobrou nenhuma questão válida para enviar
-      alert('Adicione pelo menos uma questão válida ao template.');
-      console.log('DEBUG: Salvamento interrompido: Nenhuma questão válida restante após filtragem.');
-      return; // Interrompe a função se não houver questões válidas
+    
+    // AQUI ESTÁ A CORREÇÃO: Usando 'q.text' para validar o estado do frontend
+    return q.text !== undefined && q.text !== null && q.text.trim() !== '';
+  }).map(q => {
+    if (q._destroy) {
+      // Se marcada para destruição, envia só o ID e a flag
+      return { id: q.id as number, _destroy: true };
     }
-
-    const method = editingTemplateId ? 'PUT' : 'POST';
-    const url = editingTemplateId ? `${API_BASE_URL}/templates/${editingTemplateId}` : `${API_BASE_URL}/templates`;
-
-    console.log(`DEBUG: Requisição Final: Método ${method}, URL ${url}`);
-
-    const payload = {
-      template: {
-        titulo: templateName,
-        questoes_attributes: questionsToSend
-      }
+    // Para questões a serem salvas ou atualizadas, mapeia para o formato do backend
+    return {
+      id: (editingTemplateId !== null && typeof q.id === 'number' && q.id > 0) ? q.id as number : undefined,
+      tipo: q.type,
+      enunciado: q.text, // Mapeamento correto para 'enunciado' que o backend espera
+      obrigatoria: q.obrigatoria,
+      opcoes: q.options ? q.options.split(',').map(item => item.trim()) : [],
     };
+  });
 
-    console.log("DEBUG: Enviando payload:", payload, " para URL:", url, " com método:", method);
+  const activeQuestionsAfterFilter = questionsToSend.filter(q => !q._destroy);
 
-    try {
-      let csrfToken = '';
-      const csrfMeta = document.querySelector("meta[name='csrf-token']");
-      if (csrfMeta) {
-        csrfToken = csrfMeta.getAttribute("content") || '';
-      }
-      
-      const response = await fetch(url, {
-        method: method,
-        headers: {
-          'Content-Type': 'application/json',
-          ...(csrfToken && { 'X-CSRF-Token': csrfToken })
-        },
-        body: JSON.stringify(payload)
-      });
+  if (activeQuestionsAfterFilter.length === 0) {
+    alert('Adicione pelo menos uma questão válida ao template.');
+    return;
+  }
 
-      if (response.ok) {
-        const result = await response.json();
-        alert(result.mensagem);
-        setEditModalOpen(false);
-        fetchTemplates();
-      } else {
-        const errorBody = await response.text();
-        let errorMessage = "Erro desconhecido ao salvar template.";
-        try {
-          const errorData = JSON.parse(errorBody);
-          if (errorData.erro) {
-              errorMessage = errorData.erro;
-          } else if (errorData.errors) {
-              errorMessage = Object.entries(errorData.errors)
-                                  .map(([field, messages]) => `${field}: ${(messages as string[]).join(', ')}`)
-                                  .join('\n');
-          } else if (errorData.message) {
-              errorMessage = errorData.message;
-          }
-        } catch (e) {
-          errorMessage = errorBody || "Mensagem de erro não disponível.";
-        }
-        console.error('DEBUG: Erro ao salvar template:', response.status, errorMessage);
-        alert(`Erro ao salvar:\nStatus: ${response.status}\nDetalhes: ${errorMessage}`);
-      }
-    } catch (error) {
-      console.error('DEBUG: Falha na comunicação com o servidor:', error);
-      alert('Não foi possível conectar ao servidor. Tente novamente.');
+  const method = editingTemplateId ? 'PUT' : 'POST';
+  const url = editingTemplateId ? `${API_BASE_URL}/templates/${editingTemplateId}` : `${API_BASE_URL}/templates`;
+
+  const payload = {
+    template: {
+      titulo: templateName,
+      questoes_attributes: questionsToSend
     }
   };
+
+  // O resto da sua função de fetch continua igual...
+  try {
+    const response = await fetch(url, {
+      method: method,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    if (response.ok) {
+      const result = await response.json();
+      alert(result.mensagem);
+      setEditModalOpen(false);
+      fetchTemplates();
+    } else {
+      const errorBody = await response.json();
+      alert(`Erro ao salvar: ${errorBody.erro}`);
+    }
+  } catch (error) {
+    alert('Não foi possível conectar ao servidor. Tente novamente.');
+  }
+};
 
   const router = useRouter();
 
@@ -463,7 +419,7 @@ export default function GerenciamentoTemplatesPage() {
 
           {!isLoading && !error && templates.length === 0 && (
             <div className="text-center text-gray-500 py-10">
-              <p className="text-lg">Nenhum template foi encontrado. 🙁</p>
+              <p className="text-lg">Nenhum template foi encontrado. </p>
               <p className="text-sm mt-2">Clique no card "<Plus className="inline h-4 w-4" />" para adicionar um novo.</p>
             </div>
           )}
@@ -560,7 +516,6 @@ export default function GerenciamentoTemplatesPage() {
                         <SelectItem value="Escala">Escala</SelectItem>
                         <SelectItem value="Texto">Texto</SelectItem>
                         <SelectItem value="Checkbox">Checkbox</SelectItem>
-                        <SelectItem value="Radio">Radio</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>

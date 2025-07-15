@@ -4486,3 +4486,51 @@ Processing by Api::V1::TemplatesController#show as */*
 Completed 200 OK in 498ms (Views: 0.2ms | ActiveRecord: 0.9ms | Allocations: 1339)
 
 
+Started GET "/api/v1/templates" for ::1 at 2025-07-15 08:57:03 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+Processing by Api::V1::TemplatesController#index as */*
+  [1m[36mTemplate Load (0.7ms)[0m  [1m[34mSELECT "templates".* FROM "templates" /*action='index',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:16:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 1087ms (Views: 10.4ms | ActiveRecord: 18.0ms | Allocations: 10149)
+
+
+Started POST "/api/v1/templates" for ::1 at 2025-07-15 08:57:57 -0300
+Processing by Api::V1::TemplatesController#create as */*
+  Parameters: {"template" => {"titulo" => "safr", "questoes_attributes" => []}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:38:in 'Api::V1::TemplatesController#create'
+  [1m[36mTemplate Exists? (1.9ms)[0m  [1m[34mSELECT 1 AS one FROM "templates" WHERE "templates"."titulo" = 'safr' LIMIT 1 /*action='create',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:38:in 'Api::V1::TemplatesController#create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:38:in 'Api::V1::TemplatesController#create'
+Completed 422 Unprocessable Content in 675ms (Views: 0.2ms | ActiveRecord: 3.4ms | Allocations: 11013)
+
+
+Started GET "/api/v1/templates/12" for ::1 at 2025-07-15 08:58:47 -0300
+Processing by Api::V1::TemplatesController#show as */*
+  Parameters: {"id" => "12"}
+  [1m[36mTemplate Load (0.7ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."id" = 12 LIMIT 1 /*action='show',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:22:in 'Api::V1::TemplatesController#show'
+  [1m[36mQuestao Load (0.4ms)[0m  [1m[34mSELECT "questoes".* FROM "questoes" WHERE "questoes"."template_id" = 12 /*action='show',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:25:in 'Api::V1::TemplatesController#show'
+Completed 200 OK in 588ms (Views: 0.2ms | ActiveRecord: 1.9ms | Allocations: 7877)
+
+
+Started GET "/api/v1/templates" for ::1 at 2025-07-15 09:37:06 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Camaar'*/[0m
+Processing by Api::V1::TemplatesController#index as */*
+  [1m[36mTemplate Load (2.2ms)[0m  [1m[34mSELECT "templates".* FROM "templates" /*action='index',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:16:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 1237ms (Views: 13.5ms | ActiveRecord: 39.4ms | Allocations: 10153)
+
+
+Started GET "/api/v1/templates/12" for ::1 at 2025-07-15 09:37:36 -0300
+Processing by Api::V1::TemplatesController#show as */*
+  Parameters: {"id" => "12"}
+  [1m[36mTemplate Load (1.0ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."id" = 12 LIMIT 1 /*action='show',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:22:in 'Api::V1::TemplatesController#show'
+  [1m[36mQuestao Load (0.4ms)[0m  [1m[34mSELECT "questoes".* FROM "questoes" WHERE "questoes"."template_id" = 12 /*action='show',application='Camaar',controller='templates'*/[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:25:in 'Api::V1::TemplatesController#show'
+Completed 200 OK in 637ms (Views: 0.2ms | ActiveRecord: 2.9ms | Allocations: 10934)
+
+

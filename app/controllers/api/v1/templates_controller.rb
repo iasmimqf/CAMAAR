@@ -20,15 +20,15 @@ module Api
       end
       def show
         template = Template.find(params[:id])
-        # MUITO IMPORTANTE: incluir as questoes na resposta JSON
-        render json: template.as_json(include: :questoes), status: :ok
+        # MODIFICADO: Usar includes para garantir que as questoes são carregadas ANTES de serializar
+        # e usar `methods: :opcoes_array` para incluir o array de opções para questões
+        render json: template.as_json(include: { questoes: { methods: :opcoes_array } }), status: :ok
       rescue ActiveRecord::RecordNotFound
         render json: { error: "Template não encontrado" }, status: :not_found
       rescue => e
         render json: { error: "Ocorreu um erro ao buscar o template: #{e.message}" }, status: :internal_server_error
       end
       # GET /api/v1/templates/:id
-    
 
       # POST /api/v1/templates
       def create

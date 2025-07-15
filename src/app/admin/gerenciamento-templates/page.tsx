@@ -27,27 +27,29 @@ import { useState, useEffect } from 'react';
 
 import { useRouter } from 'next/navigation';
 
+// MODIFICADO: Interface Template para incluir 'questoes' com todas as propriedades
 interface Template {
   id: number;
   titulo: string;
   created_at: string;
   questoes: Array<{
-    id?: number;
+    id?: number; // Questões existentes terão ID, novas no frontend podem não ter (ainda)
     tipo: string;
     enunciado: string;
     obrigatoria: boolean;
-    opcoes?: string;
-    _destroy?: boolean;
+    opcoes?: string; // Mantém como string para o Input
+    _destroy?: boolean; // Para lidar com a remoção de questões aninhadas no Rails
   }>;
 }
 
+// MODIFICADO: Interface Question para incluir 'obrigatoria' e '_destroy'
 interface Question {
-  id: number;
+  id: number | string; // MODIFICADO: ID pode ser number (do DB) ou string (temporário de Date.now())
   type: string;
   text: string;
   options?: string;
   obrigatoria: boolean;
-  _destroy?: boolean;
+  _destroy?: boolean; // Propriedade para marcar questão para remoção no Rails
 }
 
 const API_BASE_URL = 'http://localhost:3000/api/v1';
@@ -57,10 +59,13 @@ export default function GerenciamentoTemplatesPage() {
   const [activeSection, setActiveSection] = useState('gerenciamento');
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [templateName, setTemplateName] = useState('');
+
+  // ESTADO CRÍTICO PARA A EDIÇÃO: Armazena o ID do template que está sendo editado. 'null' indica modo de criação.
   const [editingTemplateId, setEditingTemplateId] = useState<number | null>(null);
 
+  // Questões iniciais com obrigatoriedade padrão e ID temporário
   const [questions, setQuestions] = useState<Question[]>([
-    { id: Date.now(), type: 'texto', text: '', obrigatoria: false, options: '' },
+    { id: 'new-temp-1', type: 'texto', text: '', obrigatoria: false, options: '' }, // MODIFICADO: Usando string para ID temporário
   ]);
 
   const [templates, setTemplates] = useState<Template[]>([]);
@@ -195,13 +200,13 @@ export default function GerenciamentoTemplatesPage() {
     console.log('DEBUG: Clicou em Adicionar Novo Template');
     setEditingTemplateId(null); // Define como null para indicar que é um novo template (criação)
     setTemplateName(''); // Limpa o nome para um novo template
-    setQuestions([{ id: Date.now(), type: 'texto', text: '', obrigatoria: false, options: '' }]); // Limpa questões
+    setQuestions([{ id: 'new-temp-1', type: 'texto', text: '', obrigatoria: false, options: '' }]); // MODIFICADO: Limpa questões com ID temporário de string
     setEditModalOpen(true);
   };
 
   const handleAddQuestion = () => {
     const newQuestion: Question = {
-      id: Date.now(), // ID único para novas questões no frontend
+      id: `new-temp-${Date.now()}`, // MODIFICADO: ID único para novas questões no frontend (string)
       type: 'texto',
       text: '',
       obrigatoria: false,
@@ -211,7 +216,7 @@ export default function GerenciamentoTemplatesPage() {
   };
 
   const handleQuestionChange = (
-    questionId: number,
+    questionId: number | string, // MODIFICADO: questionId pode ser number ou string
     field: string,
     value: string | boolean
   ) => {
@@ -220,17 +225,17 @@ export default function GerenciamentoTemplatesPage() {
     );
   };
 
-  const handleRemoveQuestion = (idToRemove: number) => {
+  const handleRemoveQuestion = (idToRemove: number | string) => { // MODIFICADO: idToRemove pode ser number ou string
     setQuestions(prevQuestions => {
       return prevQuestions
         .map(q => {
           if (q.id === idToRemove) {
-            // Se a questão já tem ID do banco (não é um ID temporário), marque para _destroy
+            // Se a questão já tem ID do banco (é um número e maior que 0), marque para _destroy
             if (typeof q.id === 'number' && q.id > 0) {
               console.log(`DEBUG: Marcando questão ID ${q.id} para _destroy.`);
               return { ...q, _destroy: true };
             } else {
-              // Se é uma questão nova (ID temporário) e está sendo removida,
+              // Se é uma questão nova (ID temporário string) e está sendo removida,
               // simplesmente a removemos do estado (não precisa enviar para Rails).
               console.log(`DEBUG: Removendo nova questão ID ${q.id} do frontend.`);
               return null; // Marcar para remoção na filtragem
@@ -242,116 +247,119 @@ export default function GerenciamentoTemplatesPage() {
     });
   };
 
-const handleSaveTemplate = async () => {
-  console.log("DEBUG: Valor de editingTemplateId ao salvar:", editingTemplateId);
+  const handleSaveTemplate = async () => {
+    console.log("DEBUG: Valor de editingTemplateId ao salvar:", editingTemplateId);
 
-  // NOVO: Validação de Frontend para Título
-  if (!templateName.trim()) { // .trim() remove espaços e verifica se a string é vazia
-    alert('O título do template é obrigatório.');
-    console.log('DEBUG: Salvamento interrompido: Título vazio.');
-    return; // Interrompe a função se o título estiver vazio
-  }
-
-  // NOVO: Validação de Frontend para pelo menos uma questão válida
-  // Conta apenas as questões que NÃO estão marcadas para destruir (q._destroy é falsey)
-  // e que têm um enunciado não vazio.
-  const activeQuestions = questions.filter(q => !q._destroy);
-  const hasValidActiveQuestions = activeQuestions.some(q => q.enunciado && q.enunciado.trim() !== '');
-
-  if (activeQuestions.length === 0 || !hasValidActiveQuestions) {
-    alert('Adicione pelo menos uma questão válida ao template.');
-    console.log('DEBUG: Salvamento interrompido: Nenhuma questão válida presente.');
-    return; // Interrompe a função se não houver questões válidas
-  }
-
-  const method = editingTemplateId ? 'PUT' : 'POST';
-  const url = editingTemplateId ? `${API_BASE_URL}/templates/${editingTemplateId}` : `${API_BASE_URL}/templates`;
-
-  console.log(`DEBUG: Requisição Final: Método ${method}, URL ${url}`);
-
-  // Refinado: Mapeia e filtra as questões que serão enviadas para o Rails
-  const questionsToSend = questions.filter(q => {
-    // Filtrar questões que são nulas (removidas do frontend por handleRemoveQuestion para novas questões).
-    if (q === null) return false;
-
-    // Se a questão está marcada para _destroy, ela deve ser incluída no payload APENAS se tiver um ID real.
-    if (q._destroy) {
-      return typeof q.id === 'number' && q.id > 0; // Só envia _destroy para questões existentes
+    // NOVO: Validação de Frontend para Título
+    if (!templateName.trim()) {
+      alert('O título do template é obrigatório.');
+      console.log('DEBUG: Salvamento interrompido: Título vazio.');
+      return;
     }
-    
-    // Se a questão NÃO está marcada para _destroy, ela deve ser válida (enunciado não vazio).
-    return q.enunciado !== undefined && q.enunciado !== null && q.enunciado.trim() !== '';
-  }).map(q => {
-    if (q._destroy) {
-      return { id: q.id, _destroy: true };
-    }
-    // Para questões a serem salvas/atualizadas:
-    return {
-      // AJUSTE CRUCIAL AQUI: O ID da questão só é enviado se o TEMPLATE PAI JÁ EXISTE (editingTemplateId não é null)
-      // E se o ID da questão for um número válido (não um ID temporário do Date.now()).
-      id: (editingTemplateId && typeof q.id === 'number' && q.id > 0) ? q.id : undefined,
-      tipo: q.type,
-      enunciado: q.enunciado,
-      obrigatoria: q.obrigatoria,
-      opcoes: q.options ? q.options.split(',').map(item => item.trim()) : [],
-    };
-  });
 
-  const payload = {
-    template: {
-      titulo: templateName,
-      questoes_attributes: questionsToSend
-    }
-  };
+    // Refinado: Mapeia e filtra as questões que realmente serão enviadas para o Rails
+    const questionsToSend = questions.filter(q => {
+      // Filtrar questões que são nulas (removidas do frontend por handleRemoveQuestion para novas questões).
+      if (q === null) return false;
 
-  console.log("DEBUG: Enviando payload:", payload, " para URL:", url, " com método:", method);
-
-  try {
-    let csrfToken = '';
-    const csrfMeta = document.querySelector("meta[name='csrf-token']");
-    if (csrfMeta) {
-      csrfToken = csrfMeta.getAttribute("content") || '';
-    }
-    
-    const response = await fetch(url, {
-      method: method,
-      headers: {
-        'Content-Type': 'application/json',
-        ...(csrfToken && { 'X-CSRF-Token': csrfToken })
-      },
-      body: JSON.stringify(payload)
+      // Se a questão está marcada para _destroy, ela deve ser incluída no payload APENAS se tiver um ID real.
+      if (q._destroy) {
+        return typeof q.id === 'number' && q.id > 0; // Só envia _destroy para questões existentes
+      }
+      
+      // Se a questão NÃO está marcada para _destroy, ela deve ser válida (enunciado não vazio).
+      return q.enunciado !== undefined && q.enunciado !== null && q.enunciado.trim() !== '';
+    }).map(q => {
+      if (q._destroy) {
+        // Se a questão foi marcada para destruição, enviamos o ID e o _destroy: true.
+        return { id: q.id as number, _destroy: true }; // Cast para number, pois já filtramos que tem ID real
+      }
+      // Para questões que NÃO foram marcadas para destruição (serão salvas ou atualizadas):
+      return {
+        // AJUSTE CRUCIAL AQUI: O ID da questão SÓ é incluído no payload se:
+        // 1. Estivermos em modo de EDIÇÃO (editingTemplateId não é null) E
+        // 2. O 'id' da questão for um número válido (> 0), indicando que é um ID do banco de dados.
+        // Caso contrário (modo de criação ou nova questão em edição), o 'id' será 'undefined'
+        // para que o Rails crie um novo.
+        id: (editingTemplateId !== null && typeof q.id === 'number' && q.id > 0) ? q.id as number : undefined, // Cast para number se for enviado
+        tipo: q.type,
+        enunciado: q.enunciado,
+        obrigatoria: q.obrigatoria,
+        opcoes: q.options ? q.options.split(',').map(item => item.trim()) : [],
+      };
     });
 
-    if (response.ok) {
-      const result = await response.json();
-      alert(result.mensagem);
-      setEditModalOpen(false);
-      fetchTemplates();
-    } else {
-      const errorBody = await response.text();
-      let errorMessage = "Erro desconhecido ao salvar template.";
-      try {
-        const errorData = JSON.parse(errorBody);
-        if (errorData.erro) {
-            errorMessage = errorData.erro;
-        } else if (errorData.errors) {
-            errorMessage = Object.entries(errorData.errors)
-                                .map(([field, messages]) => `${field}: ${(messages as string[]).join(', ')}`)
-                                .join('\n');
-        } else if (errorData.message) {
-            errorMessage = errorData.message;
-        }
-      } catch (e) {
-        errorMessage = errorBody || "Mensagem de erro não disponível.";
-      }
-      console.error('DEBUG: Erro ao salvar template:', response.status, errorMessage);
-      alert(`Erro ao salvar:\nStatus: ${response.status}\nDetalhes: ${errorMessage}`);
+    // NOVO: Validação de Frontend para pelo menos uma questão válida (após filtragem para o payload)
+    // Conta apenas as questões que não estão marcadas para destruir E que não são nulas
+    // Filtra novamente, para ter certeza que só conta as que VÃO ser salvas (não destruídas)
+    const activeQuestionsAfterFilter = questionsToSend.filter(q => !q._destroy);
+
+    if (activeQuestionsAfterFilter.length === 0) { // Se não sobrou nenhuma questão válida para enviar
+      alert('Adicione pelo menos uma questão válida ao template.');
+      console.log('DEBUG: Salvamento interrompido: Nenhuma questão válida restante após filtragem.');
+      return; // Interrompe a função se não houver questões válidas
     }
-  } catch (error) {
-    console.error('DEBUG: Falha na comunicação com o servidor:', error);
-    alert('Não foi possível conectar ao servidor. Tente novamente.');
-  }
-};
+
+    const method = editingTemplateId ? 'PUT' : 'POST';
+    const url = editingTemplateId ? `${API_BASE_URL}/templates/${editingTemplateId}` : `${API_BASE_URL}/templates`;
+
+    console.log(`DEBUG: Requisição Final: Método ${method}, URL ${url}`);
+
+    const payload = {
+      template: {
+        titulo: templateName,
+        questoes_attributes: questionsToSend
+      }
+    };
+
+    console.log("DEBUG: Enviando payload:", payload, " para URL:", url, " com método:", method);
+
+    try {
+      let csrfToken = '';
+      const csrfMeta = document.querySelector("meta[name='csrf-token']");
+      if (csrfMeta) {
+        csrfToken = csrfMeta.getAttribute("content") || '';
+      }
+      
+      const response = await fetch(url, {
+        method: method,
+        headers: {
+          'Content-Type': 'application/json',
+          ...(csrfToken && { 'X-CSRF-Token': csrfToken })
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        alert(result.mensagem);
+        setEditModalOpen(false);
+        fetchTemplates();
+      } else {
+        const errorBody = await response.text();
+        let errorMessage = "Erro desconhecido ao salvar template.";
+        try {
+          const errorData = JSON.parse(errorBody);
+          if (errorData.erro) {
+              errorMessage = errorData.erro;
+          } else if (errorData.errors) {
+              errorMessage = Object.entries(errorData.errors)
+                                  .map(([field, messages]) => `${field}: ${(messages as string[]).join(', ')}`)
+                                  .join('\n');
+          } else if (errorData.message) {
+              errorMessage = errorData.message;
+          }
+        } catch (e) {
+          errorMessage = errorBody || "Mensagem de erro não disponível.";
+        }
+        console.error('DEBUG: Erro ao salvar template:', response.status, errorMessage);
+        alert(`Erro ao salvar:\nStatus: ${response.status}\nDetalhes: ${errorMessage}`);
+      }
+    } catch (error) {
+      console.error('DEBUG: Falha na comunicação com o servidor:', error);
+      alert('Não foi possível conectar ao servidor. Tente novamente.');
+    }
+  };
 
   const router = useRouter();
 
@@ -529,7 +537,6 @@ const handleSaveTemplate = async () => {
             </div>
 
             {/* Questions */}
-            {/* MODIFICADO: Filtra questões marcadas para _destroy para não renderizá-las */}
             {questions.filter(q => !q._destroy).map((question, index) => (
               <div
                 key={question.id} // Chave única para cada questão
@@ -553,6 +560,7 @@ const handleSaveTemplate = async () => {
                         <SelectItem value="Escala">Escala</SelectItem>
                         <SelectItem value="Texto">Texto</SelectItem>
                         <SelectItem value="Checkbox">Checkbox</SelectItem>
+                        <SelectItem value="Radio">Radio</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>

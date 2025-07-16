@@ -1,6 +1,3 @@
 {
-  "/page": "app/page.js",
-  "/admin/page": "app/admin/page.js",
-  "/admin/gerenciamento-templates/page": "app/admin/gerenciamento-templates/page.js",
-  "/admin/gerenciamento/page": "app/admin/gerenciamento/page.js"
+  "/admin/gerenciamento-templates/page": "app/admin/gerenciamento-templates/page.js"
 }

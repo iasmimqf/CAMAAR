@@ -217,9 +217,6 @@
     <entry key="config/cable">
       <value>file://$MODULE_DIR$/config/cable.yml</value>
     </entry>
-    <entry key="config/cache">
-      <value>file://$MODULE_DIR$/config/cache.yml</value>
-    </entry>
     <entry key="config/database">
       <value>file://$MODULE_DIR$/config/database.yml</value>
     </entry>
@@ -240,6 +237,9 @@
     </entry>
     <entry key="config/routes.rb">
       <value>file://$MODULE_DIR$/config/routes.rb</value>
+    </entry>
+    <entry key="config/secrets">
+      <value>file://$MODULE_DIR$/config</value>
     </entry>
     <entry key="config/solid_cache">
       <value>file://$MODULE_DIR$/config/solid_cache.yml</value>

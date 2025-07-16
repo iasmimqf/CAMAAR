@@ -1,0 +1,19 @@
+[
+  {
+    "code": "CIC0097",
+    "classCode": "TA",
+    "semester": "2021.2",
+    "docente": {
+        "nome": "Professor Teste",
+        "usuario": "999999",
+        "email": "professor.teste@email.com"
+    },
+    "dicente": [
+      {
+        "nome": "Ana Clara Jordao Perna",
+        "matricula": "190084006",
+        "email": "acjpjvjp@gmail.com"
+      }
+    ]
+  }
+]

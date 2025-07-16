@@ -1,0 +1,33 @@
+<h1>Defina sua Senha</h1>
+
+<%# Exibe mensagem de token inválido/expirado personalizada %>
+<% if resource.errors[:reset_password_token].present? %>
+  <div class="alert alert-danger">
+    <%= t('devise.errors.messages.invalid_token') %>
+  </div>
+<% end %>
+
+<%# Exibe outras mensagens de erro padrão do Devise %>
+<%= devise_error_messages! %>
+
+<%# As mensagens flash (sucesso/alerta) serão exibidas no layout principal (application.html.erb) %>
+<%# e não aqui diretamente, pois haverá um redirecionamento. %>
+
+<%# O formulário é sempre exibido se não houver um redirecionamento bem-sucedido %>
+<%= form_with model: @usuario, url: usuario_password_path, method: :patch, local: true do |form| %>
+  <%= form.hidden_field :reset_password_token, value: params[:reset_password_token] %>
+
+  <div>
+    <%= form.label :password, "Nova Senha" %>
+    <%= form.password_field :password, autofocus: true, autocomplete: "new-password", required: true %>
+  </div>
+
+  <div>
+    <%= form.label :password_confirmation, "Confirmar Senha" %>
+    <%= form.password_field :password_confirmation, autocomplete: "new-password", required: true %>
+  </div>
+
+  <div>
+    <%= form.submit "Salvar Senha" %>
+  </div>
+<% end %>

@@ -39,6 +39,17 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_14_021650) do
     t.integer "turma_id", null: false
   end
 
+  create_table "password_reset_tokens", force: :cascade do |t|
+    t.integer "usuario_id", null: false
+    t.string "token", null: false
+    t.datetime "expires_at", null: false
+    t.boolean "used", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["token"], name: "index_password_reset_tokens_on_token", unique: true
+    t.index ["usuario_id"], name: "index_password_reset_tokens_on_usuario_id"
+  end
+
   create_table "questoes", force: :cascade do |t|
     t.text "enunciado", null: false
     t.string "tipo", null: false
@@ -106,6 +117,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_14_021650) do
 
   add_foreign_key "formularios", "templates"
   add_foreign_key "formularios", "usuarios", column: "criador_id"
+  add_foreign_key "password_reset_tokens", "usuarios"
   add_foreign_key "questoes", "templates"
   add_foreign_key "respostas", "formularios"
   add_foreign_key "respostas", "usuarios", column: "avaliador_id"

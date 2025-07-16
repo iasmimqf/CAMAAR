@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
+  // A linha 'swcMinify: true,' foi removida daqui.
   eslint: {
     ignoreDuringBuilds: true,
   },

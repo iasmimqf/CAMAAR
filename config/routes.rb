@@ -1,6 +1,8 @@
 # config/routes.rb
 Rails.application.routes.draw do
-  devise_for :usuarios
+  devise_for :usuarios, controllers: {
+    sessions: 'usuarios/sessions'
+  }
   get "home/index"
 
   namespace :admin do

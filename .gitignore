@@ -48,3 +48,6 @@ Thumbs.db
 /src/node_modules
 # Ignore os relatórios de cobertura de testes.
 /coverage/
+
+/app/assets/builds/*
+!/app/assets/builds/.keep

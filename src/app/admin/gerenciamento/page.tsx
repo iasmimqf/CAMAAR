@@ -13,6 +13,9 @@ export default function GerenciamentoPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("gerenciamento")
   const [importDataModalOpen, setImportDataModalOpen] = useState(false) 
+  
+
+  const router = useRouter();
 
   const handleLogout = () => {
     console.log("Admin logout clicked")
@@ -43,7 +46,43 @@ export default function GerenciamentoPage() {
     // adicionar logica para importar alunos
   }
 
-  const router = useRouter();
+   const handleFileUpload = async () => {
+    if (!selectedFile || !uploadType) {
+      alert("Por favor, selecione um arquivo.");
+      return;
+    }
+
+    // Define a rota do backend baseada no tipo de upload
+    const uploadPath = uploadType === 'turmas'
+        ? 'http://localhost:3001/admin/import/turmas'
+        : 'http://localhost:3001/admin/import/alunos';
+
+    // FormData é o objeto especial para enviar arquivos
+    const formData = new FormData();
+    formData.append('file', selectedFile); // A chave 'file' deve corresponder ao que o controller espera (params[:file])
+
+    try {
+      const response = await fetch(uploadPath, {
+        method: 'POST',
+        body: formData, // Ao enviar FormData, o browser define o 'Content-Type' correto automaticamente
+      });
+
+      const result = await response.json(); // Supondo que seu backend responda com JSON
+
+      if (response.ok) {
+        alert(result.notice || "Arquivo enviado com sucesso!");
+      } else {
+        alert(result.alert || "Ocorreu um erro.");
+      }
+    } catch (error) {
+      alert("Erro de rede ao tentar enviar o arquivo.");
+    } finally {
+      // Fecha o modal e reseta os estados após o upload
+      setImportDataModalOpen(false);
+      setUploadType(null);
+      setSelectedFile(null);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-200">
@@ -159,28 +198,70 @@ export default function GerenciamentoPage() {
           </div>
         </main>
       </div>
-
-      {/* Import Data Modal */}
-      <Dialog open={importDataModalOpen} onOpenChange={setImportDataModalOpen}>
+      <Dialog open={importDataModalOpen} onOpenChange={(isOpen) => {
+        if (!isOpen) {
+          setImportDataModalOpen(false);
+          setUploadType(null); // Reseta o estado ao fechar o modal
+          setSelectedFile(null);
+        }
+      }}>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Importar Dados</DialogTitle>
+            {/* O título muda dependendo do estado */}
+            <DialogTitle>
+              {uploadType === 'turmas' && 'Importar Arquivo de Turmas'}
+              {uploadType === 'alunos' && 'Importar Arquivo de Alunos'}
+              {!uploadType && 'Importar Dados'}
+            </DialogTitle>
           </DialogHeader>
-          <div className="grid gap-4 py-4">
-            <Button
-              onClick={handleImportClasses}
-              className="w-full bg-green-500 hover:bg-green-800 text-white font-medium py-3 px-6 rounded-md transition-colors duration-200"
-            >
-              Importar Turmas
-            </Button>
-            <Button
-              onClick={handleImportStudents}
-              className="w-full bg-green-500 hover:bg-green-800 text-white font-medium py-3 px-6 rounded-md transition-colors duration-200"
-            >
-              Importar Alunos
-            </Button>
-          </div>
+          {/* --- CONTEÚDO DINÂMICO DO MODAL --- */}
+          {!uploadType ? (
+              // Estado Inicial: Mostra os botões de seleção
+              <div className="grid gap-4 py-4">
+                <Button
+                    onClick={() => setUploadType('turmas')}
+                    className="w-full bg-green-500 hover:bg-green-800 text-white font-medium py-3 px-6 rounded-md transition-colors duration-200"
+                >Importar Turmas</Button>
+                <Button onClick={() => setUploadType('alunos')}
+                        className="w-full bg-green-500 hover:bg-green-800 text-white font-medium py-3 px-6 rounded-md transition-colors duration-200"
+                >Importar Alunos</Button>
+              </div>
+          ) : (
+              // Estado de Upload: Mostra o formulário de upload
+              <div className="grid gap-4 py-4">
+                <p>Selecione o arquivo .json para fazer o upload.</p>
+
+                {/* Botão que aciona o input de arquivo escondido */}
+                <Button variant="outline" onClick={() => fileInputRef.current?.click()}
+                        className="w-full bg-green-500 hover:bg-green-800 text-white font-medium py-3 px-6 rounded-md transition-colors duration-200"
+                >
+                  Escolher Arquivo
+                </Button>
+
+                {/* Mostra o nome do arquivo selecionado */}
+                {selectedFile && <p className="text-sm text-gray-500">Arquivo: {selectedFile.name}</p>}
+
+                {/* O input de arquivo real, que fica escondido */}
+                <input
+                    type="file"
+                    ref={fileInputRef}
+                    onChange={(e) => setSelectedFile(e.target.files?.[0] || null)}
+                    className="hidden"
+                    accept=".json"
+                />
+              </div>
+          )}
+          {/* --- FIM DO CONTEÚDO DINÂMICO --- */}
+
           <DialogFooter>
+            {/* O botão de Enviar só aparece se um arquivo foi selecionado */}
+            {selectedFile && (
+                <Button onClick={handleFileUpload}
+                        className="bg-green-500 text-white font-medium py-3 px-6 rounded-md transition-colors duration-200"
+                >
+                  Enviar
+                </Button>
+            )}
             <Button variant="outline" onClick={() => setImportDataModalOpen(false)}>
               Cancelar
             </Button>

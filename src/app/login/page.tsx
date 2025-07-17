@@ -21,7 +21,7 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
-      // ATENÇÃO: Verifique se a porta do seu servidor Rails é 3000 ou 3001
+      // ATENÇÃO: Verifique se a porta do seu servidor Rails é 3000
       const response = await fetch('http://localhost:3000/usuarios/sign_in.json', {
         method: 'POST',
         headers: {

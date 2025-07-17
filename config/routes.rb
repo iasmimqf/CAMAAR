@@ -38,6 +38,9 @@ Rails.application.routes.draw do
         # Se no futuro suas questões forem um recurso aninhado na API:
         # resources :questoes, only: [:index, :show, :create, :update, :destroy]
       end
+      post 'password', to: 'passwords#forgot'
+        # Rota para o usuário submeter a nova senha com o token.
+      put 'password', to: 'passwords#reset'
     end
   end
   # --- FIM DO NOVO BLOCO DE ROTAS DA API ---
@@ -53,4 +56,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "home#index"
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 end

@@ -3,6 +3,7 @@ class Questao < ApplicationRecord
   self.table_name = 'questoes'
 
   belongs_to :template
+  has_many :resposta_questoes, class_name: 'RespostaQuestao', dependent: :destroy
 
   validates :enunciado, presence: { message: "O enunciado é obrigatório" }
 

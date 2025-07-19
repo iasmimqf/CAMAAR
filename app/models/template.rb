@@ -17,7 +17,14 @@ class Template < ApplicationRecord
   # MODIFICADO: Ajuste no reject_if para lidar melhor com _destroy
   accepts_nested_attributes_for :questoes, allow_destroy: true, reject_if: proc { |attributes| attributes['id'].blank? && attributes['enunciado'].blank? && attributes['tipo'].blank? }
 
+  # Permite pular a validação de questões durante criação programática
   attr_accessor :skip_questoes_validation
+
+  # Scope para templates com questões
+  scope :com_questoes, -> { joins(:questoes).distinct }
+  
+  # Scope para templates de um criador específico
+  scope :do_criador, ->(usuario) { where(criador: usuario) }
 
   private
 

@@ -1,5 +1,8 @@
 {
-  "/page": "app/page.js",
-  "/login/recuperar-senha/page": "app/login/recuperar-senha/page.js",
-  "/definir-senha/page": "app/definir-senha/page.js"
+  "/login/page": "app/login/page.js",
+  "/aluno/page": "app/aluno/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/admin/gerenciamento/page": "app/admin/gerenciamento/page.js",
+  "/admin/gerenciamento-templates/page": "app/admin/gerenciamento-templates/page.js",
+  "/page": "app/page.js"
 }

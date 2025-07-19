@@ -7482,3 +7482,458 @@ Processing by Api::V1::PasswordsController#reset as */*
 Completed 422 Unprocessable Content in 790ms (Views: 0.2ms | ActiveRecord: 0.5ms | Allocations: 1853)
 
 
+Started POST "/usuarios/sign_in.json" for ::1 at 2025-07-18 11:48:23 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "admin@meusistema.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "admin@meusistema.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (1.5ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'admin@meusistema.com' OR lower(matricula) = 'admin@meusistema.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:28:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 1467ms (Views: 0.3ms | ActiveRecord: 21.4ms | Allocations: 12998)
+
+
+Started POST "/usuarios/sign_in.json" for ::1 at 2025-07-18 11:48:46 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "admin@meusistema.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "admin@meusistema.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.8ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'admin@meusistema.com' OR lower(matricula) = 'admin@meusistema.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:28:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 692ms (Views: 0.6ms | ActiveRecord: 0.8ms | Allocations: 1059)
+
+
+Started POST "/usuarios/sign_in.json" for ::1 at 2025-07-18 11:51:14 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "admin@meusistema.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "admin@meusistema.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.9ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'admin@meusistema.com' OR lower(matricula) = 'admin@meusistema.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:28:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 687ms (Views: 0.2ms | ActiveRecord: 0.9ms | Allocations: 1052)
+
+
+Started POST "/usuarios/sign_in.json" for ::1 at 2025-07-18 11:55:21 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "admin@meusistema.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "admin@meusistema.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (1.5ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'admin@meusistema.com' OR lower(matricula) = 'admin@meusistema.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:28:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 748ms (Views: 0.4ms | ActiveRecord: 1.5ms | Allocations: 1039)
+
+
+Started POST "/api/v1/password" for ::1 at 2025-07-18 11:55:29 -0300
+Processing by Api::V1::PasswordsController#forgot as */*
+  Parameters: {"login" => "cauakamuratt@gmail.com", "password" => {"login" => "cauakamuratt@gmail.com"}}
+  [1m[36mUsuario Load (0.6ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'cauakamuratt@gmail.com' OR lower(matricula) = 'cauakamuratt@gmail.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/v1/passwords_controller.rb:11:in 'Api::V1::PasswordsController#forgot'
+  [1m[36mUsuario Load (0.8ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."reset_password_token" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["reset_password_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/passwords_controller.rb:15:in 'Api::V1::PasswordsController#forgot'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/passwords_controller.rb:15:in 'Api::V1::PasswordsController#forgot'
+  [1m[36mUsuario Update (4.7ms)[0m  [1m[33mUPDATE "usuarios" SET "updated_at" = ?, "reset_password_token" = ?, "reset_password_sent_at" = ? WHERE "usuarios"."id" = ?[0m  [["updated_at", "2025-07-18 14:55:48.071316"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["id", 4]]
+  ↳ app/controllers/api/v1/passwords_controller.rb:15:in 'Api::V1::PasswordsController#forgot'
+  [1m[36mTRANSACTION (6.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/passwords_controller.rb:15:in 'Api::V1::PasswordsController#forgot'
+  Rendering usuarios/mailer/reset_password_instructions.html.erb
+  Rendered usuarios/mailer/reset_password_instructions.html.erb (Duration: 4.2ms | Allocations: 203)
+CustomDeviseMailer#reset_password_instructions: processed outbound mail in 4270.1ms
+Delivered mail 687a6067281fc_90334b898654@Kamuratt.mail (3671.0ms)
+Date: Fri, 18 Jul 2025 11:55:35 -0300
+From: camaarkk@gmail.com
+Reply-To: camaarkk@gmail.com
+To: cauakamuratt@gmail.com
+Message-ID: <687a6067281fc_90334b898654@Kamuratt.mail>
+Subject: =?UTF-8?Q?Instru=C3=A7=C3=B5es_de_redefini=C3=A7=C3=A3o_de_senha?=
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Type=
+' />
+  <style>
+    body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; m=
+argin: 0; padding: 0; background-color: #f6f6f6; }
+    .container { width: 100%; max-width: 600px; margin: 0 auto; padding: =
+20px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4p=
+x rgba(0,0,0,0.1); }
+    .header { text-align: center; padding-bottom: 20px; border-bottom: 1p=
+x solid #eeeeee; }
+    .header h1 { color: #333333; }
+    .content { padding: 20px 0; }
+    .content p { color: #555555; line-height: 1.6; }
+    .cta-button { display: block; width: 200px; margin: 20px auto; paddin=
+g: 15px 20px; background-color: #22c55e; /* COR DO BOT=C3=83O ALTERADA PA=
+RA VERDE */ color: #ffffff; text-align: center; text-decoration: none; bo=
+rder-radius: 5px; font-weight: bold; }
+    .footer { text-align: center; padding-top: 20px; border-top: 1px soli=
+d #eeeeee; font-size: 12px; color: #999999; }
+  </style>
+</head>
+<body>
+  <div class=3D"container">
+    <div class=3D"header">
+      <h1>CAMAAR</h1>
+    </div>
+    <div class=3D"content">
+      <p>Ol=C3=A1, cauakamuratt@gmail.com!</p>
+      =
+
+      <p>Recebemos uma solicita=C3=A7=C3=A3o para redefinir a senha da su=
+a conta. Se foi voc=C3=AA, clique no bot=C3=A3o abaixo para escolher uma =
+nova senha.</p>
+      =
+
+      <a href=3D"http://localhost:3002/definir-senha?token=3DDMMGo26zm17X=
+sAoXHCfs" class=3D"cta-button">Redefinir Minha Senha</a>
+      =
+
+      <p>Este link de redefini=C3=A7=C3=A3o de senha expirar=C3=A1 em 6 h=
+oras.</p>
+      <p>Se voc=C3=AA n=C3=A3o solicitou esta altera=C3=A7=C3=A3o, pode i=
+gnorar este e-mail com seguran=C3=A7a. Sua senha n=C3=A3o ser=C3=A1 alter=
+ada.</p>
+      <p>Atenciosamente,<br>Equipe CAMAAR</p>
+    </div>
+    <div class=3D"footer">
+      <p>&copy; 2025 CAMAAR. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</body>
+</html>=
+
+Completed 200 OK in 9103ms (Views: 0.3ms | ActiveRecord: 12.5ms | Allocations: 313047)
+
+
+Started PUT "/api/v1/password" for ::1 at 2025-07-18 11:56:37 -0300
+Processing by Api::V1::PasswordsController#reset as */*
+  Parameters: {"reset_password_token" => "[FILTERED]", "password" => "[FILTERED]", "password_confirmation" => "[FILTERED]"}
+  [1m[36mUsuario Load (0.9ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."reset_password_token" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["reset_password_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/passwords_controller.rb:30:in 'Api::V1::PasswordsController#reset'
+Completed 422 Unprocessable Content in 847ms (Views: 0.3ms | ActiveRecord: 0.9ms | Allocations: 7248)
+
+
+Started PUT "/api/v1/password" for ::1 at 2025-07-18 11:56:53 -0300
+Processing by Api::V1::PasswordsController#reset as */*
+  Parameters: {"reset_password_token" => "[FILTERED]", "password" => "[FILTERED]", "password_confirmation" => "[FILTERED]"}
+  [1m[36mUsuario Load (0.8ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."reset_password_token" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["reset_password_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/passwords_controller.rb:30:in 'Api::V1::PasswordsController#reset'
+Completed 422 Unprocessable Content in 800ms (Views: 0.2ms | ActiveRecord: 0.7ms | Allocations: 2193)
+
+
+Started POST "/usuarios/sign_in.json" for ::1 at 2025-07-18 11:57:05 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "admin@meusistema.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "admin@meusistema.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.8ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'admin@meusistema.com' OR lower(matricula) = 'admin@meusistema.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:28:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 755ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 1042)
+
+
+Started POST "/usuarios/sign_in.json" for ::1 at 2025-07-18 11:57:26 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "admin@meusistema.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "admin@meusistema.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (1.0ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'admin@meusistema.com' OR lower(matricula) = 'admin@meusistema.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:28:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 759ms (Views: 0.2ms | ActiveRecord: 1.0ms | Allocations: 1039)
+
+
+Started POST "/usuarios/sign_in.json" for ::1 at 2025-07-18 12:00:34 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "98765", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "98765", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.7ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '98765' OR lower(matricula) = '98765') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:28:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 745ms (Views: 0.5ms | ActiveRecord: 0.7ms | Allocations: 1040)
+
+
+Started GET "/api/v1/templates" for ::1 at 2025-07-18 12:06:22 -0300
+Processing by Api::V1::TemplatesController#index as */*
+  [1m[36mTemplate Load (16.5ms)[0m  [1m[34mSELECT "templates".* FROM "templates"[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:16:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 758ms (Views: 4.3ms | ActiveRecord: 28.8ms | Allocations: 5382)
+
+
+Started POST "/api/v1/password" for ::1 at 2025-07-18 21:23:31 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::PasswordsController#forgot as */*
+  Parameters: {"login" => "cauakamuratt@gmail.com", "password" => {"login" => "cauakamuratt@gmail.com"}}
+  [1m[36mUsuario Load (1.9ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'cauakamuratt@gmail.com' OR lower(matricula) = 'cauakamuratt@gmail.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/v1/passwords_controller.rb:11:in 'Api::V1::PasswordsController#forgot'
+  [1m[36mUsuario Load (0.7ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."reset_password_token" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["reset_password_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/passwords_controller.rb:15:in 'Api::V1::PasswordsController#forgot'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/passwords_controller.rb:15:in 'Api::V1::PasswordsController#forgot'
+  [1m[36mUsuario Update (2.9ms)[0m  [1m[33mUPDATE "usuarios" SET "updated_at" = ?, "reset_password_token" = ?, "reset_password_sent_at" = ? WHERE "usuarios"."id" = ?[0m  [["updated_at", "2025-07-19 00:23:34.383103"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["id", 4]]
+  ↳ app/controllers/api/v1/passwords_controller.rb:15:in 'Api::V1::PasswordsController#forgot'
+  [1m[36mTRANSACTION (5.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/passwords_controller.rb:15:in 'Api::V1::PasswordsController#forgot'
+  Rendering usuarios/mailer/reset_password_instructions.html.erb
+  Rendered usuarios/mailer/reset_password_instructions.html.erb (Duration: 5.2ms | Allocations: 207)
+CustomDeviseMailer#reset_password_instructions: processed outbound mail in 5079.2ms
+Delivered mail 687ae58c3e5_4d422e06663a@Kamuratt.mail (4093.2ms)
+Date: Fri, 18 Jul 2025 21:23:40 -0300
+From: camaarkk@gmail.com
+Reply-To: camaarkk@gmail.com
+To: cauakamuratt@gmail.com
+Message-ID: <687ae58c3e5_4d422e06663a@Kamuratt.mail>
+Subject: =?UTF-8?Q?Instru=C3=A7=C3=B5es_de_redefini=C3=A7=C3=A3o_de_senha?=
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Type=
+' />
+  <style>
+    body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; m=
+argin: 0; padding: 0; background-color: #f6f6f6; }
+    .container { width: 100%; max-width: 600px; margin: 0 auto; padding: =
+20px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4p=
+x rgba(0,0,0,0.1); }
+    .header { text-align: center; padding-bottom: 20px; border-bottom: 1p=
+x solid #eeeeee; }
+    .header h1 { color: #333333; }
+    .content { padding: 20px 0; }
+    .content p { color: #555555; line-height: 1.6; }
+    .cta-button { display: block; width: 200px; margin: 20px auto; paddin=
+g: 15px 20px; background-color: #22c55e; /* COR DO BOT=C3=83O ALTERADA PA=
+RA VERDE */ color: #ffffff; text-align: center; text-decoration: none; bo=
+rder-radius: 5px; font-weight: bold; }
+    .footer { text-align: center; padding-top: 20px; border-top: 1px soli=
+d #eeeeee; font-size: 12px; color: #999999; }
+  </style>
+</head>
+<body>
+  <div class=3D"container">
+    <div class=3D"header">
+      <h1>CAMAAR</h1>
+    </div>
+    <div class=3D"content">
+      <p>Ol=C3=A1, cauakamuratt@gmail.com!</p>
+      =
+
+      <p>Recebemos uma solicita=C3=A7=C3=A3o para redefinir a senha da su=
+a conta. Se foi voc=C3=AA, clique no bot=C3=A3o abaixo para escolher uma =
+nova senha.</p>
+      =
+
+      <a href=3D"http://localhost:3002/definir-senha?token=3D-j6BzASFxQRY=
+VDcXZQgy" class=3D"cta-button">Redefinir Minha Senha</a>
+      =
+
+      <p>Este link de redefini=C3=A7=C3=A3o de senha expirar=C3=A1 em 6 h=
+oras.</p>
+      <p>Se voc=C3=AA n=C3=A3o solicitou esta altera=C3=A7=C3=A3o, pode i=
+gnorar este e-mail com seguran=C3=A7a. Sua senha n=C3=A3o ser=C3=A1 alter=
+ada.</p>
+      <p>Atenciosamente,<br>Equipe CAMAAR</p>
+    </div>
+    <div class=3D"footer">
+      <p>&copy; 2025 CAMAAR. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</body>
+</html>=
+
+Completed 200 OK in 11367ms (Views: 0.3ms | ActiveRecord: 32.7ms | Allocations: 323291)
+
+
+Started PUT "/api/v1/password" for ::1 at 2025-07-18 21:24:26 -0300
+Processing by Api::V1::PasswordsController#reset as */*
+  Parameters: {"reset_password_token" => "[FILTERED]", "password" => "[FILTERED]", "password_confirmation" => "[FILTERED]"}
+  [1m[36mUsuario Load (1.7ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."reset_password_token" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["reset_password_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/passwords_controller.rb:30:in 'Api::V1::PasswordsController#reset'
+Completed 422 Unprocessable Content in 933ms (Views: 0.2ms | ActiveRecord: 1.7ms | Allocations: 7824)
+
+
+Started POST "/usuarios/sign_in.json" for ::1 at 2025-07-18 21:25:55 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "98765", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "98765", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (2.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '98765' OR lower(matricula) = '98765') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:28:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 918ms (Views: 0.3ms | ActiveRecord: 2.1ms | Allocations: 1740)
+
+
+Started POST "/usuarios/sign_in.json" for ::1 at 2025-07-18 21:25:40 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "98765", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "98765", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.6ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = '98765' OR lower(matricula) = '98765') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:28:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 1105ms (Views: 0.2ms | ActiveRecord: 0.6ms | Allocations: 1054)
+
+
+Started GET "/api/v1/templates" for ::1 at 2025-07-18 21:27:40 -0300
+Processing by Api::V1::TemplatesController#index as */*
+  [1m[36mTemplate Load (1.4ms)[0m  [1m[34mSELECT "templates".* FROM "templates"[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:16:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 782ms (Views: 11.1ms | ActiveRecord: 2.6ms | Allocations: 5071)
+
+
+Started POST "/usuarios/sign_in.json" for ::1 at 2025-07-18 21:28:37 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "admin@meusistema.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "admin@meusistema.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (1.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'admin@meusistema.com' OR lower(matricula) = 'admin@meusistema.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:28:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 1046ms (Views: 0.5ms | ActiveRecord: 1.2ms | Allocations: 1045)
+
+
+Started POST "/usuarios/sign_in.json" for ::1 at 2025-07-18 21:29:40 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "admin@meusistema.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "admin@meusistema.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (1.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'admin@meusistema.com' OR lower(matricula) = 'admin@meusistema.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:28:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 892ms (Views: 0.3ms | ActiveRecord: 1.0ms | Allocations: 1042)
+
+
+Started GET "/api/v1/templates" for ::1 at 2025-07-18 21:32:26 -0300
+Processing by Api::V1::TemplatesController#index as */*
+  [1m[36mTemplate Load (0.7ms)[0m  [1m[34mSELECT "templates".* FROM "templates"[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:16:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 764ms (Views: 3.8ms | ActiveRecord: 0.7ms | Allocations: 851)
+
+
+Started DELETE "/api/v1/templates/15" for ::1 at 2025-07-18 21:32:38 -0300
+Processing by Api::V1::TemplatesController#destroy as */*
+  Parameters: {"id" => "15", "template" => {}}
+  [1m[36mTemplate Load (0.6ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."id" = ? LIMIT ?[0m  [["id", 15], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/templates_controller.rb:76:in 'Api::V1::TemplatesController#destroy'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:84:in 'Api::V1::TemplatesController#destroy'
+  [1m[36mQuestao Load (1.8ms)[0m  [1m[34mSELECT "questoes".* FROM "questoes" WHERE "questoes"."template_id" = ?[0m  [["template_id", 15]]
+  ↳ app/controllers/api/v1/templates_controller.rb:84:in 'Api::V1::TemplatesController#destroy'
+  [1m[36mQuestao Destroy (0.4ms)[0m  [1m[31mDELETE FROM "questoes" WHERE "questoes"."id" = ?[0m  [["id", 11]]
+  ↳ app/controllers/api/v1/templates_controller.rb:84:in 'Api::V1::TemplatesController#destroy'
+  [1m[36mTemplate Destroy (0.2ms)[0m  [1m[31mDELETE FROM "templates" WHERE "templates"."id" = ?[0m  [["id", 15]]
+  ↳ app/controllers/api/v1/templates_controller.rb:84:in 'Api::V1::TemplatesController#destroy'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:84:in 'Api::V1::TemplatesController#destroy'
+Completed 204 No Content in 912ms (Views: 0.2ms | ActiveRecord: 13.1ms | Allocations: 19933)
+
+
+Started GET "/api/v1/templates" for ::1 at 2025-07-18 21:32:41 -0300
+Processing by Api::V1::TemplatesController#index as */*
+  [1m[36mTemplate Load (2.1ms)[0m  [1m[34mSELECT "templates".* FROM "templates"[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:16:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 914ms (Views: 2.5ms | ActiveRecord: 2.1ms | Allocations: 787)
+
+
+Started POST "/api/v1/templates" for ::1 at 2025-07-18 21:33:51 -0300
+Processing by Api::V1::TemplatesController#create as */*
+  Parameters: {"template" => {"titulo" => "fgjdfsgkjl", "questoes_attributes" => [{"tipo" => "Checkbox", "enunciado" => "gdfsfgd", "obrigatoria" => true, "opcoes" => []}, {"tipo" => "Texto", "enunciado" => "dfssdffd", "obrigatoria" => true, "opcoes" => []}, {"tipo" => "Texto", "enunciado" => "fsedfsdfs", "obrigatoria" => true, "opcoes" => []}]}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:38:in 'Api::V1::TemplatesController#create'
+  [1m[36mTemplate Exists? (2.5ms)[0m  [1m[34mSELECT 1 AS one FROM "templates" WHERE "templates"."titulo" = ? LIMIT ?[0m  [["titulo", "fgjdfsgkjl"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/templates_controller.rb:38:in 'Api::V1::TemplatesController#create'
+  [1m[36mTemplate Create (1.6ms)[0m  [1m[32mINSERT INTO "templates" ("titulo", "criador_id", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["titulo", "fgjdfsgkjl"], ["criador_id", nil], ["created_at", "2025-07-19 00:33:52.317432"], ["updated_at", "2025-07-19 00:33:52.317432"]]
+  ↳ app/controllers/api/v1/templates_controller.rb:38:in 'Api::V1::TemplatesController#create'
+  [1m[36mQuestao Create (0.2ms)[0m  [1m[32mINSERT INTO "questoes" ("enunciado", "tipo", "obrigatoria", "opcoes", "template_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["enunciado", "gdfsfgd"], ["tipo", "Checkbox"], ["obrigatoria", 1], ["opcoes", "[]"], ["template_id", 16], ["created_at", "2025-07-19 00:33:52.323998"], ["updated_at", "2025-07-19 00:33:52.323998"]]
+  ↳ app/controllers/api/v1/templates_controller.rb:38:in 'Api::V1::TemplatesController#create'
+  [1m[36mQuestao Create (0.2ms)[0m  [1m[32mINSERT INTO "questoes" ("enunciado", "tipo", "obrigatoria", "opcoes", "template_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["enunciado", "dfssdffd"], ["tipo", "Texto"], ["obrigatoria", 1], ["opcoes", "[]"], ["template_id", 16], ["created_at", "2025-07-19 00:33:52.326766"], ["updated_at", "2025-07-19 00:33:52.326766"]]
+  ↳ app/controllers/api/v1/templates_controller.rb:38:in 'Api::V1::TemplatesController#create'
+  [1m[36mQuestao Create (0.3ms)[0m  [1m[32mINSERT INTO "questoes" ("enunciado", "tipo", "obrigatoria", "opcoes", "template_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["enunciado", "fsedfsdfs"], ["tipo", "Texto"], ["obrigatoria", 1], ["opcoes", "[]"], ["template_id", 16], ["created_at", "2025-07-19 00:33:52.328968"], ["updated_at", "2025-07-19 00:33:52.328968"]]
+  ↳ app/controllers/api/v1/templates_controller.rb:38:in 'Api::V1::TemplatesController#create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:38:in 'Api::V1::TemplatesController#create'
+Completed 201 Created in 629ms (Views: 0.4ms | ActiveRecord: 7.4ms | Allocations: 7892)
+
+
+Started GET "/api/v1/templates" for ::1 at 2025-07-18 21:33:53 -0300
+Processing by Api::V1::TemplatesController#index as */*
+  [1m[36mTemplate Load (1.1ms)[0m  [1m[34mSELECT "templates".* FROM "templates"[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:16:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 618ms (Views: 1.9ms | ActiveRecord: 1.1ms | Allocations: 853)
+
+
+Started GET "/api/v1/templates/16" for ::1 at 2025-07-18 21:33:55 -0300
+Processing by Api::V1::TemplatesController#show as */*
+  Parameters: {"id" => "16"}
+  [1m[36mTemplate Load (1.0ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/templates_controller.rb:22:in 'Api::V1::TemplatesController#show'
+  [1m[36mQuestao Load (0.4ms)[0m  [1m[34mSELECT "questoes".* FROM "questoes" WHERE "questoes"."template_id" = ?[0m  [["template_id", 16]]
+  ↳ app/controllers/api/v1/templates_controller.rb:25:in 'Api::V1::TemplatesController#show'
+Completed 200 OK in 862ms (Views: 0.6ms | ActiveRecord: 1.3ms | Allocations: 1531)
+
+
+Started PUT "/api/v1/templates/16" for ::1 at 2025-07-18 21:34:04 -0300
+Processing by Api::V1::TemplatesController#update as */*
+  Parameters: {"template" => {"titulo" => "fgjdfsgkjl", "questoes_attributes" => [{"id" => 12, "tipo" => "Checkbox", "enunciado" => "gdfsfgd", "obrigatoria" => true, "opcoes" => ["[]"]}, {"id" => 13, "tipo" => "Texto", "enunciado" => "dfssdffd", "obrigatoria" => true, "opcoes" => ["[]"]}, {"id" => 14, "_destroy" => true}]}, "id" => "16"}
+  [1m[36mTemplate Load (0.7ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/templates_controller.rb:56:in 'Api::V1::TemplatesController#update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:58:in 'Api::V1::TemplatesController#update'
+  [1m[36mQuestao Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "questoes" WHERE "questoes"."template_id" = ? AND "questoes"."id" IN (?, ?, ?) LIMIT ?[0m  [["template_id", 16], ["id", 12], ["id", 13], ["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/templates_controller.rb:58:in 'Api::V1::TemplatesController#update'
+  [1m[36mQuestao Load (0.3ms)[0m  [1m[34mSELECT "questoes".* FROM "questoes" WHERE "questoes"."template_id" = ? AND "questoes"."id" IN (?, ?, ?) ORDER BY "questoes"."id" ASC LIMIT ?[0m  [["template_id", 16], ["id", 12], ["id", 13], ["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/templates_controller.rb:58:in 'Api::V1::TemplatesController#update'
+  [1m[36mQuestao Load (0.2ms)[0m  [1m[34mSELECT "questoes".* FROM "questoes" WHERE "questoes"."template_id" = ? AND "questoes"."id" IN (?, ?, ?)[0m  [["template_id", 16], ["id", 12], ["id", 13], ["id", 14]]
+  ↳ app/controllers/api/v1/templates_controller.rb:58:in 'Api::V1::TemplatesController#update'
+  [1m[36mQuestao Load (0.0ms)[0m  [1m[34mSELECT "questoes".* FROM "questoes" WHERE "questoes"."template_id" = ?[0m  [["template_id", 16]]
+  ↳ app/models/template.rb:31:in 'Enumerable#reject'
+  [1m[36mQuestao Destroy (0.4ms)[0m  [1m[31mDELETE FROM "questoes" WHERE "questoes"."id" = ?[0m  [["id", 14]]
+  ↳ app/controllers/api/v1/templates_controller.rb:58:in 'Api::V1::TemplatesController#update'
+  [1m[36mQuestao Update (0.1ms)[0m  [1m[33mUPDATE "questoes" SET "opcoes" = ?, "updated_at" = ? WHERE "questoes"."id" = ?[0m  [["opcoes", "[\"[]\"]"], ["updated_at", "2025-07-19 00:34:05.599816"], ["id", 12]]
+  ↳ app/controllers/api/v1/templates_controller.rb:58:in 'Api::V1::TemplatesController#update'
+  [1m[36mQuestao Update (0.1ms)[0m  [1m[33mUPDATE "questoes" SET "opcoes" = ?, "updated_at" = ? WHERE "questoes"."id" = ?[0m  [["opcoes", "[\"[]\"]"], ["updated_at", "2025-07-19 00:34:05.602087"], ["id", 13]]
+  ↳ app/controllers/api/v1/templates_controller.rb:58:in 'Api::V1::TemplatesController#update'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:58:in 'Api::V1::TemplatesController#update'
+Completed 200 OK in 801ms (Views: 0.3ms | ActiveRecord: 5.2ms | Allocations: 8502)
+
+
+Started GET "/api/v1/templates" for ::1 at 2025-07-18 21:34:06 -0300
+Processing by Api::V1::TemplatesController#index as */*
+  [1m[36mTemplate Load (0.8ms)[0m  [1m[34mSELECT "templates".* FROM "templates"[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:16:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 677ms (Views: 2.4ms | ActiveRecord: 0.8ms | Allocations: 849)
+
+
+Started GET "/api/v1/templates/16" for ::1 at 2025-07-18 21:34:08 -0300
+Processing by Api::V1::TemplatesController#show as */*
+  Parameters: {"id" => "16"}
+  [1m[36mTemplate Load (0.5ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/templates_controller.rb:22:in 'Api::V1::TemplatesController#show'
+  [1m[36mQuestao Load (0.3ms)[0m  [1m[34mSELECT "questoes".* FROM "questoes" WHERE "questoes"."template_id" = ?[0m  [["template_id", 16]]
+  ↳ app/controllers/api/v1/templates_controller.rb:25:in 'Api::V1::TemplatesController#show'
+Completed 200 OK in 727ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 1411)
+
+
+Started PUT "/api/v1/templates/16" for ::1 at 2025-07-18 21:34:20 -0300
+Processing by Api::V1::TemplatesController#update as */*
+  Parameters: {"template" => {"titulo" => "fgjdfsgkjl", "questoes_attributes" => [{"id" => 12, "tipo" => "Checkbox", "enunciado" => "A", "obrigatoria" => true, "opcoes" => ["[\"[]\"]"]}, {"id" => 13, "tipo" => "Texto", "enunciado" => "dfssdffd", "obrigatoria" => true, "opcoes" => ["[\"[]\"]"]}]}, "id" => "16"}
+  [1m[36mTemplate Load (0.6ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/templates_controller.rb:56:in 'Api::V1::TemplatesController#update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:58:in 'Api::V1::TemplatesController#update'
+  [1m[36mQuestao Exists? (2.8ms)[0m  [1m[34mSELECT 1 AS one FROM "questoes" WHERE "questoes"."template_id" = ? AND "questoes"."id" IN (?, ?) LIMIT ?[0m  [["template_id", 16], ["id", 12], ["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/templates_controller.rb:58:in 'Api::V1::TemplatesController#update'
+  [1m[36mQuestao Load (0.2ms)[0m  [1m[34mSELECT "questoes".* FROM "questoes" WHERE "questoes"."template_id" = ? AND "questoes"."id" IN (?, ?) ORDER BY "questoes"."id" ASC LIMIT ?[0m  [["template_id", 16], ["id", 12], ["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/templates_controller.rb:58:in 'Api::V1::TemplatesController#update'
+  [1m[36mQuestao Load (0.1ms)[0m  [1m[34mSELECT "questoes".* FROM "questoes" WHERE "questoes"."template_id" = ? AND "questoes"."id" IN (?, ?)[0m  [["template_id", 16], ["id", 12], ["id", 13]]
+  ↳ app/controllers/api/v1/templates_controller.rb:58:in 'Api::V1::TemplatesController#update'
+  [1m[36mQuestao Load (0.0ms)[0m  [1m[34mSELECT "questoes".* FROM "questoes" WHERE "questoes"."template_id" = ?[0m  [["template_id", 16]]
+  ↳ app/models/template.rb:31:in 'Enumerable#reject'
+  [1m[36mQuestao Update (0.3ms)[0m  [1m[33mUPDATE "questoes" SET "enunciado" = ?, "opcoes" = ?, "updated_at" = ? WHERE "questoes"."id" = ?[0m  [["enunciado", "A"], ["opcoes", "[\"[\\\"[]\\\"]\"]"], ["updated_at", "2025-07-19 00:34:21.421670"], ["id", 12]]
+  ↳ app/controllers/api/v1/templates_controller.rb:58:in 'Api::V1::TemplatesController#update'
+  [1m[36mQuestao Update (0.1ms)[0m  [1m[33mUPDATE "questoes" SET "opcoes" = ?, "updated_at" = ? WHERE "questoes"."id" = ?[0m  [["opcoes", "[\"[\\\"[]\\\"]\"]"], ["updated_at", "2025-07-19 00:34:21.424028"], ["id", 13]]
+  ↳ app/controllers/api/v1/templates_controller.rb:58:in 'Api::V1::TemplatesController#update'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:58:in 'Api::V1::TemplatesController#update'
+Completed 200 OK in 684ms (Views: 0.3ms | ActiveRecord: 4.7ms | Allocations: 6867)
+
+
+Started GET "/api/v1/templates" for ::1 at 2025-07-18 21:34:22 -0300
+Processing by Api::V1::TemplatesController#index as */*
+  [1m[36mTemplate Load (0.6ms)[0m  [1m[34mSELECT "templates".* FROM "templates"[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:16:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 731ms (Views: 1.8ms | ActiveRecord: 0.6ms | Allocations: 850)
+
+
+Started GET "/api/v1/templates/16" for ::1 at 2025-07-18 21:34:24 -0300
+Processing by Api::V1::TemplatesController#show as */*
+  Parameters: {"id" => "16"}
+  [1m[36mTemplate Load (0.5ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/templates_controller.rb:22:in 'Api::V1::TemplatesController#show'
+  [1m[36mQuestao Load (0.4ms)[0m  [1m[34mSELECT "questoes".* FROM "questoes" WHERE "questoes"."template_id" = ?[0m  [["template_id", 16]]
+  ↳ app/controllers/api/v1/templates_controller.rb:25:in 'Api::V1::TemplatesController#show'
+Completed 200 OK in 712ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 1410)
+
+

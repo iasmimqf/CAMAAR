@@ -16,7 +16,7 @@ RSpec.describe "API de Redefinição de Senha", type: :request do
 
         # Verifica se a resposta da API foi '200 OK'
         expect(response).to have_http_status(:ok)
-        
+
         # Verifica se a mensagem de segurança foi retornada
         json_response = JSON.parse(response.body)
         expect(json_response['message']).to include('você receberá um link')
@@ -50,7 +50,7 @@ RSpec.describe "API de Redefinição de Senha", type: :request do
 
         expect(response).to have_http_status(:ok)
         expect(JSON.parse(response.body)['message']).to eq('Sua senha foi redefinida com sucesso.')
-        
+
         # Verifica se a nova senha realmente funciona
         expect(aluno.reload.valid_password?('NovaSenhaForte@123')).to be true
       end
@@ -73,7 +73,7 @@ RSpec.describe "API de Redefinição de Senha", type: :request do
           password: 'fraca',
           password_confirmation: 'fraca'
         }
-        
+
         expect(response).to have_http_status(:unprocessable_entity)
         json_response = JSON.parse(response.body)
         # A mensagem exata vai depender da sua validação `password_complexity`
@@ -88,7 +88,7 @@ RSpec.describe "API de Redefinição de Senha", type: :request do
           password: 'NovaSenhaForte@123',
           password_confirmation: 'NovaSenhaForte@123'
         }
-        
+
         expect(response).to have_http_status(:unprocessable_entity)
         json_response = JSON.parse(response.body)
         expect(json_response['errors'].first).to include("Token de redefinição de senha é inválido")

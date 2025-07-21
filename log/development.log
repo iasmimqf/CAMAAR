@@ -12015,3 +12015,1201 @@ Processing by Usuarios::SessionsController#create as JSON
 Completed 200 OK in 726ms (Views: 0.2ms | ActiveRecord: 0.7ms | Allocations: 1087)
 
 
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-21 09:36:03 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 1076ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 2539)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-21 09:36:04 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 597ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 310)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-21 09:36:05 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 549ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 310)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-21 09:36:06 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-21 09:36:07 -0300
+Completed 401 Unauthorized in 513ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 2696)
+
+
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.5ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'cauakamuratt@gmail.com' OR lower(matricula) = 'cauakamuratt@gmail.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:47:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 808ms (Views: 0.2ms | ActiveRecord: 21.5ms | Allocations: 11542)
+
+
+Started GET "/api/v1/templates" for ::1 at 2025-07-21 09:36:13 -0300
+Started GET "/api/v1/turmas" for ::1 at 2025-07-21 09:36:13 -0300
+Processing by Api::V1::TemplatesController#index as */*
+Processing by Api::V1::TurmasController#index as */*
+Completed 500 Internal Server Error in 424ms (ActiveRecord: 0.0ms | Allocations: 2222)
+
+
+  
+NoMethodError (undefined method 'authenticate_admin!' for an instance of Api::V1::TemplatesController):
+  
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:403:in 'block in ActiveSupport::Callbacks::CallTemplate::MethodCall#make_lambda'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:202:in 'block (2 levels) in ActiveSupport::Callbacks::Filters::Before.halting'
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:34:in 'block (2 levels) in <module:Callbacks>'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:203:in 'block in ActiveSupport::Callbacks::Filters::Before.halting'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'block in ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'Array#each'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:119:in 'block in ActiveSupport::Callbacks#run_callbacks'
+turbo-rails (2.0.16) lib/turbo-rails.rb:24:in 'Turbo.with_request_id'
+turbo-rails (2.0.16) app/controllers/concerns/turbo/request_id_tracking.rb:10:in 'Turbo::RequestIdTracking#turbo_tracking_request_id'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+actiontext (7.1.5.1) lib/action_text/rendering.rb:23:in 'ActionText::Rendering::ClassMethods#with_renderer'
+actiontext (7.1.5.1) lib/action_text/engine.rb:69:in 'block (4 levels) in <class:Engine>'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'BasicObject#instance_exec'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:141:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:258:in 'AbstractController::Callbacks#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/rescue.rb:25:in 'ActionController::Rescue#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:74:in 'block in ActionController::Instrumentation#process_action'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (7.1.5.1) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'ActiveSupport::Notifications.instrument'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:73:in 'ActionController::Instrumentation#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/params_wrapper.rb:261:in 'ActionController::ParamsWrapper#process_action'
+activerecord (7.1.5.1) lib/active_record/railties/controller_runtime.rb:32:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (7.1.5.1) lib/abstract_controller/base.rb:160:in 'AbstractController::Base#process'
+actionview (7.1.5.1) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:227:in 'ActionController::Metal#dispatch'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:309:in 'ActionController::Metal.dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:49:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:32:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:51:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:131:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'Array#each'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:32:in 'ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:882:in 'ActionDispatch::Routing::RouteSet#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.1.16) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.16) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.16) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.16) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/permissions_policy.rb:36:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/content_security_policy.rb:36:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/cookies.rb:689:in 'ActionDispatch::Cookies#call'
+activerecord (7.1.5.1) lib/active_record/migration.rb:655:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:29:in 'block in ActionDispatch::Callbacks#call'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:28:in 'ActionDispatch::Callbacks#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in 'ActionDispatch::ShowExceptions#call'
+railties (7.1.5.1) lib/rails/rack/logger.rb:37:in 'Rails::Rack::Logger#call_app'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'block in Rails::Rack::Logger#call'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'block in ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:39:in 'ActiveSupport::TaggedLogging::Formatter#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/broadcast_logger.rb:241:in 'ActiveSupport::BroadcastLogger#method_missing'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'Rails::Rack::Logger#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/remote_ip.rb:92:in 'ActionDispatch::RemoteIp#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/request_id.rb:28:in 'ActionDispatch::RequestId#call'
+rack (3.1.16) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.16) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (7.1.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:59:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:24:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:58:in 'ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/static.rb:25:in 'ActionDispatch::Static#call'
+rack (3.1.16) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/host_authorization.rb:141:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (7.1.5.1) lib/rails/engine.rb:536:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Completed 500 Internal Server Error in 757ms (ActiveRecord: 0.0ms | Allocations: 338669)
+
+
+  
+NoMethodError (undefined method 'authenticate_admin!' for an instance of Api::V1::TurmasController):
+  
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:403:in 'block in ActiveSupport::Callbacks::CallTemplate::MethodCall#make_lambda'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:202:in 'block (2 levels) in ActiveSupport::Callbacks::Filters::Before.halting'
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:34:in 'block (2 levels) in <module:Callbacks>'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:203:in 'block in ActiveSupport::Callbacks::Filters::Before.halting'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'block in ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'Array#each'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:119:in 'block in ActiveSupport::Callbacks#run_callbacks'
+turbo-rails (2.0.16) lib/turbo-rails.rb:24:in 'Turbo.with_request_id'
+turbo-rails (2.0.16) app/controllers/concerns/turbo/request_id_tracking.rb:10:in 'Turbo::RequestIdTracking#turbo_tracking_request_id'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+actiontext (7.1.5.1) lib/action_text/rendering.rb:23:in 'ActionText::Rendering::ClassMethods#with_renderer'
+actiontext (7.1.5.1) lib/action_text/engine.rb:69:in 'block (4 levels) in <class:Engine>'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'BasicObject#instance_exec'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:141:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:258:in 'AbstractController::Callbacks#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/rescue.rb:25:in 'ActionController::Rescue#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:74:in 'block in ActionController::Instrumentation#process_action'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (7.1.5.1) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'ActiveSupport::Notifications.instrument'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:73:in 'ActionController::Instrumentation#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/params_wrapper.rb:261:in 'ActionController::ParamsWrapper#process_action'
+activerecord (7.1.5.1) lib/active_record/railties/controller_runtime.rb:32:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (7.1.5.1) lib/abstract_controller/base.rb:160:in 'AbstractController::Base#process'
+actionview (7.1.5.1) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:227:in 'ActionController::Metal#dispatch'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:309:in 'ActionController::Metal.dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:49:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:32:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:51:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:131:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'Array#each'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:32:in 'ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:882:in 'ActionDispatch::Routing::RouteSet#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.1.16) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.16) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.16) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.16) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/permissions_policy.rb:36:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/content_security_policy.rb:36:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/cookies.rb:689:in 'ActionDispatch::Cookies#call'
+activerecord (7.1.5.1) lib/active_record/migration.rb:655:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:29:in 'block in ActionDispatch::Callbacks#call'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:28:in 'ActionDispatch::Callbacks#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in 'ActionDispatch::ShowExceptions#call'
+railties (7.1.5.1) lib/rails/rack/logger.rb:37:in 'Rails::Rack::Logger#call_app'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'block in Rails::Rack::Logger#call'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'block in ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:39:in 'ActiveSupport::TaggedLogging::Formatter#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/broadcast_logger.rb:241:in 'ActiveSupport::BroadcastLogger#method_missing'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'Rails::Rack::Logger#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/remote_ip.rb:92:in 'ActionDispatch::RemoteIp#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/request_id.rb:28:in 'ActionDispatch::RequestId#call'
+rack (3.1.16) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.16) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (7.1.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:59:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:24:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:58:in 'ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/static.rb:25:in 'ActionDispatch::Static#call'
+rack (3.1.16) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/host_authorization.rb:141:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (7.1.5.1) lib/rails/engine.rb:536:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/api/v1/templates" for ::1 at 2025-07-21 09:36:15 -0300
+Started GET "/api/v1/turmas" for ::1 at 2025-07-21 09:36:15 -0300
+Processing by Api::V1::TurmasController#index as */*
+Processing by Api::V1::TemplatesController#index as */*
+Completed 500 Internal Server Error in 437ms (ActiveRecord: 0.0ms | Allocations: 1153)
+
+
+  
+NoMethodError (undefined method 'authenticate_admin!' for an instance of Api::V1::TurmasController):
+  
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:403:in 'block in ActiveSupport::Callbacks::CallTemplate::MethodCall#make_lambda'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:202:in 'block (2 levels) in ActiveSupport::Callbacks::Filters::Before.halting'
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:34:in 'block (2 levels) in <module:Callbacks>'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:203:in 'block in ActiveSupport::Callbacks::Filters::Before.halting'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'block in ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'Array#each'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:119:in 'block in ActiveSupport::Callbacks#run_callbacks'
+turbo-rails (2.0.16) lib/turbo-rails.rb:24:in 'Turbo.with_request_id'
+turbo-rails (2.0.16) app/controllers/concerns/turbo/request_id_tracking.rb:10:in 'Turbo::RequestIdTracking#turbo_tracking_request_id'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+actiontext (7.1.5.1) lib/action_text/rendering.rb:23:in 'ActionText::Rendering::ClassMethods#with_renderer'
+actiontext (7.1.5.1) lib/action_text/engine.rb:69:in 'block (4 levels) in <class:Engine>'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'BasicObject#instance_exec'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:141:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:258:in 'AbstractController::Callbacks#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/rescue.rb:25:in 'ActionController::Rescue#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:74:in 'block in ActionController::Instrumentation#process_action'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (7.1.5.1) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'ActiveSupport::Notifications.instrument'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:73:in 'ActionController::Instrumentation#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/params_wrapper.rb:261:in 'ActionController::ParamsWrapper#process_action'
+activerecord (7.1.5.1) lib/active_record/railties/controller_runtime.rb:32:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (7.1.5.1) lib/abstract_controller/base.rb:160:in 'AbstractController::Base#process'
+actionview (7.1.5.1) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:227:in 'ActionController::Metal#dispatch'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:309:in 'ActionController::Metal.dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:49:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:32:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:51:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:131:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'Array#each'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:32:in 'ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:882:in 'ActionDispatch::Routing::RouteSet#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.1.16) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.16) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.16) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.16) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/permissions_policy.rb:36:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/content_security_policy.rb:36:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/cookies.rb:689:in 'ActionDispatch::Cookies#call'
+activerecord (7.1.5.1) lib/active_record/migration.rb:655:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:29:in 'block in ActionDispatch::Callbacks#call'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:28:in 'ActionDispatch::Callbacks#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in 'ActionDispatch::ShowExceptions#call'
+railties (7.1.5.1) lib/rails/rack/logger.rb:37:in 'Rails::Rack::Logger#call_app'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'block in Rails::Rack::Logger#call'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'block in ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:39:in 'ActiveSupport::TaggedLogging::Formatter#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/broadcast_logger.rb:241:in 'ActiveSupport::BroadcastLogger#method_missing'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'Rails::Rack::Logger#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/remote_ip.rb:92:in 'ActionDispatch::RemoteIp#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/request_id.rb:28:in 'ActionDispatch::RequestId#call'
+rack (3.1.16) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.16) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (7.1.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:59:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:24:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:58:in 'ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/static.rb:25:in 'ActionDispatch::Static#call'
+rack (3.1.16) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/host_authorization.rb:141:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (7.1.5.1) lib/rails/engine.rb:536:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Completed 500 Internal Server Error in 746ms (ActiveRecord: 0.0ms | Allocations: 393013)
+
+
+  
+NoMethodError (undefined method 'authenticate_admin!' for an instance of Api::V1::TemplatesController):
+  
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:403:in 'block in ActiveSupport::Callbacks::CallTemplate::MethodCall#make_lambda'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:202:in 'block (2 levels) in ActiveSupport::Callbacks::Filters::Before.halting'
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:34:in 'block (2 levels) in <module:Callbacks>'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:203:in 'block in ActiveSupport::Callbacks::Filters::Before.halting'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'block in ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'Array#each'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:119:in 'block in ActiveSupport::Callbacks#run_callbacks'
+turbo-rails (2.0.16) lib/turbo-rails.rb:24:in 'Turbo.with_request_id'
+turbo-rails (2.0.16) app/controllers/concerns/turbo/request_id_tracking.rb:10:in 'Turbo::RequestIdTracking#turbo_tracking_request_id'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+actiontext (7.1.5.1) lib/action_text/rendering.rb:23:in 'ActionText::Rendering::ClassMethods#with_renderer'
+actiontext (7.1.5.1) lib/action_text/engine.rb:69:in 'block (4 levels) in <class:Engine>'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'BasicObject#instance_exec'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:141:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:258:in 'AbstractController::Callbacks#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/rescue.rb:25:in 'ActionController::Rescue#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:74:in 'block in ActionController::Instrumentation#process_action'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (7.1.5.1) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'ActiveSupport::Notifications.instrument'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:73:in 'ActionController::Instrumentation#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/params_wrapper.rb:261:in 'ActionController::ParamsWrapper#process_action'
+activerecord (7.1.5.1) lib/active_record/railties/controller_runtime.rb:32:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (7.1.5.1) lib/abstract_controller/base.rb:160:in 'AbstractController::Base#process'
+actionview (7.1.5.1) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:227:in 'ActionController::Metal#dispatch'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:309:in 'ActionController::Metal.dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:49:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:32:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:51:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:131:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'Array#each'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:32:in 'ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:882:in 'ActionDispatch::Routing::RouteSet#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.1.16) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.16) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.16) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.16) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/permissions_policy.rb:36:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/content_security_policy.rb:36:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/cookies.rb:689:in 'ActionDispatch::Cookies#call'
+activerecord (7.1.5.1) lib/active_record/migration.rb:655:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:29:in 'block in ActionDispatch::Callbacks#call'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:28:in 'ActionDispatch::Callbacks#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in 'ActionDispatch::ShowExceptions#call'
+railties (7.1.5.1) lib/rails/rack/logger.rb:37:in 'Rails::Rack::Logger#call_app'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'block in Rails::Rack::Logger#call'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'block in ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:39:in 'ActiveSupport::TaggedLogging::Formatter#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/broadcast_logger.rb:241:in 'ActiveSupport::BroadcastLogger#method_missing'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'Rails::Rack::Logger#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/remote_ip.rb:92:in 'ActionDispatch::RemoteIp#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/request_id.rb:28:in 'ActionDispatch::RequestId#call'
+rack (3.1.16) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.16) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (7.1.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:59:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:24:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:58:in 'ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/static.rb:25:in 'ActionDispatch::Static#call'
+rack (3.1.16) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/host_authorization.rb:141:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (7.1.5.1) lib/rails/engine.rb:536:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/api/v1/templates" for ::1 at 2025-07-21 09:37:21 -0300
+Started GET "/api/v1/turmas" for ::1 at 2025-07-21 09:37:21 -0300
+Processing by Api::V1::TurmasController#index as */*
+Processing by Api::V1::TemplatesController#index as */*
+Completed 500 Internal Server Error in 418ms (ActiveRecord: 0.0ms | Allocations: 1140)
+
+
+  
+NoMethodError (undefined method 'authenticate_admin!' for an instance of Api::V1::TurmasController):
+  
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:403:in 'block in ActiveSupport::Callbacks::CallTemplate::MethodCall#make_lambda'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:202:in 'block (2 levels) in ActiveSupport::Callbacks::Filters::Before.halting'
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:34:in 'block (2 levels) in <module:Callbacks>'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:203:in 'block in ActiveSupport::Callbacks::Filters::Before.halting'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'block in ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'Array#each'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:119:in 'block in ActiveSupport::Callbacks#run_callbacks'
+turbo-rails (2.0.16) lib/turbo-rails.rb:24:in 'Turbo.with_request_id'
+turbo-rails (2.0.16) app/controllers/concerns/turbo/request_id_tracking.rb:10:in 'Turbo::RequestIdTracking#turbo_tracking_request_id'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+actiontext (7.1.5.1) lib/action_text/rendering.rb:23:in 'ActionText::Rendering::ClassMethods#with_renderer'
+actiontext (7.1.5.1) lib/action_text/engine.rb:69:in 'block (4 levels) in <class:Engine>'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'BasicObject#instance_exec'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:141:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:258:in 'AbstractController::Callbacks#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/rescue.rb:25:in 'ActionController::Rescue#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:74:in 'block in ActionController::Instrumentation#process_action'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (7.1.5.1) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'ActiveSupport::Notifications.instrument'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:73:in 'ActionController::Instrumentation#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/params_wrapper.rb:261:in 'ActionController::ParamsWrapper#process_action'
+activerecord (7.1.5.1) lib/active_record/railties/controller_runtime.rb:32:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (7.1.5.1) lib/abstract_controller/base.rb:160:in 'AbstractController::Base#process'
+actionview (7.1.5.1) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:227:in 'ActionController::Metal#dispatch'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:309:in 'ActionController::Metal.dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:49:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:32:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:51:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:131:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'Array#each'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:32:in 'ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:882:in 'ActionDispatch::Routing::RouteSet#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.1.16) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.16) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.16) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.16) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/permissions_policy.rb:36:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/content_security_policy.rb:36:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/cookies.rb:689:in 'ActionDispatch::Cookies#call'
+activerecord (7.1.5.1) lib/active_record/migration.rb:655:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:29:in 'block in ActionDispatch::Callbacks#call'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:28:in 'ActionDispatch::Callbacks#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in 'ActionDispatch::ShowExceptions#call'
+railties (7.1.5.1) lib/rails/rack/logger.rb:37:in 'Rails::Rack::Logger#call_app'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'block in Rails::Rack::Logger#call'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'block in ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:39:in 'ActiveSupport::TaggedLogging::Formatter#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/broadcast_logger.rb:241:in 'ActiveSupport::BroadcastLogger#method_missing'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'Rails::Rack::Logger#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/remote_ip.rb:92:in 'ActionDispatch::RemoteIp#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/request_id.rb:28:in 'ActionDispatch::RequestId#call'
+rack (3.1.16) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.16) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (7.1.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:59:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:24:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:58:in 'ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/static.rb:25:in 'ActionDispatch::Static#call'
+rack (3.1.16) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/host_authorization.rb:141:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (7.1.5.1) lib/rails/engine.rb:536:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Completed 500 Internal Server Error in 602ms (ActiveRecord: 0.0ms | Allocations: 334568)
+
+
+  
+NoMethodError (undefined method 'authenticate_admin!' for an instance of Api::V1::TemplatesController):
+  
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:403:in 'block in ActiveSupport::Callbacks::CallTemplate::MethodCall#make_lambda'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:202:in 'block (2 levels) in ActiveSupport::Callbacks::Filters::Before.halting'
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:34:in 'block (2 levels) in <module:Callbacks>'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:203:in 'block in ActiveSupport::Callbacks::Filters::Before.halting'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'block in ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'Array#each'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:119:in 'block in ActiveSupport::Callbacks#run_callbacks'
+turbo-rails (2.0.16) lib/turbo-rails.rb:24:in 'Turbo.with_request_id'
+turbo-rails (2.0.16) app/controllers/concerns/turbo/request_id_tracking.rb:10:in 'Turbo::RequestIdTracking#turbo_tracking_request_id'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+actiontext (7.1.5.1) lib/action_text/rendering.rb:23:in 'ActionText::Rendering::ClassMethods#with_renderer'
+actiontext (7.1.5.1) lib/action_text/engine.rb:69:in 'block (4 levels) in <class:Engine>'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'BasicObject#instance_exec'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:141:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:258:in 'AbstractController::Callbacks#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/rescue.rb:25:in 'ActionController::Rescue#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:74:in 'block in ActionController::Instrumentation#process_action'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (7.1.5.1) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'ActiveSupport::Notifications.instrument'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:73:in 'ActionController::Instrumentation#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/params_wrapper.rb:261:in 'ActionController::ParamsWrapper#process_action'
+activerecord (7.1.5.1) lib/active_record/railties/controller_runtime.rb:32:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (7.1.5.1) lib/abstract_controller/base.rb:160:in 'AbstractController::Base#process'
+actionview (7.1.5.1) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:227:in 'ActionController::Metal#dispatch'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:309:in 'ActionController::Metal.dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:49:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:32:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:51:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:131:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'Array#each'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:32:in 'ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:882:in 'ActionDispatch::Routing::RouteSet#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.1.16) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.16) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.16) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.16) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/permissions_policy.rb:36:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/content_security_policy.rb:36:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/cookies.rb:689:in 'ActionDispatch::Cookies#call'
+activerecord (7.1.5.1) lib/active_record/migration.rb:655:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:29:in 'block in ActionDispatch::Callbacks#call'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:28:in 'ActionDispatch::Callbacks#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in 'ActionDispatch::ShowExceptions#call'
+railties (7.1.5.1) lib/rails/rack/logger.rb:37:in 'Rails::Rack::Logger#call_app'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'block in Rails::Rack::Logger#call'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'block in ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:39:in 'ActiveSupport::TaggedLogging::Formatter#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/broadcast_logger.rb:241:in 'ActiveSupport::BroadcastLogger#method_missing'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'Rails::Rack::Logger#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/remote_ip.rb:92:in 'ActionDispatch::RemoteIp#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/request_id.rb:28:in 'ActionDispatch::RequestId#call'
+rack (3.1.16) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.16) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (7.1.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:59:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:24:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:58:in 'ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/static.rb:25:in 'ActionDispatch::Static#call'
+rack (3.1.16) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/host_authorization.rb:141:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (7.1.5.1) lib/rails/engine.rb:536:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/api/v1/turmas" for ::1 at 2025-07-21 09:37:22 -0300
+Started GET "/api/v1/templates" for ::1 at 2025-07-21 09:37:22 -0300
+Processing by Api::V1::TemplatesController#index as */*
+Processing by Api::V1::TurmasController#index as */*
+Completed 500 Internal Server Error in 428ms (ActiveRecord: 0.0ms | Allocations: 1152)
+
+
+  
+NoMethodError (undefined method 'authenticate_admin!' for an instance of Api::V1::TemplatesController):
+  
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:403:in 'block in ActiveSupport::Callbacks::CallTemplate::MethodCall#make_lambda'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:202:in 'block (2 levels) in ActiveSupport::Callbacks::Filters::Before.halting'
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:34:in 'block (2 levels) in <module:Callbacks>'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:203:in 'block in ActiveSupport::Callbacks::Filters::Before.halting'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'block in ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'Array#each'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:119:in 'block in ActiveSupport::Callbacks#run_callbacks'
+turbo-rails (2.0.16) lib/turbo-rails.rb:24:in 'Turbo.with_request_id'
+turbo-rails (2.0.16) app/controllers/concerns/turbo/request_id_tracking.rb:10:in 'Turbo::RequestIdTracking#turbo_tracking_request_id'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+actiontext (7.1.5.1) lib/action_text/rendering.rb:23:in 'ActionText::Rendering::ClassMethods#with_renderer'
+actiontext (7.1.5.1) lib/action_text/engine.rb:69:in 'block (4 levels) in <class:Engine>'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'BasicObject#instance_exec'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:141:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:258:in 'AbstractController::Callbacks#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/rescue.rb:25:in 'ActionController::Rescue#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:74:in 'block in ActionController::Instrumentation#process_action'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (7.1.5.1) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'ActiveSupport::Notifications.instrument'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:73:in 'ActionController::Instrumentation#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/params_wrapper.rb:261:in 'ActionController::ParamsWrapper#process_action'
+activerecord (7.1.5.1) lib/active_record/railties/controller_runtime.rb:32:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (7.1.5.1) lib/abstract_controller/base.rb:160:in 'AbstractController::Base#process'
+actionview (7.1.5.1) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:227:in 'ActionController::Metal#dispatch'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:309:in 'ActionController::Metal.dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:49:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:32:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:51:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:131:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'Array#each'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:32:in 'ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:882:in 'ActionDispatch::Routing::RouteSet#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.1.16) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.16) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.16) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.16) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/permissions_policy.rb:36:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/content_security_policy.rb:36:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/cookies.rb:689:in 'ActionDispatch::Cookies#call'
+activerecord (7.1.5.1) lib/active_record/migration.rb:655:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:29:in 'block in ActionDispatch::Callbacks#call'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:28:in 'ActionDispatch::Callbacks#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in 'ActionDispatch::ShowExceptions#call'
+railties (7.1.5.1) lib/rails/rack/logger.rb:37:in 'Rails::Rack::Logger#call_app'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'block in Rails::Rack::Logger#call'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'block in ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:39:in 'ActiveSupport::TaggedLogging::Formatter#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/broadcast_logger.rb:241:in 'ActiveSupport::BroadcastLogger#method_missing'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'Rails::Rack::Logger#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/remote_ip.rb:92:in 'ActionDispatch::RemoteIp#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/request_id.rb:28:in 'ActionDispatch::RequestId#call'
+rack (3.1.16) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.16) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (7.1.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:59:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:24:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:58:in 'ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/static.rb:25:in 'ActionDispatch::Static#call'
+rack (3.1.16) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/host_authorization.rb:141:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (7.1.5.1) lib/rails/engine.rb:536:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Completed 500 Internal Server Error in 734ms (ActiveRecord: 0.0ms | Allocations: 393074)
+
+
+  
+NoMethodError (undefined method 'authenticate_admin!' for an instance of Api::V1::TurmasController):
+  
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:403:in 'block in ActiveSupport::Callbacks::CallTemplate::MethodCall#make_lambda'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:202:in 'block (2 levels) in ActiveSupport::Callbacks::Filters::Before.halting'
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:34:in 'block (2 levels) in <module:Callbacks>'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:203:in 'block in ActiveSupport::Callbacks::Filters::Before.halting'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'block in ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'Array#each'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:119:in 'block in ActiveSupport::Callbacks#run_callbacks'
+turbo-rails (2.0.16) lib/turbo-rails.rb:24:in 'Turbo.with_request_id'
+turbo-rails (2.0.16) app/controllers/concerns/turbo/request_id_tracking.rb:10:in 'Turbo::RequestIdTracking#turbo_tracking_request_id'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+actiontext (7.1.5.1) lib/action_text/rendering.rb:23:in 'ActionText::Rendering::ClassMethods#with_renderer'
+actiontext (7.1.5.1) lib/action_text/engine.rb:69:in 'block (4 levels) in <class:Engine>'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'BasicObject#instance_exec'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:141:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:258:in 'AbstractController::Callbacks#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/rescue.rb:25:in 'ActionController::Rescue#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:74:in 'block in ActionController::Instrumentation#process_action'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (7.1.5.1) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'ActiveSupport::Notifications.instrument'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:73:in 'ActionController::Instrumentation#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/params_wrapper.rb:261:in 'ActionController::ParamsWrapper#process_action'
+activerecord (7.1.5.1) lib/active_record/railties/controller_runtime.rb:32:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (7.1.5.1) lib/abstract_controller/base.rb:160:in 'AbstractController::Base#process'
+actionview (7.1.5.1) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:227:in 'ActionController::Metal#dispatch'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:309:in 'ActionController::Metal.dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:49:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:32:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:51:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:131:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'Array#each'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:32:in 'ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:882:in 'ActionDispatch::Routing::RouteSet#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.1.16) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.16) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.16) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.16) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/permissions_policy.rb:36:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/content_security_policy.rb:36:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/cookies.rb:689:in 'ActionDispatch::Cookies#call'
+activerecord (7.1.5.1) lib/active_record/migration.rb:655:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:29:in 'block in ActionDispatch::Callbacks#call'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:28:in 'ActionDispatch::Callbacks#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in 'ActionDispatch::ShowExceptions#call'
+railties (7.1.5.1) lib/rails/rack/logger.rb:37:in 'Rails::Rack::Logger#call_app'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'block in Rails::Rack::Logger#call'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'block in ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:39:in 'ActiveSupport::TaggedLogging::Formatter#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/broadcast_logger.rb:241:in 'ActiveSupport::BroadcastLogger#method_missing'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'Rails::Rack::Logger#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/remote_ip.rb:92:in 'ActionDispatch::RemoteIp#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/request_id.rb:28:in 'ActionDispatch::RequestId#call'
+rack (3.1.16) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.16) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (7.1.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:59:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:24:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:58:in 'ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/static.rb:25:in 'ActionDispatch::Static#call'
+rack (3.1.16) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/host_authorization.rb:141:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (7.1.5.1) lib/rails/engine.rb:536:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-21 09:47:18 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::SessionsController#current_user as */*
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-21 09:47:20 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.7ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:10:in 'Api::V1::SessionsController#current_user'
+Completed 200 OK in 1347ms (Views: 0.4ms | ActiveRecord: 23.4ms | Allocations: 24633)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-21 09:47:20 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+  [1m[36mUsuario Load (0.5ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/usuarios/sessions_controller.rb:9:in 'Usuarios::SessionsController#create'
+Completed 200 OK in 633ms (Views: 0.2ms | ActiveRecord: 0.5ms | Allocations: 22223)
+
+
+  [1m[36mUsuario Load (0.7ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:10:in 'Api::V1::SessionsController#current_user'
+Completed 200 OK in 605ms (Views: 0.2ms | ActiveRecord: 0.7ms | Allocations: 2575)
+
+
+Started GET "/api/v1/templates" for ::1 at 2025-07-21 09:47:30 -0300
+Started GET "/api/v1/turmas" for ::1 at 2025-07-21 09:47:30 -0300
+Processing by Api::V1::TemplatesController#index as */*
+Processing by Api::V1::TurmasController#index as */*
+Completed 500 Internal Server Error in 418ms (ActiveRecord: 0.0ms | Allocations: 2256)
+
+
+  
+NoMethodError (undefined method 'user_signed_in?' for an instance of Api::V1::TemplatesController):
+  
+app/controllers/api/v1/base_controller.rb:20:in 'Api::V1::BaseController#authenticate_admin_access!'
+Completed 500 Internal Server Error in 609ms (ActiveRecord: 0.0ms | Allocations: 268748)
+
+
+  
+NoMethodError (undefined method 'user_signed_in?' for an instance of Api::V1::TurmasController):
+  
+app/controllers/api/v1/base_controller.rb:20:in 'Api::V1::BaseController#authenticate_admin_access!'
+Started GET "/api/v1/templates" for ::1 at 2025-07-21 09:47:31 -0300
+Started GET "/api/v1/turmas" for ::1 at 2025-07-21 09:47:31 -0300
+Processing by Api::V1::TurmasController#index as */*
+Processing by Api::V1::TemplatesController#index as */*
+Completed 500 Internal Server Error in 417ms (ActiveRecord: 0.0ms | Allocations: 1170)
+
+
+  
+NoMethodError (undefined method 'user_signed_in?' for an instance of Api::V1::TurmasController):
+  
+app/controllers/api/v1/base_controller.rb:20:in 'Api::V1::BaseController#authenticate_admin_access!'
+Completed 500 Internal Server Error in 721ms (ActiveRecord: 0.0ms | Allocations: 396830)
+
+
+  
+NoMethodError (undefined method 'user_signed_in?' for an instance of Api::V1::TemplatesController):
+  
+app/controllers/api/v1/base_controller.rb:20:in 'Api::V1::BaseController#authenticate_admin_access!'
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-21 09:50:53 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::SessionsController#current_user as */*
+  [1m[36mUsuario Load (0.4ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:10:in 'Api::V1::SessionsController#current_user'
+Completed 200 OK in 1298ms (Views: 0.3ms | ActiveRecord: 25.2ms | Allocations: 14331)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-21 09:50:55 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+  [1m[36mUsuario Load (0.5ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:10:in 'Api::V1::SessionsController#current_user'
+Completed 200 OK in 586ms (Views: 0.2ms | ActiveRecord: 0.5ms | Allocations: 1019)
+
+
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-21 09:51:19 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.5ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/usuarios/sessions_controller.rb:9:in 'Usuarios::SessionsController#create'
+Completed 200 OK in 456ms (Views: 0.2ms | ActiveRecord: 0.5ms | Allocations: 1443)
+
+
+Started GET "/api/v1/templates" for ::1 at 2025-07-21 09:51:25 -0300
+Started GET "/api/v1/turmas" for ::1 at 2025-07-21 09:51:25 -0300
+Processing by Api::V1::TurmasController#index as */*
+Processing by Api::V1::TemplatesController#index as */*
+  [1m[36mUsuario Load (0.5ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (1.4ms)[0m  [1m[34mSELECT "turmas"."id" AS t0_r0, "turmas"."codigo_turma" AS t0_r1, "turmas"."semestre" AS t0_r2, "turmas"."horario" AS t0_r3, "turmas"."disciplina_id" AS t0_r4, "turmas"."professor_id" AS t0_r5, "turmas"."created_at" AS t0_r6, "turmas"."updated_at" AS t0_r7, "disciplinas"."id" AS t1_r0, "disciplinas"."codigo" AS t1_r1, "disciplinas"."nome" AS t1_r2, "disciplinas"."descricao" AS t1_r3, "disciplinas"."created_at" AS t1_r4, "disciplinas"."updated_at" AS t1_r5 FROM "turmas" LEFT OUTER JOIN "disciplinas" ON "disciplinas"."id" = "turmas"."disciplina_id" ORDER BY disciplinas.nome ASC[0m
+  ↳ app/controllers/api/v1/turmas_controller.rb:12:in 'Enumerable#map'
+Completed 200 OK in 556ms (Views: 0.2ms | ActiveRecord: 5.6ms | Allocations: 10540)
+
+
+Started GET "/api/v1/turmas" for ::1 at 2025-07-21 09:51:26 -0300
+  [1m[36mUsuario Load (0.8ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTemplate Load (0.3ms)[0m  [1m[34mSELECT "templates".* FROM "templates" ORDER BY "templates"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:13:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 565ms (Views: 0.2ms | ActiveRecord: 2.1ms | Allocations: 14499)
+
+
+Started GET "/api/v1/templates" for ::1 at 2025-07-21 09:51:26 -0300
+Processing by Api::V1::TurmasController#index as */*
+Processing by Api::V1::TemplatesController#index as */*
+  [1m[36mUsuario Load (0.6ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[34mSELECT "turmas"."id" AS t0_r0, "turmas"."codigo_turma" AS t0_r1, "turmas"."semestre" AS t0_r2, "turmas"."horario" AS t0_r3, "turmas"."disciplina_id" AS t0_r4, "turmas"."professor_id" AS t0_r5, "turmas"."created_at" AS t0_r6, "turmas"."updated_at" AS t0_r7, "disciplinas"."id" AS t1_r0, "disciplinas"."codigo" AS t1_r1, "disciplinas"."nome" AS t1_r2, "disciplinas"."descricao" AS t1_r3, "disciplinas"."created_at" AS t1_r4, "disciplinas"."updated_at" AS t1_r5 FROM "turmas" LEFT OUTER JOIN "disciplinas" ON "disciplinas"."id" = "turmas"."disciplina_id" ORDER BY disciplinas.nome ASC[0m
+  ↳ app/controllers/api/v1/turmas_controller.rb:12:in 'Enumerable#map'
+Completed 200 OK in 413ms (Views: 0.2ms | ActiveRecord: 1.1ms | Allocations: 2858)
+
+
+  [1m[36mUsuario Load (0.4ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTemplate Load (0.7ms)[0m  [1m[34mSELECT "templates".* FROM "templates" ORDER BY "templates"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:13:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 404ms (Views: 0.1ms | ActiveRecord: 1.1ms | Allocations: 4904)
+
+
+Started GET "/api/v1/templates" for ::1 at 2025-07-21 10:02:10 -0300
+Processing by Api::V1::TemplatesController#index as */*
+  [1m[36mUsuario Load (15.3ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTemplate Load (1.0ms)[0m  [1m[34mSELECT "templates".* FROM "templates" ORDER BY "templates"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:13:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 623ms (Views: 0.3ms | ActiveRecord: 27.1ms | Allocations: 2450)
+
+
+Started GET "/api/v1/templates" for ::1 at 2025-07-21 10:02:10 -0300
+Processing by Api::V1::TemplatesController#index as */*
+  [1m[36mUsuario Load (1.3ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTemplate Load (0.5ms)[0m  [1m[34mSELECT "templates".* FROM "templates" ORDER BY "templates"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:13:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 533ms (Views: 0.1ms | ActiveRecord: 1.7ms | Allocations: 2173)
+
+
+Started POST "/admin/importacoes/importar_turmas" for ::1 at 2025-07-21 10:02:19 -0300
+Processing by Admin::ImportacoesController#importar_turmas as JSON
+  Parameters: {"file" => #<ActionDispatch::Http::UploadedFile:0x0000735273841190 @tempfile=#<Tempfile:/tmp/RackMultipart20250721-14452-c9951c.json>, @content_type="application/json", @original_filename="classes.json", @headers="Content-Disposition: form-data; name=\"file\"; filename=\"classes.json\"\r\nContent-Type: application/json\r\n">}
+  [1m[36mUsuario Load (0.6ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/admin/base_controller.rb:12:in 'Admin::BaseController#authenticate_admin_access!'
+  [1m[36mDisciplina Load (4.2ms)[0m  [1m[34mSELECT "disciplinas".* FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "CIC0097"], ["LIMIT", 1]]
+  ↳ app/controllers/admin/importacoes_controller.rb:34:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/admin/importacoes_controller.rb:34:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mDisciplina Exists? (2.6ms)[0m  [1m[34mSELECT 1 AS one FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "CIC0097"], ["LIMIT", 1]]
+  ↳ app/controllers/admin/importacoes_controller.rb:34:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mDisciplina Create (0.8ms)[0m  [1m[32mINSERT INTO "disciplinas" ("codigo", "nome", "descricao", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo", "CIC0097"], ["nome", "BANCOS DE DADOS"], ["descricao", nil], ["created_at", "2025-07-21 13:02:20.391063"], ["updated_at", "2025-07-21 13:02:20.391063"]]
+  ↳ app/controllers/admin/importacoes_controller.rb:34:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mTRANSACTION (6.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/admin/importacoes_controller.rb:34:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mTurma Load (1.6ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas" WHERE "turmas"."disciplina_id" = ? AND "turmas"."codigo_turma" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["disciplina_id", 1], ["codigo_turma", "TA"], ["semestre", "2021.2"], ["LIMIT", 1]]
+  ↳ app/controllers/admin/importacoes_controller.rb:49:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/admin/importacoes_controller.rb:58:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mTurma Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" WHERE "turmas"."codigo_turma" = ? AND "turmas"."disciplina_id" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["codigo_turma", "TA"], ["disciplina_id", 1], ["semestre", "2021.2"], ["LIMIT", 1]]
+  ↳ app/controllers/admin/importacoes_controller.rb:58:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mTurma Create (0.4ms)[0m  [1m[32mINSERT INTO "turmas" ("codigo_turma", "semestre", "horario", "disciplina_id", "professor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo_turma", "TA"], ["semestre", "2021.2"], ["horario", nil], ["disciplina_id", 1], ["professor_id", nil], ["created_at", "2025-07-21 13:02:20.495446"], ["updated_at", "2025-07-21 13:02:20.495446"]]
+  ↳ app/controllers/admin/importacoes_controller.rb:58:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/admin/importacoes_controller.rb:58:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mDisciplina Load (1.8ms)[0m  [1m[34mSELECT "disciplinas".* FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "CIC0105"], ["LIMIT", 1]]
+  ↳ app/controllers/admin/importacoes_controller.rb:34:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/admin/importacoes_controller.rb:34:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mDisciplina Exists? (1.6ms)[0m  [1m[34mSELECT 1 AS one FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "CIC0105"], ["LIMIT", 1]]
+  ↳ app/controllers/admin/importacoes_controller.rb:34:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mDisciplina Create (0.3ms)[0m  [1m[32mINSERT INTO "disciplinas" ("codigo", "nome", "descricao", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo", "CIC0105"], ["nome", "ENGENHARIA DE SOFTWARE"], ["descricao", nil], ["created_at", "2025-07-21 13:02:20.505799"], ["updated_at", "2025-07-21 13:02:20.505799"]]
+  ↳ app/controllers/admin/importacoes_controller.rb:34:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/admin/importacoes_controller.rb:34:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mTurma Load (1.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas" WHERE "turmas"."disciplina_id" = ? AND "turmas"."codigo_turma" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["disciplina_id", 2], ["codigo_turma", "TA"], ["semestre", "2021.2"], ["LIMIT", 1]]
+  ↳ app/controllers/admin/importacoes_controller.rb:49:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/admin/importacoes_controller.rb:58:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mTurma Exists? (1.6ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" WHERE "turmas"."codigo_turma" = ? AND "turmas"."disciplina_id" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["codigo_turma", "TA"], ["disciplina_id", 2], ["semestre", "2021.2"], ["LIMIT", 1]]
+  ↳ app/controllers/admin/importacoes_controller.rb:58:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mTurma Create (0.4ms)[0m  [1m[32mINSERT INTO "turmas" ("codigo_turma", "semestre", "horario", "disciplina_id", "professor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo_turma", "TA"], ["semestre", "2021.2"], ["horario", nil], ["disciplina_id", 2], ["professor_id", nil], ["created_at", "2025-07-21 13:02:20.517078"], ["updated_at", "2025-07-21 13:02:20.517078"]]
+  ↳ app/controllers/admin/importacoes_controller.rb:58:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/admin/importacoes_controller.rb:58:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mDisciplina Load (1.1ms)[0m  [1m[34mSELECT "disciplinas".* FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "CIC0202"], ["LIMIT", 1]]
+  ↳ app/controllers/admin/importacoes_controller.rb:34:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/admin/importacoes_controller.rb:34:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mDisciplina Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "CIC0202"], ["LIMIT", 1]]
+  ↳ app/controllers/admin/importacoes_controller.rb:34:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mDisciplina Create (0.3ms)[0m  [1m[32mINSERT INTO "disciplinas" ("codigo", "nome", "descricao", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo", "CIC0202"], ["nome", "PROGRAMAÇÃO CONCORRENTE"], ["descricao", nil], ["created_at", "2025-07-21 13:02:20.526854"], ["updated_at", "2025-07-21 13:02:20.526854"]]
+  ↳ app/controllers/admin/importacoes_controller.rb:34:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/admin/importacoes_controller.rb:34:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mTurma Load (1.0ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas" WHERE "turmas"."disciplina_id" = ? AND "turmas"."codigo_turma" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["disciplina_id", 3], ["codigo_turma", "TA"], ["semestre", "2021.2"], ["LIMIT", 1]]
+  ↳ app/controllers/admin/importacoes_controller.rb:49:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/admin/importacoes_controller.rb:58:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mTurma Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" WHERE "turmas"."codigo_turma" = ? AND "turmas"."disciplina_id" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["codigo_turma", "TA"], ["disciplina_id", 3], ["semestre", "2021.2"], ["LIMIT", 1]]
+  ↳ app/controllers/admin/importacoes_controller.rb:58:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mTurma Create (0.3ms)[0m  [1m[32mINSERT INTO "turmas" ("codigo_turma", "semestre", "horario", "disciplina_id", "professor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo_turma", "TA"], ["semestre", "2021.2"], ["horario", nil], ["disciplina_id", 3], ["professor_id", nil], ["created_at", "2025-07-21 13:02:20.535673"], ["updated_at", "2025-07-21 13:02:20.535673"]]
+  ↳ app/controllers/admin/importacoes_controller.rb:58:in 'block in Admin::ImportacoesController#importar_turmas'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/admin/importacoes_controller.rb:58:in 'block in Admin::ImportacoesController#importar_turmas'
+Completed 200 OK in 743ms (Views: 0.2ms | ActiveRecord: 36.8ms | Allocations: 34300)
+
+
+Started GET "/api/v1/templates" for ::1 at 2025-07-21 10:02:23 -0300
+Processing by Api::V1::TemplatesController#index as */*
+  [1m[36mUsuario Load (1.6ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTemplate Load (0.6ms)[0m  [1m[34mSELECT "templates".* FROM "templates" ORDER BY "templates"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:13:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 536ms (Views: 0.2ms | ActiveRecord: 2.2ms | Allocations: 2181)
+
+
+Started GET "/api/v1/templates" for ::1 at 2025-07-21 10:02:24 -0300
+Processing by Api::V1::TemplatesController#index as */*
+  [1m[36mUsuario Load (0.6ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTemplate Load (0.4ms)[0m  [1m[34mSELECT "templates".* FROM "templates" ORDER BY "templates"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:13:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 581ms (Views: 0.1ms | ActiveRecord: 0.9ms | Allocations: 2184)
+
+
+Started POST "/api/v1/templates" for ::1 at 2025-07-21 10:02:40 -0300
+Processing by Api::V1::TemplatesController#create as */*
+  Parameters: {"template" => {"titulo" => "dhtrdfrg", "questoes_attributes" => [{"tipo" => "Escala", "enunciado" => "gdf", "obrigatoria" => true, "opcoes" => ["8"]}, {"tipo" => "Texto", "enunciado" => "adad", "obrigatoria" => true, "opcoes" => []}]}}
+  [1m[36mUsuario Load (0.4ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:24:in 'Api::V1::TemplatesController#create'
+  [1m[36mTemplate Exists? (2.0ms)[0m  [1m[34mSELECT 1 AS one FROM "templates" WHERE "templates"."titulo" = ? LIMIT ?[0m  [["titulo", "dhtrdfrg"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/templates_controller.rb:24:in 'Api::V1::TemplatesController#create'
+  [1m[36mTemplate Create (0.3ms)[0m  [1m[32mINSERT INTO "templates" ("titulo", "criador_id", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["titulo", "dhtrdfrg"], ["criador_id", 1], ["created_at", "2025-07-21 13:02:41.672080"], ["updated_at", "2025-07-21 13:02:41.672080"]]
+  ↳ app/controllers/api/v1/templates_controller.rb:24:in 'Api::V1::TemplatesController#create'
+  [1m[36mQuestao Create (0.4ms)[0m  [1m[32mINSERT INTO "questoes" ("enunciado", "tipo", "obrigatoria", "opcoes", "template_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["enunciado", "gdf"], ["tipo", "Escala"], ["obrigatoria", 1], ["opcoes", "[\"8\"]"], ["template_id", 1], ["created_at", "2025-07-21 13:02:41.673956"], ["updated_at", "2025-07-21 13:02:41.673956"]]
+  ↳ app/controllers/api/v1/templates_controller.rb:24:in 'Api::V1::TemplatesController#create'
+  [1m[36mQuestao Create (0.4ms)[0m  [1m[32mINSERT INTO "questoes" ("enunciado", "tipo", "obrigatoria", "opcoes", "template_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["enunciado", "adad"], ["tipo", "Texto"], ["obrigatoria", 1], ["opcoes", "[]"], ["template_id", 1], ["created_at", "2025-07-21 13:02:41.701196"], ["updated_at", "2025-07-21 13:02:41.701196"]]
+  ↳ app/controllers/api/v1/templates_controller.rb:24:in 'Api::V1::TemplatesController#create'
+  [1m[36mTRANSACTION (4.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:24:in 'Api::V1::TemplatesController#create'
+Completed 201 Created in 637ms (Views: 0.4ms | ActiveRecord: 9.9ms | Allocations: 17093)
+
+
+Started GET "/api/v1/templates" for ::1 at 2025-07-21 10:02:42 -0300
+Processing by Api::V1::TemplatesController#index as */*
+  [1m[36mUsuario Load (1.8ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTemplate Load (0.3ms)[0m  [1m[34mSELECT "templates".* FROM "templates" ORDER BY "templates"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:13:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 541ms (Views: 0.2ms | ActiveRecord: 2.1ms | Allocations: 2256)
+
+
+Started GET "/api/v1/turmas" for ::1 at 2025-07-21 10:02:47 -0300
+Started GET "/api/v1/templates" for ::1 at 2025-07-21 10:02:47 -0300
+Processing by Api::V1::TurmasController#index as */*
+Processing by Api::V1::TemplatesController#index as */*
+  [1m[36mUsuario Load (0.4ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[34mSELECT "turmas"."id" AS t0_r0, "turmas"."codigo_turma" AS t0_r1, "turmas"."semestre" AS t0_r2, "turmas"."horario" AS t0_r3, "turmas"."disciplina_id" AS t0_r4, "turmas"."professor_id" AS t0_r5, "turmas"."created_at" AS t0_r6, "turmas"."updated_at" AS t0_r7, "disciplinas"."id" AS t1_r0, "disciplinas"."codigo" AS t1_r1, "disciplinas"."nome" AS t1_r2, "disciplinas"."descricao" AS t1_r3, "disciplinas"."created_at" AS t1_r4, "disciplinas"."updated_at" AS t1_r5 FROM "turmas" LEFT OUTER JOIN "disciplinas" ON "disciplinas"."id" = "turmas"."disciplina_id" ORDER BY disciplinas.nome ASC[0m
+  ↳ app/controllers/api/v1/turmas_controller.rb:12:in 'Enumerable#map'
+Completed 200 OK in 401ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 3118)
+
+
+Started GET "/api/v1/turmas" for ::1 at 2025-07-21 10:02:48 -0300
+  [1m[36mUsuario Load (0.4ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTemplate Load (0.3ms)[0m  [1m[34mSELECT "templates".* FROM "templates" ORDER BY "templates"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:13:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 422ms (Views: 0.1ms | ActiveRecord: 0.7ms | Allocations: 6822)
+
+
+Started GET "/api/v1/templates" for ::1 at 2025-07-21 10:02:48 -0300
+Processing by Api::V1::TurmasController#index as */*
+Processing by Api::V1::TemplatesController#index as */*
+  [1m[36mUsuario Load (1.0ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[34mSELECT "turmas"."id" AS t0_r0, "turmas"."codigo_turma" AS t0_r1, "turmas"."semestre" AS t0_r2, "turmas"."horario" AS t0_r3, "turmas"."disciplina_id" AS t0_r4, "turmas"."professor_id" AS t0_r5, "turmas"."created_at" AS t0_r6, "turmas"."updated_at" AS t0_r7, "disciplinas"."id" AS t1_r0, "disciplinas"."codigo" AS t1_r1, "disciplinas"."nome" AS t1_r2, "disciplinas"."descricao" AS t1_r3, "disciplinas"."created_at" AS t1_r4, "disciplinas"."updated_at" AS t1_r5 FROM "turmas" LEFT OUTER JOIN "disciplinas" ON "disciplinas"."id" = "turmas"."disciplina_id" ORDER BY disciplinas.nome ASC[0m
+  ↳ app/controllers/api/v1/turmas_controller.rb:12:in 'Enumerable#map'
+Completed 200 OK in 418ms (Views: 0.2ms | ActiveRecord: 1.5ms | Allocations: 3274)
+
+
+  [1m[36mUsuario Load (0.5ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTemplate Load (0.4ms)[0m  [1m[34mSELECT "templates".* FROM "templates" ORDER BY "templates"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:13:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 408ms (Views: 0.1ms | ActiveRecord: 0.8ms | Allocations: 5138)
+
+
+Started POST "/admin/formularios" for ::1 at 2025-07-21 10:03:06 -0300
+Processing by Admin::FormulariosController#create as JSON
+  Parameters: {"template_id" => "1", "turma_ids" => [1, 2, 3], "formulario" => {"template_id" => "1"}}
+  [1m[36mUsuario Load (0.5ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/admin/base_controller.rb:12:in 'Admin::BaseController#authenticate_admin_access!'
+  [1m[36mTurma Load (0.9ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas" WHERE "turmas"."id" IN (?, ?, ?)[0m  [["id", 1], ["id", 2], ["id", 3]]
+  ↳ app/controllers/admin/formularios_controller.rb:31:in 'Admin::FormulariosController#create'
+  [1m[36mTemplate Load (0.4ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/admin/formularios_controller.rb:38:in 'Admin::FormulariosController#create'
+  [1m[36mTurma Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" INNER JOIN "formularios_turmas" ON "formularios_turmas"."turma_id" = "turmas"."id" INNER JOIN "formularios" ON "formularios"."id" = "formularios_turmas"."formulario_id" WHERE "turmas"."id" IN (?, ?, ?) AND "formularios"."created_at" BETWEEN ? AND ? LIMIT ?[0m  [["id", 1], ["id", 2], ["id", 3], ["created_at", "2025-01-01"], ["created_at", "2025-12-31"], ["LIMIT", 1]]
+  ↳ app/controllers/admin/formularios_controller.rb:92:in 'Admin::FormulariosController#validate_turmas_nao_avaliadas'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/admin/formularios_controller.rb:38:in 'Admin::FormulariosController#create'
+  [1m[36mFormulario Create (1.7ms)[0m  [1m[32mINSERT INTO "formularios" ("titulo", "ehTemplate", "status", "estruturaJSON", "dataDeExpiracao", "created_at", "updated_at", "criador_id", "template_id", "prazo_limite", "nome") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["titulo", nil], ["ehTemplate", nil], ["status", nil], ["estruturaJSON", nil], ["dataDeExpiracao", nil], ["created_at", "2025-07-21 13:03:07.775661"], ["updated_at", "2025-07-21 13:03:07.775661"], ["criador_id", 1], ["template_id", 1], ["prazo_limite", nil], ["nome", nil]]
+  ↳ app/controllers/admin/formularios_controller.rb:38:in 'Admin::FormulariosController#create'
+  [1m[36mFormulario::HABTM_Turmas Create (0.1ms)[0m  [1m[32mINSERT INTO "formularios_turmas" ("formulario_id", "turma_id") VALUES (?, ?)[0m  [["formulario_id", 1], ["turma_id", 1]]
+  ↳ app/controllers/admin/formularios_controller.rb:38:in 'Admin::FormulariosController#create'
+  [1m[36mFormulario::HABTM_Turmas Create (0.1ms)[0m  [1m[32mINSERT INTO "formularios_turmas" ("formulario_id", "turma_id") VALUES (?, ?)[0m  [["formulario_id", 1], ["turma_id", 2]]
+  ↳ app/controllers/admin/formularios_controller.rb:38:in 'Admin::FormulariosController#create'
+  [1m[36mFormulario::HABTM_Turmas Create (0.0ms)[0m  [1m[32mINSERT INTO "formularios_turmas" ("formulario_id", "turma_id") VALUES (?, ?)[0m  [["formulario_id", 1], ["turma_id", 3]]
+  ↳ app/controllers/admin/formularios_controller.rb:38:in 'Admin::FormulariosController#create'
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/admin/formularios_controller.rb:38:in 'Admin::FormulariosController#create'
+Completed 201 Created in 631ms (Views: 0.2ms | ActiveRecord: 10.6ms | Allocations: 21357)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-21 10:16:47 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::SessionsController#current_user as */*
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-21 10:16:49 -0300
+  [1m[36mUsuario Load (0.6ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:10:in 'Api::V1::SessionsController#current_user'
+Completed 200 OK in 1355ms (Views: 0.3ms | ActiveRecord: 25.4ms | Allocations: 20941)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-21 10:16:49 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}}}
+Processing by Api::V1::SessionsController#current_user as */*
+  [1m[36mUsuario Load (1.0ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/usuarios/sessions_controller.rb:9:in 'Usuarios::SessionsController#create'
+Completed 200 OK in 613ms (Views: 0.2ms | ActiveRecord: 1.0ms | Allocations: 3867)
+
+
+  [1m[36mUsuario Load (0.6ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:10:in 'Api::V1::SessionsController#current_user'
+Completed 200 OK in 624ms (Views: 0.2ms | ActiveRecord: 0.6ms | Allocations: 2574)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-21 10:26:37 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-21 10:26:38 -0300
+  [1m[36mUsuario Load (17.3ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:10:in 'Api::V1::SessionsController#current_user'
+Completed 200 OK in 921ms (Views: 0.3ms | ActiveRecord: 28.5ms | Allocations: 3283)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-21 10:26:38 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}}}
+Processing by Api::V1::SessionsController#current_user as */*
+  [1m[36mUsuario Load (0.6ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/usuarios/sessions_controller.rb:9:in 'Usuarios::SessionsController#create'
+Completed 200 OK in 781ms (Views: 0.2ms | ActiveRecord: 0.6ms | Allocations: 2055)
+
+
+  [1m[36mUsuario Load (0.6ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:10:in 'Api::V1::SessionsController#current_user'
+Completed 200 OK in 755ms (Views: 0.2ms | ActiveRecord: 0.6ms | Allocations: 2337)
+
+
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-21 10:26:41 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (4.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/usuarios/sessions_controller.rb:9:in 'Usuarios::SessionsController#create'
+Completed 200 OK in 798ms (Views: 0.2ms | ActiveRecord: 4.2ms | Allocations: 1059)
+
+
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-21 10:26:43 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.7ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/usuarios/sessions_controller.rb:9:in 'Usuarios::SessionsController#create'
+Completed 200 OK in 747ms (Views: 0.2ms | ActiveRecord: 0.6ms | Allocations: 1029)
+
+
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-21 10:26:45 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.5ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/usuarios/sessions_controller.rb:9:in 'Usuarios::SessionsController#create'
+Completed 200 OK in 684ms (Views: 0.2ms | ActiveRecord: 0.5ms | Allocations: 1062)
+
+
+Started DELETE "/usuarios/sign_out" for ::1 at 2025-07-21 10:31:42 -0300
+Processing by Usuarios::SessionsController#destroy as JSON
+  Parameters: {"session" => {}}
+  [1m[36mUsuario Load (13.4ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 532ms (Views: 0.3ms | ActiveRecord: 23.0ms | Allocations: 2037)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-21 10:31:43 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 602ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 436)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-21 10:31:44 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 539ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 397)
+
+
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-21 10:32:08 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.7ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'cauakamuratt@gmail.com' OR lower(matricula) = 'cauakamuratt@gmail.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:47:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 770ms (Views: 0.2ms | ActiveRecord: 0.7ms | Allocations: 6153)
+
+

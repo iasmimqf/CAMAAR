@@ -1,5 +1,11 @@
-class Admin::FormulariosController < ApplicationController
-  before_action :ensure_admin
+# Caminho: app/controllers/admin/formularios_controller.rb
+class Admin::FormulariosController < Admin::BaseController
+  # O seu BaseController já deve ter o filtro de segurança para admin.
+  
+  # <<< ADICIONADO: Desativa a verificação de token CSRF apenas para a ação 'create',
+  # pois ela será usada como um endpoint de API pelo React.
+  skip_before_action :verify_authenticity_token, only: [:create]
+
   before_action :set_formulario, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -19,16 +25,21 @@ class Admin::FormulariosController < ApplicationController
     @turmas = Turma.includes(:disciplina).order('disciplinas.nome, codigo_turma')
   end
 
+  # <<< MÉTODO CREATE MODIFICADO PARA FUNCIONAR COMO API >>>
   def create
-    @formulario = Formulario.new(formulario_params)
+    # Os parâmetros agora vêm do frontend em React
+    @formulario = Formulario.new(
+      template_id: params[:template_id],
+      turma_ids: params[:turma_ids]
+    )
     @formulario.criador = current_usuario
 
-    if validate_formulario_creation && @formulario.save
-      redirect_to admin_formularios_path, notice: "Formulário criado com sucesso"
+    # Executa as validações e tenta salvar
+    if @formulario.valid? && validate_turmas_nao_avaliadas && @formulario.save
+      render json: { mensagem: "Formulário criado com sucesso" }, status: :created
     else
-      @templates = Template.includes(:questoes).order(:titulo)
-      @turmas = Turma.includes(:disciplina).order('disciplinas.nome, codigo_turma')
-      render :new, status: :unprocessable_entity
+      # Se houver erros, junta todas as mensagens e devolve como JSON
+      render json: { erro: @formulario.errors.full_messages.join(', ') }, status: :unprocessable_entity
     end
   end
 
@@ -58,44 +69,34 @@ class Admin::FormulariosController < ApplicationController
     @formulario = Formulario.find(params[:id])
   end
 
+  # Este método continua a ser usado pelas ações de HTML (update)
   def formulario_params
     params.require(:formulario).permit(:template_id, turma_ids: [])
   end
 
-  def validate_formulario_creation
-    errors = []
+  # <<< MÉTODO DE VALIDAÇÃO REFINADO >>>
+  # Foca apenas na regra de negócio que não está no modelo.
+  def validate_turmas_nao_avaliadas
+    # A verificação só é necessária se houver turmas selecionadas.
+    # As validações de presença de template e turmas já são tratadas pelo `@formulario.valid?`
+    return true if @formulario.turma_ids.empty?
 
-    # Verifica se template foi selecionado
-    if formulario_params[:template_id].blank?
-      errors << "Você deve selecionar um template"
-    end
+    # Verifica se alguma das turmas selecionadas já tem um formulário neste semestre.
+    # NOTA: A lógica de "semestre atual" pode precisar de ser ajustada.
+    # Aqui, consideramos o ano atual para simplificar.
+    turmas_ja_avaliadas = Turma.joins(:formularios)
+                               .where(id: @formulario.turma_ids)
+                               .where(formularios: { created_at: Date.current.all_year })
+                               .distinct
 
-    # Verifica se pelo menos uma turma foi selecionada
-    if formulario_params[:turma_ids].blank? || formulario_params[:turma_ids].reject(&:blank?).empty?
-      errors << "Você deve selecionar ao menos uma turma"
-    end
-
-    # Verifica se alguma turma já foi avaliada neste semestre
-    if formulario_params[:turma_ids].present?
-      turmas_selecionadas = Turma.where(id: formulario_params[:turma_ids].reject(&:blank?))
-      turmas_ja_avaliadas = turmas_selecionadas.joins(:formularios)
-                                              .where(formularios: { created_at: Date.current.beginning_of_year..Date.current.end_of_year })
-                                              .distinct
-
-      if turmas_ja_avaliadas.any?
-        errors << "Esta turma já foi avaliada no semestre atual"
-      end
-    end
-
-    if errors.any?
-      errors.each { |error| @formulario.errors.add(:base, error) }
+    if turmas_ja_avaliadas.any?
+      nomes_turmas = turmas_ja_avaliadas.map(&:nome_completo).join(', ')
+      @formulario.errors.add(:base, "As seguintes turmas já foram avaliadas neste semestre: #{nomes_turmas}")
       return false
     end
 
     true
   end
-
-  def ensure_admin
-    redirect_to root_path unless current_usuario&.admin?
-  end
+  
+  # O seu método ensure_admin foi removido daqui pois a lógica já deve estar no Admin::BaseController
 end

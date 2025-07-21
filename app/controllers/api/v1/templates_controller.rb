@@ -4,7 +4,7 @@ module Api
     # <<< ALTERADO: Agora herda do nosso novo BaseController
     class TemplatesController < Api::V1::BaseController
       # O filtro de segurança agora vem do BaseController.
-      before_action :authenticate_admin!
+      before_action :authenticate_admin_access!
       before_action :set_template, only: [:show, :update, :destroy]
 
       # GET /api/v1/templates

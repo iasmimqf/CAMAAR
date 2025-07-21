@@ -1,3 +1,4 @@
+# config/routes.rb
 Rails.application.routes.draw do
   devise_for :usuarios, controllers: {
     sessions: 'usuarios/sessions'
@@ -26,10 +27,25 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get '/sessions/current_user', to: 'sessions#current_user'
+      
+      # <<< ADICIONADO AQUI: Rota para listar as turmas para o formulário
+      resources :turmas, only: [:index]
+
       resources :formularios, only: [:index]
       resources :templates, only: [:index, :create, :show, :update, :destroy]
       post 'password', to: 'passwords#forgot'
       put 'password', to: 'passwords#reset'
+
+      # ===============================================================
+      # ▼▼▼ BLOCO DE CÓDIGO ADICIONADO ▼▼▼
+      # ===============================================================
+      resources :resultados, only: [:index] do
+        collection do
+          get :exportar
+        end
+      end
+      # ===============================================================
+
     end
   end
 

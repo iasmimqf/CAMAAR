@@ -31,7 +31,6 @@ Usuario.find_or_create_by!(email: 'aluno@email.com') do |user|
 end
 
 puts "Usuários de teste criados com sucesso!"
-puts "----------------------------------------"
-puts "Admin: admin@email.com | Senha: Password123!"
+puts "----------------------------------------"=
 puts "Aluno: aluno@email.com | Senha: Password123!"
 puts "----------------------------------------"

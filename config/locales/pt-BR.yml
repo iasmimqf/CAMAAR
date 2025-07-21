@@ -1,5 +1,9 @@
 pt-BR:
   activerecord:
+    attributes:
+        usuario:
+          password: "Senha"
+          password_confirmation: "Confirmação de Senha"
     errors:
       models:
         usuario:
@@ -18,8 +22,9 @@ pt-BR:
 
   errors:
     messages:
+      confirmation: "não corresponde à %{attribute}"
       record_invalid: "A validação falhou: %{errors}"
-      taken: "já está em uso"
-      not_found: "Não encontrado"
-      already_confirmed: "Já foi confirmado"
-      not_locked: "Não estava bloqueado"
+      taken: "já está em uso."
+      blank: "não pode ficar em branco."
+      too_short: "é muito curto (mínimo de %{count} caracteres)."
+      too_long: "é muito longo (máximo de %{count} caracteres)."

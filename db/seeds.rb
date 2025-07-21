@@ -12,7 +12,7 @@ Usuario.find_or_create_by!(email: 'cauakamuratt@gmail.com') do |user|
   user.admin         = true
 end
 
-Usuario.find_or_create_by!(email: 'iasmimqf0@gmail.com') do |user|
+Usuario.find_or_create_by!(email: 'iasmimqf@gmail.com') do |user|
   puts "Criando usuário admin..."
   user.nome = 'Admin do Sistema'
   user.password      = 'Password123!'

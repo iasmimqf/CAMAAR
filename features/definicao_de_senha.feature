@@ -1,47 +1,29 @@
-História de Usuário:
+# language: pt
+Funcionalidade: Redefinição de Senha de Usuário
 
-Como um Usuário
-Quero definir uma senha para o meu usuário a partir do e-mail do sistema de solicitação de cadastro
-A fim de acessar o sistema
+  Como um Usuário cadastrado,
+  eu quero poder definir uma nova senha a partir de um link seguro enviado por e-mail,
+  a fim de acessar o sistema novamente.
 
-Cenário: Definição de senha bem-sucedida
-    Contexto:
-        Dado que meu cadastro foi aprovado e eu recebi um e-mail com o link para definir minha senha
-        E o link é válido e não expirou
-    
-    Quando eu clico no link e sou direcionado para a página "Defina sua Senha"
-    E eu preencho o campo "Nova Senha" com uma senha que atende aos critérios de segurança (ex: "senha123")
-    E eu preencho o campo "Confirmar Senha" com a mesma senha "senha123"
-    E clico no botão "Salvar Senha"
-    Então eu devo ver uma mensagem de sucesso como "Senha definida com sucesso! Você já pode acessar o sistema."
-    E devo ser redirecionado para a página de login.
+  Contexto: Um usuário solicitou a redefinição de senha
+    Dado que o usuário "ana@email.com" solicitou uma redefinição de senha
 
-Cenário: Tentativa de definir senhas que não conferem
-    Contexto:
-        Dado que meu cadastro foi aprovado e eu recebi um e-mail com o link para definir minha senha
-        E o link é válido e não expirou
-    
-    Quando eu preencho o campo "Nova Senha" com "senha123"
-    E eu preencho o campo "Confirmar Senha" com "senha124"
-    E clico no botão "Salvar Senha"
-    Então eu devo ver uma mensagem de erro na tela, como "As senhas não conferem. Por favor, tente novamente."
-    E devo permanecer na página "Defina sua Senha" para corrigir a informação.
 
-Cenário: Tentativa de definir uma senha que não atende aos critérios de segurança
-    Contexto:
-        Dado que estou na página "Defina sua Senha" a partir de um link válido
-        E o sistema exige que a senha tenha no mínimo 8 caracteres, uma letra maiúscula, uma letra maiúscula, um número e um caractere especial
+  Esquema do Cenário: Tentativa de redefinir a senha
+    Quando eu visito a página de redefinição de senha com o token do usuário "ana@email.com"
+    E preencho o campo "Nova Senha" com <Senha>
+    E preencho o campo "Confirmação de Senha" com <Confirmacao>
+    E clico no botão "Alterar minha senha"
+    Então eu devo ver a mensagem <Mensagem>
 
-    Quando eu preencho o campo "Nova Senha" com "fraca"
-    E eu preencho o campo "Confirmar Senha" com "fraca"
-    E clico no botão "Salvar Senha"
-    Então eu devo ver uma mensagem de erro detalhando os requisitos não atendidos (ex: "A senha deve conter no mínimo 8 caracteres, uma letra maiúscula e um número.")
-    E os campos de senha devem ser limpos.
+    Exemplos:
+        | Senha          | Confirmacao    | Mensagem                                       |
+        | "Password@123" | "Password@123" | "Sua senha foi alterada com sucesso."          |
+        | "Password@123" | "senha-errada" | "Confirmação de Senha não corresponde à Senha" |
+        | "fraca"        | "fraca"        | "Senha é muito curta (mínimo de 8 caracteres)" |
 
-Cenário: Acesso à página com um link inválido ou expirado
-    Contexto:
-        Dado que eu possuo um link para definição de senha que já foi utilizado ou expirou
-        Quando eu tento abrir este link no meu navegador
 
-    Então não devo ver os campos para definir a senha
-    E devo ser direcionado para uma página de erro informando: "Este link é inválido ou já expirou. Por favor, solicite um novo link de redefinição de senha."
+  Cenário: Tentativa de usar um link inválido ou expirado
+    Quando eu visito a página de redefinição de senha com o token "TOKEN_INVALIDO"
+    Então eu devo ver a mensagem de erro "Token de redefinição de senha é inválido"
+    E eu não devo ver o campo "Nova Senha"

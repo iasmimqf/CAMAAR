@@ -1,0 +1,25 @@
+pt-BR:
+  activerecord:
+    errors:
+      models:
+        usuario:
+          attributes:
+            password:
+              too_short: "A senha é muito curta (mínimo de %{count} caracteres)"
+              confirmation: "Não confere com a confirmação"
+              blank: "Não pode ficar em branco"
+              missing_lowercase: "A senha deve conter pelo menos uma letra minúscula"
+              missing_uppercase: "A senha deve conter pelo menos uma letra maiúscula"
+              missing_digit: "A senha deve conter pelo menos um número"
+              missing_special_character: "A senha deve conter pelo menos um caractere especial (ex: !@#$%)"
+            reset_password_token:
+              invalid: "Token de redefinição de senha é inválido, expirou ou já foi usado."
+              blank: "Token de redefinição de senha não pode ficar em branco."
+
+  errors:
+    messages:
+      record_invalid: "A validação falhou: %{errors}"
+      taken: "já está em uso"
+      not_found: "Não encontrado"
+      already_confirmed: "Já foi confirmado"
+      not_locked: "Não estava bloqueado"

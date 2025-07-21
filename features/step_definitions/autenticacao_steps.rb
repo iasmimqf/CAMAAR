@@ -17,12 +17,6 @@ Dado('que eu estou na página de login') do
   visit new_usuario_session_path
 end
 
-Dado('que eu sou um usuário cadastrado com o e-mail {string}') do |email|
-  # This step uses FactoryBot to create a standard user in the test database.
-  # We assume the default password in the factory is sufficient for this test.
-  create(:usuario, email: email)
-end
-
 # --- QUANDO ---
 
 Quando('eu preencho o campo {string} com {string}') do |nome_do_campo, valor|

@@ -4,13 +4,13 @@
 
 Dado('que eu sou um administrador autenticado') do
   @admin_user = create(:usuario, :admin, email: 'admin@email.com', password: 'password123')
-  
+
   # Login programático
   page.driver.post usuario_session_path, {
     'usuario[login]' => 'admin@email.com',
     'usuario[password]' => 'password123'
   }
-  
+
   # Verifica se o login funcionou
   visit admin_templates_path
 end
@@ -38,10 +38,10 @@ end
 
 Quando('clico em {string} no template {string}') do |acao, nome_template|
   template = Template.find_by(titulo: nome_template)
-  
+
   # Encontra a seção do template na lista
   template_section = find('li', text: nome_template)
-  
+
   case acao
   when 'Editar'
     within(template_section) do
@@ -91,7 +91,7 @@ Então('os formulários já criados com base nesse template não devem ser modif
   if defined?(@formulario1) && defined?(@formulario2) && @formulario1 && @formulario2
     @formulario1.reload
     @formulario2.reload
-    
+
     expect(@formulario1.template_id).to eq(@existing_template.id)
     expect(@formulario2.template_id).to eq(@existing_template.id)
     expect(Formulario.count).to eq(2) # Nenhum formulário foi removido
@@ -105,11 +105,11 @@ end
 Então('os formulários criados a partir deste devem continuar acessíveis') do
   # Verifica se os formulários ainda existem mesmo após exclusão do template
   expect(Formulario.count).to eq(2) # Os formulários não foram removidos
-  
+
   # Verifica se os formulários ainda podem ser acessados
   @formulario1.reload
   @formulario2.reload
-  
+
   # Os formulários devem existir, mas a referência ao template pode ser nula
   expect(@formulario1).to be_persisted
   expect(@formulario2).to be_persisted
@@ -125,7 +125,7 @@ Então('os formulários já criados não devem ser afetados') do
   if defined?(@formulario1) && defined?(@formulario2)
     @formulario1.reload
     @formulario2.reload
-    
+
     expect(@formulario1).to be_persisted
     expect(@formulario2).to be_persisted
   end

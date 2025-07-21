@@ -1,4 +1,4 @@
-class RecreateTurmasWithCorrectSchema < ActiveRecord::Migration[8.0]
+class RecreateTurmasWithCorrectSchema < ActiveRecord::Migration[7.1]
   def change
     # Apaga a tabela 'turmas' antiga, se ela existir.
     drop_table :turmas, if_exists: true
@@ -18,6 +18,6 @@ class RecreateTurmasWithCorrectSchema < ActiveRecord::Migration[8.0]
     end
 
     # O índice para garantir que a combinação da turma é única.
-    add_index :turmas, [:disciplina_id, :codigo_turma, :semestre], unique: true, name: 'index_turmas_on_unique_keys'
+    add_index :turmas, [ :disciplina_id, :codigo_turma, :semestre ], unique: true, name: 'index_turmas_on_unique_keys'
   end
 end

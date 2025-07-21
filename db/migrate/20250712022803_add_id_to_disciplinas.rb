@@ -1,4 +1,4 @@
-class AddIdToDisciplinas < ActiveRecord::Migration[8.0]
+class AddIdToDisciplinas < ActiveRecord::Migration[7.1]
   def change
     drop_table :disciplinas, if_exists: true
     create_table :disciplinas do |t|
@@ -11,6 +11,5 @@ class AddIdToDisciplinas < ActiveRecord::Migration[8.0]
     end
     # Adiciona o índice para garantir que cada 'codigo' seja único
     add_index :disciplinas, :codigo, unique: true
-
   end
 end

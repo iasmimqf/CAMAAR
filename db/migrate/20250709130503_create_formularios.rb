@@ -1,4 +1,4 @@
-class CreateFormularios < ActiveRecord::Migration[8.0]
+class CreateFormularios < ActiveRecord::Migration[7.1]
   def change
     create_table :formularios do |t|
       t.string :titulo

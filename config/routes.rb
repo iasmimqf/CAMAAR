@@ -1,33 +1,43 @@
 Rails.application.routes.draw do
-  devise_for :usuarios
+  devise_for :usuarios, controllers: {
+    sessions: "usuarios/sessions"
+  }
   get "home/index"
 
-  namespace :admin do
-    # Isso cria a rota GET /admin/dashboard que aponta para a ação 'index'
-    # do controller 'dashboard' dentro do módulo 'admin'
-    get 'dashboard', to: 'dashboard#index' , as: 'dashboard'
-    post 'importacoes/importar_turmas', to: 'importacoes#importar_turmas'
-    
-    # Rotas para gerenciamento de templates
-    resources :templates
-    
-    namespace :import do
-      # Routes for importing Turmas
-      resources :turmas, only: [:new, :create]
-
-      # Routes for importing Alunos
-      resources :alunos, only: [:new, :create]
+  resources :formularios, only: [ :index, :show ] do
+    member do
+      post :create_resposta
     end
   end
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  namespace :admin do
+    get "dashboard", to: "dashboard#index", as: "dashboard"
+    post "importacoes/importar_turmas", to: "importacoes#importar_turmas"
+    post "importacoes/importar_alunos", to: "importacoes#importar_alunos"
+    resources :templates, only: [ :index, :create ]
+    resources :formularios do
+      collection do
+        get :resultados
+        post :gerar_csv
+      end
+    end
+  end
+
+  namespace :api do
+    namespace :v1 do
+      get "/sessions/current_user", to: "sessions#current_user"
+      resources :formularios, only: [ :index ]
+      resources :templates, only: [ :index, :create, :show, :update, :destroy ]
+      post "password", to: "passwords#forgot"
+      put "password", to: "passwords#reset"
+    end
+  end
+
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-
-  # Defines the root path route ("/")
   root "home#index"
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 end

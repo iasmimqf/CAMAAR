@@ -2,8 +2,8 @@
 FactoryBot.define do
   factory :questao do
     enunciado { Faker::Lorem.question }
-    tipo { ['Escala', 'Texto'].sample }
-    obrigatoria { [true, false].sample }
+    tipo { [ 'Escala', 'Texto' ].sample }
+    obrigatoria { [ true, false ].sample }
     opcoes { tipo == 'Escala' ? '5,4,3,2,1' : nil }
     association :template
 

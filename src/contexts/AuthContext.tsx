@@ -25,6 +25,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
   const pathname = usePathname();
+  const publicPaths = ['/', '/login', '/login/recuperar-senha'];
+  const isPublicPath = publicPaths.includes(pathname) || pathname.startsWith('/definir-senha');
 
   // >>> AQUI ESTÁ A CORREÇÃO PRINCIPAL: Calcular isAuthenticated no escopo do componente <<<
   const isAuthenticated = !!user; // Calcula o valor de isAuthenticated aqui
@@ -47,7 +49,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         } else {
           console.log('>>> AuthProvider: Backend informou que NÃO há usuário logado (status não OK).');
           setUser(null);
-          if (pathname !== '/login') {
+          if (!isPublicPath) {
             console.log('>>> AuthProvider: Forçando redirecionamento para /login.');
             router.replace('/login');
           }
@@ -55,7 +57,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       } catch (error) {
         console.error('>>> AuthProvider: ERRO na requisição current_user (rede, CORS):', error);
         setUser(null);
-        if (pathname !== '/login') {
+        if (!isPublicPath) {
           console.log('>>> AuthProvider: Forçando redirecionamento para /login (erro na requisição).');
           router.replace('/login');
         }

@@ -13092,3 +13092,157 @@ Processing by Usuarios::SessionsController#create as JSON
 Completed 401 Unauthorized in 27ms (ActiveRecord: 0.3ms | Allocations: 1012)
 
 
+Started POST "/usuarios/sign_in" for 127.0.0.1 at 2025-07-21 00:42:42 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "iasmimf@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "iasmimf@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (1.9ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'iasmimf@gmail.com' OR lower(matricula) = 'iasmimf@gmail.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:47:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 38ms (ActiveRecord: 3.0ms | Allocations: 1207)
+
+
+Started POST "/usuarios/sign_in" for 127.0.0.1 at 2025-07-21 00:42:48 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "iasmimqf@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "iasmimqf@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.3ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'iasmimqf@gmail.com' OR lower(matricula) = 'iasmimqf@gmail.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:47:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 294ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 1141)
+
+
+Started DELETE "/usuarios/sign_out" for 127.0.0.1 at 2025-07-21 00:43:14 -0300
+Processing by Usuarios::SessionsController#destroy as JSON
+  Parameters: {"session" => {}}
+  [1m[36mUsuario Load (0.4ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 28ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 1773)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-21 00:43:14 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 24ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 416)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-21 00:43:14 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 23ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 416)
+
+
+Started POST "/usuarios/sign_in" for 127.0.0.1 at 2025-07-21 00:43:26 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "iasmimqf@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "iasmimqf@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.3ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'iasmimqf@gmail.com' OR lower(matricula) = 'iasmimqf@gmail.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:47:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 299ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 1126)
+
+
+Started POST "/usuarios/sign_in" for 127.0.0.1 at 2025-07-21 00:43:47 -0300
+Processing by Usuarios::SessionsController#create as HTML
+  Parameters: {"usuario" => {"login" => "iasmimqf@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "iasmimqf@gmail.com", "password" => "[FILTERED]"}}}
+Completed 422 Unprocessable Content in 23ms (ActiveRecord: 0.0ms | Allocations: 913)
+
+
+  
+ActionController::InvalidAuthenticityToken (The browser returned a 'null' origin for a request with origin-based forgery protection turned on. This usually
+means you have the 'no-referrer' Referrer-Policy header enabled, or that the request came from a site that
+refused to give its origin. This makes it impossible for Rails to verify the source of the requests. Likely the
+best solution is to change your referrer policy to something less strict like same-origin or strict-origin.
+If you cannot change the referrer policy, you can disable origin checking with the
+Rails.application.config.action_controller.forgery_protection_origin_check setting.
+):
+  
+actionpack (7.1.5.1) lib/action_controller/metal/request_forgery_protection.rb:614:in 'ActionController::RequestForgeryProtection#valid_request_origin?'
+actionpack (7.1.5.1) lib/action_controller/metal/request_forgery_protection.rb:444:in 'ActionController::RequestForgeryProtection#verified_request?'
+actionpack (7.1.5.1) lib/action_controller/metal/request_forgery_protection.rb:374:in 'ActionController::RequestForgeryProtection#verify_authenticity_token'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:403:in 'block in ActiveSupport::Callbacks::CallTemplate::MethodCall#make_lambda'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:183:in 'block (2 levels) in ActiveSupport::Callbacks::Filters::Before.halting_and_conditional'
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:34:in 'block (2 levels) in <module:Callbacks>'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:184:in 'block in ActiveSupport::Callbacks::Filters::Before.halting_and_conditional'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'block in ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'Array#each'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:119:in 'block in ActiveSupport::Callbacks#run_callbacks'
+turbo-rails (2.0.16) lib/turbo-rails.rb:24:in 'Turbo.with_request_id'
+turbo-rails (2.0.16) app/controllers/concerns/turbo/request_id_tracking.rb:10:in 'Turbo::RequestIdTracking#turbo_tracking_request_id'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+actiontext (7.1.5.1) lib/action_text/rendering.rb:23:in 'ActionText::Rendering::ClassMethods#with_renderer'
+actiontext (7.1.5.1) lib/action_text/engine.rb:69:in 'block (4 levels) in <class:Engine>'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'BasicObject#instance_exec'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:141:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:258:in 'AbstractController::Callbacks#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/rescue.rb:25:in 'ActionController::Rescue#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:74:in 'block in ActionController::Instrumentation#process_action'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (7.1.5.1) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'ActiveSupport::Notifications.instrument'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:73:in 'ActionController::Instrumentation#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/params_wrapper.rb:261:in 'ActionController::ParamsWrapper#process_action'
+activerecord (7.1.5.1) lib/active_record/railties/controller_runtime.rb:32:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (7.1.5.1) lib/abstract_controller/base.rb:160:in 'AbstractController::Base#process'
+actionview (7.1.5.1) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:227:in 'ActionController::Metal#dispatch'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:309:in 'ActionController::Metal.dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:49:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:32:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (7.1.5.1) lib/action_dispatch/routing/mapper.rb:30:in 'block in <class:Constraints>'
+actionpack (7.1.5.1) lib/action_dispatch/routing/mapper.rb:60:in 'ActionDispatch::Routing::Mapper::Constraints#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:51:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:131:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'Array#each'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:32:in 'ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:882:in 'ActionDispatch::Routing::RouteSet#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.1.16) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.16) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.16) lib/rack/conditional_get.rb:43:in 'Rack::ConditionalGet#call'
+rack (3.1.16) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/permissions_policy.rb:36:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/content_security_policy.rb:36:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/cookies.rb:689:in 'ActionDispatch::Cookies#call'
+activerecord (7.1.5.1) lib/active_record/migration.rb:655:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:29:in 'block in ActionDispatch::Callbacks#call'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:28:in 'ActionDispatch::Callbacks#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in 'ActionDispatch::ShowExceptions#call'
+railties (7.1.5.1) lib/rails/rack/logger.rb:37:in 'Rails::Rack::Logger#call_app'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'block in Rails::Rack::Logger#call'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'block in ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:39:in 'ActiveSupport::TaggedLogging::Formatter#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/broadcast_logger.rb:241:in 'ActiveSupport::BroadcastLogger#method_missing'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'Rails::Rack::Logger#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/remote_ip.rb:92:in 'ActionDispatch::RemoteIp#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/request_id.rb:28:in 'ActionDispatch::RequestId#call'
+rack (3.1.16) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.16) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (7.1.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:59:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:24:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:58:in 'ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/static.rb:25:in 'ActionDispatch::Static#call'
+rack (3.1.16) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/host_authorization.rb:141:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (7.1.5.1) lib/rails/engine.rb:536:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-07-21 00:43:48 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  

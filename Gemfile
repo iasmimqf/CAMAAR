@@ -14,6 +14,9 @@ gem "solid_cache" # Adaptador para Rails.cache
 gem "solid_queue" # Adaptador para Active Job
 gem "solid_cable" # Adaptador para Action Cable
 
+# Medir a Complexidade do Código
+gem 'rubycritic', require: false
+
 # Autenticação
 gem 'devise'
 gem 'devise-i18n' # Internacionalização para Devise
@@ -71,6 +74,9 @@ group :test do
   # Para testes BDD
   gem "cucumber-rails", require: false
   gem "database_cleaner-active_record"
+
+  #para teste de cobertura
+  gem 'simplecov', require: false
 
   # Use system testing
   gem "capybara"

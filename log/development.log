@@ -13246,3 +13246,202 @@ Started GET "/favicon.ico" for 127.0.0.1 at 2025-07-21 00:43:48 -0300
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
+Started POST "/usuarios/sign_in" for 127.0.0.1 at 2025-07-21 01:31:29 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "iasmimqf@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "iasmimqf@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/usuarios/sessions_controller.rb:9:in 'Usuarios::SessionsController#create'
+Completed 200 OK in 68ms (Views: 0.2ms | ActiveRecord: 2.5ms | Allocations: 14070)
+
+
+Started DELETE "/usuarios/sign_out" for 127.0.0.1 at 2025-07-21 01:31:47 -0300
+Processing by Usuarios::SessionsController#destroy as JSON
+  Parameters: {"session" => {}}
+  [1m[36mUsuario Load (0.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 17ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 1837)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-21 01:31:47 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 16ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 623)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-21 01:31:47 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 16ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 449)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-21 01:31:54 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 16ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 419)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-21 01:31:54 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 20ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 437)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-21 01:31:54 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 15ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 437)
+
+
+Started POST "/usuarios/sign_in" for 127.0.0.1 at 2025-07-21 01:32:03 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "aluno@email.cm", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "aluno@email.cm", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.3ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'aluno@email.cm' OR lower(matricula) = 'aluno@email.cm') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:47:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 17ms (ActiveRecord: 0.3ms | Allocations: 1065)
+
+
+Started POST "/usuarios/sign_in" for 127.0.0.1 at 2025-07-21 01:32:07 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'aluno@email.com' OR lower(matricula) = 'aluno@email.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:47:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 200ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1812)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-21 01:32:13 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:10:in 'Api::V1::SessionsController#current_user'
+Completed 200 OK in 22ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 1029)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-21 01:32:15 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:10:in 'Api::V1::SessionsController#current_user'
+Completed 200 OK in 19ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 1035)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-21 01:32:21 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+  [1m[36mUsuario Load (0.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:10:in 'Api::V1::SessionsController#current_user'
+Completed 200 OK in 16ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 1050)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-21 01:32:45 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+  [1m[36mUsuario Load (0.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:10:in 'Api::V1::SessionsController#current_user'
+Completed 200 OK in 24ms (Views: 0.1ms | ActiveRecord: 3.2ms | Allocations: 6474)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-21 01:32:46 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+  [1m[36mUsuario Load (0.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:10:in 'Api::V1::SessionsController#current_user'
+Completed 200 OK in 18ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 1017)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-21 01:32:50 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:10:in 'Api::V1::SessionsController#current_user'
+Completed 200 OK in 18ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 1032)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-21 01:52:34 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+  [1m[36mUsuario Load (10.8ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:10:in 'Api::V1::SessionsController#current_user'
+Completed 200 OK in 56ms (Views: 1.2ms | ActiveRecord: 17.5ms | Allocations: 5955)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-21 01:52:35 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+  [1m[36mUsuario Load (0.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:10:in 'Api::V1::SessionsController#current_user'
+Completed 200 OK in 16ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 1023)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-21 01:52:38 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+  [1m[36mUsuario Load (0.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:10:in 'Api::V1::SessionsController#current_user'
+Completed 200 OK in 17ms (Views: 0.2ms | ActiveRecord: 0.1ms | Allocations: 1033)
+
+
+Started DELETE "/usuarios/sign_out" for 127.0.0.1 at 2025-07-21 01:52:40 -0300
+Processing by Usuarios::SessionsController#destroy as JSON
+  Parameters: {"session" => {}}
+  [1m[36mUsuario Load (0.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+Completed 200 OK in 17ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 1977)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-21 01:52:40 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 15ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 430)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-21 01:52:41 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 15ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 437)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-21 01:52:45 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 16ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 431)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-21 01:52:45 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 19ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 419)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-21 01:52:45 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 15ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 431)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-21 01:53:00 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 16ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 425)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-21 01:53:00 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 15ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 434)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-21 01:53:01 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 16ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 428)
+
+
+Started POST "/usuarios/sign_in" for 127.0.0.1 at 2025-07-21 01:53:04 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "iasmimqf@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "iasmimqf@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'iasmimqf@gmail.com' OR lower(matricula) = 'iasmimqf@gmail.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:47:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 199ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1204)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-21 01:53:09 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/sessions_controller.rb:10:in 'Api::V1::SessionsController#current_user'
+Completed 200 OK in 22ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 1025)
+
+
+Started DELETE "/usuarios/sign_out" for 127.0.0.1 at 2025-07-21 01:53:20 -0300
+Processing by Usuarios::SessionsController#destroy as JSON
+  Parameters: {"session" => {}}
+  [1m[36mUsuario Load (0.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 17ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 1751)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-21 01:53:20 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 15ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 422)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-21 01:53:20 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 15ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 428)
+
+

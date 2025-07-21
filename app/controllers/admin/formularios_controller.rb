@@ -1,6 +1,6 @@
 class Admin::FormulariosController < ApplicationController
   before_action :ensure_admin
-  before_action :set_formulario, only: [:show, :edit, :update, :destroy]
+  before_action :set_formulario, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @formularios = Formulario.includes(:template, :turmas, :criador).order(created_at: :desc)
@@ -16,7 +16,7 @@ class Admin::FormulariosController < ApplicationController
   def new
     @formulario = Formulario.new
     @templates = Template.includes(:questoes).order(:titulo)
-    @turmas = Turma.includes(:disciplina).order('disciplinas.nome, codigo_turma')
+    @turmas = Turma.includes(:disciplina).order("disciplinas.nome, codigo_turma")
   end
 
   def create
@@ -27,14 +27,14 @@ class Admin::FormulariosController < ApplicationController
       redirect_to admin_formularios_path, notice: "Formulário criado com sucesso"
     else
       @templates = Template.includes(:questoes).order(:titulo)
-      @turmas = Turma.includes(:disciplina).order('disciplinas.nome, codigo_turma')
+      @turmas = Turma.includes(:disciplina).order("disciplinas.nome, codigo_turma")
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
     @templates = Template.includes(:questoes).order(:titulo)
-    @turmas = Turma.includes(:disciplina).order('disciplinas.nome, codigo_turma')
+    @turmas = Turma.includes(:disciplina).order("disciplinas.nome, codigo_turma")
   end
 
   def update
@@ -42,7 +42,7 @@ class Admin::FormulariosController < ApplicationController
       redirect_to admin_formularios_path, notice: "Formulário atualizado com sucesso"
     else
       @templates = Template.includes(:questoes).order(:titulo)
-      @turmas = Turma.includes(:disciplina).order('disciplinas.nome, codigo_turma')
+      @turmas = Turma.includes(:disciplina).order("disciplinas.nome, codigo_turma")
       render :edit, status: :unprocessable_entity
     end
   end

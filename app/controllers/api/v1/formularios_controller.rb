@@ -25,9 +25,9 @@ class Api::V1::FormulariosController < ApplicationController
       {
         id: form.id,
         # ASSUMINDO que o nome do formulário vem do template associado.
-        nome: form.template.nome, 
+        nome: form.template.nome,
         # ASSUMINDO que o formulário tem um campo :prazo (data limite).
-        prazo: form.try(:prazo) ? form.prazo.strftime("%d/%m/%Y") : "Não definido", 
+        prazo: form.try(:prazo) ? form.prazo.strftime("%d/%m/%Y") : "Não definido",
         disciplina: turma_principal&.disciplina&.nome || "Não definida",
         turma: turma_principal&.nome_completo || "Não definida"
       }

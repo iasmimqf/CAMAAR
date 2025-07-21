@@ -38,7 +38,7 @@ end
 
 Então('devo ser autenticado com sucesso e redirecionado para o dashboard de administração') do
   expect(last_response.status).to eq(200)
-  
+
   json_response = JSON.parse(last_response.body)
   expect(json_response['data']['email']).to eq(@user_data[:email])
   expect(json_response['data']['admin']).to be true
@@ -46,14 +46,14 @@ end
 
 Então('devo ser autenticado com sucesso e redirecionado para a minha página inicial') do
   expect(last_response.status).to eq(200)
-  
+
   json_response = JSON.parse(last_response.body)
   expect(json_response['data']['admin']).to be false
 end
 
 Então('devo ver uma mensagem de erro indicando que {string}') do |error_message|
   expect(last_response.status).to eq(401) # Unauthorized
-  
+
   json_response = JSON.parse(last_response.body)
   expect(json_response['error']).to eq(error_message)
 end

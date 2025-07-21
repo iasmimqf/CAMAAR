@@ -1,9 +1,9 @@
 class Admin::TemplatesController < ApplicationController
   before_action :authenticate_usuario!
   before_action :ensure_admin
-  before_action :set_template, only: [:show, :edit, :update, :destroy]
-  
-  layout proc { Rails.env.test? ? 'test' : 'application' }
+  before_action :set_template, only: [ :show, :edit, :update, :destroy ]
+
+  layout proc { Rails.env.test? ? "test" : "application" }
 
   def index
     @templates = Template.includes(:criador).order(:titulo)
@@ -58,10 +58,10 @@ class Admin::TemplatesController < ApplicationController
   end
 
   def template_params
-    params.require(:template).permit(:titulo, questoes_attributes: [:id, :enunciado, :tipo, :opcoes, :obrigatoria, :_destroy])
+    params.require(:template).permit(:titulo, questoes_attributes: [ :id, :enunciado, :tipo, :opcoes, :obrigatoria, :_destroy ])
   end
 
   def ensure_admin
-    redirect_to root_path, alert: 'Acesso negado.' unless current_usuario&.admin?
+    redirect_to root_path, alert: "Acesso negado." unless current_usuario&.admin?
   end
 end

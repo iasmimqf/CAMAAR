@@ -3,7 +3,7 @@ module Admin
   class ImportacoesController < Admin::BaseController
     # A herança de Admin::BaseController já deve tratar da autenticação.
     # Esta linha desativa a proteção CSRF do Rails para os métodos de importação.
-    skip_before_action :verify_authenticity_token, only: [:importar_turmas, :importar_alunos]
+    skip_before_action :verify_authenticity_token, only: [ :importar_turmas, :importar_alunos ]
 
     # POST /admin/importacoes/importar_turmas
     def importar_turmas
@@ -31,27 +31,27 @@ module Admin
         begin
           # --- CÓDIGO ATUALIZADO PARA O SEU JSON ---
           # Encontra ou cria a disciplina associada
-          disciplina = Disciplina.find_or_create_by!(codigo: turma_info['code']) do |d|
-            d.nome = turma_info['name']
+          disciplina = Disciplina.find_or_create_by!(codigo: turma_info["code"]) do |d|
+            d.nome = turma_info["name"]
           end
 
           # Acede ao objeto aninhado 'class'
-          class_info = turma_info['class']
+          class_info = turma_info["class"]
           unless class_info
             erros << "Linha #{index + 1}: Faltam informações da turma (objeto 'class')."
             next # Pula para a próxima iteração
           end
 
           # Encontra o professor pelo e-mail (opcional, não será encontrado no seu JSON de exemplo)
-          professor = Usuario.find_by(email: turma_info['professor_email']) if turma_info['professor_email'].present?
+          professor = Usuario.find_by(email: turma_info["professor_email"]) if turma_info["professor_email"].present?
 
           # Cria a turma, evitando duplicados
           turma = Turma.find_or_initialize_by(
             disciplina: disciplina,
-            codigo_turma: class_info['classCode'],
-            semestre: class_info['semester']
+            codigo_turma: class_info["classCode"],
+            semestre: class_info["semester"]
           )
-          
+
           # Se for uma turma nova, associa o professor
           if turma.new_record?
             turma.professor = professor
@@ -96,12 +96,12 @@ module Admin
         begin
           # Encontra o aluno pela matrícula ou cria um novo
           # Define uma senha padrão para novos alunos (eles podem alterá-la depois)
-          aluno = Usuario.find_or_initialize_by(matricula: aluno_info['matricula'])
+          aluno = Usuario.find_or_initialize_by(matricula: aluno_info["matricula"])
           if aluno.new_record?
-            aluno.nome = aluno_info['nome']
-            aluno.email = aluno_info['email']
-            aluno.password = 'SenhaPadrao123!' # Defina uma senha padrão segura
-            aluno.password_confirmation = 'SenhaPadrao123!'
+            aluno.nome = aluno_info["nome"]
+            aluno.email = aluno_info["email"]
+            aluno.password = "SenhaPadrao123!" # Defina uma senha padrão segura
+            aluno.password_confirmation = "SenhaPadrao123!"
             aluno.save!
             alunos_criados_ou_atualizados += 1
           end
@@ -110,12 +110,12 @@ module Admin
           aluno.turmas.clear
 
           # Associa o aluno às turmas especificadas no ficheiro
-          aluno_info['turmas'].each do |turma_info|
-            disciplina = Disciplina.find_by(codigo: turma_info['disciplina_codigo'])
+          aluno_info["turmas"].each do |turma_info|
+            disciplina = Disciplina.find_by(codigo: turma_info["disciplina_codigo"])
             if disciplina
               turma = disciplina.turmas.find_by(
-                codigo_turma: turma_info['codigo_turma'],
-                semestre: turma_info['semestre']
+                codigo_turma: turma_info["codigo_turma"],
+                semestre: turma_info["semestre"]
               )
               aluno.turmas << turma if turma && !aluno.turmas.include?(turma)
             else

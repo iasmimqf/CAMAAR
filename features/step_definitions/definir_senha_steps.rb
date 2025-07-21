@@ -26,7 +26,7 @@ Dado('que sou um usuário recém-criado sem senha definida') do
 
   # Em seguida, geramos o token de redefinição para este utilizador válido.
   @token = @usuario.send_reset_password_instructions
-  
+
   expect(@usuario).to be_persisted
   expect(@token).to_not be_nil
 end
@@ -36,16 +36,16 @@ Dado('que recebi um link válido para definir minha senha') do
 end
 
 Dado('que estou na página "Defina sua Senha" a partir de um link válido') do
-  steps %Q{
+  steps %Q(
     Dado que sou um usuário recém-criado sem senha definida
     Quando eu clico no link e sou direcionado para a página "Defina sua Senha"
-  }
+  )
 end
 
 Dado('que eu possuo um link para definição de senha que já foi utilizado ou expirou') do
-  steps %Q{
+  steps %Q(
     Dado que sou um usuário recém-criado sem senha definida
-  }
+  )
   # Simula a expiração do token para o teste
   @usuario.update(reset_password_sent_at: 5.hours.ago)
 end
@@ -61,13 +61,13 @@ end
 Quando(/^eu preencho o campo(?: de senha)? "([^"]*)" com "([^"]*)"$/) do |campo, valor|
   # Mapeia os nomes dos campos em Português para os nomes em Inglês do Devise.
   english_field = case campo
-                  when "Nova Senha"
+  when "Nova Senha"
                     "New password"
-                  when "Confirmar Senha"
+  when "Confirmar Senha"
                     "Confirm new password"
-                  else
+  else
                     campo
-                  end
+  end
   fill_in english_field, with: valor
 end
 
@@ -96,15 +96,14 @@ end
 Então('eu devo ver uma mensagem de erro na tela, como {string}') do |mensagem_erro|
   # WORKAROUND: Mapeia as mensagens de erro para as mensagens padrão em Inglês do Devise.
   english_error = case mensagem_erro
-                  when "As senhas não conferem. Por favor, tente novamente."
+  when "As senhas não conferem. Por favor, tente novamente."
                     "doesn't match Password"
-                  else
+  else
                     mensagem_erro
-                  end
+  end
   expect(page).to have_content(english_error)
 end
 
 Então('devo ser direcionado para uma página de erro informando: {string}') do |mensagem_erro|
   expect(page).to have_content(mensagem_erro)
 end
-

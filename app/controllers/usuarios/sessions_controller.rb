@@ -10,7 +10,7 @@ class Usuarios::SessionsController < Devise::SessionsController
     sign_in(resource_name, resource)
     render json: { data: resource_data }, status: :ok
   rescue Warden::Authentication::Failure
-    render json: { error: 'Login ou senha inválidos.' }, status: :unauthorized
+    render json: { error: "Login ou senha inválidos." }, status: :unauthorized
   end
 
   # DELETE /usuarios/sign_out
@@ -18,10 +18,10 @@ class Usuarios::SessionsController < Devise::SessionsController
     # >>> MUDANÇA CRUCIAL AQUI: Faz o logout explicitamente <<<
     signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
     if signed_out
-      render json: { message: 'Logout bem-sucedido.' }, status: :ok
+      render json: { message: "Logout bem-sucedido." }, status: :ok
     else
       # Se não conseguiu fazer logout (ex: sessão já expirada/inválida), retorna 401
-      render json: { error: 'Nenhum utilizador para fazer logout ou sessão inválida.' }, status: :unauthorized
+      render json: { error: "Nenhum utilizador para fazer logout ou sessão inválida." }, status: :unauthorized
     end
   end
 

@@ -13,7 +13,7 @@ class Api::V1::SessionsController < ApplicationController
       render json: { user: { id: user.id, email: user.email, admin: user.admin? } }, status: :ok
     else
       # Se não autenticou, significa que não há usuário logado ou a sessão é inválida.
-      render json: { error: 'Nenhum utilizador está atualmente logado.' }, status: :unauthorized
+      render json: { error: "Nenhum utilizador está atualmente logado." }, status: :unauthorized
     end
   end
 end

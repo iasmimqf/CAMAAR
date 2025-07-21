@@ -60,7 +60,7 @@ RSpec.describe "API de Autenticação", type: :request do
       post '/usuarios/sign_in', params: login_params, headers: headers
 
       delete '/usuarios/sign_out', headers: headers
-      
+
       expect(response).to have_http_status(:ok)
     end
   end

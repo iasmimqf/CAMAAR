@@ -5,12 +5,12 @@ module Api
     class TemplatesController < Api::V1::BaseController
       # O filtro de segurança agora vem do BaseController.
       before_action :authenticate_admin!
-      before_action :set_template, only: [:show, :update, :destroy]
+      before_action :set_template, only: [ :show, :update, :destroy ]
 
       # GET /api/v1/templates
       def index
         templates = Template.order(created_at: :desc)
-        render json: templates.to_json(only: [:id, :titulo, :created_at])
+        render json: templates.to_json(only: [ :id, :titulo, :created_at ])
       end
 
       # GET /api/v1/templates/:id
@@ -48,7 +48,7 @@ module Api
       def set_template
         @template = Template.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-        render json: { error: 'Template não encontrado.' }, status: :not_found
+        render json: { error: "Template não encontrado." }, status: :not_found
       end
 
       def template_params
@@ -59,7 +59,7 @@ module Api
           ]
         )
       end
-      
+
       # <<< REMOVIDO: A lógica de authenticate_admin! foi movida para o BaseController
     end
   end

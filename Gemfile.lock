@@ -605,6 +605,7 @@ DEPENDENCIES
   rack-cors
   rails (~> 7.1.5)
   rspec-rails
+  rubocop
   rubocop-rails-omakase
   rubycritic
   selenium-webdriver

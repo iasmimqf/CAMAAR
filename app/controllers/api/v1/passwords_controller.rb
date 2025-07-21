@@ -14,11 +14,11 @@ class Api::V1::PasswordsController < ApplicationController
       # Usa o método do Devise para gerar um token e enfileirar o e-mail de redefinição
       user.send_reset_password_instructions
     end
-    
+
     # IMPORTANTE: Mesmo se o usuário não for encontrado, retornamos uma mensagem de sucesso.
     # Isso é uma medida de segurança para evitar que alguém use esta API para descobrir
     # quais e-mails ou matrículas estão cadastrados no sistema.
-    render json: { status: 'ok', message: 'Se o seu e-mail ou matrícula estiver em nossa base de dados, você receberá um link para redefinir sua senha.' }, status: :ok
+    render json: { status: "ok", message: "Se o seu e-mail ou matrícula estiver em nossa base de dados, você receberá um link para redefinir sua senha." }, status: :ok
   end
 
   # Ação para EFETIVAMENTE redefinir a senha com o token
@@ -30,7 +30,7 @@ class Api::V1::PasswordsController < ApplicationController
     # Verifica se houve erros no processo (token inválido, senhas não conferem, etc.)
     if erros.empty?
       # Se não houver erros, a senha foi redefinida com sucesso
-      render json: { status: 'ok', message: 'Sua senha foi redefinida com sucesso.' }, status: :ok
+      render json: { status: "ok", message: "Sua senha foi redefinida com sucesso." }, status: :ok
     else
       # Se houver erros, retorna as mensagens para o frontend
       render json: { errors: erros }, status: :unprocessable_entity

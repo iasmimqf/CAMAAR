@@ -14,25 +14,27 @@ gem "solid_cache" # Adaptador para Rails.cache
 gem "solid_queue" # Adaptador para Active Job
 gem "solid_cable" # Adaptador para Action Cable
 
+gem "rubocop", require: false
+
 # Medir a Complexidade do Código
-gem 'rubycritic', require: false
+gem "rubycritic", require: false
 
 # Autenticação
-gem 'devise'
-gem 'devise-i18n' # Internacionalização para Devise
+gem "devise"
+gem "devise-i18n" # Internacionalização para Devise
 
 # CORS (Cross-Origin Resource Sharing)
-gem 'rack-cors'
+gem "rack-cors"
 
 # Detecção de navegador (geralmente útil em todos os ambientes)
-gem 'browser'
+gem "browser"
 
 # Gems comumente usadas em todos os ambientes ou em ambientes específicos
 # que estavam no grupo :test mas que provavelmente são para development/production
-gem 'cocoon'            # Para nested forms (depende de jQuery)
-gem 'jquery-rails'      # Dependência do Cocoon (JQuery)
-gem 'kaminari'          # Para paginação
-gem 'font-awesome-sass' # Ícones
+gem "cocoon"            # Para nested forms (depende de jQuery)
+gem "jquery-rails"      # Dependência do Cocoon (JQuery)
+gem "kaminari"          # Para paginação
+gem "font-awesome-sass" # Ícones
 
 # Reduz boot times através de caching; required in config/boot.rb
 gem "bootsnap", require: false
@@ -75,8 +77,8 @@ group :test do
   gem "cucumber-rails", require: false
   gem "database_cleaner-active_record"
 
-  #para teste de cobertura
-  gem 'simplecov', require: false
+  # para teste de cobertura
+  gem "simplecov", require: false
 
   # Use system testing
   gem "capybara"

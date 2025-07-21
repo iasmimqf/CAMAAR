@@ -17,6 +17,6 @@ class ChangePrimaryKeyForTurmas < ActiveRecord::Migration[7.1]
 
     # Passo 3: Adiciona o índice de unicidade que você queria.
     # Isso garante que a combinação das 3 colunas seja única.
-    add_index :turmas, [:disciplina_id, :codigo_turma, :semestre], unique: true, name: 'index_turmas_on_unique_keys'
+    add_index :turmas, [ :disciplina_id, :codigo_turma, :semestre ], unique: true, name: 'index_turmas_on_unique_keys'
   end
 end

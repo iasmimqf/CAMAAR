@@ -8,7 +8,7 @@ Dado('que estou autenticado como administrador para relatórios') do
     user.matricula = 'admin123'
     user.nome = 'Administrador'
   end
-  
+
   visit '/usuarios/sign_in'
   fill_in 'usuario[login]', with: @admin_usuario.email
   fill_in 'usuario[password]', with: 'password123'
@@ -20,20 +20,20 @@ Dado('existem turmas com formulários enviados') do
   @disciplina_bd = Disciplina.find_or_create_by(nome: 'Banco de Dados', codigo: 'CIC123')
   @disciplina_eng = Disciplina.find_or_create_by(nome: 'Engenharia de Software', codigo: 'CIC456')
   @disciplina_algebra = Disciplina.find_or_create_by(nome: 'Álgebra 1', codigo: 'MAT101')
-  
+
   # Criar turmas
   @turma01_bd = Turma.find_or_create_by(codigo_turma: 'Turma 01', disciplina: @disciplina_bd, semestre: '2025.1')
   @turma02_bd = Turma.find_or_create_by(codigo_turma: 'Turma 02', disciplina: @disciplina_bd, semestre: '2025.1')
   @turma01_eng = Turma.find_or_create_by(codigo_turma: 'Turma 01', disciplina: @disciplina_eng, semestre: '2025.1')
   @turma02_algebra = Turma.find_or_create_by(codigo_turma: 'Turma 02', disciplina: @disciplina_algebra, semestre: '2025.1')
-  
+
   # Criar template
   @template = Template.find_or_create_by(titulo: 'Avaliação Padrão') do |t|
     t.criador = @admin_usuario
   end
   @template.skip_questoes_validation = true
   @template.save!
-  
+
   # Criar questões para o template
   @questao_professor = @template.questoes.find_or_create_by(
     enunciado: 'Como você avalia o professor?',
@@ -41,20 +41,20 @@ Dado('existem turmas com formulários enviados') do
     obrigatoria: true,
     opcoes: '5,4,3,2,1'
   )
-  
+
   @questao_disciplina = @template.questoes.find_or_create_by(
     enunciado: 'Como você avalia a disciplina?',
     tipo: 'Escala',
     obrigatoria: true,
     opcoes: '5,4,3,2,1'
   )
-  
+
   @questao_comentario = @template.questoes.find_or_create_by(
     enunciado: 'Comentários adicionais',
     tipo: 'Texto',
     obrigatoria: false
   )
-  
+
   # Criar formulários para as turmas
   @formulario_bd = Formulario.new(
     template: @template,
@@ -62,27 +62,27 @@ Dado('existem turmas com formulários enviados') do
     nome: 'Avaliação BD 2025.1',
     prazo_limite: Date.parse('15/08/2025')
   )
-  @formulario_bd.turmas = [@turma01_bd, @turma02_bd]
+  @formulario_bd.turmas = [ @turma01_bd, @turma02_bd ]
   @formulario_bd.save!
-  
+
   @formulario_eng = Formulario.new(
     template: @template,
     criador: @admin_usuario,
     nome: 'Avaliação ENG 2025.1',
     prazo_limite: Date.parse('20/08/2025')
   )
-  @formulario_eng.turmas = [@turma01_eng]
+  @formulario_eng.turmas = [ @turma01_eng ]
   @formulario_eng.save!
-  
+
   @formulario_algebra = Formulario.new(
     template: @template,
     criador: @admin_usuario,
     nome: 'Avaliação Álgebra 2025.1',
     prazo_limite: Date.parse('20/08/2025')
   )
-  @formulario_algebra.turmas = [@turma02_algebra]
+  @formulario_algebra.turmas = [ @turma02_algebra ]
   @formulario_algebra.save!
-  
+
   # Criar usuários estudantes
   @estudantes = []
   (1..25).each do |i|
@@ -95,30 +95,30 @@ Dado('existem turmas com formulários enviados') do
     end
     @estudantes << estudante
   end
-  
+
   # Criar respostas para turma 01 BD (15 respostas de 20 possíveis)
   @estudantes[0..14].each_with_index do |estudante, index|
     resposta_form = RespostaFormulario.create!(
       formulario: @formulario_bd,
       respondente: estudante
     )
-    
+
     # Respostas para questão do professor (média 4.2)
-    valor_professor = [4, 4, 5, 4, 4, 4, 5, 4, 4, 3, 5, 4, 4, 5, 4][index]
+    valor_professor = [ 4, 4, 5, 4, 4, 4, 5, 4, 4, 3, 5, 4, 4, 5, 4 ][index]
     RespostaQuestao.create!(
       resposta_formulario: resposta_form,
       questao: @questao_professor,
       valor_resposta: valor_professor
     )
-    
+
     # Respostas para questão da disciplina (média 3.8)
-    valor_disciplina = [4, 3, 4, 4, 3, 4, 4, 3, 4, 3, 5, 3, 4, 4, 3][index]
+    valor_disciplina = [ 4, 3, 4, 4, 3, 4, 4, 3, 4, 3, 5, 3, 4, 4, 3 ][index]
     RespostaQuestao.create!(
       resposta_formulario: resposta_form,
       questao: @questao_disciplina,
       valor_resposta: valor_disciplina
     )
-    
+
     # Algumas respostas textuais
     if index % 3 == 0
       RespostaQuestao.create!(
@@ -128,24 +128,24 @@ Dado('existem turmas com formulários enviados') do
       )
     end
   end
-  
+
   # Criar respostas para turma 02 BD (18 respostas de 20 possíveis)
   @estudantes[15..17].each_with_index do |estudante, index|
     resposta_form = RespostaFormulario.create!(
       formulario: @formulario_bd,
       respondente: estudante
     )
-    
+
     # Respostas para questão do professor (média 4.5)
-    valor_professor = [5, 4, 5][index]
+    valor_professor = [ 5, 4, 5 ][index]
     RespostaQuestao.create!(
       resposta_formulario: resposta_form,
       questao: @questao_professor,
       valor_resposta: valor_professor
     )
-    
+
     # Respostas para questão da disciplina (média 4.1)
-    valor_disciplina = [4, 4, 4][index]
+    valor_disciplina = [ 4, 4, 4 ][index]
     RespostaQuestao.create!(
       resposta_formulario: resposta_form,
       questao: @questao_disciplina,
@@ -165,13 +165,13 @@ end
 
 Quando('seleciono a turma {string}') do |turma_nome|
   check_id = case turma_nome
-             when 'Turma 01 (Banco de Dados)'
+  when 'Turma 01 (Banco de Dados)'
                "turma_#{@turma01_bd.id}"
-             when 'Turma 02 (Banco de Dados)'
+  when 'Turma 02 (Banco de Dados)'
                "turma_#{@turma02_bd.id}"
-             else
+  else
                raise "Turma #{turma_nome} não encontrada"
-             end
+  end
   check(check_id)
 end
 
@@ -188,7 +188,7 @@ end
 Então('o arquivo deve conter:') do |table|
   # Verificar se o CSV contém os dados esperados
   csv_content = page.body
-  
+
   table.hashes.each do |row|
     expect(csv_content).to include(row['Turma'])
     expect(csv_content).to include(row['Disciplina'])

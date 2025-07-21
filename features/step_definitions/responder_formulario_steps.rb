@@ -4,7 +4,7 @@
 
 Dado('que estou autenticado como aluno') do
   @aluno = create(:usuario, email: "aluno@test.com", password: 'password123', admin: false)
-  
+
   # Fazer login manual via Capybara
   visit '/usuarios/sign_in'
   fill_in 'usuario[login]', with: @aluno.email
@@ -15,31 +15,31 @@ end
 Dado('existe um formulário disponível para a turma {string}') do |nome_turma|
   # Extrai nome da disciplina e código da turma
   disciplina_nome, codigo = nome_turma.split(' - ')
-  
+
   # Cria disciplina e turma
   @disciplina = create(:disciplina, nome: disciplina_nome)
   @turma = create(:turma, codigo_turma: codigo, disciplina: @disciplina)
-  
+
   # Associa aluno à turma
   @aluno.turmas << @turma
-  
+
   # Cria admin para ser criador
   admin = create(:usuario, :admin, email: "admin_resp@test.com")
-  
+
   # Cria template e questões
   @template = create(:template, titulo: 'Avaliação de Disciplina', criador: admin)
-  
+
   # Cria formulário
   @formulario = Formulario.new(template: @template, criador: admin)
-  @formulario.turmas = [@turma]
+  @formulario.turmas = [ @turma ]
   @formulario.save!
 end
 
 Dado('o formulário contém {int} questões de múltipla escolha \\(escala 1-5)') do |quantidade|
   quantidade.times do |i|
-    create(:questao, 
-      template: @template, 
-      enunciado: "Questão de escala #{i+1}: Como você avalia este aspecto?", 
+    create(:questao,
+      template: @template,
+      enunciado: "Questão de escala #{i+1}: Como você avalia este aspecto?",
       tipo: 'Escala',
       obrigatoria: true
     )
@@ -48,9 +48,9 @@ end
 
 Dado('o formulário contém {int} questões abertas') do |quantidade|
   quantidade.times do |i|
-    create(:questao, 
-      template: @template, 
-      enunciado: "Questão aberta #{i+1}: Deixe seus comentários", 
+    create(:questao,
+      template: @template,
+      enunciado: "Questão aberta #{i+1}: Deixe seus comentários",
       tipo: 'Texto',
       obrigatoria: false
     )
@@ -61,31 +61,31 @@ Dado('existe um formulário disponível para minha turma') do
   # Cria disciplina e turma
   @disciplina = create(:disciplina, nome: 'Engenharia de Software')
   @turma = create(:turma, codigo_turma: '001', disciplina: @disciplina)
-  
+
   # Associa aluno à turma
   @aluno.turmas << @turma
-  
+
   # Cria admin para ser criador
   admin = create(:usuario, :admin, email: "admin_resp2@test.com")
-  
+
   # Cria template com questões obrigatórias e opcionais
   @template = create(:template, titulo: 'Avaliação Geral', criador: admin)
-  @questao_obrigatoria = create(:questao, 
-    template: @template, 
-    enunciado: "Questão obrigatória", 
+  @questao_obrigatoria = create(:questao,
+    template: @template,
+    enunciado: "Questão obrigatória",
     tipo: 'Escala',
     obrigatoria: true
   )
-  @questao_opcional = create(:questao, 
-    template: @template, 
-    enunciado: "Questão opcional", 
+  @questao_opcional = create(:questao,
+    template: @template,
+    enunciado: "Questão opcional",
     tipo: 'Texto',
     obrigatoria: false
   )
-  
+
   # Cria formulário
   @formulario = Formulario.new(template: @template, criador: admin)
-  @formulario.turmas = [@turma]
+  @formulario.turmas = [ @turma ]
   @formulario.save!
 end
 
@@ -119,7 +119,7 @@ Quando('preencho todas as questões obrigatórias') do
   # Preenche questões de escala (obrigatórias)
   # Busca todos os grupos de radio buttons únicos
   radio_groups = page.all('input[type="radio"]').map { |r| r[:name] }.uniq
-  
+
   radio_groups.each do |group_name|
     # Para cada grupo, seleciona o valor 4 usando choose diretamente
     radio_4 = page.all("input[name='#{group_name}'][value='4']").first
@@ -127,7 +127,7 @@ Quando('preencho todas as questões obrigatórias') do
       radio_4.choose
     end
   end
-  
+
   # Preenche questões de texto (opcionais)
   textareas = page.all('textarea')
   textareas.each_with_index do |textarea, index|

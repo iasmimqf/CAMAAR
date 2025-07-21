@@ -21,10 +21,10 @@ class ApplicationController < ActionController::Base
     # Estas configurações são para o Devise, permitindo que certos atributos
     # sejam salvos quando um usuário se registra (sign_up) ou atualiza a conta (account_update).
     # O ':login' é adicionado para a sanitização de parâmetros no sign_in.
-    added_attrs = [:username, :email, :password, :password_confirmation, :remember_me]
+    added_attrs = [ :username, :email, :password, :password_confirmation, :remember_me ]
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
-    devise_parameter_sanitizer.permit :sign_in, keys: [:login, :password]
+    devise_parameter_sanitizer.permit :sign_in, keys: [ :login, :password ]
   end
 
   private
@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
     # Ele define para onde o usuário será redirecionado APÓS um login BEM-SUCEDIDO
     # no lado do Rails (especialmente para requisições HTML).
     if resource.admin?
-      '/admin/dashboard'
+      "/admin/dashboard"
     else
       root_path
     end

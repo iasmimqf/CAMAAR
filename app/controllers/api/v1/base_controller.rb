@@ -18,14 +18,14 @@ class Api::V1::BaseController < ApplicationController
   def authenticate_admin_access! # Renomeado para evitar conflito e clareza
     # Primeiro, verifica se há um utilizador logado usando os helpers do Devise.
     unless user_signed_in? # Agora 'user_signed_in?' funcionará aqui
-      render json: { error: 'Sessão não encontrada. Por favor, faça login novamente.' }, status: :unauthorized and return
+      render json: { error: "Sessão não encontrada. Por favor, faça login novamente." }, status: :unauthorized and return
     end
 
     # Depois, verifica se o utilizador logado é um administrador.
     # 'current_usuario' funcionará aqui também.
     unless current_usuario.admin?
       render json: {
-        error: 'Acesso não autorizado. Requer privilégios de administrador.',
+        error: "Acesso não autorizado. Requer privilégios de administrador.",
         usuario_logado: "Logado como: #{current_usuario.email} (Admin: #{current_usuario.admin?})"
       }, status: :forbidden and return # Adicionado 'and return' para garantir que a resposta seja enviada e a execução pare.
     end

@@ -1,5 +1,6 @@
 'use client';
 
+import { useAuth } from '@/contexts/AuthContext'; // <<< 1. Importe o nosso hook
 import { Search, Menu, X, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -14,8 +15,9 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function ResultadoPage() {
+  const { logout } = useAuth(); // <<< 2. Obtenha a função de logout do contexto
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('avaliacoes'); // Adicionei estado para seção ativa
+  const [activeSection, setActiveSection] = useState('avaliacoes'); 
 
   const subjects = [
     { name: 'Nome da matéria', semester: 'semestre', professor: 'Professor' },
@@ -26,7 +28,7 @@ export default function ResultadoPage() {
   ];
 
   const handleLogout = () => {
-    console.log('Logout clicked');
+    logout(); // <<< 3. Chame a função de logout
   };
 
   const handleSectionChange = (section: string) => {

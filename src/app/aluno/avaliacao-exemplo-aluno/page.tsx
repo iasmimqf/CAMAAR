@@ -1,5 +1,6 @@
 'use client';
 
+import { useAuth } from '@/contexts/AuthContext'; // Importe o nosso hook de autenticação
 import { Search, Menu, X, LogOut, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -11,18 +12,45 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useState } from 'react';
+import { useState, useEffect } from 'react'; // ADICIONADO: Importe useEffect para lógica de redirecionamento
+import { useRouter } from 'next/navigation'; // ADICIONADO: Importe useRouter para redirecionamento
 
 export default function AvaliacaoPage() {
+  const { user, isAuthenticated, isLoading, logout } = useAuth(); // AJUSTADO: Obtenha user, isAuthenticated, isLoading e logout
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [question1, setQuestion1] = useState('');
   const [question2, setQuestion2] = useState('');
   const [question3, setQuestion3] = useState('');
   const [question4, setQuestion4] = useState('');
-  const [activeSection, setActiveSection] = useState('avaliacoes'); // Adicionado estado para seção ativa
+  const [activeSection, setActiveSection] = useState('avaliacoes');
+  const router = useRouter(); // Inicialize useRouter
+
+  // >>> LÓGICA DE REDIRECIONAMENTO ADICIONADA AQUI <<<
+  useEffect(() => {
+    console.log('>>> AvaliacaoPage useEffect: isAuthenticated:', isAuthenticated, 'isLoading:', isLoading, 'user:', user);
+    // Se o carregamento terminou e o utilizador NÃO está autenticado, redireciona para o login.
+    // O AuthContext.tsx já faz o router.push('/login'), então esta página só precisa exibir o loading.
+    // Se isLoading for false e isAuthenticated for false, o AuthContext já terá redirecionado.
+    // Esta parte é mais para admins não acessarem aqui.
+    if (!isLoading && !isAuthenticated) {
+      // Como o AuthContext já redireciona para /login, esta condição aqui
+      // basicamente significa que, se por algum motivo ainda estamos aqui
+      // sem autenticação, algo está errado, mas o AuthContext já deveria ter agido.
+      // Você pode optar por remover este console.log e o router.push se preferir que
+      // APENAS o AuthContext lide com o redirecionamento para o login, para evitar conflitos.
+      console.log('>>> AvaliacaoPage: Não autenticado ou carregamento terminado. AuthContext deveria ter redirecionado.');
+      // router.push('/login'); // Remova esta linha se quiser que APENAS o AuthContext redirecione
+    }
+    // Se o utilizador está autenticado, mas É um admin (e não deveria estar nesta página de aluno), redireciona.
+    else if (!isLoading && isAuthenticated && user?.admin) {
+      console.log('>>> AvaliacaoPage: Autenticado como admin. Redirecionando para /admin');
+      router.push('/admin'); // Redireciona admins para a área de admin ou para uma página de acesso negado
+    }
+  }, [isAuthenticated, isLoading, user, router]); // Adicione 'router' às dependências
 
   const handleLogout = () => {
-    console.log('Logout clicked');
+    console.log('Logout clicked. Chamando função de logout do contexto...');
+    logout(); // Chame a função de logout do contexto
   };
 
   const handleSubmit = () => {
@@ -47,6 +75,23 @@ export default function AvaliacaoPage() {
     { value: 'pessimo', label: 'Péssimo' },
   ];
 
+  // Enquanto a página está carregando ou o usuário não está autenticado como aluno,
+  // mostra uma tela de carregamento para evitar que o conteúdo pisque.
+  // O redirecionamento real ocorrerá no useEffect do AuthContext.
+  if (isLoading || !isAuthenticated || user?.admin) {
+    console.log('>>> AvaliacaoPage: Mostrando tela de carregamento/redirecionamento. isAuthenticated:', isAuthenticated, 'isLoading:', isLoading, 'user:', user);
+    return (
+      <div className="flex h-screen items-center justify-center bg-gray-200">
+        <div className="text-center">
+          <p className="text-lg font-semibold text-gray-700">A verificar autorização...</p>
+          <p className="text-sm text-gray-500">Por favor, aguarde.</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Se chegar aqui, o usuário está autenticado E NÃO é admin (ou seja, é um aluno).
+  console.log('>>> AvaliacaoPage: Usuário ALUNO autorizado. Renderizando conteúdo da página.');
   return (
     <div className="min-h-screen bg-gray-200">
       {/* Header */}

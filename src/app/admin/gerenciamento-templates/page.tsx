@@ -1,5 +1,6 @@
 'use client';
 
+import { useAuth } from '@/contexts/AuthContext'; // <<< 1. Importe o nosso hook
 import { Search, Menu, X, LogOut, Edit, Trash2, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -55,6 +56,7 @@ interface Question {
 const API_BASE_URL = 'http://localhost:3000/api/v1';
 
 export default function GerenciamentoTemplatesPage() {
+  const { logout } = useAuth(); // <<< 2. Obtenha a função de logout do contexto
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('gerenciamento');
   const [editModalOpen, setEditModalOpen] = useState(false);
@@ -71,13 +73,16 @@ export default function GerenciamentoTemplatesPage() {
   const [templates, setTemplates] = useState<Template[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   const fetchTemplates = async () => {
     setIsLoading(true);
     setError(null);
     try {
       console.log("DEBUG: Tentando buscar templates de:", `${API_BASE_URL}/templates`);
-      const response = await fetch(`${API_BASE_URL}/templates`);
+      const response = await fetch(`${API_BASE_URL}/templates`, {
+        credentials: 'include', 
+      });
       if (!response.ok) {
         const errorBody = await response.text();
         throw new Error(`Erro HTTP! Status: ${response.status} - ${errorBody}`);
@@ -110,7 +115,9 @@ export default function GerenciamentoTemplatesPage() {
     setError(null);
     try {
       console.log(`DEBUG: Carregando detalhes do template ID: ${id}`);
-      const response = await fetch(`${API_BASE_URL}/templates/${id}`);
+      const response = await fetch(`${API_BASE_URL}/templates/${id}`, {
+        credentials: 'include', 
+      });
       if (!response.ok) {
         const errorBody = await response.text();
         throw new Error(`Erro ao carregar template: Status ${response.status} - ${errorBody}`);
@@ -119,8 +126,6 @@ export default function GerenciamentoTemplatesPage() {
 
       setTemplateName(data.titulo);
       // MODIFICADO: Mapeia as questões do backend para o formato do estado 'questions' do frontend
-      // Garante que 'id' é um número para questões existentes
-      // e que todos os campos necessários estão presentes e tipados corretamente.
       setQuestions(
         data.questoes.map(q => ({
           id: q.id as number, // Confia que o ID do backend é um número
@@ -141,7 +146,7 @@ export default function GerenciamentoTemplatesPage() {
 
 
   const handleLogout = () => {
-    console.log('Admin logout clicked');
+    logout(); // <<< 3. Chame a função de logout
   };
 
   const handleSectionChange = (section: string) => {
@@ -168,6 +173,7 @@ export default function GerenciamentoTemplatesPage() {
       const response = await fetch(`${API_BASE_URL}/templates/${templateId}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
       });
 
       if (response.ok) {
@@ -180,9 +186,9 @@ export default function GerenciamentoTemplatesPage() {
         try {
           const errorData = JSON.parse(errorBody);
           if (errorData.erro) {
-              errorMessage = errorData.erro;
+            errorMessage = errorData.erro;
           } else if (errorData.message) {
-              errorMessage = errorData.message;
+            errorMessage = errorData.message;
           }
         } catch (e) {
           errorMessage = errorBody || "Mensagem de erro não disponível.";
@@ -243,81 +249,80 @@ export default function GerenciamentoTemplatesPage() {
           }
           return q;
         })
-        .filter(q => q !== null); // Filtra as questões marcadas como null (as novas removidas)
+        .filter(q => q !== null) as Question[]; // Filtra as questões marcadas como null (as novas removidas)
     });
   };
 
   const handleSaveTemplate = async () => {
-  if (!templateName.trim()) {
-    alert('O título do template é obrigatório.');
-    return;
-  }
-
-  // Mapeia e filtra as questões que realmente serão enviadas para o Rails
-  const questionsToSend = questions.filter(q => {
-    if (q === null) return false;
-
-    if (q._destroy) {
-      return typeof q.id === 'number' && q.id > 0;
+    if (!templateName.trim()) {
+      alert('O título do template é obrigatório.');
+      return;
     }
-    
-    // AQUI ESTÁ A CORREÇÃO: Usando 'q.text' para validar o estado do frontend
-    return q.text !== undefined && q.text !== null && q.text.trim() !== '';
-  }).map(q => {
-    if (q._destroy) {
-      // Se marcada para destruição, envia só o ID e a flag
-      return { id: q.id as number, _destroy: true };
-    }
-    // Para questões a serem salvas ou atualizadas, mapeia para o formato do backend
-    return {
-      id: (editingTemplateId !== null && typeof q.id === 'number' && q.id > 0) ? q.id as number : undefined,
-      tipo: q.type,
-      enunciado: q.text, // Mapeamento correto para 'enunciado' que o backend espera
-      obrigatoria: q.obrigatoria,
-      opcoes: q.options ? q.options.split(',').map(item => item.trim()) : [],
-    };
-  });
 
-  const activeQuestionsAfterFilter = questionsToSend.filter(q => !q._destroy);
+    // Mapeia e filtra as questões que realmente serão enviadas para o Rails
+    const questionsToSend = questions.filter(q => {
+      if (q === null) return false;
 
-  if (activeQuestionsAfterFilter.length === 0) {
-    alert('Adicione pelo menos uma questão válida ao template.');
-    return;
-  }
-
-  const method = editingTemplateId ? 'PUT' : 'POST';
-  const url = editingTemplateId ? `${API_BASE_URL}/templates/${editingTemplateId}` : `${API_BASE_URL}/templates`;
-
-  const payload = {
-    template: {
-      titulo: templateName,
-      questoes_attributes: questionsToSend
-    }
-  };
-
-  // O resto da sua função de fetch continua igual...
-  try {
-    const response = await fetch(url, {
-      method: method,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      if (q._destroy) {
+        return typeof q.id === 'number' && q.id > 0;
+      }
+      
+      // AQUI ESTÁ A CORREÇÃO: Usando 'q.text' para validar o estado do frontend
+      return q.text !== undefined && q.text !== null && q.text.trim() !== '';
+    }).map(q => {
+      if (q._destroy) {
+        // Se marcada para destruição, envia só o ID e a flag
+        return { id: q.id as number, _destroy: true };
+      }
+      // Para questões a serem salvas ou atualizadas, mapeia para o formato do backend
+      return {
+        id: (editingTemplateId !== null && typeof q.id === 'number' && q.id > 0) ? q.id as number : undefined,
+        tipo: q.type,
+        enunciado: q.text, // Mapeamento correto para 'enunciado' que o backend espera
+        obrigatoria: q.obrigatoria,
+        opcoes: q.options ? q.options.split(',').map(item => item.trim()) : [],
+      };
     });
 
-    if (response.ok) {
-      const result = await response.json();
-      alert(result.mensagem);
-      setEditModalOpen(false);
-      fetchTemplates();
-    } else {
-      const errorBody = await response.json();
-      alert(`Erro ao salvar: ${errorBody.erro}`);
-    }
-  } catch (error) {
-    alert('Não foi possível conectar ao servidor. Tente novamente.');
-  }
-};
+    const activeQuestionsAfterFilter = questionsToSend.filter(q => !q._destroy);
 
-  const router = useRouter();
+    if (activeQuestionsAfterFilter.length === 0) {
+      alert('Adicione pelo menos uma questão válida ao template.');
+      return;
+    }
+
+    const method = editingTemplateId ? 'PUT' : 'POST';
+    const url = editingTemplateId ? `${API_BASE_URL}/templates/${editingTemplateId}` : `${API_BASE_URL}/templates`;
+
+    const payload = {
+      template: {
+        titulo: templateName,
+        questoes_attributes: questionsToSend
+      }
+    };
+
+    // O resto da sua função de fetch continua igual...
+    try {
+      const response = await fetch(url, {
+        method: method,
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        alert(result.mensagem);
+        setEditModalOpen(false);
+        fetchTemplates();
+      } else {
+        const errorBody = await response.json();
+        alert(`Erro ao salvar: ${errorBody.erro}`);
+      }
+    } catch (error) {
+      alert('Não foi possível conectar ao servidor. Tente novamente.');
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-200">
@@ -363,6 +368,7 @@ export default function GerenciamentoTemplatesPage() {
                   className="cursor-pointer text-red-600 focus:text-red-600"
                 >
                   <LogOut className="mr-2 h-4 w-4" />
+                  <span>Sair</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

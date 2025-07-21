@@ -1,19 +1,23 @@
+// Caminho: src/app/login/page.tsx
 'use client';
 
-import type React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from "next/navigation";
+import { useAuth } from '@/contexts/AuthContext'; // ADICIONADO: Importe o hook de autenticação
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
 export default function LoginPage() {
-  const [login, setLogin] = useState('');
+  const { login: authContextLogin } = useAuth(); // RENOMEADO para evitar conflito com o estado 'login'
+  const [email, setEmail] = useState(''); // Usando 'email' para o campo de login, mais comum com Devise
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+
+  const API_URL = 'http://localhost:3000'; // URL do seu backend Rails
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,35 +25,43 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
-      // ATENÇÃO: Verifique se a porta do seu servidor Rails é 3000
-      const response = await fetch('http://localhost:3000/usuarios/sign_in.json', {
+      const response = await fetch(`${API_URL}/usuarios/sign_in`, { // Removido '.json' se não for estritamente necessário
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
         body: JSON.stringify({
           usuario: {
-            login: login,
+            login: email, // Use 'email' aqui, pois 'login' é o campo que você usa no Devise
             password: password,
           },
         }),
+        credentials: 'include', // <<< ADICIONADO: ESSENCIAL para cookies de sessão
       });
 
       const data = await response.json();
 
       if (response.ok) {
         // Login bem-sucedido
-        if (data.data.admin) {
-          router.push('/admin');
-        } else {
-          router.push('/aluno');
-        }
+        console.log('Login bem-sucedido no servidor:', data);
+        // Chame a função 'login' do AuthContext para atualizar o estado global
+        // e fazer o redirecionamento correto.
+        authContextLogin({
+          id: data.data.id,
+          email: data.data.email,
+          admin: data.data.admin, // Adapte para o campo correto que indica se é admin
+        });
+        // O redirecionamento será feito pelo AuthContext, então não precisamos de router.push aqui.
       } else {
         // Login falhou
-        setError(data.error || 'Login ou senha inválidos.');
+        const errorMessage = data.error || 'Login ou senha inválidos.';
+        console.error('Erro no login:', errorMessage);
+        setError(errorMessage);
       }
     } catch (err) {
       // Erro de rede ou servidor
+      console.error('Erro de rede durante o login:', err);
       setError('Não foi possível conectar ao servidor. Tente novamente mais tarde.');
     } finally {
       setIsLoading(false);
@@ -70,16 +82,16 @@ export default function LoginPage() {
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
-                  <Label htmlFor="login" className="text-sm font-medium text-gray-700">
+                  <Label htmlFor="email" className="text-sm font-medium text-gray-700">
                     Email ou Matrícula
                   </Label>
                   <Input
-                    id="login"
-                    name="login"
+                    id="email" // Alterado para 'email' para consistência
+                    name="email"
                     type="text"
-                    value={login}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="aluno@aluno.unb.br ou sua matrícula"
-                    onChange={(e) => setLogin(e.target.value)}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     required
                     disabled={isLoading}

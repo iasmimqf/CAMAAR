@@ -1,33 +1,38 @@
+# app/controllers/usuarios/sessions_controller.rb
 class Usuarios::SessionsController < Devise::SessionsController
-  # Desabilita a proteção CSRF para a ação de 'create' (login via API)
-  skip_before_action :verify_authenticity_token
+  # REMOVA QUALQUER LINHA 'include Devise::Controllers::Helpers' OU 'extend Devise::Controllers::Helpers' AQUI.
 
-  # Este método irá interceptar a requisição POST /usuarios/sign_in
+  respond_to :json
+
+  # POST /usuarios/sign_in (Este método já usa warden.authenticate! e está OK)
   def create
     self.resource = warden.authenticate!(auth_options)
     sign_in(resource_name, resource)
-    
-    # Resposta de SUCESSO customizada
-    render json: {
-      status: { code: 200, message: 'Login bem-sucedido.' },
-      data: {
-        id: resource.id,
-        email: resource.email,
-        admin: resource.admin? # Adiciona a flag de admin que o frontend precisa
-      }
-    }, status: :ok
-  
-  # Este 'rescue' é acionado se a autenticação do warden falhar
+    render json: { data: resource_data }, status: :ok
   rescue Warden::Authentication::Failure
-    # Resposta de FALHA customizada
-    render json: {
-      status: { code: 401, message: 'Login ou senha inválidos.' },
-      error: 'Login ou senha inválidos.' # Mensagem que o frontend vai exibir
-    }, status: :unauthorized
+    render json: { error: 'Login ou senha inválidos.' }, status: :unauthorized
   end
 
-  # Seu método de logout já está perfeito, vamos mantê-lo
+  # DELETE /usuarios/sign_out
+  def destroy
+    # >>> MUDANÇA CRUCIAL AQUI: Faz o logout explicitamente <<<
+    signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
+    if signed_out
+      render json: { message: 'Logout bem-sucedido.' }, status: :ok
+    else
+      # Se não conseguiu fazer logout (ex: sessão já expirada/inválida), retorna 401
+      render json: { error: 'Nenhum utilizador para fazer logout ou sessão inválida.' }, status: :unauthorized
+    end
+  end
+
+  private
+
+  def resource_data
+    # Assumindo que 'resource' aqui já é o usuário autenticado pelo Devise.
+    { id: resource.id, email: resource.email, admin: resource.admin? }
+  end
+
   def respond_to_on_destroy
-    head :no_content
+    # A resposta JSON já foi enviada no método destroy.
   end
 end

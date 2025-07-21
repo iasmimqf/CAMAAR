@@ -1,5 +1,6 @@
 'use client';
 
+import { useAuth } from '@/contexts/AuthContext'; // <<< 1. Importe o nosso hook
 import { Search, Menu, X, LogOut, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -14,15 +15,16 @@ import {
 import { useState } from 'react';
 
 export default function AvaliacaoPage() {
+  const { logout } = useAuth(); // <<< 2. Obtenha a função de logout do contexto
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [question1, setQuestion1] = useState('');
   const [question2, setQuestion2] = useState('');
   const [question3, setQuestion3] = useState('');
   const [question4, setQuestion4] = useState('');
-  const [activeSection, setActiveSection] = useState('avaliacoes'); // Adicionado estado para seção ativa
+  const [activeSection, setActiveSection] = useState('avaliacoes');
 
   const handleLogout = () => {
-    console.log('Logout clicked');
+    logout(); // <<< 3. Chame a função de logout
   };
 
   const handleSubmit = () => {
@@ -113,10 +115,10 @@ export default function AvaliacaoPage() {
         {/* Sidebar */}
         <aside
           className={`
-          fixed top-[73px] bottom-0 left-0 z-50
-          w-48 bg-white shadow-lg
-          transform transition-transform duration-300 ease-in-out
-          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+         fixed top-[73px] bottom-0 left-0 z-50
+         w-48 bg-white shadow-lg
+         transform transition-transform duration-300 ease-in-out
+         ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
         `}
         >
           <nav className="bg-white flex-1 py-2">

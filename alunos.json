@@ -1,0 +1,43 @@
+[
+  {
+    "nome": "João da Silva",
+    "matricula": "123456789",
+    "email": "joao.silva@aluno.unb.br",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Maria Oliveira",
+    "matricula": "987654321",
+    "email": "maria.oliveira@aluno.unb.br",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0105",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      },
+      {
+        "disciplina_codigo": "CIC0202",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Pedro Souza",
+    "matricula": "112233445",
+    "email": "pedro.souza@aluno.unb.br",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  }
+]

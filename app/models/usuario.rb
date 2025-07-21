@@ -30,7 +30,7 @@ class Usuario < ApplicationRecord
 
   # ✅ Reativando o validatable!
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :validatable
 
   validates :password, password_complexity: true, if: -> { new_record? || password.present? }
 

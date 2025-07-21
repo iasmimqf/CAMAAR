@@ -50,7 +50,6 @@ class Usuario < ApplicationRecord
     end
   end
 
-  has_and_belongs_to_many :turmas
   has_many :turmas_lecionadas, class_name: 'Turma', foreign_key: 'professor_id'
   has_many :formularios_criados, class_name: 'Formulario', foreign_key: 'criador_id'
   has_many :respostas_enviadas, class_name: 'Resposta', foreign_key: 'avaliador_id'

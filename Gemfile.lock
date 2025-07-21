@@ -581,7 +581,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
-  brakeman (~> 7.1.0)
+  brakeman
   browser
   capybara
   cocoon

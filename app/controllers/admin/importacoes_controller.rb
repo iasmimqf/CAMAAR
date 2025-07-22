@@ -18,7 +18,7 @@ module Admin
       else
         # Se houve falha (total ou parcial), retorna os detalhes
         alert_message = "Importação concluída com erros."
-        alert_message += " #{resultado[:turmas_criadas]} turmas foram importadas com sucesso." if resultado[:turmas_criadas] > 0
+        alert_message += " #{resultado[:turmas_criadas].to_i} turmas foram importadas com sucesso." if resultado[:turmas_criadas].to_i > 0
         
         render json: { 
           alert: alert_message, 

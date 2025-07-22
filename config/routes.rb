@@ -28,24 +28,25 @@ Rails.application.routes.draw do
     namespace :v1 do
       get '/sessions/current_user', to: 'sessions#current_user'
       
-      # <<< ADICIONADO AQUI: Rota para listar as turmas para o formulário
       resources :turmas, only: [:index]
 
-      resources :formularios, only: [:index]
+      # CORREÇÃO: Unificado o 'resources :formularios' em um só bloco
+      resources :formularios, only: [:index, :show] do
+        # Adiciona a rota: POST /api/v1/formularios/:id/responder
+        member do
+          post :responder
+        end
+      end
+
       resources :templates, only: [:index, :create, :show, :update, :destroy]
       post 'password', to: 'passwords#forgot'
       put 'password', to: 'passwords#reset'
 
-      # ===============================================================
-      # ▼▼▼ BLOCO DE CÓDIGO ADICIONADO ▼▼▼
-      # ===============================================================
       resources :resultados, only: [:index] do
         collection do
           get :exportar
         end
       end
-      # ===============================================================
-
     end
   end
 

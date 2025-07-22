@@ -1,3 +1,4 @@
+# app/models/usuario.rb
 class Usuario < ApplicationRecord
   attr_writer :login
 
@@ -14,23 +15,44 @@ class Usuario < ApplicationRecord
     self.admin == true
   end
 
-  # Método para buscar formulários pendentes para o aluno
   def formularios_pendentes
     return Formulario.none if self.turmas.empty?
     
-    # Busca formulários das turmas do aluno que ainda não foram respondidos
     formularios_das_turmas = Formulario.joins(:turmas)
-                                      .where(turmas: { id: self.turmas.pluck(:id) })
-                                      .distinct
+                                       .where(turmas: { id: self.turmas.pluck(:id) })
+                                       .distinct
     
-    # Remove formulários já respondidos por este aluno
     formularios_respondidos_ids = self.resposta_formularios.pluck(:formulario_id)
     formularios_das_turmas.where.not(id: formularios_respondidos_ids)
   end
 
-  # ✅ Reativando o validatable!
   devise :database_authenticatable, :registerable,
-         :recoverable, :validatable
+         :recoverable, :validatable,
+         :jwt_authenticatable, jwt_revocation_strategy: self
+
+  # ===============================================================
+  # ▼▼▼ CORREÇÃO PRINCIPAL AQUI ▼▼▼
+  # ===============================================================
+  # A classe NullDenylist agora tem o método `jwt_revoked?` que a gem espera.
+  class NullDenylist
+    def self.revoke_jti(jti, exp)
+      # Para a estratégia nula, este método não faz nada.
+    end
+
+    def self.jti_revoked?(jti)
+      # A estratégia nula nunca considera um token como revogado.
+      false
+    end
+
+    # Método de fallback para satisfazer a gem `warden-jwt-auth`
+    def self.jwt_revoked?(payload, user)
+      # Apenas delega para o método que já tínhamos.
+      jti_revoked?(payload['jti'])
+    end
+  end
+  # ===============================================================
+
+  self.jwt_revocation_strategy = NullDenylist
 
   validates :password, password_complexity: true, if: -> { new_record? || password.present? }
 
@@ -50,7 +72,6 @@ class Usuario < ApplicationRecord
     end
   end
 
-  has_and_belongs_to_many :turmas
   has_many :turmas_lecionadas, class_name: 'Turma', foreign_key: 'professor_id'
   has_many :formularios_criados, class_name: 'Formulario', foreign_key: 'criador_id'
   has_many :respostas_enviadas, class_name: 'Resposta', foreign_key: 'avaliador_id'

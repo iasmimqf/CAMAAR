@@ -1,21 +1,27 @@
 // lib/api.ts
 import axios from 'axios';
 
-// Cria uma instância do Axios com a URL base da sua API Rails.
+// Chave para buscar o token no localStorage
+const AUTH_TOKEN_KEY = 'camaar-auth-token';
+
 export const api = axios.create({
   baseURL: 'http://localhost:3000/api/v1',
+  // ===============================================================
+  // ▼▼▼ ADICIONE ESTE BLOCO DE HEADERS PADRÃO ▼▼▼
+  // ===============================================================
+  headers: {
+    // Garante que todas as requisições feitas por esta instância
+    // informem ao Rails que esperam uma resposta JSON.
+    'Accept': 'application/json'
+  }
+  // ===============================================================
 });
 
-// Isso é um "interceptor": um código que é executado ANTES de cada
-// requisição ser enviada. Ele é perfeito para adicionar o token.
+// O interceptor adiciona o token de autenticação a cada requisição.
 api.interceptors.request.use(
   (config) => {
-    // Tenta pegar o token de autenticação do localStorage.
-    // ATENÇÃO: Troque 'seu_app_auth_token' pela chave real que você usa!
-    const token = localStorage.getItem('seu_app_auth_token');
+    const token = localStorage.getItem(AUTH_TOKEN_KEY);
 
-    // Se o token existir, ele é adicionado ao cabeçalho 'Authorization'.
-    // O backend (Devise) usará este cabeçalho para autenticar o usuário.
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -23,7 +29,6 @@ api.interceptors.request.use(
     return config;
   },
   (error) => {
-    // Se houver um erro na configuração, ele é rejeitado.
     return Promise.reject(error);
   }
 );

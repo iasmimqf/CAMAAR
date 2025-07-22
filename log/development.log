@@ -13213,3 +13213,1080 @@ Processing by Usuarios::SessionsController#create as JSON
 Completed 200 OK in 770ms (Views: 0.2ms | ActiveRecord: 0.7ms | Allocations: 6153)
 
 
+Started POST "/api/v1/password" for ::1 at 2025-07-22 18:36:12 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::PasswordsController#forgot as */*
+  Parameters: {"login" => "cauakamuratt@gmail.com", "password" => {"login" => "cauakamuratt@gmail.com"}}
+  [1m[36mUsuario Load (0.4ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'cauakamuratt@gmail.com' OR lower(matricula) = 'cauakamuratt@gmail.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/v1/passwords_controller.rb:11:in 'Api::V1::PasswordsController#forgot'
+  [1m[36mUsuario Load (0.6ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."reset_password_token" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["reset_password_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/passwords_controller.rb:15:in 'Api::V1::PasswordsController#forgot'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/passwords_controller.rb:15:in 'Api::V1::PasswordsController#forgot'
+  [1m[36mUsuario Update (2.6ms)[0m  [1m[33mUPDATE "usuarios" SET "updated_at" = ?, "reset_password_token" = ?, "reset_password_sent_at" = ? WHERE "usuarios"."id" = ?[0m  [["updated_at", "2025-07-22 21:36:14.419306"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["id", 1]]
+  ↳ app/controllers/api/v1/passwords_controller.rb:15:in 'Api::V1::PasswordsController#forgot'
+  [1m[36mTRANSACTION (4.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/passwords_controller.rb:15:in 'Api::V1::PasswordsController#forgot'
+  Rendering usuarios/mailer/reset_password_instructions.html.erb
+  Rendered usuarios/mailer/reset_password_instructions.html.erb (Duration: 2.6ms | Allocations: 209)
+CustomDeviseMailer#reset_password_instructions: processed outbound mail in 5837.7ms
+Delivered mail 68800454b5f9e_1fc326a87954c@Kamuratt.mail (4024.6ms)
+Date: Tue, 22 Jul 2025 18:36:20 -0300
+From: camaarkk@gmail.com
+Reply-To: camaarkk@gmail.com
+To: cauakamuratt@gmail.com
+Message-ID: <68800454b5f9e_1fc326a87954c@Kamuratt.mail>
+Subject: =?UTF-8?Q?Instru=C3=A7=C3=B5es_de_redefini=C3=A7=C3=A3o_de_senha?=
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Type=
+' />
+  <style>
+    body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; m=
+argin: 0; padding: 0; background-color: #f6f6f6; }
+    .container { width: 100%; max-width: 600px; margin: 0 auto; padding: =
+20px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4p=
+x rgba(0,0,0,0.1); }
+    .header { text-align: center; padding-bottom: 20px; border-bottom: 1p=
+x solid #eeeeee; }
+    .header h1 { color: #333333; }
+    .content { padding: 20px 0; }
+    .content p { color: #555555; line-height: 1.6; }
+    .cta-button { display: block; width: 200px; margin: 20px auto; paddin=
+g: 15px 20px; background-color: #22c55e; /* COR DO BOT=C3=83O ALTERADA PA=
+RA VERDE */ color: #ffffff; text-align: center; text-decoration: none; bo=
+rder-radius: 5px; font-weight: bold; }
+    .footer { text-align: center; padding-top: 20px; border-top: 1px soli=
+d #eeeeee; font-size: 12px; color: #999999; }
+  </style>
+</head>
+<body>
+  <div class=3D"container">
+    <div class=3D"header">
+      <h1>CAMAAR</h1>
+    </div>
+    <div class=3D"content">
+      <p>Ol=C3=A1, Admin do Sistema!</p>
+      =
+
+      <p>Recebemos uma solicita=C3=A7=C3=A3o para redefinir a senha da su=
+a conta. Se foi voc=C3=AA, clique no bot=C3=A3o abaixo para escolher uma =
+nova senha.</p>
+      =
+
+      <a href=3D"http://localhost:3002/definir-senha?token=3DSEqjX28LhRys=
+YxJvtfp9" class=3D"cta-button">Redefinir Minha Senha</a>
+      =
+
+      <p>Este link de redefini=C3=A7=C3=A3o de senha expirar=C3=A1 em 6 h=
+oras.</p>
+      <p>Se voc=C3=AA n=C3=A3o solicitou esta altera=C3=A7=C3=A3o, pode i=
+gnorar este e-mail com seguran=C3=A7a. Sua senha n=C3=A3o ser=C3=A1 alter=
+ada.</p>
+      <p>Atenciosamente,<br>Equipe CAMAAR</p>
+    </div>
+    <div class=3D"footer">
+      <p>&copy; 2025 CAMAAR. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</body>
+</html>=
+
+Completed 200 OK in 11605ms (Views: 0.4ms | ActiveRecord: 35.4ms | Allocations: 1035624)
+
+
+Started POST "/api/v1/usuarios/sign_in" for ::1 at 2025-07-22 18:37:50 -0300
+  
+ActionController::RoutingError (No route matches [POST] "/api/v1/usuarios/sign_in"):
+  
+Started POST "/api/v1/usuarios/sign_in" for ::1 at 2025-07-22 18:38:14 -0300
+  
+ActionController::RoutingError (No route matches [POST] "/api/v1/usuarios/sign_in"):
+  
+Started POST "/api/v1/usuarios/sign_in" for ::1 at 2025-07-22 18:38:44 -0300
+  
+ActionController::RoutingError (No route matches [POST] "/api/v1/usuarios/sign_in"):
+  
+Started PUT "/api/v1/password" for ::1 at 2025-07-22 18:39:15 -0300
+Processing by Api::V1::PasswordsController#reset as */*
+  Parameters: {"reset_password_token" => "[FILTERED]", "password" => "[FILTERED]", "password_confirmation" => "[FILTERED]"}
+  [1m[36mUsuario Load (1.3ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."reset_password_token" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["reset_password_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/passwords_controller.rb:30:in 'Api::V1::PasswordsController#reset'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/passwords_controller.rb:30:in 'Api::V1::PasswordsController#reset'
+  [1m[36mUsuario Update (1.9ms)[0m  [1m[33mUPDATE "usuarios" SET "updated_at" = ?, "encrypted_password" = ?, "reset_password_token" = ?, "reset_password_sent_at" = ? WHERE "usuarios"."id" = ?[0m  [["updated_at", "2025-07-22 21:39:17.018825"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["id", 1]]
+  ↳ app/controllers/api/v1/passwords_controller.rb:30:in 'Api::V1::PasswordsController#reset'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/passwords_controller.rb:30:in 'Api::V1::PasswordsController#reset'
+Completed 200 OK in 848ms (Views: 0.3ms | ActiveRecord: 4.5ms | Allocations: 8375)
+
+
+Started POST "/api/v1/usuarios/sign_in" for ::1 at 2025-07-22 18:39:35 -0300
+  
+ActionController::RoutingError (No route matches [POST] "/api/v1/usuarios/sign_in"):
+  
+Started POST "/api/v1/usuarios/sign_in" for ::1 at 2025-07-22 18:39:45 -0300
+  
+ActionController::RoutingError (No route matches [POST] "/api/v1/usuarios/sign_in"):
+  
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-22 18:49:06 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Usuarios::SessionsController#create as HTML
+  Parameters: {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}}}
+HTTP Origin header (http://localhost:3002) didn't match request.base_url (http://localhost:3000)
+Completed 422 Unprocessable Content in 1136ms (ActiveRecord: 0.0ms | Allocations: 2436)
+
+
+  
+ActionController::InvalidAuthenticityToken (HTTP Origin header (http://localhost:3002) didn't match request.base_url (http://localhost:3000)):
+  
+actionpack (7.1.5.1) lib/action_controller/metal/request_forgery_protection.rb:293:in 'ActionController::RequestForgeryProtection::ProtectionMethods::Exception#handle_unverified_request'
+actionpack (7.1.5.1) lib/action_controller/metal/request_forgery_protection.rb:388:in 'ActionController::RequestForgeryProtection#handle_unverified_request'
+devise (4.9.4) lib/devise/controllers/helpers.rb:257:in 'Devise::Controllers::Helpers#handle_unverified_request'
+actionpack (7.1.5.1) lib/action_controller/metal/request_forgery_protection.rb:377:in 'ActionController::RequestForgeryProtection#verify_authenticity_token'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:403:in 'block in ActiveSupport::Callbacks::CallTemplate::MethodCall#make_lambda'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:183:in 'block (2 levels) in ActiveSupport::Callbacks::Filters::Before.halting_and_conditional'
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:34:in 'block (2 levels) in <module:Callbacks>'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:184:in 'block in ActiveSupport::Callbacks::Filters::Before.halting_and_conditional'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'block in ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'Array#each'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:119:in 'block in ActiveSupport::Callbacks#run_callbacks'
+turbo-rails (2.0.16) lib/turbo-rails.rb:24:in 'Turbo.with_request_id'
+turbo-rails (2.0.16) app/controllers/concerns/turbo/request_id_tracking.rb:10:in 'Turbo::RequestIdTracking#turbo_tracking_request_id'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+actiontext (7.1.5.1) lib/action_text/rendering.rb:23:in 'ActionText::Rendering::ClassMethods#with_renderer'
+actiontext (7.1.5.1) lib/action_text/engine.rb:69:in 'block (4 levels) in <class:Engine>'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'BasicObject#instance_exec'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:141:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:258:in 'AbstractController::Callbacks#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/rescue.rb:25:in 'ActionController::Rescue#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:74:in 'block in ActionController::Instrumentation#process_action'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (7.1.5.1) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'ActiveSupport::Notifications.instrument'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:73:in 'ActionController::Instrumentation#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/params_wrapper.rb:261:in 'ActionController::ParamsWrapper#process_action'
+activerecord (7.1.5.1) lib/active_record/railties/controller_runtime.rb:32:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (7.1.5.1) lib/abstract_controller/base.rb:160:in 'AbstractController::Base#process'
+actionview (7.1.5.1) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:227:in 'ActionController::Metal#dispatch'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:309:in 'ActionController::Metal.dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:49:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:32:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (7.1.5.1) lib/action_dispatch/routing/mapper.rb:30:in 'block in <class:Constraints>'
+actionpack (7.1.5.1) lib/action_dispatch/routing/mapper.rb:60:in 'ActionDispatch::Routing::Mapper::Constraints#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:51:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:131:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'Array#each'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:32:in 'ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:882:in 'ActionDispatch::Routing::RouteSet#call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware/token_dispatcher.rb:20:in 'Warden::JWTAuth::Middleware::TokenDispatcher#call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware/revocation_manager.rb:21:in 'Warden::JWTAuth::Middleware::RevocationManager#call'
+rack (3.1.16) lib/rack/builder.rb:277:in 'Rack::Builder#call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware.rb:22:in 'Warden::JWTAuth::Middleware#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.1.16) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.16) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.16) lib/rack/conditional_get.rb:43:in 'Rack::ConditionalGet#call'
+rack (3.1.16) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/permissions_policy.rb:36:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/content_security_policy.rb:36:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/cookies.rb:689:in 'ActionDispatch::Cookies#call'
+activerecord (7.1.5.1) lib/active_record/migration.rb:655:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:29:in 'block in ActionDispatch::Callbacks#call'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:28:in 'ActionDispatch::Callbacks#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in 'ActionDispatch::ShowExceptions#call'
+railties (7.1.5.1) lib/rails/rack/logger.rb:37:in 'Rails::Rack::Logger#call_app'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'block in Rails::Rack::Logger#call'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'block in ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:39:in 'ActiveSupport::TaggedLogging::Formatter#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/broadcast_logger.rb:241:in 'ActiveSupport::BroadcastLogger#method_missing'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'Rails::Rack::Logger#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/remote_ip.rb:92:in 'ActionDispatch::RemoteIp#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/request_id.rb:28:in 'ActionDispatch::RequestId#call'
+rack (3.1.16) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.16) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (7.1.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:59:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:24:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:58:in 'ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/static.rb:25:in 'ActionDispatch::Static#call'
+rack (3.1.16) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/host_authorization.rb:141:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (7.1.5.1) lib/rails/engine.rb:536:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-22 18:51:56 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.8ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'cauakamuratt@gmail.com' OR lower(matricula) = 'cauakamuratt@gmail.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:60:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 1352ms (Views: 0.4ms | ActiveRecord: 28.7ms | Allocations: 13349)
+
+
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-22 18:54:06 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.5ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'cauakamuratt@gmail.com' OR lower(matricula) = 'cauakamuratt@gmail.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:60:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 1373ms (ActiveRecord: 20.6ms | Allocations: 12616)
+
+
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-22 18:54:15 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.7ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'cauakamuratt@gmail.com' OR lower(matricula) = 'cauakamuratt@gmail.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:60:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 746ms (Views: 0.3ms | ActiveRecord: 0.7ms | Allocations: 1640)
+
+
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-22 18:57:04 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.6ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'cauakamuratt@gmail.com' OR lower(matricula) = 'cauakamuratt@gmail.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:60:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 1414ms (ActiveRecord: 25.4ms | Allocations: 12609)
+
+
+  [1m[36mUsuario Load (0.6ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."email" = ? LIMIT ?[0m  [["email", "cauakamuratt@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUsuario Load (0.7ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."email" = ? LIMIT ?[0m  [["email", "cauakamuratt@gmail.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUsuario Update (1.8ms)[0m  [1m[33mUPDATE "usuarios" SET "updated_at" = ?, "encrypted_password" = ? WHERE "usuarios"."id" = ?[0m  [["updated_at", "2025-07-22 22:01:40.440135"], ["encrypted_password", "[FILTERED]"], ["id", 1]]
+  [1m[36mTRANSACTION (5.7ms)[0m  [1m[36mcommit transaction[0m
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-22 19:02:59 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.5ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'cauakamuratt@gmail.com' OR lower(matricula) = 'cauakamuratt@gmail.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:60:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 1365ms (Views: 0.3ms | ActiveRecord: 22.4ms | Allocations: 13347)
+
+
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-22 19:03:06 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.7ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'cauakamuratt@gmail.com' OR lower(matricula) = 'cauakamuratt@gmail.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:60:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 798ms (Views: 0.2ms | ActiveRecord: 0.7ms | Allocations: 1142)
+
+
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-22 19:08:02 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.5ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'cauakamuratt@gmail.com' OR lower(matricula) = 'cauakamuratt@gmail.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:60:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 1361ms (Views: 0.2ms | ActiveRecord: 26.2ms | Allocations: 13357)
+
+
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-22 19:09:26 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.7ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'cauakamuratt@gmail.com' OR lower(matricula) = 'cauakamuratt@gmail.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:60:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 783ms (ActiveRecord: 0.7ms | Allocations: 956)
+
+
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-22 19:09:38 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.8ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'cauakamuratt@gmail.com' OR lower(matricula) = 'cauakamuratt@gmail.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:60:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 748ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 1138)
+
+
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-22 19:12:30 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.5ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'cauakamuratt@gmail.com' OR lower(matricula) = 'cauakamuratt@gmail.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:60:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 1466ms (Views: 0.4ms | ActiveRecord: 26.4ms | Allocations: 13350)
+
+
+Started GET "/api/v1/resultados" for ::1 at 2025-07-22 19:24:43 -0300
+  
+LoadError (cannot load such file -- csv):
+  
+app/controllers/api/v1/resultados_controller.rb:2:in '<main>'
+Started GET "/api/v1/resultados" for ::1 at 2025-07-22 19:24:44 -0300
+  
+LoadError (cannot load such file -- csv):
+  
+app/controllers/api/v1/resultados_controller.rb:2:in '<main>'
+Started GET "/api/v1/resultados" for ::1 at 2025-07-22 19:37:29 -0300
+  
+LoadError (cannot load such file -- csv):
+  
+app/controllers/api/v1/resultados_controller.rb:2:in '<main>'
+Started GET "/api/v1/resultados" for ::1 at 2025-07-22 19:37:30 -0300
+  
+LoadError (cannot load such file -- csv):
+  
+app/controllers/api/v1/resultados_controller.rb:2:in '<main>'
+Started DELETE "/usuarios/sign_out" for ::1 at 2025-07-22 19:42:34 -0300
+Processing by Usuarios::SessionsController#destroy as JSON
+Filter chain halted as :verify_signed_out_user rendered or redirected
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 164)
+
+
+  [1m[36mUsuario Load (18.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  
+NoMethodError (undefined method 'revoke_jwt' for class Usuario::NullDenylist):
+  
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/token_revoker.rb:16:in 'Warden::JWTAuth::TokenRevoker#call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware/revocation_manager.rb:34:in 'Warden::JWTAuth::Middleware::RevocationManager#revoke_token'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware/revocation_manager.rb:22:in 'Warden::JWTAuth::Middleware::RevocationManager#call'
+rack (3.1.16) lib/rack/builder.rb:277:in 'Rack::Builder#call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware.rb:22:in 'Warden::JWTAuth::Middleware#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.1.16) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.16) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.16) lib/rack/conditional_get.rb:43:in 'Rack::ConditionalGet#call'
+rack (3.1.16) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/permissions_policy.rb:36:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/content_security_policy.rb:36:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/cookies.rb:689:in 'ActionDispatch::Cookies#call'
+activerecord (7.1.5.1) lib/active_record/migration.rb:655:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:29:in 'block in ActionDispatch::Callbacks#call'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:28:in 'ActionDispatch::Callbacks#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in 'ActionDispatch::ShowExceptions#call'
+railties (7.1.5.1) lib/rails/rack/logger.rb:37:in 'Rails::Rack::Logger#call_app'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'block in Rails::Rack::Logger#call'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'block in ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:39:in 'ActiveSupport::TaggedLogging::Formatter#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/broadcast_logger.rb:241:in 'ActiveSupport::BroadcastLogger#method_missing'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'Rails::Rack::Logger#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/remote_ip.rb:92:in 'ActionDispatch::RemoteIp#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/request_id.rb:28:in 'ActionDispatch::RequestId#call'
+rack (3.1.16) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.16) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (7.1.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:59:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:24:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:58:in 'ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/static.rb:25:in 'ActionDispatch::Static#call'
+rack (3.1.16) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/host_authorization.rb:141:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (7.1.5.1) lib/rails/engine.rb:536:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-22 19:43:03 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (1.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'aluno@email.com' OR lower(matricula) = 'aluno@email.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:60:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 712ms (Views: 0.3ms | ActiveRecord: 1.1ms | Allocations: 1192)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 19:43:19 -0300
+Processing by Api::V1::SessionsController#current_user as HTML
+Completed 401 Unauthorized in 702ms (ActiveRecord: 0.0ms | Allocations: 362)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 19:43:21 -0300
+Started GET "/usuarios/sign_in" for ::1 at 2025-07-22 19:43:21 -0300
+Processing by Usuarios::SessionsController#new as HTML
+Processing by Api::V1::SessionsController#current_user as HTML
+Completed 200 OK in 432ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 920)
+
+
+Completed 401 Unauthorized in 428ms (ActiveRecord: 0.0ms | Allocations: 870)
+
+
+Started GET "/usuarios/sign_in" for ::1 at 2025-07-22 19:43:22 -0300
+Processing by Usuarios::SessionsController#new as HTML
+Completed 200 OK in 548ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 380)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 19:44:58 -0300
+Processing by Api::V1::SessionsController#current_user as HTML
+Completed 401 Unauthorized in 571ms (ActiveRecord: 0.0ms | Allocations: 270)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 19:44:59 -0300
+Started GET "/usuarios/sign_in" for ::1 at 2025-07-22 19:44:59 -0300
+Processing by Usuarios::SessionsController#new as HTML
+Processing by Api::V1::SessionsController#current_user as HTML
+Completed 200 OK in 440ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 808)
+
+
+Completed 401 Unauthorized in 431ms (ActiveRecord: 0.0ms | Allocations: 765)
+
+
+Started GET "/usuarios/sign_in" for ::1 at 2025-07-22 19:45:00 -0300
+Processing by Usuarios::SessionsController#new as HTML
+Completed 200 OK in 591ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 379)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 19:51:44 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::SessionsController#current_user as HTML
+Completed 401 Unauthorized in 1452ms (ActiveRecord: 0.0ms | Allocations: 2306)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 19:51:48 -0300
+Started GET "/usuarios/sign_in" for ::1 at 2025-07-22 19:51:48 -0300
+Processing by Api::V1::SessionsController#current_user as HTML
+Processing by Usuarios::SessionsController#new as HTML
+Completed 401 Unauthorized in 503ms (ActiveRecord: 0.0ms | Allocations: 2622)
+
+
+Completed 200 OK in 509ms (Views: 0.3ms | ActiveRecord: 27.2ms | Allocations: 9008)
+
+
+Started GET "/usuarios/sign_in" for ::1 at 2025-07-22 19:51:49 -0300
+Processing by Usuarios::SessionsController#new as HTML
+Completed 200 OK in 728ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 376)
+
+
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-22 19:51:53 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "cauakamuratt@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.7ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'cauakamuratt@gmail.com' OR lower(matricula) = 'cauakamuratt@gmail.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:60:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 820ms (Views: 0.2ms | ActiveRecord: 0.7ms | Allocations: 4131)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 19:51:56 -0300
+Processing by Api::V1::SessionsController#current_user as HTML
+Completed 401 Unauthorized in 766ms (ActiveRecord: 0.0ms | Allocations: 269)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 19:51:59 -0300
+Processing by Api::V1::SessionsController#current_user as HTML
+Completed 401 Unauthorized in 604ms (ActiveRecord: 0.0ms | Allocations: 270)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 19:52:00 -0300
+Started GET "/usuarios/sign_in" for ::1 at 2025-07-22 19:52:00 -0300
+Processing by Usuarios::SessionsController#new as HTML
+Processing by Api::V1::SessionsController#current_user as HTML
+Completed 200 OK in 431ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 811)
+
+
+Completed 401 Unauthorized in 420ms (ActiveRecord: 0.0ms | Allocations: 768)
+
+
+Started GET "/usuarios/sign_in" for ::1 at 2025-07-22 19:52:01 -0300
+Processing by Usuarios::SessionsController#new as HTML
+Completed 200 OK in 622ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 376)
+
+
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-22 19:52:09 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.5ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'aluno@email.com' OR lower(matricula) = 'aluno@email.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:60:in 'Usuario.find_for_database_authentication'
+Completed 401 Unauthorized in 749ms (ActiveRecord: 0.5ms | Allocations: 943)
+
+
+  [1m[36mUsuario Load (0.5ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."email" = ? LIMIT ?[0m  [["email", "aluno@email.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUsuario Update (2.9ms)[0m  [1m[33mUPDATE "usuarios" SET "updated_at" = ?, "encrypted_password" = ? WHERE "usuarios"."id" = ?[0m  [["updated_at", "2025-07-22 22:53:54.319688"], ["encrypted_password", "[FILTERED]"], ["id", 2]]
+  [1m[36mTRANSACTION (5.5ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 19:55:02 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::SessionsController#current_user as HTML
+Completed 401 Unauthorized in 1282ms (ActiveRecord: 0.0ms | Allocations: 2313)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 19:55:05 -0300
+Processing by Api::V1::SessionsController#current_user as HTML
+Completed 401 Unauthorized in 824ms (ActiveRecord: 0.0ms | Allocations: 271)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 19:55:09 -0300
+Processing by Api::V1::SessionsController#current_user as HTML
+Completed 401 Unauthorized in 655ms (ActiveRecord: 0.0ms | Allocations: 273)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 19:55:10 -0300
+Started GET "/usuarios/sign_in" for ::1 at 2025-07-22 19:55:10 -0300
+Processing by Usuarios::SessionsController#new as HTML
+Processing by Api::V1::SessionsController#current_user as HTML
+Completed 200 OK in 517ms (Views: 0.2ms | ActiveRecord: 23.5ms | Allocations: 8623)
+
+
+Completed 401 Unauthorized in 506ms (ActiveRecord: 0.0ms | Allocations: 8512)
+
+
+Started GET "/usuarios/sign_in" for ::1 at 2025-07-22 19:55:10 -0300
+Processing by Usuarios::SessionsController#new as HTML
+Completed 200 OK in 667ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 383)
+
+
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-22 19:55:15 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.7ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'aluno@email.com' OR lower(matricula) = 'aluno@email.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:60:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 795ms (Views: 0.2ms | ActiveRecord: 0.6ms | Allocations: 4171)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 19:55:25 -0300
+Processing by Api::V1::SessionsController#current_user as HTML
+Completed 401 Unauthorized in 582ms (ActiveRecord: 0.0ms | Allocations: 269)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 19:55:26 -0300
+Started GET "/usuarios/sign_in" for ::1 at 2025-07-22 19:55:26 -0300
+Processing by Usuarios::SessionsController#new as HTML
+Processing by Api::V1::SessionsController#current_user as HTML
+Completed 200 OK in 439ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 808)
+
+
+Completed 401 Unauthorized in 431ms (ActiveRecord: 0.0ms | Allocations: 765)
+
+
+Started GET "/usuarios/sign_in" for ::1 at 2025-07-22 19:55:26 -0300
+Processing by Usuarios::SessionsController#new as HTML
+Completed 200 OK in 593ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 379)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 19:58:33 -0300
+Processing by Api::V1::SessionsController#current_user as HTML
+Completed 401 Unauthorized in 950ms (ActiveRecord: 0.0ms | Allocations: 273)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 19:58:34 -0300
+Started GET "/usuarios/sign_in" for ::1 at 2025-07-22 19:58:34 -0300
+Processing by Usuarios::SessionsController#new as HTML
+Processing by Api::V1::SessionsController#current_user as HTML
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-22 19:58:35 -0300
+Completed 200 OK in 653ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 2755)
+
+
+Completed 401 Unauthorized in 635ms (ActiveRecord: 0.0ms | Allocations: 2768)
+
+
+Started GET "/usuarios/sign_in" for ::1 at 2025-07-22 19:58:35 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}}}
+Processing by Usuarios::SessionsController#new as HTML
+  [1m[36mUsuario Load (0.9ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'aluno@email.com' OR lower(matricula) = 'aluno@email.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:60:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 975ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 2187)
+
+
+Completed 200 OK in 775ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 1825)
+
+
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-22 19:58:39 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.7ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'aluno@email.com' OR lower(matricula) = 'aluno@email.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:60:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 999ms (Views: 0.2ms | ActiveRecord: 0.7ms | Allocations: 1152)
+
+
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-22 19:58:42 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (1.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'aluno@email.com' OR lower(matricula) = 'aluno@email.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:60:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 836ms (Views: 0.2ms | ActiveRecord: 1.0ms | Allocations: 1144)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 19:58:48 -0300
+Processing by Api::V1::SessionsController#current_user as HTML
+Completed 401 Unauthorized in 601ms (ActiveRecord: 0.0ms | Allocations: 269)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 19:58:49 -0300
+Started GET "/usuarios/sign_in" for ::1 at 2025-07-22 19:58:49 -0300
+Processing by Usuarios::SessionsController#new as HTML
+Processing by Api::V1::SessionsController#current_user as HTML
+Completed 200 OK in 421ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 807)
+
+
+Completed 401 Unauthorized in 408ms (ActiveRecord: 0.0ms | Allocations: 764)
+
+
+Started GET "/usuarios/sign_in" for ::1 at 2025-07-22 19:58:50 -0300
+Processing by Usuarios::SessionsController#new as HTML
+Completed 200 OK in 561ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 376)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 20:00:48 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::SessionsController#current_user as HTML
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-22 20:00:48 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}}}
+Completed 401 Unauthorized in 1319ms (ActiveRecord: 0.0ms | Allocations: 8623)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 20:00:51 -0300
+Started GET "/usuarios/sign_in" for ::1 at 2025-07-22 20:00:51 -0300
+Processing by Usuarios::SessionsController#new as HTML
+Processing by Api::V1::SessionsController#current_user as HTML
+  [1m[36mUsuario Load (0.4ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'aluno@email.com' OR lower(matricula) = 'aluno@email.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:60:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 2489ms (Views: 0.2ms | ActiveRecord: 24.2ms | Allocations: 305709)
+
+
+Completed 200 OK in 590ms (Views: 1.2ms | ActiveRecord: 0.0ms | Allocations: 13062)
+
+
+Completed 401 Unauthorized in 569ms (ActiveRecord: 0.0ms | Allocations: 11804)
+
+
+Started GET "/usuarios/sign_in" for ::1 at 2025-07-22 20:00:51 -0300
+Processing by Usuarios::SessionsController#new as HTML
+Completed 200 OK in 622ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 379)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 20:04:46 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::SessionsController#current_user as HTML
+Completed 401 Unauthorized in 1173ms (ActiveRecord: 0.0ms | Allocations: 2306)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 20:04:49 -0300
+Started GET "/usuarios/sign_in" for ::1 at 2025-07-22 20:04:49 -0300
+Processing by Api::V1::SessionsController#current_user as HTML
+Processing by Usuarios::SessionsController#new as HTML
+Completed 401 Unauthorized in 408ms (ActiveRecord: 0.0ms | Allocations: 2619)
+
+
+Completed 200 OK in 418ms (Views: 0.2ms | ActiveRecord: 28.1ms | Allocations: 9025)
+
+
+Started GET "/usuarios/sign_in" for ::1 at 2025-07-22 20:04:49 -0300
+Processing by Usuarios::SessionsController#new as HTML
+Completed 200 OK in 513ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 379)
+
+
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-22 20:05:00 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.7ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'aluno@email.com' OR lower(matricula) = 'aluno@email.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:60:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 887ms (Views: 0.1ms | ActiveRecord: 0.7ms | Allocations: 8626)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 20:05:09 -0300
+Processing by Api::V1::SessionsController#current_user as HTML
+Completed 401 Unauthorized in 565ms (ActiveRecord: 0.0ms | Allocations: 361)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 20:05:10 -0300
+Started GET "/usuarios/sign_in" for ::1 at 2025-07-22 20:05:10 -0300
+Processing by Api::V1::SessionsController#current_user as HTML
+Processing by Usuarios::SessionsController#new as HTML
+Completed 401 Unauthorized in 429ms (ActiveRecord: 0.0ms | Allocations: 717)
+
+
+Completed 200 OK in 410ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 1133)
+
+
+Started GET "/usuarios/sign_in" for ::1 at 2025-07-22 20:05:11 -0300
+Processing by Usuarios::SessionsController#new as HTML
+Completed 200 OK in 650ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 376)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 20:07:31 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::SessionsController#current_user as JSON
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-22 20:07:32 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.5ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 1206ms (ActiveRecord: 31.1ms | Allocations: 20881)
+
+
+  
+NoMethodError (undefined method 'jwt_revoked?' for class Usuario::NullDenylist):
+  
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/user_decoder.rb:51:in 'Warden::JWTAuth::UserDecoder#check_valid_user'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/user_decoder.rb:36:in 'Warden::JWTAuth::UserDecoder#call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/strategy.rb:22:in 'Warden::JWTAuth::Strategy#authenticate!'
+warden (1.2.9) lib/warden/strategies/base.rb:55:in 'Warden::Strategies::Base#_run!'
+warden (1.2.9) lib/warden/proxy.rb:372:in 'block in Warden::Proxy#_run_strategies_for'
+warden (1.2.9) lib/warden/proxy.rb:365:in 'Array#each'
+warden (1.2.9) lib/warden/proxy.rb:365:in 'Warden::Proxy#_run_strategies_for'
+warden (1.2.9) lib/warden/proxy.rb:335:in 'Warden::Proxy#_perform_authentication'
+warden (1.2.9) lib/warden/proxy.rb:133:in 'Warden::Proxy#authenticate!'
+devise (4.9.4) lib/devise/controllers/helpers.rb:120:in 'Devise::Controllers::Helpers#authenticate_usuario!'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:403:in 'block in ActiveSupport::Callbacks::CallTemplate::MethodCall#make_lambda'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:202:in 'block (2 levels) in ActiveSupport::Callbacks::Filters::Before.halting'
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:34:in 'block (2 levels) in <module:Callbacks>'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:203:in 'block in ActiveSupport::Callbacks::Filters::Before.halting'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'block in ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'Array#each'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:119:in 'block in ActiveSupport::Callbacks#run_callbacks'
+turbo-rails (2.0.16) lib/turbo-rails.rb:24:in 'Turbo.with_request_id'
+turbo-rails (2.0.16) app/controllers/concerns/turbo/request_id_tracking.rb:10:in 'Turbo::RequestIdTracking#turbo_tracking_request_id'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+actiontext (7.1.5.1) lib/action_text/rendering.rb:23:in 'ActionText::Rendering::ClassMethods#with_renderer'
+actiontext (7.1.5.1) lib/action_text/engine.rb:69:in 'block (4 levels) in <class:Engine>'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'BasicObject#instance_exec'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:141:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:258:in 'AbstractController::Callbacks#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/rescue.rb:25:in 'ActionController::Rescue#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:74:in 'block in ActionController::Instrumentation#process_action'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (7.1.5.1) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'ActiveSupport::Notifications.instrument'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:73:in 'ActionController::Instrumentation#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/params_wrapper.rb:261:in 'ActionController::ParamsWrapper#process_action'
+activerecord (7.1.5.1) lib/active_record/railties/controller_runtime.rb:32:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (7.1.5.1) lib/abstract_controller/base.rb:160:in 'AbstractController::Base#process'
+actionview (7.1.5.1) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:227:in 'ActionController::Metal#dispatch'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:309:in 'ActionController::Metal.dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:49:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:32:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:51:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:131:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'Array#each'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:32:in 'ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:882:in 'ActionDispatch::Routing::RouteSet#call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware/token_dispatcher.rb:20:in 'Warden::JWTAuth::Middleware::TokenDispatcher#call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware/revocation_manager.rb:21:in 'Warden::JWTAuth::Middleware::RevocationManager#call'
+rack (3.1.16) lib/rack/builder.rb:277:in 'Rack::Builder#call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware.rb:22:in 'Warden::JWTAuth::Middleware#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.1.16) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.16) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.16) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.16) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/permissions_policy.rb:36:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/content_security_policy.rb:36:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/cookies.rb:689:in 'ActionDispatch::Cookies#call'
+activerecord (7.1.5.1) lib/active_record/migration.rb:655:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:29:in 'block in ActionDispatch::Callbacks#call'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:28:in 'ActionDispatch::Callbacks#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in 'ActionDispatch::ShowExceptions#call'
+railties (7.1.5.1) lib/rails/rack/logger.rb:37:in 'Rails::Rack::Logger#call_app'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'block in Rails::Rack::Logger#call'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'block in ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:39:in 'ActiveSupport::TaggedLogging::Formatter#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/broadcast_logger.rb:241:in 'ActiveSupport::BroadcastLogger#method_missing'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'Rails::Rack::Logger#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/remote_ip.rb:92:in 'ActionDispatch::RemoteIp#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/request_id.rb:28:in 'ActionDispatch::RequestId#call'
+rack (3.1.16) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.16) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (7.1.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:59:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:24:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:58:in 'ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/static.rb:25:in 'ActionDispatch::Static#call'
+rack (3.1.16) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/host_authorization.rb:141:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (7.1.5.1) lib/rails/engine.rb:536:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+  [1m[36mUsuario Load (5.6ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'aluno@email.com' OR lower(matricula) = 'aluno@email.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:60:in 'Usuario.find_for_database_authentication'
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 20:07:34 -0300
+Completed 200 OK in 1194ms (Views: 0.2ms | ActiveRecord: 8.3ms | Allocations: 519334)
+
+
+Processing by Api::V1::SessionsController#current_user as JSON
+  [1m[36mUsuario Load (0.6ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 727ms (ActiveRecord: 0.6ms | Allocations: 2259)
+
+
+  
+NoMethodError (undefined method 'jwt_revoked?' for class Usuario::NullDenylist):
+  
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/user_decoder.rb:51:in 'Warden::JWTAuth::UserDecoder#check_valid_user'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/user_decoder.rb:36:in 'Warden::JWTAuth::UserDecoder#call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/strategy.rb:22:in 'Warden::JWTAuth::Strategy#authenticate!'
+warden (1.2.9) lib/warden/strategies/base.rb:55:in 'Warden::Strategies::Base#_run!'
+warden (1.2.9) lib/warden/proxy.rb:372:in 'block in Warden::Proxy#_run_strategies_for'
+warden (1.2.9) lib/warden/proxy.rb:365:in 'Array#each'
+warden (1.2.9) lib/warden/proxy.rb:365:in 'Warden::Proxy#_run_strategies_for'
+warden (1.2.9) lib/warden/proxy.rb:335:in 'Warden::Proxy#_perform_authentication'
+warden (1.2.9) lib/warden/proxy.rb:133:in 'Warden::Proxy#authenticate!'
+devise (4.9.4) lib/devise/controllers/helpers.rb:120:in 'Devise::Controllers::Helpers#authenticate_usuario!'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:403:in 'block in ActiveSupport::Callbacks::CallTemplate::MethodCall#make_lambda'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:202:in 'block (2 levels) in ActiveSupport::Callbacks::Filters::Before.halting'
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:34:in 'block (2 levels) in <module:Callbacks>'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:203:in 'block in ActiveSupport::Callbacks::Filters::Before.halting'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'block in ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'Array#each'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:598:in 'ActiveSupport::Callbacks::CallbackSequence#invoke_before'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:119:in 'block in ActiveSupport::Callbacks#run_callbacks'
+turbo-rails (2.0.16) lib/turbo-rails.rb:24:in 'Turbo.with_request_id'
+turbo-rails (2.0.16) app/controllers/concerns/turbo/request_id_tracking.rb:10:in 'Turbo::RequestIdTracking#turbo_tracking_request_id'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+actiontext (7.1.5.1) lib/action_text/rendering.rb:23:in 'ActionText::Rendering::ClassMethods#with_renderer'
+actiontext (7.1.5.1) lib/action_text/engine.rb:69:in 'block (4 levels) in <class:Engine>'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'BasicObject#instance_exec'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:130:in 'block in ActiveSupport::Callbacks#run_callbacks'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:141:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/abstract_controller/callbacks.rb:258:in 'AbstractController::Callbacks#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/rescue.rb:25:in 'ActionController::Rescue#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:74:in 'block in ActionController::Instrumentation#process_action'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (7.1.5.1) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (7.1.5.1) lib/active_support/notifications.rb:206:in 'ActiveSupport::Notifications.instrument'
+actionpack (7.1.5.1) lib/action_controller/metal/instrumentation.rb:73:in 'ActionController::Instrumentation#process_action'
+actionpack (7.1.5.1) lib/action_controller/metal/params_wrapper.rb:261:in 'ActionController::ParamsWrapper#process_action'
+activerecord (7.1.5.1) lib/active_record/railties/controller_runtime.rb:32:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (7.1.5.1) lib/abstract_controller/base.rb:160:in 'AbstractController::Base#process'
+actionview (7.1.5.1) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:227:in 'ActionController::Metal#dispatch'
+actionpack (7.1.5.1) lib/action_controller/metal.rb:309:in 'ActionController::Metal.dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:49:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:32:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:51:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:131:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'Array#each'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:124:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (7.1.5.1) lib/action_dispatch/journey/router.rb:32:in 'ActionDispatch::Journey::Router#serve'
+actionpack (7.1.5.1) lib/action_dispatch/routing/route_set.rb:882:in 'ActionDispatch::Routing::RouteSet#call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware/token_dispatcher.rb:20:in 'Warden::JWTAuth::Middleware::TokenDispatcher#call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware/revocation_manager.rb:21:in 'Warden::JWTAuth::Middleware::RevocationManager#call'
+rack (3.1.16) lib/rack/builder.rb:277:in 'Rack::Builder#call'
+warden-jwt_auth (0.11.0) lib/warden/jwt_auth/middleware.rb:22:in 'Warden::JWTAuth::Middleware#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.1.16) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.1.16) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.16) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.16) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/permissions_policy.rb:36:in 'ActionDispatch::PermissionsPolicy::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/http/content_security_policy.rb:36:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/cookies.rb:689:in 'ActionDispatch::Cookies#call'
+activerecord (7.1.5.1) lib/active_record/migration.rb:655:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:29:in 'block in ActionDispatch::Callbacks#call'
+activesupport (7.1.5.1) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/callbacks.rb:28:in 'ActionDispatch::Callbacks#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in 'ActionDispatch::ShowExceptions#call'
+railties (7.1.5.1) lib/rails/rack/logger.rb:37:in 'Rails::Rack::Logger#call_app'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'block in Rails::Rack::Logger#call'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'block in ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:39:in 'ActiveSupport::TaggedLogging::Formatter#tagged'
+activesupport (7.1.5.1) lib/active_support/tagged_logging.rb:139:in 'ActiveSupport::TaggedLogging#tagged'
+activesupport (7.1.5.1) lib/active_support/broadcast_logger.rb:241:in 'ActiveSupport::BroadcastLogger#method_missing'
+railties (7.1.5.1) lib/rails/rack/logger.rb:24:in 'Rails::Rack::Logger#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/remote_ip.rb:92:in 'ActionDispatch::RemoteIp#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/request_id.rb:28:in 'ActionDispatch::RequestId#call'
+rack (3.1.16) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.1.16) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (7.1.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:59:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:24:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/server_timing.rb:58:in 'ActionDispatch::ServerTiming#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/executor.rb:14:in 'ActionDispatch::Executor#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/static.rb:25:in 'ActionDispatch::Static#call'
+rack (3.1.16) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (7.1.5.1) lib/action_dispatch/middleware/host_authorization.rb:141:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (7.1.5.1) lib/rails/engine.rb:536:in 'Rails::Engine#call'
+puma (6.6.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.6.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
+puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-22 20:10:59 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (1.0ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'aluno@email.com' OR lower(matricula) = 'aluno@email.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:69:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 1499ms (Views: 0.5ms | ActiveRecord: 29.7ms | Allocations: 13436)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 20:11:27 -0300
+Processing by Api::V1::SessionsController#current_user as JSON
+  [1m[36mUsuario Load (0.6ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 588ms (Views: 0.2ms | ActiveRecord: 0.6ms | Allocations: 3437)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 20:11:28 -0300
+Processing by Api::V1::SessionsController#current_user as JSON
+  [1m[36mUsuario Load (0.5ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 598ms (Views: 0.2ms | ActiveRecord: 0.5ms | Allocations: 1654)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 20:11:41 -0300
+Processing by Api::V1::SessionsController#current_user as JSON
+  [1m[36mUsuario Load (0.7ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 619ms (Views: 0.2ms | ActiveRecord: 0.7ms | Allocations: 1665)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 20:11:42 -0300
+Processing by Api::V1::SessionsController#current_user as JSON
+  [1m[36mUsuario Load (0.6ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 554ms (Views: 0.2ms | ActiveRecord: 0.6ms | Allocations: 1652)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 20:32:12 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::SessionsController#current_user as JSON
+  [1m[36mUsuario Load (0.6ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 1348ms (Views: 0.3ms | ActiveRecord: 23.9ms | Allocations: 14726)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 20:32:14 -0300
+Processing by Api::V1::SessionsController#current_user as JSON
+  [1m[36mUsuario Load (1.4ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 614ms (Views: 0.3ms | ActiveRecord: 1.4ms | Allocations: 1653)
+
+
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-22 20:32:17 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (1.0ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'aluno@email.com' OR lower(matricula) = 'aluno@email.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:69:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 825ms (Views: 0.2ms | ActiveRecord: 0.9ms | Allocations: 2681)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 20:33:45 -0300
+Processing by Api::V1::SessionsController#current_user as JSON
+  [1m[36mUsuario Load (1.0ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 681ms (Views: 0.3ms | ActiveRecord: 1.0ms | Allocations: 1665)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 20:33:46 -0300
+Processing by Api::V1::SessionsController#current_user as JSON
+  [1m[36mUsuario Load (0.5ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 730ms (Views: 0.4ms | ActiveRecord: 0.5ms | Allocations: 1649)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 20:34:16 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-22 20:34:16 -0300
+Processing by Api::V1::SessionsController#current_user as JSON
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (1.3ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 1335ms (Views: 0.3ms | ActiveRecord: 29.5ms | Allocations: 19530)
+
+
+Started GET "/api/v1/sessions/current_user" for ::1 at 2025-07-22 20:34:18 -0300
+  [1m[36mUsuario Load (0.6ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'aluno@email.com' OR lower(matricula) = 'aluno@email.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:69:in 'Usuario.find_for_database_authentication'
+Processing by Api::V1::SessionsController#current_user as JSON
+Completed 200 OK in 1527ms (Views: 0.3ms | ActiveRecord: 0.6ms | Allocations: 19950)
+
+
+  [1m[36mUsuario Load (0.8ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 864ms (Views: 0.3ms | ActiveRecord: 0.7ms | Allocations: 2646)
+
+
+Started POST "/usuarios/sign_in" for ::1 at 2025-07-22 20:34:19 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "aluno@email.com", "password" => "[FILTERED]"}}}
+Started GET "/api/v1/formularios" for ::1 at 2025-07-22 20:34:20 -0300
+Processing by Api::V1::FormulariosController#index as JSON
+  [1m[36mUsuario Load (0.7ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'aluno@email.com' OR lower(matricula) = 'aluno@email.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:69:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 934ms (Views: 0.2ms | ActiveRecord: 0.7ms | Allocations: 5610)
+
+
+  [1m[36mUsuario Load (0.5ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTurma Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" INNER JOIN "turmas_usuarios" ON "turmas"."id" = "turmas_usuarios"."turma_id" WHERE "turmas_usuarios"."usuario_id" = ? LIMIT ?[0m  [["usuario_id", 2], ["LIMIT", 1]]
+  ↳ app/models/usuario.rb:19:in 'Usuario#formularios_pendentes'
+Completed 200 OK in 1014ms (Views: 0.3ms | ActiveRecord: 4.8ms | Allocations: 13495)
+
+
+Started GET "/api/v1/formularios" for ::1 at 2025-07-22 20:34:21 -0300
+Processing by Api::V1::FormulariosController#index as JSON
+  [1m[36mUsuario Load (0.6ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTurma Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" INNER JOIN "turmas_usuarios" ON "turmas"."id" = "turmas_usuarios"."turma_id" WHERE "turmas_usuarios"."usuario_id" = ? LIMIT ?[0m  [["usuario_id", 2], ["LIMIT", 1]]
+  ↳ app/models/usuario.rb:19:in 'Usuario#formularios_pendentes'
+Completed 200 OK in 623ms (Views: 0.2ms | ActiveRecord: 1.4ms | Allocations: 2394)
+
+
+Started GET "/api/v1/formularios" for ::1 at 2025-07-22 20:34:22 -0300
+Processing by Api::V1::FormulariosController#index as JSON
+  [1m[36mUsuario Load (0.5ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTurma Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" INNER JOIN "turmas_usuarios" ON "turmas"."id" = "turmas_usuarios"."turma_id" WHERE "turmas_usuarios"."usuario_id" = ? LIMIT ?[0m  [["usuario_id", 2], ["LIMIT", 1]]
+  ↳ app/models/usuario.rb:19:in 'Usuario#formularios_pendentes'
+Completed 200 OK in 629ms (Views: 0.1ms | ActiveRecord: 1.0ms | Allocations: 2384)
+
+

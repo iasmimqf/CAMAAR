@@ -1,39 +1,92 @@
 # app/controllers/api/v1/formularios_controller.rb
-class Api::V1::FormulariosController < ApplicationController
-  # 1. Garante que apenas usuários logados possam acessar esta API.
-  #    Como sua model é 'Usuario', o helper do Devise é 'authenticate_usuario!'
-  before_action :authenticate_usuario!
+class Api::V1::FormulariosController < Api::V1::BaseController
+  # O `before_action :authenticate_usuario!` já é herdado do BaseController.
 
+  # GET /api/v1/formularios
   def index
-    # 2. Verifica se o usuário logado é admin ou não para decidir quais formulários buscar.
     if current_usuario.admin?
-      # Lógica para Admin: Pega todos os formulários.
-      # Usamos .includes para carregar as associações de uma vez e evitar múltiplas queries (problema de N+1).
       formularios = Formulario.includes(:template, turmas: :disciplina).order(created_at: :desc)
     else
-      # Lógica para Aluno: Usa o método que você já criou na model Usuario.
-      # Também usamos .includes para otimizar.
       formularios = current_usuario.formularios_pendentes.includes(:template, turmas: :disciplina)
     end
 
-    # 3. Formata os dados para o formato JSON que o frontend React espera.
     formularios_formatados = formularios.map do |form|
-      # NOTA: Um formulário pode estar em várias turmas. Para simplificar a exibição,
-      # estamos pegando os dados da primeira turma da lista.
       turma_principal = form.turmas.first
-
       {
         id: form.id,
-        # ASSUMINDO que o nome do formulário vem do template associado.
         nome: form.template.nome, 
-        # ASSUMINDO que o formulário tem um campo :prazo (data limite).
         prazo: form.try(:prazo) ? form.prazo.strftime("%d/%m/%Y") : "Não definido", 
         disciplina: turma_principal&.disciplina&.nome || "Não definida",
-        turma: turma_principal&.nome_completo || "Não definida"
+        turma: turma_principal&.codigo_turma || "Não definida"
       }
     end
 
-    # 4. Renderiza a lista como JSON.
     render json: formularios_formatados
   end
+
+  # GET /api/v1/formularios/:id
+  def show
+    formulario = Formulario.includes(template: { questoes: :opcoes }).find(params[:id])
+
+    render json: {
+      id: formulario.id,
+      nome_template: formulario.template.nome,
+      questoes: formulario.template.questoes.map do |questao|
+        {
+          id: questao.id,
+          texto: questao.texto,
+          tipo: questao.tipo_questao,
+          opcoes: questao.opcoes.map do |opcao|
+            {
+              id: opcao.id,
+              texto: opcao.texto
+            }
+          end
+        }
+      end
+    }
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: 'Formulário não encontrado' }, status: :not_found
+  end
+
+  # ===============================================================
+  # ▼▼▼ NOVO MÉTODO ADICIONADO ▼▼▼
+  # ===============================================================
+  # POST /api/v1/formularios/:id/responder
+  def responder
+    formulario = Formulario.find(params[:id])
+    respostas_params = params.require(:respostas).permit! # Permite o hash de respostas
+
+    # Usamos uma transação para garantir que todas as respostas sejam salvas
+    # ou nenhuma delas, evitando dados inconsistentes.
+    ActiveRecord::Base.transaction do
+      # 1. Cria o registro principal que liga o usuário ao formulário respondido.
+      resposta_formulario = RespostaFormulario.create!(
+        formulario: formulario,
+        respondente: current_usuario
+      )
+
+      # 2. Itera sobre cada resposta enviada pelo frontend.
+      respostas_params.each do |questao_id, valor|
+        questao = Questao.find(questao_id)
+        
+        # Cria a resposta individual.
+        # Se for múltipla escolha, salva o ID da opção.
+        # Se for texto, salva o texto.
+        Resposta.create!(
+          resposta_formulario: resposta_formulario,
+          questao: questao,
+          opcao_id: questao.tipo_questao == 'multipla_escolha' ? valor : nil,
+          texto: questao.tipo_questao == 'texto_longo' ? valor : nil
+        )
+      end
+    end
+
+    render json: { message: 'Respostas salvas com sucesso!' }, status: :created
+  rescue ActiveRecord::RecordInvalid => e
+    render json: { error: "Erro ao salvar: #{e.message}" }, status: :unprocessable_entity
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: 'Formulário ou questão não encontrada' }, status: :not_found
+  end
+  # ===============================================================
 end

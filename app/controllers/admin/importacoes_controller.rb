@@ -1,4 +1,6 @@
 # Caminho: app/controllers/admin/importacoes_controller.rb
+require 'securerandom'
+
 module Admin
   class ImportacoesController < Admin::BaseController
     # A herança de Admin::BaseController já deve tratar da autenticação.
@@ -74,63 +76,25 @@ module Admin
       end
     end
 
-    # --- NOVO MÉTODO PARA ALUNOS ---
-    # POST /admin/importacoes/importar_alunos
     def importar_alunos
-      file = params[:file] || params[:arquivo]
+      resultado = AlunoImporterService.new(params[:file]).call
 
-      unless file
-        return render json: { alert: "Nenhum ficheiro foi enviado." }, status: :bad_request
-      end
+      case resultado[:status]
+      when :success
+        # Sucesso total
+        details = resultado[:details]
+        notice = "Importação concluída!\n#{details[:alunos_criados]} novos alunos e #{details[:docentes_criados]} novos professores foram cadastrados."
+        render json: { notice: notice, details: details }, status: :ok
 
-      begin
-        alunos_data = JSON.parse(file.read)
-      rescue JSON::ParserError
-        return render json: { alert: "Erro: O ficheiro não é um JSON válido." }, status: :unprocessable_entity
-      end
+      when :partial_success
+        # Sucesso parcial
+        summary = resultado[:success_summary]
+        alert = "Importação concluída com erros.\n#{summary[:alunos_criados]} alunos e #{summary[:docentes_criados]} professores foram processados com sucesso."
+        render json: { alert: alert, errors: resultado[:errors], summary: summary }, status: :multi_status # 207 Multi-Status
 
-      erros = []
-      alunos_criados_ou_atualizados = 0
-
-      alunos_data.each_with_index do |aluno_info, index|
-        begin
-          # Encontra o aluno pela matrícula ou cria um novo
-          # Define uma senha padrão para novos alunos (eles podem alterá-la depois)
-          aluno = Usuario.find_or_initialize_by(matricula: aluno_info["matricula"])
-          if aluno.new_record?
-            aluno.nome = aluno_info["nome"]
-            aluno.email = aluno_info["email"]
-            aluno.password = "SenhaPadrao123!" # Defina uma senha padrão segura
-            aluno.password_confirmation = "SenhaPadrao123!"
-            aluno.save!
-            alunos_criados_ou_atualizados += 1
-          end
-
-          # Limpa as associações de turmas antigas para garantir que o aluno fique apenas nas turmas do ficheiro
-          aluno.turmas.clear
-
-          # Associa o aluno às turmas especificadas no ficheiro
-          aluno_info["turmas"].each do |turma_info|
-            disciplina = Disciplina.find_by(codigo: turma_info["disciplina_codigo"])
-            if disciplina
-              turma = disciplina.turmas.find_by(
-                codigo_turma: turma_info["codigo_turma"],
-                semestre: turma_info["semestre"]
-              )
-              aluno.turmas << turma if turma && !aluno.turmas.include?(turma)
-            else
-              erros << "Linha #{index + 1}: Disciplina com código #{turma_info['disciplina_codigo']} não encontrada."
-            end
-          end
-        rescue => e
-          erros << "Linha #{index + 1} (Matrícula: #{aluno_info['matricula']}): #{e.message}"
-        end
-      end
-
-      if erros.empty?
-        render json: { notice: "#{alunos_criados_ou_atualizados} alunos importados/atualizados com sucesso!" }, status: :ok
-      else
-        render json: { alert: "Importação concluída com erros: #{erros.join('; ')}" }, status: :unprocessable_entity
+      when :error
+        # Erro completo (ex: JSON inválido)
+        render json: { alert: "Falha na importação.", errors: resultado[:errors] }, status: :unprocessable_entity
       end
     end
   end

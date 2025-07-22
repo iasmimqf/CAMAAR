@@ -2,7 +2,19 @@
   {
     "nome": "Ana Clara Jordao Perna",
     "matricula": "190084006",
-    "email": "190084006@malinator.com",
+    "email": "190084006@mailinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Ana Clara Costa",
+    "matricula": "190084007",
+    "email": "190084007@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -14,7 +26,7 @@
   {
     "nome": "Andre Carvalho de Roure",
     "matricula": "200033522",
-    "email": "200033522@malinator.com",
+    "email": "200033522@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -26,7 +38,7 @@
   {
     "nome": "André Carvalho Marques",
     "matricula": "150005491",
-    "email": "150005491@malinator.com",
+    "email": "150005491@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -38,7 +50,7 @@
   {
     "nome": "Antonio Vinicius de Moura Rodrigues",
     "matricula": "190084502",
-    "email": "190084502@malinator.com",
+    "email": "190084502@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -50,7 +62,7 @@
   {
     "nome": "Arthur Barreiros de Oliveira Mota",
     "matricula": "190102829",
-    "email": "190102829@malinator.com",
+    "email": "190102829@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -62,7 +74,7 @@
   {
     "nome": "ARTHUR RODRIGUES NEVES",
     "matricula": "202014403",
-    "email": "202014403@malinator.com",
+    "email": "202014403@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -74,7 +86,7 @@
   {
     "nome": "Bianca Glycia Boueri",
     "matricula": "170161561",
-    "email": "170161561@malinator.com",
+    "email": "170161561@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -86,7 +98,7 @@
   {
     "nome": "Caio Otávio Peluti Alencar",
     "matricula": "190085312",
-    "email": "190085312@malinator.com",
+    "email": "190085312@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -98,7 +110,7 @@
   {
     "nome": "Camila Frealdo Fraga",
     "matricula": "170007561",
-    "email": "170007561@malinator.com",
+    "email": "170007561@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -110,7 +122,7 @@
   {
     "nome": "Claudio Roberto Oliveira Peres de Barros",
     "matricula": "190097591",
-    "email": "190097591@malinator.com",
+    "email": "190097591@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -122,7 +134,7 @@
   {
     "nome": "Daltro Oliveira Vinuto",
     "matricula": "160025966",
-    "email": "160025966@malinator.com",
+    "email": "160025966@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -134,7 +146,7 @@
   {
     "nome": "Davi de Moura Amaral",
     "matricula": "200016750",
-    "email": "200016750@malinator.com",
+    "email": "200016750@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -146,7 +158,7 @@
   {
     "nome": "Eduardo Xavier Dantas",
     "matricula": "190086530",
-    "email": "190086530@malinator.com",
+    "email": "190086530@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -158,7 +170,7 @@
   {
     "nome": "Enzo Nunes Leal Sampaio",
     "matricula": "190062789",
-    "email": "190062789@malinator.com",
+    "email": "190062789@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -170,7 +182,7 @@
   {
     "nome": "Enzo Yoshio Niho",
     "matricula": "190027304",
-    "email": "190027304@malinator.com",
+    "email": "190027304@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -182,7 +194,7 @@
   {
     "nome": "Gabriel Faustino Lima da Rocha",
     "matricula": "190013249",
-    "email": "190013249@malinator.com",
+    "email": "190013249@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -194,7 +206,7 @@
   {
     "nome": "Gabriel Ligoski",
     "matricula": "190087498",
-    "email": "190087498@malinator.com",
+    "email": "190087498@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -206,7 +218,7 @@
   {
     "nome": "GABRIEL MENDES CIRIATICO GUIMARÃES",
     "matricula": "202033202",
-    "email": "202033202@malinator.com",
+    "email": "202033202@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -218,7 +230,7 @@
   {
     "nome": "Gustavo Rodrigues dos Santos",
     "matricula": "190014121",
-    "email": "190014121@malinator.com",
+    "email": "190014121@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -230,7 +242,7 @@
   {
     "nome": "Gustavo Rodrigues Gualberto",
     "matricula": "190108266",
-    "email": "190108266@malinator.com",
+    "email": "190108266@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -242,7 +254,7 @@
   {
     "nome": "Igor David Morais",
     "matricula": "180102141",
-    "email": "180102141@malinator.com",
+    "email": "180102141@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -254,7 +266,7 @@
   {
     "nome": "Jefte Augusto Gomes Batista",
     "matricula": "180057570",
-    "email": "180057570@malinator.com",
+    "email": "180057570@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -266,7 +278,7 @@
   {
     "nome": "Karolina de Souza Silva",
     "matricula": "190046791",
-    "email": "190046791@malinator.com",
+    "email": "190046791@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -278,7 +290,7 @@
   {
     "nome": "Kléber Rodrigues da Costa Júnior",
     "matricula": "200053680",
-    "email": "200053680@malinator.com",
+    "email": "200053680@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -290,7 +302,7 @@
   {
     "nome": "Luca Delpino Barbabella",
     "matricula": "180125559",
-    "email": "180125559@malinator.com",
+    "email": "180125559@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -302,7 +314,7 @@
   {
     "nome": "Lucas de Almeida Abreu Faria",
     "matricula": "170016668",
-    "email": "170016668@malinator.com",
+    "email": "170016668@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -314,7 +326,7 @@
   {
     "nome": "Lucas Gonçalves Ramalho",
     "matricula": "190098091",
-    "email": "190098091@malinator.com",
+    "email": "190098091@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -326,7 +338,7 @@
   {
     "nome": "Lucas Monteiro Miranda",
     "matricula": "170149684",
-    "email": "170149684@malinator.com",
+    "email": "170149684@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -338,7 +350,7 @@
   {
     "nome": "Lucas Resende Silveira Reis",
     "matricula": "180144421",
-    "email": "180144421@malinator.com",
+    "email": "180144421@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -350,7 +362,7 @@
   {
     "nome": "Luis Fernando Freitas Lamellas",
     "matricula": "190016841",
-    "email": "190016841@malinator.com",
+    "email": "190016841@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -362,7 +374,7 @@
   {
     "nome": "Luiza de Araujo Nunes Gomes",
     "matricula": "190112794",
-    "email": "190112794@malinator.com",
+    "email": "190112794@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -374,7 +386,7 @@
   {
     "nome": "Marcelo Aiache Postiglione",
     "matricula": "180126652",
-    "email": "180126652@malinator.com",
+    "email": "180126652@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -386,7 +398,7 @@
   {
     "nome": "Marcelo Junqueira Ferreira",
     "matricula": "200023624",
-    "email": "200023624@malinator.com",
+    "email": "200023624@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -398,7 +410,7 @@
   {
     "nome": "MARIA EDUARDA CARVALHO SANTOS",
     "matricula": "190092556",
-    "email": "190092556@malinator.com",
+    "email": "190092556@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -410,7 +422,7 @@
   {
     "nome": "Maria Eduarda Lacerda Dantas",
     "matricula": "200067184",
-    "email": "200067184@malinator.com",
+    "email": "200067184@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -422,7 +434,7 @@
   {
     "nome": "Maylla Krislainy de Sousa Silva",
     "matricula": "190043873",
-    "email": "190043873@malinator.com",
+    "email": "190043873@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -434,7 +446,7 @@
   {
     "nome": "Pedro Cesar Ribeiro Passos",
     "matricula": "180139312",
-    "email": "180139312@malinator.com",
+    "email": "180139312@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -446,7 +458,7 @@
   {
     "nome": "Rafael Mascarenhas Dal Moro",
     "matricula": "170021041",
-    "email": "170021041@malinator.com",
+    "email": "170021041@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -458,7 +470,7 @@
   {
     "nome": "Rodrigo Mamedio Arrelaro",
     "matricula": "190095164",
-    "email": "190095164@malinator.com",
+    "email": "190095164@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -470,7 +482,7 @@
   {
     "nome": "Thiago de Oliveira Albuquerque",
     "matricula": "140177442",
-    "email": "140177442@malinator.com",
+    "email": "140177442@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -482,7 +494,7 @@
   {
     "nome": "Thiago Elias dos Reis",
     "matricula": "190126892",
-    "email": "190126892@malinator.com",
+    "email": "190126892@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -494,7 +506,7 @@
   {
     "nome": "Victor Hugo Rodrigues Fernandes",
     "matricula": "180132041",
-    "email": "180132041@malinator.com",
+    "email": "180132041@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -506,7 +518,7 @@
   {
     "nome": "Vinicius Lima Passos",
     "matricula": "200028545",
-    "email": "200028545@malinator.com",
+    "email": "200028545@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -518,7 +530,7 @@
   {
     "nome": "William Xavier dos Santos",
     "matricula": "190075384",
-    "email": "190075384@malinator.com",
+    "email": "190075384@mailinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -528,3 +540,5 @@
     ]
   }
 ]
+
+

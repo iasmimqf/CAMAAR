@@ -41181,3 +41181,530 @@ Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.0ms | Allocations: 1347)
   [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas';[0m
   [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
   [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "disciplinas"[0m
+  [1m[35m (4.0ms)[0m  [1m[31mDELETE FROM "disciplinas"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'disciplinas';[0m
+  [1m[35m (0.3ms)[0m  [1m[35mTRUNCATE TABLE "formularios_turmas"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "formularios_turmas"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios_turmas';[0m
+  [1m[35m (0.3ms)[0m  [1m[35mTRUNCATE TABLE "turmas_usuarios"[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM "turmas_usuarios"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas_usuarios';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "usuarios"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "usuarios"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'usuarios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "formularios"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "formularios"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "password_reset_tokens"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "password_reset_tokens"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'password_reset_tokens';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "questoes"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "questoes"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'questoes';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "resposta_formularios"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "resposta_formularios"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'resposta_formularios';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "resposta_questoes"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "resposta_questoes"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'resposta_questoes';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "respostas"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "respostas"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'respostas';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "templates"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "templates"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'templates';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "turmas"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "turmas"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas';[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "disciplinas"[0m
+  [1m[35m (5.1ms)[0m  [1m[31mDELETE FROM "disciplinas"[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'disciplinas';[0m
+  [1m[35m (0.4ms)[0m  [1m[35mTRUNCATE TABLE "formularios_turmas"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "formularios_turmas"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios_turmas';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "turmas_usuarios"[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM "turmas_usuarios"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas_usuarios';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "usuarios"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "usuarios"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'usuarios';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "formularios"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "formularios"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "password_reset_tokens"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "password_reset_tokens"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'password_reset_tokens';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "questoes"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "questoes"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'questoes';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "resposta_formularios"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "resposta_formularios"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'resposta_formularios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "resposta_questoes"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "resposta_questoes"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'resposta_questoes';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "respostas"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "respostas"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'respostas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "templates"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "templates"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'templates';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "turmas"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "turmas"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas';[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mDisciplina Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "MAT0030"], ["LIMIT", 1]]
+  [1m[36mDisciplina Create (0.2ms)[0m  [1m[32mINSERT INTO "disciplinas" ("codigo", "nome", "descricao", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo", "MAT0030"], ["nome", "Cálculo 1"], ["descricao", "Disciplina sobre conceitos e implementação de bancos de dados"], ["created_at", "2025-07-22 05:03:33.846845"], ["updated_at", "2025-07-22 05:03:33.846845"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTurma Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" WHERE "turmas"."codigo_turma" = ? AND "turmas"."disciplina_id" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["codigo_turma", "A"], ["disciplina_id", 1], ["semestre", "2021.2"], ["LIMIT", 1]]
+  [1m[36mTurma Create (0.2ms)[0m  [1m[32mINSERT INTO "turmas" ("codigo_turma", "semestre", "horario", "disciplina_id", "professor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo_turma", "A"], ["semestre", "2021.2"], ["horario", "35M12"], ["disciplina_id", 1], ["professor_id", nil], ["created_at", "2025-07-22 05:03:33.864096"], ["updated_at", "2025-07-22 05:03:33.864096"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUsuario Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "usuarios"[0m
+  [1m[36mUsuario Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "usuarios"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mDisciplina Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "MAT0030"], ["LIMIT", 1]]
+  [1m[36mDisciplina Create (0.2ms)[0m  [1m[32mINSERT INTO "disciplinas" ("codigo", "nome", "descricao", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo", "MAT0030"], ["nome", "Cálculo 1"], ["descricao", "Disciplina sobre conceitos e implementação de bancos de dados"], ["created_at", "2025-07-22 05:03:33.900493"], ["updated_at", "2025-07-22 05:03:33.900493"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTurma Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" WHERE "turmas"."codigo_turma" = ? AND "turmas"."disciplina_id" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["codigo_turma", "A"], ["disciplina_id", 1], ["semestre", "2021.2"], ["LIMIT", 1]]
+  [1m[36mTurma Create (0.1ms)[0m  [1m[32mINSERT INTO "turmas" ("codigo_turma", "semestre", "horario", "disciplina_id", "professor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo_turma", "A"], ["semestre", "2021.2"], ["horario", "35M12"], ["disciplina_id", 1], ["professor_id", nil], ["created_at", "2025-07-22 05:03:33.902446"], ["updated_at", "2025-07-22 05:03:33.902446"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUsuario Load (0.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."email" = ? LIMIT ?[0m  [["email", "novo.aluno@email.com"], ["LIMIT", 1]]
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" INNER JOIN "turmas_usuarios" ON "usuarios"."id" = "turmas_usuarios"."usuario_id" WHERE "turmas_usuarios"."turma_id" = ?[0m  [["turma_id", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mDisciplina Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "MAT0030"], ["LIMIT", 1]]
+  [1m[36mDisciplina Create (0.2ms)[0m  [1m[32mINSERT INTO "disciplinas" ("codigo", "nome", "descricao", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo", "MAT0030"], ["nome", "Cálculo 1"], ["descricao", "Disciplina sobre conceitos e implementação de bancos de dados"], ["created_at", "2025-07-22 05:03:33.917006"], ["updated_at", "2025-07-22 05:03:33.917006"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTurma Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" WHERE "turmas"."codigo_turma" = ? AND "turmas"."disciplina_id" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["codigo_turma", "A"], ["disciplina_id", 1], ["semestre", "2021.2"], ["LIMIT", 1]]
+  [1m[36mTurma Create (0.1ms)[0m  [1m[32mINSERT INTO "turmas" ("codigo_turma", "semestre", "horario", "disciplina_id", "professor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo_turma", "A"], ["semestre", "2021.2"], ["horario", "35M12"], ["disciplina_id", 1], ["professor_id", nil], ["created_at", "2025-07-22 05:03:33.918926"], ["updated_at", "2025-07-22 05:03:33.918926"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mDisciplina Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "MAT0030"], ["LIMIT", 1]]
+  [1m[36mDisciplina Create (0.2ms)[0m  [1m[32mINSERT INTO "disciplinas" ("codigo", "nome", "descricao", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo", "MAT0030"], ["nome", "Cálculo 1"], ["descricao", "Disciplina sobre conceitos e implementação de bancos de dados"], ["created_at", "2025-07-22 05:03:33.931822"], ["updated_at", "2025-07-22 05:03:33.931822"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTurma Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" WHERE "turmas"."codigo_turma" = ? AND "turmas"."disciplina_id" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["codigo_turma", "A"], ["disciplina_id", 1], ["semestre", "2021.2"], ["LIMIT", 1]]
+  [1m[36mTurma Create (0.1ms)[0m  [1m[32mINSERT INTO "turmas" ("codigo_turma", "semestre", "horario", "disciplina_id", "professor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo_turma", "A"], ["semestre", "2021.2"], ["horario", "35M12"], ["disciplina_id", 1], ["professor_id", nil], ["created_at", "2025-07-22 05:03:33.933673"], ["updated_at", "2025-07-22 05:03:33.933673"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mDisciplina Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "MAT0030"], ["LIMIT", 1]]
+  [1m[36mDisciplina Create (0.1ms)[0m  [1m[32mINSERT INTO "disciplinas" ("codigo", "nome", "descricao", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo", "MAT0030"], ["nome", "Cálculo 1"], ["descricao", "Disciplina sobre conceitos e implementação de bancos de dados"], ["created_at", "2025-07-22 05:03:33.936560"], ["updated_at", "2025-07-22 05:03:33.936560"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTurma Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" WHERE "turmas"."codigo_turma" = ? AND "turmas"."disciplina_id" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["codigo_turma", "A"], ["disciplina_id", 1], ["semestre", "2021.2"], ["LIMIT", 1]]
+  [1m[36mTurma Create (0.1ms)[0m  [1m[32mINSERT INTO "turmas" ("codigo_turma", "semestre", "horario", "disciplina_id", "professor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo_turma", "A"], ["semestre", "2021.2"], ["horario", "35M12"], ["disciplina_id", 1], ["professor_id", nil], ["created_at", "2025-07-22 05:03:33.938304"], ["updated_at", "2025-07-22 05:03:33.938304"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUsuario Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "usuarios"[0m
+  [1m[36mUsuario Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "usuarios"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mDisciplina Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "MAT0030"], ["LIMIT", 1]]
+  [1m[36mDisciplina Create (0.1ms)[0m  [1m[32mINSERT INTO "disciplinas" ("codigo", "nome", "descricao", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo", "MAT0030"], ["nome", "Cálculo 1"], ["descricao", "Disciplina sobre conceitos e implementação de bancos de dados"], ["created_at", "2025-07-22 05:03:33.941565"], ["updated_at", "2025-07-22 05:03:33.941565"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTurma Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" WHERE "turmas"."codigo_turma" = ? AND "turmas"."disciplina_id" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["codigo_turma", "A"], ["disciplina_id", 1], ["semestre", "2021.2"], ["LIMIT", 1]]
+  [1m[36mTurma Create (0.1ms)[0m  [1m[32mINSERT INTO "turmas" ("codigo_turma", "semestre", "horario", "disciplina_id", "professor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo_turma", "A"], ["semestre", "2021.2"], ["horario", "35M12"], ["disciplina_id", 1], ["professor_id", nil], ["created_at", "2025-07-22 05:03:33.943456"], ["updated_at", "2025-07-22 05:03:33.943456"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mDisciplina Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "MAT0030"], ["LIMIT", 1]]
+  [1m[36mDisciplina Create (0.1ms)[0m  [1m[32mINSERT INTO "disciplinas" ("codigo", "nome", "descricao", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo", "MAT0030"], ["nome", "Cálculo 1"], ["descricao", "Disciplina sobre conceitos e implementação de bancos de dados"], ["created_at", "2025-07-22 05:03:33.946175"], ["updated_at", "2025-07-22 05:03:33.946175"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTurma Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" WHERE "turmas"."codigo_turma" = ? AND "turmas"."disciplina_id" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["codigo_turma", "A"], ["disciplina_id", 1], ["semestre", "2021.2"], ["LIMIT", 1]]
+  [1m[36mTurma Create (0.1ms)[0m  [1m[32mINSERT INTO "turmas" ("codigo_turma", "semestre", "horario", "disciplina_id", "professor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo_turma", "A"], ["semestre", "2021.2"], ["horario", "35M12"], ["disciplina_id", 1], ["professor_id", nil], ["created_at", "2025-07-22 05:03:33.948009"], ["updated_at", "2025-07-22 05:03:33.948009"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUsuario Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "usuarios"[0m
+  [1m[36mUsuario Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "usuarios"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "disciplinas"[0m
+  [1m[35m (4.2ms)[0m  [1m[31mDELETE FROM "disciplinas"[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'disciplinas';[0m
+  [1m[35m (0.5ms)[0m  [1m[35mTRUNCATE TABLE "formularios_turmas"[0m
+  [1m[35m (0.2ms)[0m  [1m[31mDELETE FROM "formularios_turmas"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios_turmas';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "turmas_usuarios"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "turmas_usuarios"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas_usuarios';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "usuarios"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "usuarios"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'usuarios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "formularios"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "formularios"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "password_reset_tokens"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "password_reset_tokens"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'password_reset_tokens';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "questoes"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "questoes"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'questoes';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "resposta_formularios"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "resposta_formularios"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'resposta_formularios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "resposta_questoes"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "resposta_questoes"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'resposta_questoes';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "respostas"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "respostas"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'respostas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "templates"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "templates"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'templates';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "turmas"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "turmas"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas';[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mDisciplina Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "MAT0030"], ["LIMIT", 1]]
+  [1m[36mDisciplina Create (0.2ms)[0m  [1m[32mINSERT INTO "disciplinas" ("codigo", "nome", "descricao", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo", "MAT0030"], ["nome", "Cálculo 1"], ["descricao", "Disciplina sobre conceitos e implementação de bancos de dados"], ["created_at", "2025-07-22 05:04:50.257347"], ["updated_at", "2025-07-22 05:04:50.257347"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTurma Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" WHERE "turmas"."codigo_turma" = ? AND "turmas"."disciplina_id" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["codigo_turma", "A"], ["disciplina_id", 1], ["semestre", "2021.2"], ["LIMIT", 1]]
+  [1m[36mTurma Create (0.2ms)[0m  [1m[32mINSERT INTO "turmas" ("codigo_turma", "semestre", "horario", "disciplina_id", "professor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo_turma", "A"], ["semestre", "2021.2"], ["horario", "35M12"], ["disciplina_id", 1], ["professor_id", nil], ["created_at", "2025-07-22 05:04:50.271768"], ["updated_at", "2025-07-22 05:04:50.271768"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUsuario Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "usuarios"[0m
+  [1m[36mUsuario Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "usuarios"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mDisciplina Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "MAT0030"], ["LIMIT", 1]]
+  [1m[36mDisciplina Create (0.2ms)[0m  [1m[32mINSERT INTO "disciplinas" ("codigo", "nome", "descricao", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo", "MAT0030"], ["nome", "Cálculo 1"], ["descricao", "Disciplina sobre conceitos e implementação de bancos de dados"], ["created_at", "2025-07-22 05:04:50.293635"], ["updated_at", "2025-07-22 05:04:50.293635"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTurma Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" WHERE "turmas"."codigo_turma" = ? AND "turmas"."disciplina_id" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["codigo_turma", "A"], ["disciplina_id", 1], ["semestre", "2021.2"], ["LIMIT", 1]]
+  [1m[36mTurma Create (0.2ms)[0m  [1m[32mINSERT INTO "turmas" ("codigo_turma", "semestre", "horario", "disciplina_id", "professor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo_turma", "A"], ["semestre", "2021.2"], ["horario", "35M12"], ["disciplina_id", 1], ["professor_id", nil], ["created_at", "2025-07-22 05:04:50.295686"], ["updated_at", "2025-07-22 05:04:50.295686"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUsuario Load (0.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."email" = ? LIMIT ?[0m  [["email", "novo.aluno@email.com"], ["LIMIT", 1]]
+  [1m[36mUsuario Load (0.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" INNER JOIN "turmas_usuarios" ON "usuarios"."id" = "turmas_usuarios"."usuario_id" WHERE "turmas_usuarios"."turma_id" = ?[0m  [["turma_id", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mDisciplina Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "MAT0030"], ["LIMIT", 1]]
+  [1m[36mDisciplina Create (0.2ms)[0m  [1m[32mINSERT INTO "disciplinas" ("codigo", "nome", "descricao", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo", "MAT0030"], ["nome", "Cálculo 1"], ["descricao", "Disciplina sobre conceitos e implementação de bancos de dados"], ["created_at", "2025-07-22 05:04:50.307911"], ["updated_at", "2025-07-22 05:04:50.307911"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTurma Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" WHERE "turmas"."codigo_turma" = ? AND "turmas"."disciplina_id" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["codigo_turma", "A"], ["disciplina_id", 1], ["semestre", "2021.2"], ["LIMIT", 1]]
+  [1m[36mTurma Create (0.1ms)[0m  [1m[32mINSERT INTO "turmas" ("codigo_turma", "semestre", "horario", "disciplina_id", "professor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo_turma", "A"], ["semestre", "2021.2"], ["horario", "35M12"], ["disciplina_id", 1], ["professor_id", nil], ["created_at", "2025-07-22 05:04:50.309935"], ["updated_at", "2025-07-22 05:04:50.309935"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mDisciplina Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "MAT0030"], ["LIMIT", 1]]
+  [1m[36mDisciplina Create (0.2ms)[0m  [1m[32mINSERT INTO "disciplinas" ("codigo", "nome", "descricao", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo", "MAT0030"], ["nome", "Cálculo 1"], ["descricao", "Disciplina sobre conceitos e implementação de bancos de dados"], ["created_at", "2025-07-22 05:04:50.322614"], ["updated_at", "2025-07-22 05:04:50.322614"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTurma Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" WHERE "turmas"."codigo_turma" = ? AND "turmas"."disciplina_id" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["codigo_turma", "A"], ["disciplina_id", 1], ["semestre", "2021.2"], ["LIMIT", 1]]
+  [1m[36mTurma Create (0.1ms)[0m  [1m[32mINSERT INTO "turmas" ("codigo_turma", "semestre", "horario", "disciplina_id", "professor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo_turma", "A"], ["semestre", "2021.2"], ["horario", "35M12"], ["disciplina_id", 1], ["professor_id", nil], ["created_at", "2025-07-22 05:04:50.324521"], ["updated_at", "2025-07-22 05:04:50.324521"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUsuario Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "usuarios" WHERE "usuarios"."email" = ? LIMIT ?[0m  [["email", "aluno.antigo@email.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mDisciplina Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "MAT0030"], ["LIMIT", 1]]
+  [1m[36mDisciplina Create (0.1ms)[0m  [1m[32mINSERT INTO "disciplinas" ("codigo", "nome", "descricao", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo", "MAT0030"], ["nome", "Cálculo 1"], ["descricao", "Disciplina sobre conceitos e implementação de bancos de dados"], ["created_at", "2025-07-22 05:04:50.765437"], ["updated_at", "2025-07-22 05:04:50.765437"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTurma Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" WHERE "turmas"."codigo_turma" = ? AND "turmas"."disciplina_id" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["codigo_turma", "A"], ["disciplina_id", 1], ["semestre", "2021.2"], ["LIMIT", 1]]
+  [1m[36mTurma Create (0.1ms)[0m  [1m[32mINSERT INTO "turmas" ("codigo_turma", "semestre", "horario", "disciplina_id", "professor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo_turma", "A"], ["semestre", "2021.2"], ["horario", "35M12"], ["disciplina_id", 1], ["professor_id", nil], ["created_at", "2025-07-22 05:04:50.767433"], ["updated_at", "2025-07-22 05:04:50.767433"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUsuario Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "usuarios"[0m
+  [1m[36mUsuario Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "usuarios"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mDisciplina Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "MAT0030"], ["LIMIT", 1]]
+  [1m[36mDisciplina Create (0.2ms)[0m  [1m[32mINSERT INTO "disciplinas" ("codigo", "nome", "descricao", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo", "MAT0030"], ["nome", "Cálculo 1"], ["descricao", "Disciplina sobre conceitos e implementação de bancos de dados"], ["created_at", "2025-07-22 05:04:50.770643"], ["updated_at", "2025-07-22 05:04:50.770643"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTurma Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" WHERE "turmas"."codigo_turma" = ? AND "turmas"."disciplina_id" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["codigo_turma", "A"], ["disciplina_id", 1], ["semestre", "2021.2"], ["LIMIT", 1]]
+  [1m[36mTurma Create (0.1ms)[0m  [1m[32mINSERT INTO "turmas" ("codigo_turma", "semestre", "horario", "disciplina_id", "professor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo_turma", "A"], ["semestre", "2021.2"], ["horario", "35M12"], ["disciplina_id", 1], ["professor_id", nil], ["created_at", "2025-07-22 05:04:50.772616"], ["updated_at", "2025-07-22 05:04:50.772616"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mDisciplina Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "MAT0030"], ["LIMIT", 1]]
+  [1m[36mDisciplina Create (0.1ms)[0m  [1m[32mINSERT INTO "disciplinas" ("codigo", "nome", "descricao", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo", "MAT0030"], ["nome", "Cálculo 1"], ["descricao", "Disciplina sobre conceitos e implementação de bancos de dados"], ["created_at", "2025-07-22 05:04:50.775381"], ["updated_at", "2025-07-22 05:04:50.775381"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTurma Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" WHERE "turmas"."codigo_turma" = ? AND "turmas"."disciplina_id" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["codigo_turma", "A"], ["disciplina_id", 1], ["semestre", "2021.2"], ["LIMIT", 1]]
+  [1m[36mTurma Create (0.1ms)[0m  [1m[32mINSERT INTO "turmas" ("codigo_turma", "semestre", "horario", "disciplina_id", "professor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo_turma", "A"], ["semestre", "2021.2"], ["horario", "35M12"], ["disciplina_id", 1], ["professor_id", nil], ["created_at", "2025-07-22 05:04:50.777407"], ["updated_at", "2025-07-22 05:04:50.777407"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUsuario Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "usuarios"[0m
+  [1m[36mUsuario Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "usuarios"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.3ms)[0m  [1m[35mTRUNCATE TABLE "disciplinas"[0m
+  [1m[35m (4.8ms)[0m  [1m[31mDELETE FROM "disciplinas"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'disciplinas';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "formularios_turmas"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "formularios_turmas"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios_turmas';[0m
+  [1m[35m (0.3ms)[0m  [1m[35mTRUNCATE TABLE "turmas_usuarios"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "turmas_usuarios"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas_usuarios';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "usuarios"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "usuarios"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'usuarios';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "formularios"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "formularios"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'formularios';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "password_reset_tokens"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "password_reset_tokens"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'password_reset_tokens';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mTRUNCATE TABLE "questoes"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "questoes"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'questoes';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "resposta_formularios"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "resposta_formularios"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'resposta_formularios';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "resposta_questoes"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "resposta_questoes"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'resposta_questoes';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "respostas"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "respostas"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'respostas';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "templates"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "templates"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'templates';[0m
+  [1m[35m (0.1ms)[0m  [1m[35mTRUNCATE TABLE "turmas"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM "turmas"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'turmas';[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mDisciplina Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "MAT0030"], ["LIMIT", 1]]
+  [1m[36mDisciplina Create (0.2ms)[0m  [1m[32mINSERT INTO "disciplinas" ("codigo", "nome", "descricao", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo", "MAT0030"], ["nome", "Cálculo 1"], ["descricao", "Disciplina sobre conceitos e implementação de bancos de dados"], ["created_at", "2025-07-22 05:06:02.033998"], ["updated_at", "2025-07-22 05:06:02.033998"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTurma Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" WHERE "turmas"."codigo_turma" = ? AND "turmas"."disciplina_id" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["codigo_turma", "A"], ["disciplina_id", 1], ["semestre", "2021.2"], ["LIMIT", 1]]
+  [1m[36mTurma Create (0.2ms)[0m  [1m[32mINSERT INTO "turmas" ("codigo_turma", "semestre", "horario", "disciplina_id", "professor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo_turma", "A"], ["semestre", "2021.2"], ["horario", "35M12"], ["disciplina_id", 1], ["professor_id", nil], ["created_at", "2025-07-22 05:06:02.048504"], ["updated_at", "2025-07-22 05:06:02.048504"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUsuario Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "usuarios"[0m
+  [1m[36mUsuario Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "usuarios"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mDisciplina Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "MAT0030"], ["LIMIT", 1]]
+  [1m[36mDisciplina Create (0.2ms)[0m  [1m[32mINSERT INTO "disciplinas" ("codigo", "nome", "descricao", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo", "MAT0030"], ["nome", "Cálculo 1"], ["descricao", "Disciplina sobre conceitos e implementação de bancos de dados"], ["created_at", "2025-07-22 05:06:02.071006"], ["updated_at", "2025-07-22 05:06:02.071006"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTurma Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" WHERE "turmas"."codigo_turma" = ? AND "turmas"."disciplina_id" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["codigo_turma", "A"], ["disciplina_id", 1], ["semestre", "2021.2"], ["LIMIT", 1]]
+  [1m[36mTurma Create (0.1ms)[0m  [1m[32mINSERT INTO "turmas" ("codigo_turma", "semestre", "horario", "disciplina_id", "professor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo_turma", "A"], ["semestre", "2021.2"], ["horario", "35M12"], ["disciplina_id", 1], ["professor_id", nil], ["created_at", "2025-07-22 05:06:02.072967"], ["updated_at", "2025-07-22 05:06:02.072967"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUsuario Load (0.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."email" = ? LIMIT ?[0m  [["email", "novo.aluno@email.com"], ["LIMIT", 1]]
+  [1m[36mUsuario Load (0.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" INNER JOIN "turmas_usuarios" ON "usuarios"."id" = "turmas_usuarios"."usuario_id" WHERE "turmas_usuarios"."turma_id" = ?[0m  [["turma_id", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mDisciplina Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "MAT0030"], ["LIMIT", 1]]
+  [1m[36mDisciplina Create (0.1ms)[0m  [1m[32mINSERT INTO "disciplinas" ("codigo", "nome", "descricao", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo", "MAT0030"], ["nome", "Cálculo 1"], ["descricao", "Disciplina sobre conceitos e implementação de bancos de dados"], ["created_at", "2025-07-22 05:06:02.085467"], ["updated_at", "2025-07-22 05:06:02.085467"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTurma Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" WHERE "turmas"."codigo_turma" = ? AND "turmas"."disciplina_id" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["codigo_turma", "A"], ["disciplina_id", 1], ["semestre", "2021.2"], ["LIMIT", 1]]
+  [1m[36mTurma Create (0.1ms)[0m  [1m[32mINSERT INTO "turmas" ("codigo_turma", "semestre", "horario", "disciplina_id", "professor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo_turma", "A"], ["semestre", "2021.2"], ["horario", "35M12"], ["disciplina_id", 1], ["professor_id", nil], ["created_at", "2025-07-22 05:06:02.087570"], ["updated_at", "2025-07-22 05:06:02.087570"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mDisciplina Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "MAT0030"], ["LIMIT", 1]]
+  [1m[36mDisciplina Create (0.1ms)[0m  [1m[32mINSERT INTO "disciplinas" ("codigo", "nome", "descricao", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo", "MAT0030"], ["nome", "Cálculo 1"], ["descricao", "Disciplina sobre conceitos e implementação de bancos de dados"], ["created_at", "2025-07-22 05:06:02.100483"], ["updated_at", "2025-07-22 05:06:02.100483"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTurma Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" WHERE "turmas"."codigo_turma" = ? AND "turmas"."disciplina_id" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["codigo_turma", "A"], ["disciplina_id", 1], ["semestre", "2021.2"], ["LIMIT", 1]]
+  [1m[36mTurma Create (0.1ms)[0m  [1m[32mINSERT INTO "turmas" ("codigo_turma", "semestre", "horario", "disciplina_id", "professor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo_turma", "A"], ["semestre", "2021.2"], ["horario", "35M12"], ["disciplina_id", 1], ["professor_id", nil], ["created_at", "2025-07-22 05:06:02.102378"], ["updated_at", "2025-07-22 05:06:02.102378"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUsuario Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "usuarios" WHERE "usuarios"."email" = ? LIMIT ?[0m  [["email", "aluno.antigo@email.com"], ["LIMIT", 1]]
+  [1m[36mUsuario Create (0.1ms)[0m  [1m[32mINSERT INTO "usuarios" ("matricula", "nome", "created_at", "updated_at", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "admin") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["matricula", "608355729"], ["nome", "Marina Moniz Neto"], ["created_at", "2025-07-22 05:06:02.485336"], ["updated_at", "2025-07-22 05:06:02.485336"], ["email", "aluno.antigo@email.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mDisciplina Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "MAT0030"], ["LIMIT", 1]]
+  [1m[36mDisciplina Create (0.1ms)[0m  [1m[32mINSERT INTO "disciplinas" ("codigo", "nome", "descricao", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo", "MAT0030"], ["nome", "Cálculo 1"], ["descricao", "Disciplina sobre conceitos e implementação de bancos de dados"], ["created_at", "2025-07-22 05:06:02.488628"], ["updated_at", "2025-07-22 05:06:02.488628"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTurma Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" WHERE "turmas"."codigo_turma" = ? AND "turmas"."disciplina_id" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["codigo_turma", "A"], ["disciplina_id", 1], ["semestre", "2021.2"], ["LIMIT", 1]]
+  [1m[36mTurma Create (0.1ms)[0m  [1m[32mINSERT INTO "turmas" ("codigo_turma", "semestre", "horario", "disciplina_id", "professor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo_turma", "A"], ["semestre", "2021.2"], ["horario", "35M12"], ["disciplina_id", 1], ["professor_id", nil], ["created_at", "2025-07-22 05:06:02.490495"], ["updated_at", "2025-07-22 05:06:02.490495"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUsuario Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "usuarios"[0m
+  [1m[36mUsuario Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "usuarios"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mDisciplina Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "MAT0030"], ["LIMIT", 1]]
+  [1m[36mDisciplina Create (0.1ms)[0m  [1m[32mINSERT INTO "disciplinas" ("codigo", "nome", "descricao", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo", "MAT0030"], ["nome", "Cálculo 1"], ["descricao", "Disciplina sobre conceitos e implementação de bancos de dados"], ["created_at", "2025-07-22 05:06:02.494879"], ["updated_at", "2025-07-22 05:06:02.494879"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTurma Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" WHERE "turmas"."codigo_turma" = ? AND "turmas"."disciplina_id" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["codigo_turma", "A"], ["disciplina_id", 1], ["semestre", "2021.2"], ["LIMIT", 1]]
+  [1m[36mTurma Create (0.2ms)[0m  [1m[32mINSERT INTO "turmas" ("codigo_turma", "semestre", "horario", "disciplina_id", "professor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo_turma", "A"], ["semestre", "2021.2"], ["horario", "35M12"], ["disciplina_id", 1], ["professor_id", nil], ["created_at", "2025-07-22 05:06:02.498929"], ["updated_at", "2025-07-22 05:06:02.498929"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mDisciplina Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "MAT0030"], ["LIMIT", 1]]
+  [1m[36mDisciplina Create (0.1ms)[0m  [1m[32mINSERT INTO "disciplinas" ("codigo", "nome", "descricao", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo", "MAT0030"], ["nome", "Cálculo 1"], ["descricao", "Disciplina sobre conceitos e implementação de bancos de dados"], ["created_at", "2025-07-22 05:06:02.506833"], ["updated_at", "2025-07-22 05:06:02.506833"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mTurma Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "turmas" WHERE "turmas"."codigo_turma" = ? AND "turmas"."disciplina_id" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["codigo_turma", "A"], ["disciplina_id", 1], ["semestre", "2021.2"], ["LIMIT", 1]]
+  [1m[36mTurma Create (0.2ms)[0m  [1m[32mINSERT INTO "turmas" ("codigo_turma", "semestre", "horario", "disciplina_id", "professor_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["codigo_turma", "A"], ["semestre", "2021.2"], ["horario", "35M12"], ["disciplina_id", 1], ["professor_id", nil], ["created_at", "2025-07-22 05:06:02.510802"], ["updated_at", "2025-07-22 05:06:02.510802"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUsuario Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "usuarios"[0m
+  [1m[36mUsuario Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "usuarios"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m

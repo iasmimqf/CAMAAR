@@ -10,15 +10,15 @@ class AlunoImporterService
   # O método 'call' é o que executa o trabalho pesado
   def call
     # Validação inicial do arquivo
-    return { success: false, errors: ["Nenhum arquivo foi enviado."] } unless @file
-    return { success: false, errors: ["Formato inválido. Envie um arquivo .json."] } unless @file.original_filename.end_with?('.json')
+    return { success: false, errors: [ "Nenhum arquivo foi enviado." ] } unless @file
+    return { success: false, errors: [ "Formato inválido. Envie um arquivo .json." ] } unless @file.original_filename.end_with?(".json")
 
     begin
       turmas_data = JSON.parse(@file.read)
       erros = processar_dados(turmas_data)
 
       if erros.empty?
-        { 
+        {
           status: :success,
           details: {
             alunos_criados: @novos_alunos,
@@ -26,7 +26,7 @@ class AlunoImporterService
           }
         }
       else
-        { 
+        {
           status: :partial_success,
           erros: erros,
           sucesso: {
@@ -36,7 +36,7 @@ class AlunoImporterService
         }
       end
     rescue JSON::ParserError
-      { status: :error, errors: ["Erro: JSON inválido."] }
+      { status: :error, errors: [ "Erro: JSON inválido." ] }
     end
   end
 

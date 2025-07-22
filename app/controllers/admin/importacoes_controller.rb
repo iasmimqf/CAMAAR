@@ -1,5 +1,5 @@
 # Caminho: app/controllers/admin/importacoes_controller.rb
-require 'securerandom'
+require "securerandom"
 
 module Admin
   class ImportacoesController < Admin::BaseController
@@ -19,10 +19,10 @@ module Admin
         # Se houve falha (total ou parcial), retorna os detalhes
         alert_message = "Importação concluída com erros."
         alert_message += " #{resultado[:turmas_criadas].to_i} turmas foram importadas com sucesso." if resultado[:turmas_criadas].to_i > 0
-        
-        render json: { 
-          alert: alert_message, 
-          errors: resultado[:errors] 
+
+        render json: {
+          alert: alert_message,
+          errors: resultado[:errors]
         }, status: :unprocessable_entity
       end
     end

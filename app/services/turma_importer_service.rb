@@ -11,13 +11,13 @@ class TurmaImporterService
   def call
     # 1. Validações iniciais do arquivo
     unless @file
-      return { success: false, errors: ["Nenhum arquivo foi enviado."] }
+      return { success: false, errors: [ "Nenhum arquivo foi enviado." ] }
     end
 
     begin
       turmas_data = JSON.parse(@file.read)
     rescue JSON::ParserError
-      return { success: false, errors: ["Erro: O arquivo não é um JSON válido."] }
+      return { success: false, errors: [ "Erro: O arquivo não é um JSON válido." ] }
     end
 
     # 2. Processamento dos dados, que agora vive em um método privado
@@ -27,10 +27,10 @@ class TurmaImporterService
     if @erros.empty?
       { success: true, turmas_criadas: @turmas_criadas }
     else
-      { 
-        success: false, 
+      {
+        success: false,
         turmas_criadas: @turmas_criadas, # Retorna o número de sucessos parciais
-        errors: @erros 
+        errors: @erros
       }
     end
   end

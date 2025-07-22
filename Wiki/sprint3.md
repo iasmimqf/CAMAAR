@@ -48,6 +48,27 @@ O trabalho nesta feature também começou com a padronização dos testes.
 
 * **Justificativa:** Esta abordagem foi escolhida porque o RSpec permite a verificação precisa das respostas JSON e dos códigos de status, cumprindo o requisito de testar todos os caminhos da feature. Por este motivo, a implementação dos "steps" do Cucumber, que recriaria os mesmos testes de API, foi considerada redundante para esta funcionalidade específica.
 
+### Feature 3: Importação de Dados do SIGAA
+
+**Responsáveis:** `[Iasmim e Hudson]`
+
+O objetivo desta feature é permitir que um administrador importe dados de Turmas e Alunos/Professores a partir de arquivos JSON, populando a base de dados do sistema.
+
+* **Estratégia de Teste e Refatoração:** Seguindo os requisitos da Sprint 3, a implementação desta feature foi guiada por testes e refatoração. A lógica de negócio, que é complexa, foi extraída do `Admin::ImportacoesController` para **Service Objects** dedicados (`TurmaImporterService` e `AlunoImporterService`), resultando em um código mais limpo, com menor complexidade (ABC Score) e mais fácil de testar, mas o resto da refatoração vai ser feito depois.
+
+* **Lógica de Negócio Implementada:**
+    * O sistema utiliza uma lógica "encontre ou crie" para evitar a duplicação de `Disciplinas`, `Turmas` e `Usuarios`.
+    * Ao criar um **novo usuário** (aluno ou professor) através da importação, o sistema automaticamente dispara um **e-mail para a definição de senha**, cumprindo um requisito chave da funcionalidade.
+    * A importação lida com **sucessos parciais**, retornando um resumo dos sucessos e uma lista detalhada de erros caso o ficheiro contenha dados inválidos ou inconsistentes (ex: tentar importar alunos para uma turma que não existe).
+
+* **Testes (RSpec):** Os testes de aceitação para esta feature foram implementados como **testes de serviço** em RSpec (`spec/services/`). Esta abordagem permite testar a lógica de negócio de forma independente e completa, verificando todos os **Happy Paths e Sad Paths**, como:
+    * Criação correta de novos registros (turmas, alunos, professores).
+    * Associação correta de alunos e professores às turmas.
+    * Envio do e-mail de definição de senha apenas para novos usuários.
+    * Tratamento de erros de ficheiro (JSON malformado, formato inválido).
+    * Tratamento de erros de dados (turma inexistente, dados de usuário inválidos).
+
+
 ---
 ## Análise de Qualidade e Refatoração (Sprint 3)
 

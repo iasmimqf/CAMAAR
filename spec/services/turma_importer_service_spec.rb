@@ -12,7 +12,7 @@ RSpec.describe TurmaImporterService, type: :service do
       }
     ].to_json
   end
-  let(:file) { Tempfile.new(['turmas', '.json']).tap { |f| f.write(turmas_json_content); f.rewind; } }
+  let(:file) { Tempfile.new([ 'turmas', '.json' ]).tap { |f| f.write(turmas_json_content); f.rewind; } }
 
   subject(:service) { described_class.new(file) }
 
@@ -30,7 +30,7 @@ RSpec.describe TurmaImporterService, type: :service do
       expect(resultado[:success]).to be true
       expect(resultado[:turmas_criadas]).to eq(1)
     end
-    
+
     it "não cria duplicatas se a turma já existir" do
       # Cria os dados antes de rodar o serviço
       disciplina = FactoryBot.create(:disciplina, codigo: "CIC0097", nome: "BANCOS DE DADOS")

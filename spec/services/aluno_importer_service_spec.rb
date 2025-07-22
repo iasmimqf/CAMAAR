@@ -8,13 +8,13 @@ RSpec.describe AlunoImporterService, type: :service do
 
   # Simula os dados de um arquivo JSON válido com um novo aluno e um novo professor
   let(:dados_validos) do
-    [{
+    [ {
       "code" => "CIC0097",
       "classCode" => "TA",
       "semester" => "2021.2",
       "docente" => { "nome" => "Professor Novo",  "email" => "prof.novo@email.com", "usuario" => "999888" },
-      "dicente" => [{ "nome" => "Aluno Novo", "matricula" => "111222", "email" => "aluno.novo@email.com" }]
-    }]
+      "dicente" => [ { "nome" => "Aluno Novo", "matricula" => "111222", "email" => "aluno.novo@email.com" } ]
+    } ]
   end
 
   # --- HAPPY PATH ---
@@ -60,14 +60,14 @@ RSpec.describe AlunoImporterService, type: :service do
       expect(resultado[:errors].first).to eq("Erro: JSON inválido.")
     end
   end
-  
+
   context "quando nenhum ficheiro é fornecido" do
     subject(:service) { described_class.new(nil) } # Simula a ausência de um ficheiro
 
     it "não cria nenhum usuário" do
       expect { service.call }.not_to change(Usuario, :count)
     end
-    
+
     it "retorna um resultado de falha com a mensagem correta" do
       resultado = service.call
       expect(resultado[:success]).to be false
@@ -79,14 +79,14 @@ RSpec.describe AlunoImporterService, type: :service do
     let!(:aluno_existente) { FactoryBot.create(:usuario, matricula: "111222", password: "Password@123") }
 
     let(:dados_com_aluno_existente) do
-      [{
+      [ {
       "code" => disciplina.codigo,
       "classCode" => turma.codigo_turma,
       "semester" => turma.semestre,
-      "dicente" => [{ "nome" => "Nome Antigo", "matricula" => "111222", "email" => "aluno.existente@email.com" }]
-      }]
+      "dicente" => [ { "nome" => "Nome Antigo", "matricula" => "111222", "email" => "aluno.existente@email.com" } ]
+      } ]
     end
-    
+
     subject(:service) { described_class.new(double(read: dados_com_aluno_existente.to_json, original_filename: 'alunos.json')) }
 
 
@@ -111,7 +111,7 @@ RSpec.describe AlunoImporterService, type: :service do
 
     it "retorna um status de sucesso parcial com a mensagem de erro correta" do
         resultado = service.call
-        expect(resultado[:status]).to eq(:partial_success) 
+        expect(resultado[:status]).to eq(:partial_success)
         expect(resultado[:erros].first).to include("Turma TURMA_FANTASMA não encontrada")
     end
   end

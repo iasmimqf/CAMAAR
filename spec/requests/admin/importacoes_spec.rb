@@ -19,7 +19,7 @@ RSpec.describe "Admin::ImportacoesController", type: :request do
         # 1. Cria um "dublê" do serviço de turmas
         importer_double = instance_double(TurmaImporterService)
         allow(TurmaImporterService).to receive(:new).and_return(importer_double)
-        
+
         # 2. Simula o serviço retornando um resultado de sucesso
         allow(importer_double).to receive(:call).and_return({ success: true, turmas_criadas: 3 })
 
@@ -38,9 +38,9 @@ RSpec.describe "Admin::ImportacoesController", type: :request do
       it "chama o TurmaImporterService e retorna uma resposta de erro" do
         importer_double = instance_double(TurmaImporterService)
         allow(TurmaImporterService).to receive(:new).and_return(importer_double)
-        
+
         # Simula o serviço retornando um erro
-        allow(importer_double).to receive(:call).and_return({ success: false, errors: ["JSON inválido"] })
+        allow(importer_double).to receive(:call).and_return({ success: false, errors: [ "JSON inválido" ] })
 
         post '/admin/importacoes/importar_turmas', params: { file: file }
 
@@ -58,11 +58,11 @@ RSpec.describe "Admin::ImportacoesController", type: :request do
       it "chama o AlunoImporterService e retorna uma resposta de sucesso" do
         # 1. Cria um "dublê" do nosso serviço
         importer_double = instance_double(AlunoImporterService)
-        
+
         # 2. Diz ao RSpec: "Quando 'AlunoImporterService.new' for chamado,
         #    em vez de criar um serviço de verdade, retorne o nosso dublê."
         allow(AlunoImporterService).to receive(:new).and_return(importer_double)
-        
+
         # 3. Diz ao RSpec: "Eu espero que o método 'call' seja chamado no nosso dublê,
         #    e quando for, ele deve retornar um resultado de sucesso."
         allow(importer_double).to receive(:call).and_return({ status: :success, details: { alunos_criados: 1, docentes_criados: 1 } })
@@ -73,7 +73,7 @@ RSpec.describe "Admin::ImportacoesController", type: :request do
         # 5. Verificação: O controller chamou o serviço como esperado?
         expect(AlunoImporterService).to have_received(:new).with(an_instance_of(ActionDispatch::Http::UploadedFile))
         expect(importer_double).to have_received(:call)
-        
+
         # 6. Verificação: O controller renderizou a resposta JSON correta?
         expect(response).to have_http_status(:ok)
         expect(JSON.parse(response.body)['notice']).to include("Importação concluída!")
@@ -85,7 +85,7 @@ RSpec.describe "Admin::ImportacoesController", type: :request do
         importer_double = instance_double(AlunoImporterService)
         allow(AlunoImporterService).to receive(:new).and_return(importer_double)
         # Simula o serviço retornando um erro
-        allow(importer_double).to receive(:call).and_return({ status: :error, errors: ["Turma não encontrada"] })
+        allow(importer_double).to receive(:call).and_return({ status: :error, errors: [ "Turma não encontrada" ] })
 
         post '/admin/importacoes/importar_alunos', params: { file: file }
 

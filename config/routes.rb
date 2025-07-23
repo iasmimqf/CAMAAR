@@ -13,8 +13,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'dashboard', to: 'dashboard#index' , as: 'dashboard'
-    post 'importacoes/importar_turmas', to: 'importacoes#importar_turmas'
-    post 'importacoes/importar_alunos', to: 'importacoes#importar_alunos'
+    # As rotas de importação foram REMOVIDAS daqui
     resources :templates, only: [:index, :create]
     resources :formularios do
       collection do
@@ -30,9 +29,7 @@ Rails.application.routes.draw do
       
       resources :turmas, only: [:index]
 
-      # CORREÇÃO: Unificado o 'resources :formularios' em um só bloco
-      resources :formularios, only: [:index, :show] do
-        # Adiciona a rota: POST /api/v1/formularios/:id/responder
+      resources :formularios, only: [:index, :show, :create] do
         member do
           post :responder
         end
@@ -46,6 +43,12 @@ Rails.application.routes.draw do
         collection do
           get :exportar
         end
+      end
+
+      # As rotas de importação foram MOVIDAS para cá
+      namespace :importacoes do
+        post :importar_turmas
+        post :importar_alunos
       end
     end
   end

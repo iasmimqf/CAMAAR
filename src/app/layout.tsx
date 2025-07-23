@@ -1,6 +1,7 @@
 // Caminho: src/app/layout.tsx
 
 import { AuthProvider } from '@/contexts/AuthContext';
+import { Toaster } from '@/components/ui/sonner'; // <<< 1. Importe o Toaster
 import './globals.css';
 
 export const metadata = {
@@ -16,7 +17,11 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body>
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          {children}
+          <Toaster richColors position="top-right" /> 
+          {/* ^^^ 2. Adicione o componente aqui ^^^ */}
+        </AuthProvider>
       </body>
     </html>
   );

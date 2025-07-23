@@ -13,28 +13,39 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useRouter } from 'next/navigation';
-import { api } from '@/lib/api'; // Supondo que você tenha um cliente de API configurado (ex: Axios)
+import { api } from '@/lib/api';
+import { toast } from 'sonner'; // <<< 1. Importe o toast
+
+// Tipagem para os dados que esperamos da API
+interface ResultadoTurma {
+  id: number;
+  nome_turma: string;
+  nome_disciplina: string;
+  semestre: string;
+  tem_respostas: boolean;
+  respondidos: number;
+  enviados: number;
+}
 
 export default function ResultadoPage() {
   const { logout } = useAuth();
   const router = useRouter();
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('gerenciamento'); // Mude para a seção correta se necessário
-  const [turmas, setTurmas] = useState([]);
-  const [selectedTurmas, setSelectedTurmas] = useState(new Set());
+  const [activeSection, setActiveSection] = useState('gerenciamento');
+  const [turmas, setTurmas] = useState<ResultadoTurma[]>([]);
+  const [selectedTurmas, setSelectedTurmas] = useState(new Set<number>());
   const [isLoading, setIsLoading] = useState(true);
   const [isGeneratingCsv, setIsGeneratingCsv] = useState(false);
 
-  // Efeito para buscar os dados das turmas ao carregar a página
   useEffect(() => {
     const fetchResultados = async () => {
       try {
-        const response = await api.get('/resultados'); // Chama o endpoint GET /api/v1/resultados
+        const response = await api.get('/resultados');
         setTurmas(response.data);
       } catch (error) {
         console.error('Falha ao carregar resultados:', error);
-        // Aqui você pode adicionar um toast de erro para o usuário
+        toast.error("Falha ao carregar os dados dos resultados.");
       } finally {
         setIsLoading(false);
       }
@@ -47,8 +58,7 @@ export default function ResultadoPage() {
     logout();
   };
 
-  // Lida com a seleção e deseleção de turmas
-  const handleSelectTurma = (turmaId, isChecked) => {
+  const handleSelectTurma = (turmaId: number, isChecked: boolean) => {
     setSelectedTurmas((prev) => {
       const newSelection = new Set(prev);
       if (isChecked) {
@@ -60,25 +70,25 @@ export default function ResultadoPage() {
     });
   };
 
-  // Lida com o clique no botão para gerar e baixar o CSV
+  // ===============================================================
+  // ▼▼▼ FUNÇÃO ATUALIZADA PARA USAR 'toast' ▼▼▼
+  // ===============================================================
   const handleGenerateCsv = async () => {
     if (selectedTurmas.size === 0) return;
 
     setIsGeneratingCsv(true);
     try {
       const params = new URLSearchParams();
-      selectedTurmas.forEach((id) => params.append('turma_ids[]', id));
+      selectedTurmas.forEach((id) => params.append('turma_ids[]', String(id)));
       
       const response = await api.get(`/resultados/exportar?${params.toString()}`, {
-        responseType: 'blob', // Essencial para o navegador entender que é um arquivo
+        responseType: 'blob',
       });
 
-      // Cria um link invisível para iniciar o download do arquivo
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement('a');
       link.href = url;
       
-      // Pega o nome do arquivo que o backend enviou no header
       const contentDisposition = response.headers['content-disposition'];
       let filename = 'resultados.csv';
       if (contentDisposition) {
@@ -92,17 +102,18 @@ export default function ResultadoPage() {
       document.body.appendChild(link);
       link.click();
       
-      // Limpa o link da memória
       link.remove();
       window.URL.revokeObjectURL(url);
 
-    } catch (error) {
+    } catch (error: any) {
       console.error('Falha ao gerar CSV:', error);
-      // Adicione um toast de erro aqui também
+      const errorMessage = error.response?.data?.erro || "Ocorreu um erro ao gerar o arquivo CSV.";
+      toast.error(errorMessage);
     } finally {
       setIsGeneratingCsv(false);
     }
   };
+  // ===============================================================
 
   const MainContent = () => {
     if (isLoading) {
@@ -131,8 +142,8 @@ export default function ResultadoPage() {
               <Checkbox
                 id={`turma-${turma.id}`}
                 checked={selectedTurmas.has(turma.id)}
-                onCheckedChange={(checked) => handleSelectTurma(turma.id, checked)}
-                disabled={!turma.tem_respostas} // Desabilita se não há respostas
+                onCheckedChange={(checked) => handleSelectTurma(turma.id, Boolean(checked))}
+                disabled={!turma.tem_respostas}
               />
               <label
                 htmlFor={`turma-${turma.id}`}
@@ -196,7 +207,7 @@ export default function ResultadoPage() {
           </nav>
         </aside>
         
-        <main className="flex-1 p-6 w-full md:pl-56"> {/* Ajuste de padding para o sidebar */}
+        <main className="flex-1 p-6 w-full md:pl-56">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-bold text-gray-800">Resultados por Turma</h2>
             <Button onClick={handleGenerateCsv} disabled={selectedTurmas.size === 0 || isGeneratingCsv}>

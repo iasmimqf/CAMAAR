@@ -1,4 +1,3 @@
-// Caminho: src/app/login/page.tsx
 'use client';
 
 import React, { useState } from 'react';
@@ -7,32 +6,36 @@ import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { toast } from 'sonner'; // <<< 1. Importe o toast
+import { Loader2 } from 'lucide-react';
 
 export default function LoginPage() {
   const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
+  // ===============================================================
+  // ▼▼▼ FUNÇÃO ATUALIZADA PARA USAR 'toast' ▼▼▼
+  // ===============================================================
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
     setIsLoading(true);
 
     try {
-      // A função 'login' do AuthContext agora faz todo o trabalho:
-      // chama a API, salva o token e redireciona.
+      // A função 'login' do AuthContext já faz todo o trabalho
       await login({ email, password });
     } catch (err) {
-      // Se a função 'login' do contexto der erro, nós o capturamos aqui.
+      // Se a função 'login' do contexto der erro, nós o capturamos aqui
+      // e mostramos um toast elegante em vez de um texto vermelho.
       console.error('Erro de login na página:', err);
-      setError('Login ou senha inválidos. Verifique suas credenciais.');
+      toast.error('Login ou senha inválidos. Verifique as suas credenciais.');
     } finally {
       setIsLoading(false);
     }
   };
+  // ===============================================================
 
   return (
     <div className="min-h-screen bg-gray-300 flex items-center justify-center p-4">
@@ -73,13 +76,16 @@ export default function LoginPage() {
                     disabled={isLoading}
                   />
                 </div>
-                {error && <p className="text-sm text-red-600 text-center">{error}</p>}
+
+                {/* O elemento de mensagem de erro foi removido daqui */}
+
                 <Button
                   type="submit"
                   className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200"
                   disabled={isLoading}
                 >
-                  {isLoading ? 'Entrando...' : 'Entrar'}
+                  {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+                  {isLoading ? 'A entrar...' : 'Entrar'}
                 </Button>
                 <div className="text-center mt-4">
                   <button

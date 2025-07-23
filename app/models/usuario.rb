@@ -15,42 +15,33 @@ class Usuario < ApplicationRecord
     self.admin == true
   end
 
+  # ===============================================================
+  # ▼▼▼ MÉTODO ATUALIZADO COM FILTRO DE PRAZO ▼▼▼
+  # ===============================================================
   def formularios_pendentes
     return Formulario.none if self.turmas.empty?
     
     formularios_das_turmas = Formulario.joins(:turmas)
                                        .where(turmas: { id: self.turmas.pluck(:id) })
+                                       # Adiciona a condição para o prazo:
+                                       # O prazo deve ser NULO (sem prazo) OU estar no futuro.
+                                       .where("formularios.prazo IS NULL OR formularios.prazo > ?", Time.current)
                                        .distinct
     
     formularios_respondidos_ids = self.resposta_formularios.pluck(:formulario_id)
     formularios_das_turmas.where.not(id: formularios_respondidos_ids)
   end
+  # ===============================================================
 
   devise :database_authenticatable, :registerable,
          :recoverable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: self
 
-  # ===============================================================
-  # ▼▼▼ CORREÇÃO PRINCIPAL AQUI ▼▼▼
-  # ===============================================================
-  # A classe NullDenylist agora tem o método `jwt_revoked?` que a gem espera.
   class NullDenylist
-    def self.revoke_jti(jti, exp)
-      # Para a estratégia nula, este método não faz nada.
-    end
-
-    def self.jti_revoked?(jti)
-      # A estratégia nula nunca considera um token como revogado.
-      false
-    end
-
-    # Método de fallback para satisfazer a gem `warden-jwt-auth`
-    def self.jwt_revoked?(payload, user)
-      # Apenas delega para o método que já tínhamos.
-      jti_revoked?(payload['jti'])
-    end
+    def self.revoke_jti(jti, exp); end
+    def self.jti_revoked?(jti); false; end
+    def self.jwt_revoked?(payload, user); jti_revoked?(payload['jti']); end
   end
-  # ===============================================================
 
   self.jwt_revocation_strategy = NullDenylist
 

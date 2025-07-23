@@ -12,7 +12,8 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { api } from '@/lib/api'; // Importamos nosso cliente de API
+import { api } from '@/lib/api';
+import { toast } from 'sonner'; // <<< 1. Importe o toast
 
 // Tipagem para os dados que esperamos da API
 interface FormularioPendente {
@@ -28,32 +29,34 @@ export default function AlunoPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter();
 
-  // Novo estado para armazenar os formulários vindos da API
   const [formularios, setFormularios] = useState<FormularioPendente[]>([]);
-  // Novo estado para o carregamento da lista de formulários
   const [isListLoading, setIsListLoading] = useState(true);
 
   // Efeito para buscar os formulários pendentes quando a página carrega
   useEffect(() => {
     const fetchFormularios = async () => {
       try {
-        // Chama o endpoint GET /api/v1/formularios
-        // O backend já sabe que, se não for admin, deve retornar apenas os pendentes.
         const response = await api.get('/formularios');
         setFormularios(response.data);
       } catch (error) {
         console.error("Falha ao buscar formulários pendentes:", error);
-        // Você pode adicionar um estado de erro aqui se desejar
+        // ===============================================================
+        // ▼▼▼ NOTIFICAÇÃO DE ERRO ADICIONADA AQUI ▼▼▼
+        // ===============================================================
+        toast.error("Não foi possível carregar as suas avaliações pendentes.");
       } finally {
         setIsListLoading(false);
       }
     };
 
-    // Só busca os formulários se o usuário estiver autenticado e não for admin
     if (isAuthenticated && !user?.admin) {
       fetchFormularios();
+    } else if (!isLoading) {
+      // Se o carregamento terminou e o utilizador não é um aluno,
+      // definimos o carregamento da lista como falso para não mostrar o spinner para sempre.
+      setIsListLoading(false);
     }
-  }, [isAuthenticated, user]); // Depende do estado de autenticação
+  }, [isAuthenticated, user, isLoading]); // Adicionado isLoading como dependência
 
   // Lógica de proteção de rota (mantida do seu código)
   if (isLoading) {
@@ -101,7 +104,6 @@ export default function AlunoPage() {
           <div
             key={form.id}
             className="bg-white rounded-lg shadow-sm border p-6 hover:shadow-md transition-shadow cursor-pointer"
-            // Ao clicar, redireciona para a página de resposta dinâmica
             onClick={() => router.push(`/aluno/formularios/${form.id}`)}
           >
             <div className="space-y-2">

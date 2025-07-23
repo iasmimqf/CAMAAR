@@ -17181,3 +17181,51 @@ Processing by Api::V1::SessionsController#current_user as */*
 Completed 200 OK in 38ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 5134)
 
 
+Started GET "/?id=34265e17-a9bc-4dfc-8c69-19ff27101b4b&vscodeBrowserReqId=1753308636391" for ::1 at 2025-07-23 19:10:37 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Parameters: {"id"=>"34265e17-a9bc-4dfc-8c69-19ff27101b4b", "vscodeBrowserReqId"=>"1753308636391"}
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 1.5ms | Allocations: 167)
+  Rendered layout layouts/application.html.erb (Duration: 544.0ms | Allocations: 22240)
+Completed 200 OK in 5226ms (Views: 578.3ms | ActiveRecord: 0.0ms | Allocations: 27203)
+
+
+Started GET "/" for ::1 at 2025-07-23 19:10:52 -0300
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 7)
+  Rendered layout layouts/application.html.erb (Duration: 2.3ms | Allocations: 715)
+Completed 200 OK in 2512ms (Views: 3.9ms | ActiveRecord: 0.0ms | Allocations: 1133)
+
+
+Started GET "/" for ::1 at 2025-07-23 19:10:55 -0300
+Started GET "/assets/application-892b7ed4.css" for ::1 at 2025-07-23 19:10:55 -0300
+Started GET "/assets/tailwind-6c112e64.css" for ::1 at 2025-07-23 19:10:55 -0300
+Processing by HomeController#index as HTML
+Started GET "/assets/stimulus.min-4b1e420e.js" for ::1 at 2025-07-23 19:10:56 -0300
+Started GET "/assets/stimulus-loading-1fc53fe7.js" for ::1 at 2025-07-23 19:10:56 -0300
+Started GET "/assets/controllers/application-3affb389.js" for ::1 at 2025-07-23 19:10:59 -0300
+Started GET "/assets/controllers/dropdown_controller-9dbb76c7.js" for ::1 at 2025-07-23 19:10:59 -0300
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 7)
+  Rendered layout layouts/application.html.erb (Duration: 5.4ms | Allocations: 721)
+Completed 200 OK in 3374ms (Views: 7.2ms | ActiveRecord: 0.0ms | Allocations: 9676)
+
+
+Started GET "/assets/controllers/hello_controller-708796bd.js" for ::1 at 2025-07-23 19:10:59 -0300
+Started GET "/assets/controllers/index-ee64e1f1.js" for ::1 at 2025-07-23 19:11:00 -0300
+Started GET "/assets/controllers/modal_controller-077ead77.js" for ::1 at 2025-07-23 19:11:00 -0300
+Started GET "/assets/controllers/sidebar_controllers-ba06ef49.js" for ::1 at 2025-07-23 19:11:00 -0300
+Started GET "/assets/application.tailwind-46ffc28d.css" for ::1 at 2025-07-23 19:11:01 -0300
+Started GET "/favicon.ico" for ::1 at 2025-07-23 19:11:01 -0300
+Started GET "/assets/application-7f4c3b05.js" for ::1 at 2025-07-23 19:11:01 -0300
+Started GET "/assets/application-7f4c3b05.js" for ::1 at 2025-07-23 19:11:02 -0300
+Started GET "/assets/turbo.min-3a2e143f.js" for ::1 at 2025-07-23 19:11:02 -0300
+Started GET "/assets/turbo.min-3a2e143f.js" for ::1 at 2025-07-23 19:11:02 -0300
+Started GET "/favicon.ico" for ::1 at 2025-07-23 19:11:03 -0300
+Started GET "/favicon.ico" for ::1 at 2025-07-23 19:11:03 -0300
+Started GET "/favicon.ico" for ::1 at 2025-07-23 19:11:04 -0300

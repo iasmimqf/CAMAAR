@@ -18,8 +18,8 @@ Funcionalidade: Gerenciamento completo de Templates
     E devo ver o formulário preenchido com os dados atuais
     Quando eu altero o título para "Avaliação de Performance 2025"
     E adiciono uma nova questão "Qual sua satisfação geral?"
-    E clico no botão "Atualizar Template"
-    Então eu devo ver a mensagem "Template atualizado com sucesso"
+    E clico no botão "Atualizar Template" para template
+    Então eu devo ver a mensagem de template "O template foi atualizado com sucesso."
     E devo ser redirecionado para a lista de templates
     E devo ver o template com o novo título "Avaliação de Performance 2025"
 
@@ -28,13 +28,13 @@ Funcionalidade: Gerenciamento completo de Templates
     Dado que existe um template chamado "Pesquisa de Satisfação"
     E o template possui as seguintes questões:
       | pergunta                          | tipo     |
-      | Como você avalia nosso atendimento?| multiple |
-      | Deixe seus comentários            | text     |
+      | Como você avalia nosso atendimento?| Escala   |
+      | Deixe seus comentários            | Texto    |
     Quando eu clico no botão "Visualizar" do template "Pesquisa de Satisfação"
     Então eu devo ser redirecionado para a página de detalhes do template
     E devo ver o título "Pesquisa de Satisfação"
     E devo ver as 2 questões listadas
-    E devo ver botões "Editar Template" e "Voltar"
+    E devo ver botões "Editar" e "Voltar"
 
   @excluir_template_com_formularios
   Cenário: Tentar excluir template que possui formulários associados
@@ -42,7 +42,7 @@ Funcionalidade: Gerenciamento completo de Templates
     E existem 2 formulários criados baseados neste template
     Quando eu clico no botão "Excluir" do template "Template com Formulários"
     E confirmo a exclusão no modal de confirmação
-    Então eu devo ver a mensagem de erro "Não é possível excluir este template pois existem formulários associados"
+    Então eu devo ver a mensagem de erro "Não é possível excluir o template pois existem formulários associados a ele."
     E o template deve continuar na lista
     E os formulários associados devem permanecer intactos
 
@@ -52,7 +52,7 @@ Funcionalidade: Gerenciamento completo de Templates
     E não existem formulários criados baseados neste template
     Quando eu clico no botão "Excluir" do template "Template Não Utilizado"
     E confirmo a exclusão no modal de confirmação
-    Então eu devo ver a mensagem "Template excluído com sucesso"
+    Então eu devo ver a mensagem de template "O template foi excluído com sucesso."
     E o template "Template Não Utilizado" não deve mais aparecer na lista
 
   @listar_templates
@@ -75,8 +75,8 @@ Funcionalidade: Gerenciamento completo de Templates
     E o template não possui questões cadastradas
     Quando eu clico no botão "Visualizar" do template "Template Vazio"
     Então eu devo ser redirecionado para a página de detalhes do template
-    E devo ver a mensagem "Este template ainda não possui questões"
-    E devo ver um botão "Adicionar Questões"
+    E devo ver a mensagem "Nenhuma questão foi adicionada a este template."
+    E devo ver um botão "Editar"
     Dado que existe um template chamado "Template para excluir"
     Quando eu acesso a lista de templates
     E clico em "Excluir" no template "Template para excluir"

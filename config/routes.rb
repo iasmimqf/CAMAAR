@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  # Rota para evitar erro 404 do favicon
+  get '/favicon.ico', to: proc { [204, {}, []] }
+  
   devise_for :usuarios, controllers: {
     sessions: "usuarios/sessions"
   }
@@ -14,7 +17,7 @@ Rails.application.routes.draw do
     get "dashboard", to: "dashboard#index", as: "dashboard"
     post "importacoes/importar_turmas", to: "importacoes#importar_turmas"
     post "importacoes/importar_alunos", to: "importacoes#importar_alunos"
-    resources :templates, only: [ :index, :create ]
+    resources :templates
     resources :formularios do
       collection do
         get :resultados

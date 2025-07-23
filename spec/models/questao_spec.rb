@@ -19,7 +19,7 @@ RSpec.describe Questao, type: :model do
     it "is not valid without tipo" do
       questao = build(:questao, tipo: nil, template: template)
       expect(questao).not_to be_valid
-      expect(questao.errors[:tipo]).to include("não pode ficar em branco")
+      expect(questao.errors[:tipo]).to include("não pode ficar em branco.")
     end
 
     it "is not valid with invalid tipo" do

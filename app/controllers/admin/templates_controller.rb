@@ -20,6 +20,12 @@ class Admin::TemplatesController < ApplicationController
   def create
     @template = Template.new(template_params)
     @template.criador = current_usuario
+    
+    # Permite criar template sem questões apenas se não foi passado nenhum parâmetro de questões
+    # Isso permite o fluxo: criar template vazio -> editar para adicionar questões
+    if params[:template][:questoes_attributes].blank?
+      @template.skip_questoes_validation = true
+    end
 
     if @template.save
       redirect_to admin_templates_path, notice: "Template '#{@template.titulo}' salvo com sucesso"

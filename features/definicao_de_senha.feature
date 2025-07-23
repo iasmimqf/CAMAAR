@@ -17,9 +17,9 @@ Funcionalidade: Redefinição de Senha de Usuário
     Então eu devo ver a mensagem <Mensagem>
 
     Exemplos:
-        | Senha          | Confirmacao    | Mensagem                                        |
-        | "Password@123" | "Password@123" | "Sua senha foi redefinida com sucesso."         |
-        | "Password@123" | "senha-errada" | "Confirmação de Senha não corresponde à Senha"  |
+        | Senha          | Confirmacao    | Mensagem                                          |
+        | "Password@123" | "Password@123" | "Sua senha foi redefinida com sucesso."           |
+        | "Password@123" | "senha-errada" | "Confirmação de Senha não corresponde à Senha"    |
         | "fraca"        | "fraca"        | "A senha é muito curta (mínimo de 10 caracteres)" |
 
 

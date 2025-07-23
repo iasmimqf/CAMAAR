@@ -44471,3 +44471,171 @@ Processing by Admin::ImportacoesController#importar_turmas as JSON
 Completed 422 Unprocessable Content in 17ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 1935)
 
 
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-23 15:38:04 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 53ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 2574)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-23 15:38:04 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 17ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 324)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-23 15:38:05 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 14ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 325)
+
+
+Started POST "/usuarios/sign_in" for 127.0.0.1 at 2025-07-23 15:38:06 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "iasmimqf@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "iasmimqf@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'iasmimqf@gmail.com' OR lower(matricula) = 'iasmimqf@gmail.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:47:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 221ms (Views: 0.1ms | ActiveRecord: 2.6ms | Allocations: 11657)
+
+
+Started POST "/usuarios/sign_in" for 127.0.0.1 at 2025-07-23 15:38:12 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "iasmimqf@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "iasmimqf@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/usuarios/sessions_controller.rb:9:in 'Usuarios::SessionsController#create'
+Completed 200 OK in 33ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 2956)
+
+
+Started DELETE "/usuarios/sign_out" for 127.0.0.1 at 2025-07-23 15:38:15 -0300
+Processing by Usuarios::SessionsController#destroy as JSON
+  Parameters: {"session" => {}}
+  [1m[36mUsuario Load (0.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 17ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 1807)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-23 15:38:15 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 15ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 406)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-23 15:38:15 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 15ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 406)
+
+
+Started POST "/usuarios/sign_in" for 127.0.0.1 at 2025-07-23 15:38:22 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "iasmimqf@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "iasmimqf@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'iasmimqf@gmail.com' OR lower(matricula) = 'iasmimqf@gmail.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:47:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 192ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 1143)
+
+
+Started DELETE "/usuarios/sign_out" for 127.0.0.1 at 2025-07-23 15:47:15 -0300
+Processing by Usuarios::SessionsController#destroy as JSON
+  Parameters: {"session" => {}}
+  [1m[36mUsuario Load (0.9ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 18ms (Views: 0.1ms | ActiveRecord: 1.5ms | Allocations: 2016)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-23 15:47:15 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 15ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 412)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-23 15:47:15 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 15ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 412)
+
+
+Started POST "/usuarios/sign_in" for 127.0.0.1 at 2025-07-23 15:47:23 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "iasmimqf@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "iasmimqf@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'iasmimqf@gmail.com' OR lower(matricula) = 'iasmimqf@gmail.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:47:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 190ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1117)
+
+
+Started DELETE "/usuarios/sign_out" for 127.0.0.1 at 2025-07-23 15:47:48 -0300
+Processing by Usuarios::SessionsController#destroy as JSON
+  Parameters: {"session" => {}}
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 17ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 1767)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-23 15:47:48 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 15ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 406)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-23 15:47:48 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 15ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 406)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-23 15:48:07 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 15ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 419)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-23 15:48:08 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 15ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 427)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-23 15:48:08 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 20ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 427)
+
+
+Started POST "/usuarios/sign_in" for 127.0.0.1 at 2025-07-23 15:48:13 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "iasmimqf@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "iasmimqf@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'iasmimqf@gmail.com' OR lower(matricula) = 'iasmimqf@gmail.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:47:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 192ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1142)
+
+
+Started DELETE "/usuarios/sign_out" for 127.0.0.1 at 2025-07-23 16:25:08 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Usuarios::SessionsController#destroy as JSON
+  Parameters: {"session" => {}}
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 81ms (Views: 1.3ms | ActiveRecord: 2.7ms | Allocations: 14743)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-23 16:25:08 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 16ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 598)
+
+
+Started GET "/api/v1/sessions/current_user" for 127.0.0.1 at 2025-07-23 16:25:09 -0300
+Processing by Api::V1::SessionsController#current_user as */*
+Completed 401 Unauthorized in 15ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 419)
+
+
+Started POST "/usuarios/sign_in" for 127.0.0.1 at 2025-07-23 16:25:15 -0300
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "iasmimqf@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "iasmimqf@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'iasmimqf@gmail.com' OR lower(matricula) = 'iasmimqf@gmail.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:47:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 214ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1975)
+
+
+Started POST "/admin/importacoes/importar_turmas" for 127.0.0.1 at 2025-07-23 16:26:13 -0300
+Processing by Admin::ImportacoesController#importar_turmas as JSON
+  Parameters: {"file" => #<ActionDispatch::Http::UploadedFile:0x00007225e67aa570 @tempfile=#<Tempfile:/tmp/RackMultipart20250723-31210-uc07lh.json>, @content_type="application/json", @original_filename="classes.json", @headers="Content-Disposition: form-data; name=\"file\"; filename=\"classes.json\"\r\nContent-Type: application/json\r\n">}
+  [1m[36mUsuario Load (18.7ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/admin/base_controller.rb:10:in 'Admin::BaseController#authenticate_admin_access!'
+  [1m[36mDisciplina Load (1.8ms)[0m  [1m[34mSELECT "disciplinas".* FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "CIC0097"], ["LIMIT", 1]]
+  ↳ app/services/turma_importer_service.rb:45:in 'block in TurmaImporterService#processar_dados'
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas" WHERE "turmas"."disciplina_id" = ? AND "turmas"."codigo_turma" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["disciplina_id", 1], ["codigo_turma", "TA"], ["semestre", "2021.2"], ["LIMIT", 1]]
+  ↳ app/services/turma_importer_service.rb:56:in 'block in TurmaImporterService#processar_dados'
+  [1m[36mDisciplina Load (0.1ms)[0m  [1m[34mSELECT "disciplinas".* FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "CIC0105"], ["LIMIT", 1]]
+  ↳ app/services/turma_importer_service.rb:45:in 'block in TurmaImporterService#processar_dados'
+  [1m[36mTurma Load (0.1ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas" WHERE "turmas"."disciplina_id" = ? AND "turmas"."codigo_turma" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["disciplina_id", 2], ["codigo_turma", "TA"], ["semestre", "2021.2"], ["LIMIT", 1]]
+  ↳ app/services/turma_importer_service.rb:56:in 'block in TurmaImporterService#processar_dados'
+  [1m[36mDisciplina Load (0.1ms)[0m  [1m[34mSELECT "disciplinas".* FROM "disciplinas" WHERE "disciplinas"."codigo" = ? LIMIT ?[0m  [["codigo", "CIC0202"], ["LIMIT", 1]]
+  ↳ app/services/turma_importer_service.rb:45:in 'block in TurmaImporterService#processar_dados'
+  [1m[36mTurma Load (0.1ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas" WHERE "turmas"."disciplina_id" = ? AND "turmas"."codigo_turma" = ? AND "turmas"."semestre" = ? LIMIT ?[0m  [["disciplina_id", 3], ["codigo_turma", "TA"], ["semestre", "2021.2"], ["LIMIT", 1]]
+  ↳ app/services/turma_importer_service.rb:56:in 'block in TurmaImporterService#processar_dados'
+Completed 200 OK in 144ms (Views: 1.5ms | ActiveRecord: 21.9ms | Allocations: 16234)
+
+

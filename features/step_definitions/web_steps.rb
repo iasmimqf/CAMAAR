@@ -1,3 +1,10 @@
+# --- DADO (Setup) ---
+
+Dado('que a disciplina {string} com código {string} já existe') do |nome_disciplina, codigo_disciplina|
+  disciplina = create(:disciplina, nome: nome_disciplina, codigo: codigo_disciplina) # Você precisará de uma factory para :disciplina
+  create(:turma, disciplina: disciplina, codigo_turma: 'TA', semestre: '2021.2')
+end
+
 # --- ENTÃO (Verificação do Resultado da API) ---
 
 Então('eu devo ver a mensagem de erro {string}') do |mensagem|

@@ -27,11 +27,6 @@ Dado('que eu estou autenticado como um {string}') do |tipo_usuario|
   expect(@auth_headers['Authorization']).to be_present, "A API de login não retornou um token de autorização. Verifique a configuração em config/initializers/devise-jwt.rb"
 end
 
-Dado('que a disciplina {string} com código {string} já existe') do |nome_disciplina, codigo_disciplina|
-  disciplina = FactoryBot.create(:disciplina, name: nome_disciplina, code: codigo_disciplina)
-  FactoryBot.create(:turma, disciplina: disciplina, class_code: 'TA', semester: '2021.2')
-end
-
 
 # --- QUANDO (Ação da API) ---
 

@@ -84,10 +84,6 @@ Então('devo ver mensagem de erro de formulário {string}') do |mensagem_erro|
   expect(page).to have_content(mensagem_erro)
 end
 
-Então('eu devo ver a mensagem {string}') do |mensagem|
-  expect(page).to have_content(mensagem)
-end
-
 Então('as turmas devem estar associadas ao novo formulário') do
   # Verifica se o formulário foi criado e tem as turmas associadas
   formulario = Formulario.last

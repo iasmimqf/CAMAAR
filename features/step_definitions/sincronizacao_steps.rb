@@ -45,11 +45,6 @@ Quando('eu anexo o arquivo {string} ao campo {string}') do  |nome_arquivo, nome_
   attach_file(nome_campo, Rails.root.join('features', 'support', nome_arquivo))
 end
 
-
-Então('eu devo ver a mensagem {string}') do |mensagem|
-  expect(page).to have_content(mensagem)
-end
-
 Então('a turma de {string} deve ser criada no sistema.') do |nome_disciplina|
   # 1. First, find the discipline by name.
   disciplina = Disciplina.find_by(nome: nome_disciplina)
@@ -89,9 +84,4 @@ Então('eu devo permanecer na página de Gerenciamento.') do
   # This checks that the current URL is still the admin dashboard path.
   # This confirms no redirection happened.
   expect(page).to have_current_path(admin_dashboard_path)
-end
-
-Então('eu devo ver a mensagem de erro {string}') do |mensagem_de_erro|
-  # This reuses a step we already have to check for text on the page.
-  expect(page).to have_content(mensagem_de_erro)
 end

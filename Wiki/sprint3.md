@@ -68,6 +68,39 @@ O objetivo desta feature é permitir que um administrador importe dados de Turma
     * Tratamento de erros de ficheiro (JSON malformado, formato inválido).
     * Tratamento de erros de dados (turma inexistente, dados de usuário inválidos).
 
+### Feature 4: CRUD de Templates
+
+**Responsáveis:** `[Iasmim e Hudson]`
+
+Implementamos testes RSpec para a API de templates, cobrindo:
+
+- Validações de campos obrigatórios (título e questões)
+- Fluxos principais de criação, edição e exclusão
+- Sad Paths (títulos vazios, templates sem questões, erros de autorização)
+- Códigos de status HTTP adequados (400, 422)
+
+*Testes de aceitação via Cucumber foram postergados para focar nos testes de integração. A feature está funcional e integrada em `develop`.*
+
+
+### Feature 5: [Nome da Feature]
+
+**Responsável:** Marcus Emanuel
+
+Os testes desta feature foram implementados por Marcus, mas não houve tempo hábil para revisão detalhada dos cenários e cobertura. Recomenda-se revisar os testes e documentar os principais casos validados na próxima sprint.
+
+### Feature 6: Criação de Formulários
+
+**Responsáveis:** `[Iasmim e Hudson]`
+
+Foram implementados testes automatizados utilizando RSpec, cobrindo:
+
+- Testes de model para validação dos atributos do formulário
+- Testes de requests para os endpoints de criação, edição e envio de respostas de formulários
+- Validação dos fluxos principais e dos Sad Paths (dados inválidos, erros de autorização, etc.)
+
+### Status das demais features
+
+As demais features não tiveram tempo hábil para revisão dos testes nesta sprint. A revisão e documentação detalhada dos testes será priorizada na próxima entrega.
 
 ---
 ## Análise de Qualidade e Refatoração (Sprint 3)

@@ -3,12 +3,12 @@ module Api
   module V1
     class TemplatesController < Api::V1::BaseController
       before_action :authenticate_admin_access!
-      before_action :set_template, only: [:show, :update, :destroy]
+      before_action :set_template, only: [ :show, :update, :destroy ]
 
       # GET /api/v1/templates
       def index
         templates = Template.order(created_at: :desc)
-        render json: templates.to_json(only: [:id, :titulo, :created_at])
+        render json: templates.to_json(only: [ :id, :titulo, :created_at ])
       end
 
       # GET /api/v1/templates/:id
@@ -47,10 +47,10 @@ module Api
           # A regra `restrict_with_error` adiciona o erro ao atributo :base do modelo.
           error_message = if @template.errors.key?(:base)
                             "Este template não pode ser excluído porque já está a ser utilizado por um ou mais formulários."
-                          else
+          else
                             # Para outros erros de validação, usa a mensagem padrão.
-                            @template.errors.full_messages.join(', ')
-                          end
+                            @template.errors.full_messages.join(", ")
+          end
           render json: { erro: error_message }, status: :unprocessable_entity
         end
       end
@@ -61,7 +61,7 @@ module Api
       def set_template
         @template = Template.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-        render json: { error: 'Template não encontrado.' }, status: :not_found
+        render json: { error: "Template não encontrado." }, status: :not_found
       end
 
       def template_params

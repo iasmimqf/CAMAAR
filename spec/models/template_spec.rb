@@ -42,7 +42,7 @@ RSpec.describe Template, type: :model do
       expect(subject.errors[:base]).to include("Adicione pelo menos uma questão ao template")
     end
   end
-  
+
   describe 'associações' do
     # Usando a gema shoulda-matchers para testes de associação mais limpos e robustos
     # Garanta que a associação no modelo esteja como: belongs_to :criador, class_name: 'Usuario'

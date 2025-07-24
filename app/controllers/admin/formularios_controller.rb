@@ -1,12 +1,12 @@
 # Caminho: app/controllers/admin/formularios_controller.rb
 class Admin::FormulariosController < Admin::BaseController
   # O seu BaseController já deve ter o filtro de segurança para admin.
-  
+
   # <<< ADICIONADO: Desativa a verificação de token CSRF apenas para a ação 'create',
   # pois ela será usada como um endpoint de API pelo React.
-  skip_before_action :verify_authenticity_token, only: [:create]
+  skip_before_action :verify_authenticity_token, only: [ :create ]
 
-  before_action :set_formulario, only: [:show, :edit, :update, :destroy]
+  before_action :set_formulario, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @formularios = Formulario.includes(:template, :turmas, :criador).order(created_at: :desc)
@@ -22,7 +22,7 @@ class Admin::FormulariosController < Admin::BaseController
   def new
     @formulario = Formulario.new
     @templates = Template.includes(:questoes).order(:titulo)
-    @turmas = Turma.includes(:disciplina).order('disciplinas.nome, codigo_turma')
+    @turmas = Turma.includes(:disciplina).order("disciplinas.nome, codigo_turma")
   end
 
   # <<< MÉTODO CREATE MODIFICADO PARA FUNCIONAR COMO API >>>
@@ -39,13 +39,13 @@ class Admin::FormulariosController < Admin::BaseController
       render json: { mensagem: "Formulário criado com sucesso" }, status: :created
     else
       # Se houver erros, junta todas as mensagens e devolve como JSON
-      render json: { erro: @formulario.errors.full_messages.join(', ') }, status: :unprocessable_entity
+      render json: { erro: @formulario.errors.full_messages.join(", ") }, status: :unprocessable_entity
     end
   end
 
   def edit
     @templates = Template.includes(:questoes).order(:titulo)
-    @turmas = Turma.includes(:disciplina).order('disciplinas.nome, codigo_turma')
+    @turmas = Turma.includes(:disciplina).order("disciplinas.nome, codigo_turma")
   end
 
   def update
@@ -53,7 +53,7 @@ class Admin::FormulariosController < Admin::BaseController
       redirect_to admin_formularios_path, notice: "Formulário atualizado com sucesso"
     else
       @templates = Template.includes(:questoes).order(:titulo)
-      @turmas = Turma.includes(:disciplina).order('disciplinas.nome, codigo_turma')
+      @turmas = Turma.includes(:disciplina).order("disciplinas.nome, codigo_turma")
       render :edit, status: :unprocessable_entity
     end
   end
@@ -90,13 +90,13 @@ class Admin::FormulariosController < Admin::BaseController
                                .distinct
 
     if turmas_ja_avaliadas.any?
-      nomes_turmas = turmas_ja_avaliadas.map(&:nome_completo).join(', ')
+      nomes_turmas = turmas_ja_avaliadas.map(&:nome_completo).join(", ")
       @formulario.errors.add(:base, "As seguintes turmas já foram avaliadas neste semestre: #{nomes_turmas}")
       return false
     end
 
     true
   end
-  
+
   # O seu método ensure_admin foi removido daqui pois a lógica já deve estar no Admin::BaseController
 end

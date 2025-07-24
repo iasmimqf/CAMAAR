@@ -9,7 +9,7 @@ class Usuarios::SessionsController < Devise::SessionsController
   # A gem `devise-jwt` intercepta esta resposta e adiciona o token no cabeçalho.
   def respond_with(resource, _opts = {})
     render json: {
-      status: { code: 200, message: 'Login realizado com sucesso.' },
+      status: { code: 200, message: "Login realizado com sucesso." },
       data: {
         id: resource.id,
         email: resource.email,
@@ -22,7 +22,7 @@ class Usuarios::SessionsController < Devise::SessionsController
   def respond_to_on_destroy
     # A gem `devise-jwt` já cuidou de invalidar o token.
     # Nós apenas confirmamos com uma mensagem de sucesso.
-    if request.headers['Authorization'].present?
+    if request.headers["Authorization"].present?
       render json: {
         status: 200,
         message: "Logout realizado com sucesso."

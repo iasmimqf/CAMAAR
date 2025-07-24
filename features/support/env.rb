@@ -20,7 +20,7 @@ Capybara.register_driver :selenium_headless do |app|
   options.add_argument('--headless')
   options.add_argument('--no-sandbox')
   options.add_argument('--disable-dev-shm-usage')
-  
+
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
@@ -54,7 +54,7 @@ require 'warden/test/helpers'
 
 module LoginHelpers
   include Warden::Test::Helpers
-  
+
   def login_as(user, options = {})
     scope = options[:scope] || :usuario
     # Usar o método correto do Warden
@@ -62,7 +62,7 @@ module LoginHelpers
     super(user, scope: scope)
     visit root_path unless options[:no_visit]
   end
-  
+
   def logout
     Warden.test_reset! if Warden.test_mode?
   end

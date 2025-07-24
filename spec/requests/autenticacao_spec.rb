@@ -66,7 +66,6 @@ RSpec.describe "API de Autenticação", type: :request do
       expect(response).to have_http_status(:ok)
     end
     it "desloga o usuário que não está deslogado (erro)" do
-
       delete '/usuarios/sign_out', headers: headers
       puts "RESPOSTA REAL: #{response.body}"
 

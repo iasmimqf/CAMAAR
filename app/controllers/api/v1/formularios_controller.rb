@@ -13,7 +13,7 @@ class Api::V1::FormulariosController < Api::V1::BaseController
       {
         id: form.id,
         nome: form.template.titulo,
-        prazo: form.try(:prazo) ? form.prazo.strftime("%d/%m/%Y") : "Não definido", 
+        prazo: form.try(:prazo) ? form.prazo.strftime("%d/%m/%Y") : "Não definido",
         disciplina: turma_principal&.disciplina&.nome || "Não definida",
         turma: turma_principal&.codigo_turma || "Não definida"
       }
@@ -50,7 +50,7 @@ class Api::V1::FormulariosController < Api::V1::BaseController
       end
     }
   rescue ActiveRecord::RecordNotFound
-    render json: { error: 'Formulário não encontrado' }, status: :not_found
+    render json: { error: "Formulário não encontrado" }, status: :not_found
   end
   # ===============================================================
 
@@ -67,21 +67,21 @@ class Api::V1::FormulariosController < Api::V1::BaseController
 
       respostas_params.each do |questao_id, valor|
         questao = Questao.find(questao_id)
-        
+
         Resposta.create!(
           resposta_formulario: resposta_formulario,
           questao: questao,
-          opcao_id: questao.tipo == 'multipla_escolha' ? valor : nil,
-          texto: questao.tipo == 'texto_longo' ? valor : nil
+          opcao_id: questao.tipo == "multipla_escolha" ? valor : nil,
+          texto: questao.tipo == "texto_longo" ? valor : nil
         )
       end
     end
 
-    render json: { message: 'Respostas salvas com sucesso!' }, status: :created
+    render json: { message: "Respostas salvas com sucesso!" }, status: :created
   rescue ActiveRecord::RecordInvalid => e
     render json: { error: "Erro ao salvar: #{e.message}" }, status: :unprocessable_entity
   rescue ActiveRecord::RecordNotFound
-    render json: { error: 'Formulário ou questão não encontrada' }, status: :not_found
+    render json: { error: "Formulário ou questão não encontrada" }, status: :not_found
   end
 
   def create
@@ -89,9 +89,9 @@ class Api::V1::FormulariosController < Api::V1::BaseController
     formulario.criador = current_usuario
 
     if formulario.save
-      render json: { mensagem: 'Formulário enviado com sucesso!' }, status: :created
+      render json: { mensagem: "Formulário enviado com sucesso!" }, status: :created
     else
-      render json: { erro: formulario.errors.full_messages.join(', ') }, status: :unprocessable_entity
+      render json: { erro: formulario.errors.full_messages.join(", ") }, status: :unprocessable_entity
     end
   end
 

@@ -15,11 +15,11 @@ gem "solid_queue" # Adaptador para Active Job
 gem "solid_cable" # Adaptador para Action Cable
 
 # Autenticação
-gem 'devise'
-gem 'devise-i18n' # Internacionalização para Devise
-gem 'devise-jwt'
+gem "devise"
+gem "devise-i18n" # Internacionalização para Devise
+gem "devise-jwt"
 # CORS (Cross-Origin Resource Sharing)
-gem 'rack-cors'
+gem "rack-cors"
 
 # Medir cobertura dos testes
 gem "rubocop", require: false
@@ -28,14 +28,14 @@ gem "rubocop", require: false
 gem "rubycritic", require: false
 
 # Detecção de navegador (geralmente útil em todos os ambientes)
-gem 'browser'
+gem "browser"
 
 # Gems comumente usadas em todos os ambientes ou em ambientes específicos
 # que estavam no grupo :test mas que provavelmente são para development/production
-gem 'cocoon'            # Para nested forms (depende de jQuery)
-gem 'jquery-rails'      # Dependência do Cocoon (JQuery)
-gem 'kaminari'          # Para paginação
-gem 'font-awesome-sass' # Ícones
+gem "cocoon"            # Para nested forms (depende de jQuery)
+gem "jquery-rails"      # Dependência do Cocoon (JQuery)
+gem "kaminari"          # Para paginação
+gem "font-awesome-sass" # Ícones
 
 # Reduz boot times através de caching; required in config/boot.rb
 gem "bootsnap", require: false
@@ -78,8 +78,8 @@ group :test do
   gem "database_cleaner-active_record"
   gem "capybara"
   gem "selenium-webdriver"
-  gem 'database_cleaner'
-  gem 'factory_bot_rails'
-  gem 'warden'
-  gem 'shoulda-matchers'
+  gem "database_cleaner"
+  gem "factory_bot_rails"
+  gem "warden"
+  gem "shoulda-matchers"
 end

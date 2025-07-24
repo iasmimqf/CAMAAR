@@ -18,7 +18,7 @@ class Api::V1::BaseController < ApplicationController
   def authenticate_admin_access!
     unless current_usuario.admin?
       render json: {
-        error: 'Acesso não autorizado. Requer privilégios de administrador.'
+        error: "Acesso não autorizado. Requer privilégios de administrador."
       }, status: :forbidden
     end
   end

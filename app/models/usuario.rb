@@ -3,9 +3,9 @@ class Usuario < ApplicationRecord
   attr_writer :login
 
   # Relacionamentos
-  has_many :resposta_formularios, foreign_key: 'respondente_id', dependent: :destroy
+  has_many :resposta_formularios, foreign_key: "respondente_id", dependent: :destroy
   has_and_belongs_to_many :turmas
-  has_many :formularios, foreign_key: 'criador_id', dependent: :destroy
+  has_many :formularios, foreign_key: "criador_id", dependent: :destroy
 
   def login
     @login || self.email || self.matricula
@@ -20,14 +20,14 @@ class Usuario < ApplicationRecord
   # ===============================================================
   def formularios_pendentes
     return Formulario.none if self.turmas.empty?
-    
+
     formularios_das_turmas = Formulario.joins(:turmas)
                                        .where(turmas: { id: self.turmas.pluck(:id) })
                                        # Adiciona a condição para o prazo:
                                        # O prazo deve ser NULO (sem prazo) OU estar no futuro.
                                        .where("formularios.prazo IS NULL OR formularios.prazo > ?", Time.current)
                                        .distinct
-    
+
     formularios_respondidos_ids = self.resposta_formularios.pluck(:formulario_id)
     formularios_das_turmas.where.not(id: formularios_respondidos_ids)
   end
@@ -40,7 +40,7 @@ class Usuario < ApplicationRecord
   class NullDenylist
     def self.revoke_jti(jti, exp); end
     def self.jti_revoked?(jti); false; end
-    def self.jwt_revoked?(payload, user); jti_revoked?(payload['jti']); end
+    def self.jwt_revoked?(payload, user); jti_revoked?(payload["jti"]); end
   end
 
   self.jwt_revocation_strategy = NullDenylist
@@ -63,7 +63,7 @@ class Usuario < ApplicationRecord
     end
   end
 
-  has_many :turmas_lecionadas, class_name: 'Turma', foreign_key: 'professor_id'
-  has_many :formularios_criados, class_name: 'Formulario', foreign_key: 'criador_id'
-  has_many :respostas_enviadas, class_name: 'Resposta', foreign_key: 'avaliador_id'
+  has_many :turmas_lecionadas, class_name: "Turma", foreign_key: "professor_id"
+  has_many :formularios_criados, class_name: "Formulario", foreign_key: "criador_id"
+  has_many :respostas_enviadas, class_name: "Resposta", foreign_key: "avaliador_id"
 end

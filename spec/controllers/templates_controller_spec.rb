@@ -33,7 +33,7 @@ RSpec.describe "Api::V1::Templates", type: :request do
       FactoryBot.create(:template, criador: FactoryBot.create(:usuario, :admin), titulo: 'Template 3') # Template de outro admin
 
       get '/api/v1/templates', headers: auth_headers
-      
+
       expect(response).to have_http_status(:ok)
       json_response = JSON.parse(response.body)
       expect(json_response.size).to eq(3)
@@ -52,7 +52,7 @@ RSpec.describe "Api::V1::Templates", type: :request do
 
     it 'retorna os detalhes de um template específico' do
       get "/api/v1/templates/#{template.id}", headers: auth_headers
-      
+
       expect(response).to have_http_status(:ok)
       expect(JSON.parse(response.body)['id']).to eq(template.id)
     end
@@ -61,11 +61,10 @@ RSpec.describe "Api::V1::Templates", type: :request do
   describe 'POST /api/v1/templates' do
     context 'com parâmetros válidos' do
       it 'cria um novo template com as suas questões' do
-        
         expect {
           post '/api/v1/templates', params: params_validos, headers: auth_headers
         }.to change(Template, :count).by(1).and change(Questao, :count).by(2)
-        
+
         expect(response).to have_http_status(:created)
         expect(JSON.parse(response.body)['mensagem']).to include('Avaliação Docente - 2024')
       end
@@ -75,9 +74,9 @@ RSpec.describe "Api::V1::Templates", type: :request do
       it 'não cria um template sem título e retorna um erro' do
         params_invalidos = params_validos.deep_dup
         params_invalidos[:template][:titulo] = ''
-        
+
         post '/api/v1/templates', params: params_invalidos, headers: auth_headers
-        
+
         expect(response).to have_http_status(:unprocessable_entity)
         expect(JSON.parse(response.body)['erro']).to include("O título do template é obrigatório")
       end
@@ -85,9 +84,9 @@ RSpec.describe "Api::V1::Templates", type: :request do
       it 'não cria um template sem questões e retorna um erro' do
         params_invalidos = params_validos.deep_dup
         params_invalidos[:template][:questoes_attributes] = []
-        
+
         post '/api/v1/templates', params: params_invalidos, headers: auth_headers
-        
+
         expect(response).to have_http_status(:unprocessable_entity)
         expect(JSON.parse(response.body)['erro']).to include("Adicione pelo menos uma questão ao template")
       end
@@ -99,14 +98,14 @@ RSpec.describe "Api::V1::Templates", type: :request do
 
     it 'atualiza o título do template' do
       patch "/api/v1/templates/#{template.id}", params: { template: { titulo: 'Título Atualizado' } }, headers: auth_headers
-      
+
       expect(response).to have_http_status(:ok)
       expect(template.reload.titulo).to eq('Título Atualizado')
     end
 
     it 'não atualiza o título do template para uma string vazia' do
       patch "/api/v1/templates/#{template.id}", params: { template: { titulo: '' } }, headers: auth_headers
-      
+
       expect(response).to have_http_status(:unprocessable_entity)
         expect(JSON.parse(response.body)['erro']).to include("O título do template é obrigatório")
     end
@@ -119,17 +118,17 @@ RSpec.describe "Api::V1::Templates", type: :request do
       expect {
         delete "/api/v1/templates/#{template.id}", headers: auth_headers
       }.to change(Template, :count).by(-1)
-      
+
       expect(response).to have_http_status(:ok)
     end
 
     it 'retorna erro ao tentar remover um template que não existe' do
       # Primeiro deleta o template existente
       delete "/api/v1/templates/#{template.id}", headers: auth_headers
-      
+
       # Tenta deletar novamente o mesmo ID
       delete "/api/v1/templates/#{template.id}", headers: auth_headers
-      
+
       expect(response).to have_http_status(:not_found) # 404
     end
   end

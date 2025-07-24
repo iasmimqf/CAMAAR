@@ -1,7 +1,7 @@
 # app/controllers/admin/base_controller.rb
 class Admin::BaseController < ApplicationController
   # Usa os helpers padrão do Devise para autenticação baseada em cookie/sessão.
-  
+
   # 1. Primeiro, garante que QUALQUER usuário esteja logado.
   #    Se não estiver, o Devise o redireciona para a página de login.
   before_action :authenticate_usuario!

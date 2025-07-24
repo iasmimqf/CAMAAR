@@ -1,5 +1,8 @@
 {
   "/page": "app/page.js",
   "/aluno/formularios/[id]/page": "app/aluno/formularios/[id]/page.js",
-  "/admin/page": "app/admin/page.js"
+  "/admin/gerenciamento/page": "app/admin/gerenciamento/page.js",
+  "/admin/enviar-formulario/page": "app/admin/enviar-formulario/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/admin/gerenciamento-templates/page": "app/admin/gerenciamento-templates/page.js"
 }

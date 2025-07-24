@@ -25,6 +25,21 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/aluno/formularios/[id]/page.js"
+    ],
+    "/admin/gerenciamento/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/admin/gerenciamento/page.js"
+    ],
+    "/admin/gerenciamento-templates/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/admin/gerenciamento-templates/page.js"
+    ],
+    "/admin/enviar-formulario/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/admin/enviar-formulario/page.js"
     ]
   }
 }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_07_23_122033) do
+ActiveRecord::Schema[7.1].define(version: 2025_07_24_041527) do
   create_table "disciplinas", force: :cascade do |t|
     t.string "codigo", null: false
     t.string "nome", null: false
@@ -136,6 +136,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_23_122033) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.boolean "admin"
+    t.string "ocupacao"
+    t.string "formacao"
+    t.string "curso"
     t.index ["email"], name: "index_usuarios_on_email", unique: true
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   end

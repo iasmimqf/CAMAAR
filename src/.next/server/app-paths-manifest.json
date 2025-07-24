@@ -1,12 +1,9 @@
-<<<<<<< HEAD
-{}
-=======
 {
-  "/page": "app/page.js",
-  "/aluno/formularios/[id]/page": "app/aluno/formularios/[id]/page.js",
-  "/admin/gerenciamento/page": "app/admin/gerenciamento/page.js",
-  "/admin/enviar-formulario/page": "app/admin/enviar-formulario/page.js",
+  "/login/recuperar-senha/page": "app/login/recuperar-senha/page.js",
+  "/login/page": "app/login/page.js",
+  "/definir-senha/page": "app/definir-senha/page.js",
   "/admin/page": "app/admin/page.js",
-  "/admin/gerenciamento-templates/page": "app/admin/gerenciamento-templates/page.js"
+  "/admin/gerenciamento-templates/page": "app/admin/gerenciamento-templates/page.js",
+  "/admin/enviar-formulario/page": "app/admin/enviar-formulario/page.js",
+  "/admin/gerenciamento/page": "app/admin/gerenciamento/page.js"
 }
->>>>>>> edfdc7febbf0384a4dc960877bcbe1b8c0040072

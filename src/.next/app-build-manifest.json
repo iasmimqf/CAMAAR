@@ -1,18 +1,10 @@
 {
-<<<<<<< HEAD
-  "pages": {}
-=======
   "pages": {
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
-    ],
-    "/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
     ],
     "/admin/layout": [
       "static/chunks/webpack.js",
@@ -24,26 +16,40 @@
       "static/chunks/main-app.js",
       "static/chunks/app/admin/page.js"
     ],
-    "/aluno/formularios/[id]/page": [
+    "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/aluno/formularios/[id]/page.js"
+      "static/chunks/app/page.js"
+    ],
+    "/login/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/login/page.js"
+    ],
+    "/login/recuperar-senha/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/login/recuperar-senha/page.js"
     ],
     "/admin/gerenciamento/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/admin/gerenciamento/page.js"
     ],
-    "/admin/gerenciamento-templates/page": [
+    "/definir-senha/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/admin/gerenciamento-templates/page.js"
+      "static/chunks/app/definir-senha/page.js"
     ],
     "/admin/enviar-formulario/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/admin/enviar-formulario/page.js"
+    ],
+    "/admin/gerenciamento-templates/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/admin/gerenciamento-templates/page.js"
     ]
   }
->>>>>>> edfdc7febbf0384a4dc960877bcbe1b8c0040072
 }

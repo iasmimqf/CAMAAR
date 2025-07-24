@@ -22197,3 +22197,71 @@ puma (6.6.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
 puma (6.6.0) lib/puma/server.rb:472:in 'Puma::Server#process_client'
 puma (6.6.0) lib/puma/server.rb:254:in 'block in Puma::Server#run'
 puma (6.6.0) lib/puma/thread_pool.rb:167:in 'block in Puma::ThreadPool#spawn_thread'
+Started POST "/usuarios/sign_in" for 127.0.0.1 at 2025-07-24 00:57:53 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Usuarios::SessionsController#create as JSON
+  Parameters: {"usuario" => {"login" => "iasmimqf@gmail.com", "password" => "[FILTERED]"}, "session" => {"usuario" => {"login" => "iasmimqf@gmail.com", "password" => "[FILTERED]"}}}
+  [1m[36mUsuario Load (0.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE (lower(email) = 'iasmimqf@gmail.com' OR lower(matricula) = 'iasmimqf@gmail.com') ORDER BY "usuarios"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/models/usuario.rb:60:in 'Usuario.find_for_database_authentication'
+Completed 200 OK in 236ms (Views: 0.2ms | ActiveRecord: 2.0ms | Allocations: 13421)
+
+
+Started GET "/api/v1/formularios" for 127.0.0.1 at 2025-07-24 00:57:55 -0300
+Processing by Api::V1::FormulariosController#index as JSON
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFormulario Load (1.0ms)[0m  [1m[34mSELECT "formularios".* FROM "formularios" ORDER BY "formularios"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/formularios_controller.rb:11:in 'Enumerable#map'
+Completed 200 OK in 28ms (Views: 0.1ms | ActiveRecord: 1.4ms | Allocations: 7369)
+
+
+Started GET "/api/v1/formularios" for 127.0.0.1 at 2025-07-24 00:57:55 -0300
+Processing by Api::V1::FormulariosController#index as JSON
+  [1m[36mUsuario Load (0.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFormulario Load (0.1ms)[0m  [1m[34mSELECT "formularios".* FROM "formularios" ORDER BY "formularios"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/formularios_controller.rb:11:in 'Enumerable#map'
+Completed 200 OK in 17ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 2212)
+
+
+Started GET "/api/v1/templates" for 127.0.0.1 at 2025-07-24 00:58:01 -0300
+Processing by Api::V1::TemplatesController#index as JSON
+  [1m[36mUsuario Load (0.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTemplate Load (0.1ms)[0m  [1m[34mSELECT "templates".* FROM "templates" ORDER BY "templates"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:11:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 21ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 3844)
+
+
+Started GET "/api/v1/templates" for 127.0.0.1 at 2025-07-24 00:58:01 -0300
+Processing by Api::V1::TemplatesController#index as JSON
+  [1m[36mUsuario Load (0.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTemplate Load (0.1ms)[0m  [1m[34mSELECT "templates".* FROM "templates" ORDER BY "templates"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:11:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 17ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 2153)
+
+
+Started POST "/api/v1/templates" for 127.0.0.1 at 2025-07-24 00:59:03 -0300
+Processing by Api::V1::TemplatesController#create as JSON
+  Parameters: {"template" => {"titulo" => "dede", "questoes_attributes" => [{"tipo" => "Escala", "enunciado" => "ddef", "obrigatoria" => false, "opcoes" => ["fef"]}]}}
+  [1m[36mUsuario Load (0.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:22:in 'Api::V1::TemplatesController#create'
+  [1m[36mUsuario Load (1.4ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/templates_controller.rb:22:in 'Api::V1::TemplatesController#create'
+  [1m[36mTemplate Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "templates" WHERE "templates"."titulo" = ? LIMIT ?[0m  [["titulo", "dede"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/templates_controller.rb:22:in 'Api::V1::TemplatesController#create'
+  [1m[36mTemplate Create (0.3ms)[0m  [1m[32mINSERT INTO "templates" ("titulo", "criador_id", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["titulo", "dede"], ["criador_id", 2], ["created_at", "2025-07-24 03:59:03.357992"], ["updated_at", "2025-07-24 03:59:03.357992"]]
+  ↳ app/controllers/api/v1/templates_controller.rb:22:in 'Api::V1::TemplatesController#create'
+  [1m[36mQuestao Create (0.2ms)[0m  [1m[32mINSERT INTO "questoes" ("enunciado", "tipo", "obrigatoria", "opcoes", "template_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["enunciado", "ddef"], ["tipo", "Escala"], ["obrigatoria", 0], ["opcoes", "fef"], ["template_id", 1], ["created_at", "2025-07-24 03:59:03.360235"], ["updated_at", "2025-07-24 03:59:03.360235"]]
+  ↳ app/controllers/api/v1/templates_controller.rb:22:in 'Api::V1::TemplatesController#create'
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:22:in 'Api::V1::TemplatesController#create'
+Completed 201 Created in 61ms (Views: 0.3ms | ActiveRecord: 5.4ms | Allocations: 23221)
+
+
+Started GET "/api/v1/templates" for 127.0.0.1 at 2025-07-24 00:59:03 -0300
+Processing by Api::V1::TemplatesController#index as JSON
+  [1m[36mUsuario Load (0.1ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTemplate Load (0.1ms)[0m  [1m[34mSELECT "templates".* FROM "templates" ORDER BY "templates"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/templates_controller.rb:11:in 'Api::V1::TemplatesController#index'
+Completed 200 OK in 18ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 2229)
+
+

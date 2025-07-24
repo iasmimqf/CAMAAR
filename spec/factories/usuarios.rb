@@ -4,7 +4,7 @@ FactoryBot.define do
     nome { Faker::Name.name }
     email { Faker::Internet.unique.email }
     matricula { Faker::Number.unique.number(digits: 9).to_s }
-    password { 'senha123' }
+    password { 'Senhaaa@123!' }
     admin { false }
 
     # Isso cria uma "variante" da factory para o admin

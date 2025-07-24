@@ -1,14 +1,14 @@
 # # features/step_definitions/template_steps.rb
 
-# # --- DADO ---
-# Dado('que estou autenticado como administrador') do
-#   @admin = create(:usuario, :admin, email: 'admin@email.com', password: 'password123')
+# --- DADO ---
+Dado('que estou autenticado como administrador') do
+  @admin = create(:usuario, :admin, email: 'admin@email.com', password: 'Password123!')
 
-#   # Login programático mais direto
-#   page.driver.post usuario_session_path, {
-#     'usuario[login]' => 'admin@email.com',
-#     'usuario[password]' => 'password123'
-#   }
+  # Login programático mais direto
+  page.driver.post usuario_session_path, {
+    'usuario[login]' => 'admin@email.com',
+    'usuario[password]' => 'Password123!'
+  }
 
 #   # Visita uma página que requer autenticação para verificar se funcionou
 #   visit admin_templates_path

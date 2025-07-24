@@ -27,7 +27,7 @@ SimpleCov.start 'rails'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Rails.root.glob('spec/support/**/*.rb').sort_by(&:to_s).each { |f| require f }
+Rails.root.glob('spec/support/**/*.rb').sort_by(&:to_s).each { |f| require f }
 
 # Ensures that the test database schema matches the current schema file.
 # If there are pending migrations it will invoke `db:test:prepare` to
@@ -45,6 +45,13 @@ Shoulda::Matchers.configure do |config|
   end
 end
 RSpec.configure do |config|
+  # Include FactoryBot methods
+  config.include FactoryBot::Syntax::Methods
+
+  # Include Devise test helpers
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::IntegrationHelpers, type: :feature
+
   # -- Início da Configuração do Database Cleaner --
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)

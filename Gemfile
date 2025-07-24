@@ -16,6 +16,7 @@ gem "solid_cable" # Adaptador para Action Cable
 
 # Autenticação
 gem "devise"
+gem "devise-jwt"
 gem "devise-i18n" # Internacionalização para Devise
 gem "devise-jwt"
 # CORS (Cross-Origin Resource Sharing)

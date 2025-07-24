@@ -35,18 +35,39 @@ Esta feature já tinha sua lógica de API funcional, mas os testes automatizados
 
 **Responsáveis:** `[Iasmim e Hudson]`
 
-O trabalho nesta feature também começou com a padronização dos testes.
+O trabalho nesta feature focou na implementação da API de redefinição de senha e na criação de testes para validar seu comportamento.
 
-* **BDD e Estratégia de Teste:** O arquivo `.feature` (`definicao_de_senha.feature`) foi ajustado para descrever claramente os cenários de negócio. Para esta feature, que é **puramente uma funcionalidade de API** (o frontend envia um token e uma nova senha, o backend responde com JSON), foi adotada uma estratégia de teste focada em RSpec Request Specs.
+* **Estratégia de Teste:** Para esta feature, que é **puramente uma funcionalidade de API** (o frontend envia dados, o backend responde com JSON), foi adotada uma estratégia de teste focada em **RSpec Request Specs** como principal ferramenta de validação. O arquivo `.feature` (`definicao_de_senha.feature`) foi mantido como uma especificação de alto nível do comportamento esperado.
 
-* **Testes de Aceitação (RSpec):** O arquivo `passwords_api_spec.rb` foi criado para servir como o **teste de aceitação principal** da API. Ele cobre exaustivamente todos os cenários de Happy Path e Sad Path, incluindo:
-    * Solicitação de redefinição para um usuário existente (Happy Path).
-    * Redefinição de senha com um token válido (Happy Path).
+* **Testes de Integração (RSpec):** O arquivo `passwords_api_spec.rb` foi criado para servir como o **teste de aceitação principal** da API. Ele cobre exaustivamente todos os cenários de **Happy Path e Sad Path**, incluindo:
+    * Solicitação de redefinição para um usuário existente e o envio do e-mail (Happy Path).
+    * Redefinição de senha bem-sucedida com um token válido (Happy Path).
     * Tentativa de redefinição com senhas que não conferem (Sad Path).
-    * Tentativa de redefinição com uma senha fraca que não passa nas validações (Sad Path).
+    * Tentativa de redefinição com uma senha fraca que não passa nas validações do modelo (Sad Path).
     * Tentativa de redefinição com um token inválido (Sad Path).
 
-* **Justificativa:** Esta abordagem foi escolhida porque o RSpec permite a verificação precisa das respostas JSON e dos códigos de status, cumprindo o requisito de testar todos os caminhos da feature. Por este motivo, a implementação dos "steps" do Cucumber, que recriaria os mesmos testes de API, foi considerada redundante para esta funcionalidade específica.
+* **Conclusão da Feature:** Com todos os testes RSpec para os cenários de sucesso e falha passando, a funcionalidade da API foi considerada completa e robusta. A branch da feature foi integrada à branch `develop` através de um Pull Request e, em seguida, removida para manter o repositório organizado (por um erro de logística, os testes de aceitação (cucumber) foram concluídos na branch da feature 3).
+
+### Feature 3: Importação de Dados do SIGAA
+
+**Responsáveis:** `[Iasmim e Hudson]`
+
+O objetivo desta feature é permitir que um administrador importe dados de Turmas e Alunos/Professores a partir de arquivos JSON, populando a base de dados do sistema.
+
+* **Estratégia de Teste e Refatoração:** Seguindo os requisitos da Sprint 3, a implementação desta feature foi guiada por testes e refatoração. A lógica de negócio, que é complexa, foi extraída do `Admin::ImportacoesController` para **Service Objects** dedicados (`TurmaImporterService` e `AlunoImporterService`), resultando em um código mais limpo, com menor complexidade (ABC Score) e mais fácil de testar, mas o resto da refatoração vai ser feito depois.
+
+* **Lógica de Negócio Implementada:**
+    * O sistema utiliza uma lógica "encontre ou crie" para evitar a duplicação de `Disciplinas`, `Turmas` e `Usuarios`.
+    * Ao criar um **novo usuário** (aluno ou professor) através da importação, o sistema automaticamente dispara um **e-mail para a definição de senha**, cumprindo um requisito chave da funcionalidade.
+    * A importação lida com **sucessos parciais**, retornando um resumo dos sucessos e uma lista detalhada de erros caso o ficheiro contenha dados inválidos ou inconsistentes (ex: tentar importar alunos para uma turma que não existe).
+
+* **Testes (RSpec):** Os testes de aceitação para esta feature foram implementados como **testes de serviço** em RSpec (`spec/services/`). Esta abordagem permite testar a lógica de negócio de forma independente e completa, verificando todos os **Happy Paths e Sad Paths**, como:
+    * Criação correta de novos registros (turmas, alunos, professores).
+    * Associação correta de alunos e professores às turmas.
+    * Envio do e-mail de definição de senha apenas para novos usuários.
+    * Tratamento de erros de ficheiro (JSON malformado, formato inválido).
+    * Tratamento de erros de dados (turma inexistente, dados de usuário inválidos).
+
 
 ### Feature 3: Importação de Dados do SIGAA
 

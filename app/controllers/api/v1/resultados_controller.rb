@@ -1,77 +1,70 @@
-# app/controllers/api/v1/resultados_controller.rb
-require 'csv'
+# app/models/resposta_questao.rb
 
-class Api::V1::ResultadosController < Api::V1::BaseController
-  # GET /api/v1/resultados
-  def index
-    # Esta ação busca todas as turmas e prepara um resumo para o frontend.
-    # Adapte os campos `respostas_dos_formularios` e `alunos` para os nomes
-    # corretos das suas associações no model Turma.
-    turmas = Turma.includes(:disciplina).map do |turma|
-      respostas_count = turma.respostas_dos_formularios.count
-      {
-        id: turma.id,
-        nome_turma: turma.codigo_turma,
-        nome_disciplina: turma.disciplina.nome,
-        semestre: turma.semestre,
-        tem_respostas: respostas_count > 0,
-        respondidos: respostas_count,
-        enviados: turma.alunos.count
-      }
-    end
+class RespostaQuestao < ApplicationRecord
+  self.table_name = 'resposta_questoes'
 
-    render json: turmas
-  end
+  belongs_to :resposta_formulario
+  belongs_to :questao
 
-  # GET /api/v1/resultados/exportar
-  def exportar
-    turma_ids = params[:turma_ids]
-    
-    unless turma_ids.present? && turma_ids.is_a?(Array)
-      return render json: { error: 'Nenhuma turma selecionada' }, status: :bad_request
-    end
-    
-    turmas = Turma.where(id: turma_ids).includes(:disciplina)
-    
-    # Gera o nome do arquivo de forma dinâmica.
-    disciplina_nome = turmas.first.disciplina.nome.parameterize.underscore
-    ids_string = turmas.map(&:id).join('_')
-    filename = "resultados_turmas_#{ids_string}_#{disciplina_nome}.csv"
+  validates :questao_id, presence: true
+  validates :resposta_formulario_id, presence: true
+  validates :questao_id, uniqueness: { scope: :resposta_formulario_id }
 
-    # Gera o conteúdo do CSV.
-    csv_data = CSV.generate(headers: true) do |csv|
-      csv << ["Turma", "Disciplina", "Média Professor", "Média Disciplina", "Respondidos/Enviados"]
-      
-      turmas.each do |turma|
-        # ATENÇÃO: A lógica para calcular as médias abaixo é um EXEMPLO.
-        # Adapte para a sua realidade.
-        media_prof = calcular_media_por_categoria(turma, 'professor')
-        media_disc = calcular_media_por_categoria(turma, 'disciplina')
-        respondidos_enviados = "#{turma.respostas_dos_formularios.count}/#{turma.alunos.count}"
-        
-        csv << [turma.codigo_turma, turma.disciplina.nome, media_prof, media_disc, respondidos_enviados]
-      end
-    end
-    
-    # Envia os dados do CSV como um arquivo para download.
-    send_data csv_data, filename: filename, type: 'text/csv', disposition: 'attachment'
-  end
+  serialize :valor_resposta, JSON
+
+  validate :resposta_adequada_ao_tipo
 
   private
 
-  # Este método é um EXEMPLO para calcular as médias.
-  # Você precisará ajustar a consulta para corresponder à estrutura
-  # dos seus models de Resposta, Questao e Categoria.
-  def calcular_media_por_categoria(turma, categoria_nome)
-    # Exemplo: Supondo que Resposta tenha `valor_numerico` e se associe
-    # a uma Questao que tem uma Categoria com `nome`.
-    respostas = turma.respostas_dos_formularios
-                     .joins(questao: :categoria)
-                     .where(categorias: { nome: categoria_nome })
-    
-    return 0.0 if respostas.empty?
-    
-    # Calcula a média e arredonda para 1 casa decimal.
-    (respostas.average(:valor_numerico) || 0).round(1)
+  # ==================================================================
+  # MÉTODO DE VALIDAÇÃO FINAL E CORRETO
+  # ==================================================================
+  def resposta_adequada_ao_tipo
+    case questao.tipo
+    when 'Escala'
+      # 1. Valida se o valor é um array com um único número inteiro.
+      unless valor_resposta.is_a?(Array) && valor_resposta.size == 1 && valor_resposta.first.is_a?(Integer)
+        errors.add(:valor_resposta, "deve ser uma única opção para a escala.")
+        return
+      end
+
+      valor_numerico = valor_resposta.first
+      max_opcao_index = questao.opcoes_array.size - 1
+
+      # ===============================================================
+      # ▼▼▼ DEBUG ADICIONAL PARA DIAGNÓSTICO FINAL ▼▼▼
+      # ===============================================================
+      Rails.logger.debug "DEBUG VALIDAÇÃO ESCALA: Valor recebido=#{valor_numerico}, Opções válidas (índices)=0..#{max_opcao_index}, Opções=#{questao.opcoes_array.inspect}"
+
+      # 2. Valida se o número está dentro do range de opções válidas (ex: 0 a 4).
+      unless valor_numerico.between?(0, max_opcao_index)
+        errors.add(:valor_resposta, "'#{valor_numerico}' não é uma opção válida para esta questão.")
+      end
+
+    when 'Texto'
+      if questao.obrigatoria && texto_resposta.blank?
+        errors.add(:texto_resposta, "é obrigatório")
+      end
+
+    when 'Checkbox'
+      # 1. Valida se o valor é um array.
+      unless valor_resposta.is_a?(Array)
+        errors.add(:valor_resposta, "deve ser uma lista de opções.")
+        return
+      end
+
+      if questao.obrigatoria && valor_resposta.empty?
+        errors.add(:valor_resposta, "é obrigatório para questões de checkbox.")
+        return
+      end
+
+      # 2. Valida se TODAS as opções selecionadas estão dentro do range válido.
+      max_opcao_index = questao.opcoes_array.size - 1
+      valor_resposta.each do |opcao_selecionada|
+        unless opcao_selecionada.is_a?(Integer) && opcao_selecionada.between?(0, max_opcao_index)
+          errors.add(:valor_resposta, "'#{opcao_selecionada}' não é uma opção válida.")
+        end
+      end
+    end
   end
 end

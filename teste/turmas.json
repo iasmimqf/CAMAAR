@@ -1,0 +1,30 @@
+[
+  {
+    "disciplina_codigo": "CIC0004",
+    "disciplina_nome": "Banco de Dados",
+    "codigo_turma": "T01",
+    "semestre": "2025.1",
+    "professor_email": "ana.oliveira@unb.br"
+  },
+  {
+    "disciplina_codigo": "CIC0004",
+    "disciplina_nome": "Banco de Dados",
+    "codigo_turma": "T02",
+    "semestre": "2025.1",
+    "professor_email": "ana.oliveira@unb.br"
+  },
+  {
+    "disciplina_codigo": "CIC0202",
+    "disciplina_nome": "Engenharia de Software",
+    "codigo_turma": "T01",
+    "semestre": "2025.1",
+    "professor_email": "marcos.silva@unb.br"
+  },
+  {
+    "disciplina_codigo": "CIC0199",
+    "disciplina_nome": "Redes de Computadores",
+    "codigo_turma": "T01",
+    "semestre": "2025.1",
+    "professor_email": "marcos.silva@unb.br"
+  }
+]

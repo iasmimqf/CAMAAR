@@ -1,26 +1,29 @@
 "use client"
 
-import { useAuth } from "@/contexts/AuthContext"; // <<< 1. Importe o nosso hook
-import { Search, Menu, X, LogOut } from "lucide-react"
+import { useAuth } from "@/contexts/AuthContext";
+import { Search, Menu, X, LogOut, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
 import { useState, useRef } from "react"
 import { useRouter } from "next/navigation";
+import { api } from '@/lib/api';
+import { toast } from 'sonner'; // <<< 1. Importe o toast
 
 export default function GerenciamentoPage() {
-  const { logout } = useAuth(); // <<< 2. Obtenha a função de logout do contexto
+  const { logout } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("gerenciamento")
   const [importDataModalOpen, setImportDataModalOpen] = useState(false)
   const [uploadType, setUploadType] = useState<"turmas" | "alunos" | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [isUploading, setIsUploading] = useState(false); // Novo estado para o feedback de upload
   const fileInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
   const handleLogout = () => {
-    logout(); // <<< 3. Chame a função de logout
+    logout();
   }
 
   const handleManagementAction = (action: string) => {
@@ -29,51 +32,44 @@ export default function GerenciamentoPage() {
     }
   }
 
+  // ===============================================================
+  // ▼▼▼ FUNÇÃO ATUALIZADA PARA USAR 'toast' ▼▼▼
+  // ===============================================================
   const handleFileUpload = async () => {
     if (!selectedFile || !uploadType) {
-      alert("Por favor, selecione um ficheiro e um tipo de importação.");
+      toast.error("Por favor, selecione um ficheiro e um tipo de importação.");
       return;
     }
 
-    const uploadPath = uploadType === 'turmas'
-        ? 'http://localhost:3000/admin/importacoes/importar_turmas' // Rota completa
-        : 'http://localhost:3000/admin/importacoes/importar_alunos';   // Rota futura para alunos
-
+    setIsUploading(true);
     const formData = new FormData();
     formData.append('file', selectedFile);
 
+    const uploadPath = uploadType === 'turmas'
+        ? '/importacoes/importar_turmas'
+        : '/importacoes/importar_alunos';
+
     try {
-      const response = await fetch(uploadPath, {
-        method: 'POST',
-        body: formData,
+      const response = await api.post(uploadPath, formData, {
         headers: {
-          'Accept': 'application/json',
+          'Content-Type': 'multipart/form-data',
         },
-        credentials: 'include',
       });
 
-      const contentType = response.headers.get("content-type");
-      if (!contentType || !contentType.includes("application/json")) {
-        const textResponse = await response.text();
-        throw new Error(`O servidor respondeu com um formato inesperado. Verifique se está autenticado. Resposta: ${textResponse.substring(0, 100)}...`);
-      }
+      toast.success(response.data.message || "Ficheiro enviado com sucesso!");
 
-      const result = await response.json();
-
-      if (response.ok) {
-        alert(result.notice || "Ficheiro enviado com sucesso!");
-      } else {
-        alert(result.alert || "Ocorreu um erro durante a importação.");
-      }
-    } catch (error) {
-      console.error("Erro de rede ou de parse:", error);
-      alert(error instanceof Error ? error.message : "Ocorreu um erro desconhecido.");
+    } catch (error: any) {
+      console.error("Erro na importação:", error);
+      const errorMessage = error.response?.data?.error || "Ocorreu um erro desconhecido durante a importação.";
+      toast.error(errorMessage);
     } finally {
+      setIsUploading(false);
       setImportDataModalOpen(false);
       setUploadType(null);
       setSelectedFile(null);
     }
   };
+  // ===============================================================
 
   return (
     <div className="min-h-screen bg-gray-200">
@@ -87,10 +83,6 @@ export default function GerenciamentoPage() {
             <h1 className="text-lg font-medium">Gerenciamento</h1>
           </div>
           <div className="flex items-center gap-4">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-              <Input placeholder="Search..." className="pl-10 w-64 rounded-full border-gray-300" />
-            </div>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="w-8 h-8 bg-purple-700 rounded-full flex items-center justify-center text-white font-medium text-sm hover:bg-purple-800 transition-colors">
@@ -189,8 +181,9 @@ export default function GerenciamentoPage() {
           )}
           <DialogFooter>
             {selectedFile && (
-                <Button onClick={handleFileUpload} className="bg-green-500 text-white font-medium py-3 px-6 rounded-md transition-colors duration-200">
-                  Enviar
+                <Button onClick={handleFileUpload} disabled={isUploading} className="bg-green-500 text-white font-medium py-3 px-6 rounded-md transition-colors duration-200">
+                  {isUploading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+                  {isUploading ? 'A enviar...' : 'Enviar'}
                 </Button>
             )}
             <Button variant="outline" onClick={() => setImportDataModalOpen(false)}>

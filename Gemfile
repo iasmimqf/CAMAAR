@@ -21,6 +21,7 @@ gem "rubycritic", require: false
 
 # Autenticação
 gem "devise"
+gem "devise-jwt"
 gem "devise-i18n" # Internacionalização para Devise
 
 # CORS (Cross-Origin Resource Sharing)

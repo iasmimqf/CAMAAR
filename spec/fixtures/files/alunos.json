@@ -1,0 +1,9 @@
+[
+  {
+    "code": "CIC0097",
+    "classCode": "TA",
+    "semester": "2021.2",
+    "docente": { "nome": "Professor Teste", "email": "prof.teste@email.com", "usuario": "999888" },
+    "dicente": [{ "nome": "Aluno Teste", "matricula": "111222", "email": "aluno.teste@email.com" }]
+  }
+]

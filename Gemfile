@@ -21,6 +21,7 @@ gem "devise-i18n" # Internacionalização para Devise
 gem "devise-jwt"
 # CORS (Cross-Origin Resource Sharing)
 gem "rack-cors"
+gem 'csv'
 
 # Medir cobertura dos testes
 gem "rubocop", require: false

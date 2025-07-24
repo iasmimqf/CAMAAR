@@ -1,44 +1,36 @@
-Funcionalidade: Cadastro de Usuários do Sistema
+# language: pt
 
-História de Usuário:
+Funcionalidade: Criação de Usuário e Solicitação de Senha Durante a Importação
+  Como um administrador,
+  ao importar dados de alunos,
+  quero que novos usuários sejam criados e notificados para definirem sua senha,
+  a fim de que possam acessar o sistema.
 
-Como um Administrador do sistema
-Quero poder cadastrar novos usuários manualmente
-A fim de incluir usuários que não foram importados via sincronização com o SIGAA
+  @importacao_novo_usuario
+  Cenário: Um novo aluno é importado com sucesso
+    Dado que a disciplina "Cálculo 1" com código "MAT0030" já existe
+    E que o usuário "novo.aluno@email.com" NÃO existe no sistema
+    Quando o administrador importa um arquivo de alunos para a turma "Cálculo 1" contendo os dados de "novo.aluno@email.com"
+    Então o usuário "novo.aluno@email.com" deve ser criado no sistema
+    E um e-mail de definição de senha deve ser enviado para "novo.aluno@email.com"
 
-Cenário: cadastrar novo usuário de forma bem sucedida
+  @importacao_usuario_existente
+  Cenário: Um aluno já existente é importado
+    Dado que a turma "Cálculo 1" com código "MAT0030" já existe
+    E que o usuário "aluno.antigo@email.com" JÁ existe no sistema
+    Quando o administrador importa um arquivo de alunos para a turma "Cálculo 1" contendo os dados de "aluno.antigo@email.com"
+    Então um e-mail de definição de senha NÃO deve ser enviado para "aluno.antigo@email.com"
 
-    Contexto:
-        Dado que eu estou logado como administrador
-        E estou na página de "Cadastro de Usuários"
+  @importacao_dados_invalidos
+  Cenário: Um aluno com dados inválidos é importado
+    Dado que a turma "Cálculo 1" com código "MAT0030" já existe
+    Quando o administrador importa um arquivo de alunos com um e-mail inválido
+    Então nenhum usuário novo deve ser criado
+    E nenhum e-mail de definição de senha deve ser enviado
 
-    Quando eu preencho o formulário com:
-        Campo	Valor
-        Matrícula	13579
-        Nome Completo	Exemplo Exemplo Exemplo
-        E-mail	matrícula@unb.br
-        Senha	senhaSegura123
-        Confirmar_Senha	senhaSegura123
-
-    E clico no botão "Cadastrar"
-    Então o sistema deve exibir a mensagem "Usuário cadastrado com sucesso!"
-    E o usuário deve ser adicionado à base de dados com status "ATIVO"
-    E os campos do formulário devem ser limpos para um novo cadastro
-
-Cenário: Tentativa de cadastro com matrícula já existente
-    Contexto:
-        Dado que existe um usuário cadastrado com matrícula "12345"
-        E eu estou na página de "Cadastro de Usuários"
-        Quando eu tento cadastrar um novo usuário com:
-            Campo	Valor
-            Matrícula	12345
-            Nome Completo	João Carlos Silva
-            E-mail	matrícula@unb.br
-            Senha	senhaSegura123
-            Confirmar_Senha	senhaSegura123
-
-        E clico no botão "Cadastrar"
-
-        Então o sistema deve exibir a mensagem "Erro: Matrícula já cadastrada no sistema"
-        E o formulário não deve ser submetido
-        E o campo "Matrícula" deve ser destacado em vermelho
+  @importacao_turma_invalida
+  Cenário: Tentativa de importar um aluno para uma turma inexistente
+    Dado que a turma com código "XYZ-001" NÃO existe no sistema
+    Quando o administrador importa um arquivo de alunos para a turma "XYZ-001"
+    Então nenhum usuário novo deve ser criado
+    E nenhum e-mail de definição de senha deve ser enviado

@@ -6,6 +6,14 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
+<<<<<<< HEAD
+=======
+    "/login/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/login/page.js"
+    ],
+>>>>>>> develop
     "/admin/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -16,16 +24,24 @@
       "static/chunks/main-app.js",
       "static/chunks/app/admin/page.js"
     ],
+<<<<<<< HEAD
     "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
-    ],
-    "/login/page": [
+=======
+    "/admin/gerenciamento/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/login/page.js"
+      "static/chunks/app/admin/gerenciamento/page.js"
+>>>>>>> develop
     ],
+    "/admin/gerenciamento-templates/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/admin/gerenciamento-templates/page.js"
+    ],
+<<<<<<< HEAD
     "/login/recuperar-senha/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -50,6 +66,12 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/admin/gerenciamento-templates/page.js"
+=======
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/page.js"
+>>>>>>> develop
     ]
   }
 }

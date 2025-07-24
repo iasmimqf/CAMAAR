@@ -22,7 +22,7 @@ Quando('eu insiro {string} no campo {string}') do |valor, campo|
   @login_params[campo.downcase.split.first] = valor # Guarda 'e-mail' ou 'senha'
 end
 
-Quando('clico no botão {string}') do |button_name|
+Quando('clico no botão Entrar') do
   login_identifier = @login_params&.[]('e-mail') || @login_params&.[]('matrícula')
   password = @login_params&.[]('senha') || ''
 

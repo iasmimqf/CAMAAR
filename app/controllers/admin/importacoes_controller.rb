@@ -3,7 +3,100 @@ module Admin
   class ImportacoesController < Admin::BaseController
     # A herança de Admin::BaseController já deve tratar da autenticação.
     # Esta linha desativa a proteção CSRF do Rails para os métodos de importação.
-    skip_before_action :verify_authenticity_token, only: [ :importar_turmas, :importar_alunos ]
+    skip_before_action :verify_authenticity_token, only: [ :importar_turmas, :importar_alunos, :importar_csv_sigaa ]
+
+    # GET /admin/importacoes/new_turma
+    def new_turma
+      render :new_turma
+    end
+
+    # GET /admin/importacoes/new_aluno
+    def new_aluno
+      render :new_aluno
+    end
+
+    # POST /admin/importacoes/importar_csv_sigaa
+    def importar_csv_sigaa
+      if params[:file].blank?
+        render json: { alert: "Nenhum arquivo foi selecionado" }, status: :bad_request
+        return
+      end
+
+      arquivo = params[:file]
+      
+      # Verifica se é um arquivo CSV
+      unless arquivo.content_type == 'text/csv' || arquivo.original_filename.end_with?('.csv')
+        render json: { alert: "O arquivo deve ser do formato CSV" }, status: :unprocessable_entity
+        return
+      end
+
+      begin
+        require 'csv'
+        
+        # Lê o conteúdo do arquivo CSV
+        csv_data = arquivo.read.force_encoding('UTF-8')
+        
+        # Parse do CSV
+        dados = CSV.parse(csv_data, headers: true)
+        
+        if dados.empty?
+          render json: { alert: "O arquivo CSV está vazio" }, status: :unprocessable_entity
+          return
+        end
+
+        # Processa os dados do CSV
+        erros = []
+        sucessos = 0
+        usuarios_criados = 0
+
+        dados.each_with_index do |linha, index|
+          begin
+            # Converte a linha para hash
+            dados_linha = linha.to_h
+            
+            # Valida campos obrigatórios
+            nome = dados_linha['nome']&.strip
+            email = dados_linha['email']&.strip
+            matricula = dados_linha['matricula']&.strip
+            
+            if nome.blank? || email.blank? || matricula.blank?
+              erros << "Linha #{index + 2}: campos obrigatórios em branco (nome, email, matricula)"
+              next
+            end
+            
+            # Tenta criar ou atualizar o usuário
+            usuario = Usuario.find_or_initialize_by(email: email)
+            usuario.assign_attributes(
+              nome: nome,
+              matricula: matricula,
+              login: email, # Usa email como login
+              password: 'DefaultPassword123!' # Senha padrão que deve ser alterada
+            )
+            
+            if usuario.save
+              usuarios_criados += 1 if usuario.previously_new_record?
+              sucessos += 1
+            else
+              erros << "Linha #{index + 2}: #{usuario.errors.full_messages.join(', ')}"
+            end
+            
+          rescue => e
+            erros << "Linha #{index + 2}: #{e.message}"
+          end
+        end
+
+        if erros.empty?
+          render json: { notice: "Dados importados com sucesso do SIGAA" }, status: :ok
+        else
+          render json: { alert: "Erro ao importar dados do SIGAA: #{erros.join('; ')}" }, status: :unprocessable_entity
+        end
+
+      rescue CSV::MalformedCSVError => e
+        render json: { alert: "Erro ao importar dados do SIGAA: formato CSV inválido" }, status: :unprocessable_entity
+      rescue => e
+        render json: { alert: "Erro ao importar dados do SIGAA: #{e.message}" }, status: :unprocessable_entity
+      end
+    end
 
     # POST /admin/importacoes/importar_turmas
     def importar_turmas
@@ -92,38 +185,46 @@ module Admin
       erros = []
       alunos_criados_ou_atualizados = 0
 
-      alunos_data.each_with_index do |aluno_info, index|
-        begin
-          # Encontra o aluno pela matrícula ou cria um novo
-          # Define uma senha padrão para novos alunos (eles podem alterá-la depois)
-          aluno = Usuario.find_or_initialize_by(matricula: aluno_info["matricula"])
-          if aluno.new_record?
-            aluno.nome = aluno_info["nome"]
-            aluno.email = aluno_info["email"]
-            aluno.password = "SenhaPadrao123!" # Defina uma senha padrão segura
-            aluno.password_confirmation = "SenhaPadrao123!"
-            aluno.save!
-            alunos_criados_ou_atualizados += 1
-          end
-
-          # Limpa as associações de turmas antigas para garantir que o aluno fique apenas nas turmas do ficheiro
-          aluno.turmas.clear
-
-          # Associa o aluno às turmas especificadas no ficheiro
-          aluno_info["turmas"].each do |turma_info|
-            disciplina = Disciplina.find_by(codigo: turma_info["disciplina_codigo"])
-            if disciplina
-              turma = disciplina.turmas.find_by(
-                codigo_turma: turma_info["codigo_turma"],
-                semestre: turma_info["semestre"]
-              )
-              aluno.turmas << turma if turma && !aluno.turmas.include?(turma)
-            else
-              erros << "Linha #{index + 1}: Disciplina com código #{turma_info['disciplina_codigo']} não encontrada."
+      # Processa cada turma no JSON
+      alunos_data.each_with_index do |turma_data, turma_index|
+        # Extrai informações da turma
+        codigo_disciplina = turma_data["code"]
+        codigo_turma = turma_data["classCode"]
+        semestre = turma_data["semester"]
+        
+        # Encontra ou cria a disciplina
+        disciplina = Disciplina.find_or_create_by(codigo: codigo_disciplina) do |d|
+          d.nome = "Disciplina #{codigo_disciplina}" # nome padrão se não existir
+        end
+        
+        # Encontra ou cria a turma
+        turma = disciplina.turmas.find_or_create_by!(
+          codigo_turma: codigo_turma,
+          semestre: semestre
+        )
+        
+        # Processa cada aluno (dicente) na turma
+        dicentes = turma_data["dicente"] || []
+        dicentes.each_with_index do |aluno_info, aluno_index|
+          begin
+            # Encontra o aluno pela matrícula ou cria um novo
+            aluno = Usuario.find_or_initialize_by(matricula: aluno_info["matricula"])
+            if aluno.new_record?
+              aluno.nome = aluno_info["nome"]
+              aluno.email = aluno_info["email"]
+              aluno.password = "SenhaPadrao123!" # Defina uma senha padrão segura
+              aluno.password_confirmation = "SenhaPadrao123!"
+              aluno.save!
+              alunos_criados_ou_atualizados += 1
             end
+
+            # Associa o aluno à turma (se ainda não estiver associado)
+            unless aluno.turmas.include?(turma)
+              aluno.turmas << turma
+            end
+          rescue => e
+            erros << "Turma #{turma_index + 1}, Aluno #{aluno_index + 1} (Matrícula: #{aluno_info['matricula']}): #{e.message}"
           end
-        rescue => e
-          erros << "Linha #{index + 1} (Matrícula: #{aluno_info['matricula']}): #{e.message}"
         end
       end
 

@@ -1,5 +1,5 @@
 # language: pt
-Funcionalidade: Criação de formulário para avaliação de turmas
+Funcionalidade: Criação de fo    Então eu devo ver a mensagem de criação "Não é possível criar um formulário sem templates e turmas"mulário para avaliação de turmas
 
 	Como administrador,
 	Quero criar um formulário baseado em um template
@@ -15,7 +15,7 @@ Funcionalidade: Criação de formulário para avaliação de turmas
 		E eu seleciono o template "Avaliação Padrão"
 		E eu seleciono as turmas "Turma 01", "Turma 03" e "Turma 04"
 		E eu clico em "Criar Formulário"
-		Então eu devo ver a mensagem "Formulário criado com sucesso"
+		    Então eu devo ver a mensagem de criação "Formulário criado com sucesso"
 		E as turmas devem estar associadas ao novo formulário
 
 	Cenário: Tentar criar formulário sem selecionar nenhuma turma
@@ -43,5 +43,5 @@ Funcionalidade: Criação de formulário para avaliação de turmas
 		E não existem templates de formulário cadastrados
 		E não existem turmas ativas para o semestre atual
 		Quando eu acesso a página de criação de formulário
-		Então eu devo ver a mensagem "Não é possível criar um formulário sem templates e turmas"
+		Então eu devo ver a mensagem de criação "Não é possível criar um formulário sem templates e turmas"
 		E o botão "Criar Formulário" deve estar desabilitado

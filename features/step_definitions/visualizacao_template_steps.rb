@@ -31,6 +31,8 @@ Quando('eu acesso a página de {string}') do |nome_pagina|
   case nome_pagina
   when 'Gerenciamento - Templates'
     visit admin_templates_path
+  when 'Resultados'
+    visit resultados_admin_formularios_path
   else
     raise "Página #{nome_pagina} não reconhecida"
   end

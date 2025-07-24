@@ -1,28 +1,33 @@
+# language: pt
 Funcionalidade: Visualização de Formulários Criados
+    Como administrador do sistema
+    Quero visualizar os formulários criados
+    Para poder gerenciar e gerar relatórios
 
-História de Usuário:
-
-Como Admin do sistema
-Quero visualizar os formulários criados
-A fim de poder gerar um relatório a partir das respostas
-
-Cenário: Listagem de formulários
     Contexto:
-        Dado que eu sou um administrador autenticado
-        E que eu esteja na página de "Gerenciamento"
-        E existem formulários criados a partir de templates existentes      
-        
-    Quando eu acesso a página de "Resultados"
-    Então devo ver uma tabela com os formulários criados
-    E para cada formulário devo ver o nome, a data de criação e o status (ativo/inativo)
-    E deve haver um botão "Gerar Relatório" disponível para cada formulário
+        Dado que estou autenticado como administrador
 
-Cenário: Nenhum formulário criado no sistema
-    Contexto:
-        Dado que eu sou um administrador autenticado
-        E que eu esteja na página de "Gerenciamento"
-        E que ainda não existam formulários criados no sistema
+    @javascript
+    Cenário: Listagem de formulários existentes
+        Dado existem formulários criados no sistema
+        E os formulários possuem diferentes status
+        Quando eu acesso a página de "Resultados"
+        Então devo ver uma tabela com os formulários criados
+        E para cada formulário devo ver o template, criador, data de criação e turmas
+        E deve haver um botão "Ver Detalhes" disponível para cada formulário
 
-    Quando eu acesso a página de "Resultados"
-    Então devo ver uma mensagem como "Nenhum formulário foi encontrado."
-    E não deve haver nenhuma tabela ou botão "Gerar Relatório" exibido
+    @javascript
+    Cenário: Nenhum formulário criado no sistema
+        Dado que não existem formulários criados no sistema
+        Quando eu acesso a página de "Resultados"
+        Então devo ver uma mensagem "Nenhum formulário foi encontrado."
+        E não deve haver nenhuma tabela de formulários exibida
+
+    @javascript
+    Cenário: Visualizar detalhes de um formulário específico
+        Dado existem formulários criados no sistema
+        E um formulário possui respostas dos alunos
+        Quando eu acesso a página de "Resultados"
+        Então devo ver os detalhes do formulário selecionado
+        E devo ver as turmas associadas ao formulário
+        E deve haver um botão "Gerar Relatório" disponível para cada formulário

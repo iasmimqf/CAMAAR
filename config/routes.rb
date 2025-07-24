@@ -15,8 +15,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "dashboard", to: "dashboard#index", as: "dashboard"
+    get "importacoes/new_turma", to: "importacoes#new_turma", as: "import_turma_new"
+    get "importacoes/new_aluno", to: "importacoes#new_aluno", as: "import_aluno_new"
     post "importacoes/importar_turmas", to: "importacoes#importar_turmas"
     post "importacoes/importar_alunos", to: "importacoes#importar_alunos"
+    post "importacoes/importar_csv_sigaa", to: "importacoes#importar_csv_sigaa"
     resources :templates
     resources :formularios do
       collection do

@@ -1,41 +1,45 @@
-# language: pt
 Funcionalidade: Responder Formulário de Avaliação
-    Como um aluno
-    Quero responder aos formulários de avaliação disponíveis
-    Para avaliar meus professores e disciplinas
+    História de Usuário:
+        Como um Aluno
+        Quero responder aos formulários de avaliação disponíveis
+        A fim de avaliar meus professores e disciplinas
 
-    Contexto:
-        Dado que estou autenticado como aluno
-
-    @javascript
     Cenário: Responder formulário com sucesso
-        Dado existe um formulário disponível para a turma "Banco de Dados - Turma 01"
-        E o formulário contém 3 questões de múltipla escolha (escala 1-5)
-        E o formulário contém 2 questões abertas
-        Quando acesso a página de formulários "Formulários Pendentes"
+        Contexto:
+        Dado que estou autenticado como aluno
+        E existe um formulário disponível para a turma "Banco de Dados - Turma 01"
+        E o formulário contém:
+
+        5 questões de múltipla escolha (escala 1-5)
+
+        2 questões abertas
+
+        Quando acesso a página "Formulários Pendentes"
         E seleciono o formulário da turma "Banco de Dados - Turma 01"
-        E preencho todas as questões obrigatórias com notas válidas
-        E preencho o comentário com "O professor explica bem os conceitos"
-        E clico no botão "Enviar Respostas" do formulário
+        E preencho todas as questões obrigatórias:
+
+        Questão 1: Nota 4
+
+        Questão 2: Nota 5
+
+        ...
+
+        Comentários: "O professor explica bem os conceitos"
+
+        E clico em "Enviar Respostas"
+
         Então o sistema deve exibir "Formulário enviado com sucesso!"
-        E as respostas devem ser armazenadas no sistema
+        E o formulário deve ser marcado como "Respondido" no meu perfil
+        E as respostas devem ser armazenadas anonimamente no sistema
 
-    @javascript
     Cenário: Tentar enviar formulário incompleto
-        Dado existe um formulário disponível para a turma "Algoritmos - Turma 02"
-        E o formulário contém 2 questões de múltipla escolha (escala 1-5)
-        E uma das questões é obrigatória
-        Quando acesso a página de formulários "Formulários Pendentes"
-        E seleciono o formulário da turma "Algoritmos - Turma 02"
-        E deixo uma questão obrigatória em branco
-        E clico no botão "Enviar Respostas" do formulário
-        Então eu devo ver a mensagem de erro do formulário "Por favor, responda todas as questões obrigatórias"
-        E minhas outras respostas devem permanecer preenchidas
+        Contexto:
+        Dado que estou respondendo um formulário
+        E deixei a questão 3 em branco (campo obrigatório)
 
-    @javascript
-    Cenário: Tentar responder formulário já respondido
-        Dado existe um formulário disponível para a turma "Estruturas - Turma 03"
-        E eu já respondi este formulário anteriormente
-        Quando acesso a página de formulários "Formulários Pendentes"
-        Então o formulário "Estruturas - Turma 03" não deve aparecer na lista
-        E eu devo ver a mensagem de formulário "Você não possui formulários pendentes no momento"
+        Quando clico em "Enviar Respostas"
+
+        Então o sistema deve exibir:
+        "Por favor, responda todas as questões obrigatórias"
+        E deve destacar a questão 3 em vermelho
+        E deve manter minhas outras respostas preenchidas

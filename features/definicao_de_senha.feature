@@ -13,19 +13,17 @@ Funcionalidade: Redefinição de Senha de Usuário
     Quando eu visito a página de redefinição de senha com o token do usuário "ana@email.com"
     E preencho o campo "Nova Senha" com <Senha>
     E preencho o campo "Confirmação de Senha" com <Confirmacao>
-    E clico no botão de redefinir senha "Alterar minha senha"
+    E clico no botão "Alterar minha senha"
     Então eu devo ver a mensagem <Mensagem>
 
     Exemplos:
         | Senha          | Confirmacao    | Mensagem                                       |
         | "Password@123" | "Password@123" | "Sua senha foi alterada com sucesso."          |
         | "Password@123" | "senha-errada" | "Confirmação de Senha não corresponde à Senha" |
-        | "fraca"        | "fraca"        | "A senha é muito curta (mínimo de 10 caracteres)" |
+        | "fraca"        | "fraca"        | "Senha é muito curta (mínimo de 8 caracteres)" |
 
 
   Cenário: Tentativa de usar um link inválido ou expirado
     Quando eu visito a página de redefinição de senha com o token "TOKEN_INVALIDO"
-    E preencho o campo "Nova Senha" com "Password@123"
-    E preencho o campo "Confirmação de Senha" com "Password@123"
-    E clico no botão de redefinir senha "Alterar minha senha"
     Então eu devo ver a mensagem de erro "Token de redefinição de senha é inválido"
+    E eu não devo ver o campo "Nova Senha"

@@ -2,13 +2,6 @@ require 'cucumber/rails'
 require 'factory_bot_rails'
 require 'database_cleaner/active_record'
 
-# Configuração do Capybara para JavaScript
-require 'capybara/rails'
-require 'selenium-webdriver'
-
-# Configura o driver JavaScript
-Capybara.javascript_driver = :selenium_chrome_headless
-
 # Define a estratégia. Truncation é a mais segura.
 DatabaseCleaner.strategy = :truncation
 

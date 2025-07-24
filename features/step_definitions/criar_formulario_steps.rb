@@ -84,7 +84,7 @@ Então('devo ver mensagem de erro de formulário {string}') do |mensagem_erro|
   expect(page).to have_content(mensagem_erro)
 end
 
-Então('eu devo ver a mensagem de criação {string}') do |mensagem|
+Então('eu devo ver a mensagem {string}') do |mensagem|
   expect(page).to have_content(mensagem)
 end
 

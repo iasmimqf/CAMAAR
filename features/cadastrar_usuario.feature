@@ -1,4 +1,3 @@
-# language: pt
 Funcionalidade: Cadastro de Usuários do Sistema
 
 História de Usuário:
@@ -14,12 +13,12 @@ Cenário: cadastrar novo usuário de forma bem sucedida
         E estou na página de "Cadastro de Usuários"
 
     Quando eu preencho o formulário com:
-        | Campo           | Valor                  |
-        | Matrícula       | 13579                  |
-        | Nome Completo   | Exemplo Exemplo Exemplo |
-        | E-mail          | matrícula@unb.br       |
-        | Senha           | senhaSegura123         |
-        | Confirmar_Senha | senhaSegura123         |
+        Campo	Valor
+        Matrícula	13579
+        Nome Completo	Exemplo Exemplo Exemplo
+        E-mail	matrícula@unb.br
+        Senha	senhaSegura123
+        Confirmar_Senha	senhaSegura123
 
     E clico no botão "Cadastrar"
     Então o sistema deve exibir a mensagem "Usuário cadastrado com sucesso!"
@@ -31,12 +30,12 @@ Cenário: Tentativa de cadastro com matrícula já existente
         Dado que existe um usuário cadastrado com matrícula "12345"
         E eu estou na página de "Cadastro de Usuários"
         Quando eu tento cadastrar um novo usuário com:
-            | Campo             | Valor             |
-            | Matrícula         | 12345             |
-            | Nome Completo     | João Carlos Silva |
-            | E-mail            | matrícula@unb.br  |
-            | Senha             | senhaSegura123    |
-            | Confirmar_Senha   | senhaSegura123    |
+            Campo	Valor
+            Matrícula	12345
+            Nome Completo	João Carlos Silva
+            E-mail	matrícula@unb.br
+            Senha	senhaSegura123
+            Confirmar_Senha	senhaSegura123
 
         E clico no botão "Cadastrar"
 

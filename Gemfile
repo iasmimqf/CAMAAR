@@ -23,6 +23,8 @@ gem "devise-jwt"
 gem "rack-cors"
 gem 'csv'
 
+gem "csv"
+
 # Medir cobertura dos testes
 gem "rubocop", require: false
 

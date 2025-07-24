@@ -1,4 +1,7 @@
 {
+<<<<<<< HEAD
+  "pages": {}
+=======
   "pages": {
     "/layout": [
       "static/chunks/webpack.js",
@@ -37,4 +40,5 @@
       "static/chunks/app/page.js"
     ]
   }
+>>>>>>> develop
 }

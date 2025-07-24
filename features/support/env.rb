@@ -3,16 +3,34 @@ require 'cucumber/rails'
 require 'capybara/cucumber'
 require 'capybara/rspec'
 require 'factory_bot_rails'
-require 'database_cleaner/active_record'
-require 'rspec/mocks/standalone'
 
+# Carrega os modelos do Rails
+require Rails.root.join('config', 'environment')
+
+# Inclui métodos do FactoryBot
+World(FactoryBot::Syntax::Methods)
+
+# Configurações do Capybara
+Capybara.default_driver = :rack_test
+Capybara.javascript_driver = :selenium_headless
+
+# Para testes com JavaScript
+Capybara.register_driver :selenium_headless do |app|
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_argument('--headless')
+  options.add_argument('--no-sandbox')
+  options.add_argument('--disable-dev-shm-usage')
+
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+end
+
+# Configurações do banco de dados para testes
+require 'database_cleaner'
 DatabaseCleaner.strategy = :truncation
 
-include Warden::Test::Helpers
-
+# Hooks para limpeza
 Before do
-  Warden.test_mode!
-  DatabaseCleaner.clean_with(:truncation)
+  DatabaseCleaner.start
 end
 
 After do

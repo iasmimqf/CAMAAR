@@ -1,0 +1,87 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="max-w-4xl mx-auto">
+    <div class="bg-white shadow sm:rounded-lg">
+      <div class="px-4 py-5 sm:p-6">
+        <div class="mb-6">
+          <h1 class="text-2xl font-bold text-gray-900"><%= @formulario.template.titulo %></h1>
+          <p class="mt-1 text-sm text-gray-500">
+            Turmas: <%= @formulario.turmas.map { |t| "#{t.disciplina.nome} - #{t.codigo_turma}" }.join(', ') %>
+          </p>
+        </div>
+
+        <%= form_with model: [@formulario, @resposta], 
+            url: create_resposta_formulario_path(@formulario), 
+            local: true, 
+            class: "space-y-6" do |form| %>
+          
+          <% if @resposta.errors.any? %>
+            <div class="bg-red-50 border border-red-200 rounded-md p-4">
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div class="ml-3">
+                  <h3 class="text-sm font-medium text-red-800">Foram encontrados os seguintes erros:</h3>
+                  <div class="mt-2 text-sm text-red-700">
+                    <ul class="list-disc pl-5 space-y-1">
+                      <% @resposta.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+
+          <% @questoes.each_with_index do |questao, index| %>
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <div class="mb-3">
+                <label class="block text-sm font-medium text-gray-700">
+                  <%= questao.enunciado %>
+                  <% if questao.obrigatoria %>
+                    <span class="text-red-500">*</span>
+                  <% end %>
+                </label>
+              </div>
+
+              <%= hidden_field_tag "resposta_formulario[respostas_questoes_attributes][#{index}][questao_id]", questao.id %>
+
+              <% if questao.tipo == 'Escala' %>
+                <div class="flex space-x-4">
+                  <% (1..5).each do |valor| %>
+                    <% valor_selecionado = @valores_enviados && @valores_enviados[index.to_s] && @valores_enviados[index.to_s]['valor_resposta'] == valor.to_s %>
+                    <label class="flex items-center">
+                      <%= radio_button_tag "resposta_formulario[respostas_questoes_attributes][#{index}][valor_resposta]", 
+                          valor, valor_selecionado, 
+                          class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" %>
+                      <span class="ml-2 text-sm text-gray-700"><%= valor %></span>
+                    </label>
+                  <% end %>
+                </div>
+                <p class="mt-1 text-xs text-gray-500">1 = Muito Insatisfeito, 5 = Muito Satisfeito</p>
+              
+              <% elsif questao.tipo == 'Texto' %>
+                <% texto_preservado = @valores_enviados && @valores_enviados[index.to_s] ? @valores_enviados[index.to_s]['texto_resposta'] : '' %>
+                <%= text_area_tag "resposta_formulario[respostas_questoes_attributes][#{index}][texto_resposta]", 
+                    texto_preservado, 
+                    placeholder: 'Digite sua resposta...', 
+                    rows: 3,
+                    class: 'mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' %>
+              <% end %>
+            </div>
+          <% end %>
+
+          <div class="flex justify-end space-x-3 pt-6">
+            <%= link_to 'Cancelar', formularios_path, 
+                class: 'bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded' %>
+            <%= form.submit "Enviar Respostas", 
+                class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 'use client';
 
+import { useAuth } from '@/contexts/AuthContext'; // <<< 1. Importe o nosso hook
 import { Search, Menu, X, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -9,32 +10,23 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function AdminPage() {
+  const { logout } = useAuth(); // <<< 2. Obtenha a função de logout do contexto
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('avaliacoes');
+  // Define 'avaliacoes' como a seção ativa para esta página
+  const [activeSection, setActiveSection] = useState('avaliacoes'); 
+  const router = useRouter();
 
-  const subjects = [
-    { name: 'Nome da matéria', semester: 'semestre', professor: 'Professor' },
-    { name: 'Nome da matéria', semester: 'semestre', professor: 'Professor' },
-    { name: 'Nome da matéria', semester: 'semestre', professor: 'Professor' },
-    { name: 'Nome da matéria', semester: 'semestre', professor: 'Professor' },
-    { name: 'Nome da matéria', semester: 'semestre', professor: 'Professor' },
-  ];
+  // Por enquanto, vamos deixar a busca de dados comentada para focar na navegação.
+  // const [forms, setForms] = useState([]);
+  // useEffect(() => { ... }, []);
 
   const handleLogout = () => {
-    console.log('Admin logout clicked');
+    logout(); // <<< 3. Chame a função de logout
   };
-
-  const handleSectionChange = (section: string) => {
-    setActiveSection(section);
-    console.log('Navigating to:', section);
-  };
-
-  const router = useRouter();
 
   return (
     <div className="min-h-screen bg-gray-200">
@@ -47,15 +39,10 @@ export default function AdminPage() {
               size="icon"
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
-              {sidebarOpen ? (
-                <X className="h-5 w-5" />
-              ) : (
-                <Menu className="h-5 w-5" />
-              )}
+              {sidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
             <h1 className="text-lg font-medium">Avaliações</h1>
           </div>
-
           <div className="flex items-center gap-4">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -64,7 +51,6 @@ export default function AdminPage() {
                 className="pl-10 w-64 rounded-full border-gray-300"
               />
             </div>
-
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
@@ -106,6 +92,7 @@ export default function AdminPage() {
         >
           <nav className="bg-white flex-1 py-2">
             <div className="space-y-1">
+              {/* Botão para esta própria página */}
               <button
                 onClick={() => router.push('/admin')}
                 className={`w-full text-left px-4 py-3 text-sm font-medium transition-colors ${
@@ -116,6 +103,7 @@ export default function AdminPage() {
               >
                 Avaliações
               </button>
+              {/* ESTE É O BOTÃO QUE ESTAMOS CONFIGURANDO */}
               <button
                 onClick={() => router.push('/admin/gerenciamento')}
                 className={`w-full text-left px-4 py-3 text-sm font-medium transition-colors ${
@@ -132,24 +120,7 @@ export default function AdminPage() {
 
         {/* Main Content */}
         <main className="flex-1 p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {subjects.map((subject, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-lg shadow-sm border p-6 hover:shadow-md transition-shadow cursor-pointer"
-              >
-                <div className="space-y-2">
-                  <h3 className="font-semibold text-gray-900 text-lg">
-                    {subject.name}
-                  </h3>
-                  <p className="text-sm text-gray-500">{subject.semester}</p>
-                  <p className="font-medium text-gray-700 mt-4">
-                    {subject.professor}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <p>Conteúdo da página de Avaliações. Clique em "Gerenciamento" na barra lateral.</p>
         </main>
       </div>
     </div>

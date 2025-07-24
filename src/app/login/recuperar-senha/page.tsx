@@ -1,119 +1,106 @@
 'use client';
 
 import type React from 'react';
+import { useState } from 'react';
+import { useRouter } from "next/navigation";
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { useState } from 'react';
 
-export default function EsqueSenhaPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+export default function RecoverPasswordPage() {
+  const [login, setLogin] = useState('');
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError('');
+    setMessage('');
+    setIsLoading(true);
 
-    if (password !== confirmPassword) {
-      alert('As senhas não coincidem');
-      return;
+    try {
+      const response = await fetch('http://localhost:3000/api/v1/password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          login: login, // Enviando o e-mail ou matrícula
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setMessage(data.message);
+      } else {
+        setError(data.error || 'Ocorreu um erro. Tente novamente.');
+      }
+    } catch (err) {
+      setError('Não foi possível conectar ao servidor. Tente novamente mais tarde.');
+    } finally {
+      setIsLoading(false);
     }
-
-    // Lógica para alterar senha aqui
-    console.log('Password reset attempt:', { email, password });
   };
 
   return (
     <div className="min-h-screen bg-gray-300 flex items-center justify-center p-4">
-      <div className="w-full max-w-4xl bg-white rounded-lg shadow-lg overflow-hidden">
-        <div className="flex min-h-[500px]">
-          {/* lado esquerdo - reset senha */}
-          <div className="flex-1 p-8 flex flex-col justify-center">
-            <div className="w-full max-w-sm mx-auto">
-              <h1 className="text-2xl font-bold text-gray-900 mb-8 text-center">
-                LOGIN
-              </h1>
-
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-2">
-                  <Label
-                    htmlFor="email"
-                    className="text-sm font-medium text-gray-700"
-                  >
-                    Email
-                  </Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="user@aluno.unb.br"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    required
-                    readOnly
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label
-                    htmlFor="password"
-                    className="text-sm font-medium text-gray-700"
-                  >
-                    Senha
-                  </Label>
-                  <Input
-                    id="password"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Nova senha"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label
-                    htmlFor="confirmPassword"
-                    className="text-sm font-medium text-gray-700"
-                  >
-                    Confirme a senha
-                  </Label>
-                  <Input
-                    id="confirmPassword"
-                    type="password"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    placeholder="Confirme a nova senha"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    required
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200"
-                >
-                  Alterar senha
-                </Button>
-              </form>
-            </div>
-          </div>
-
-          {/* lado direito - mensagem */}
-          <div className="flex-1 bg-purple-700 flex items-center justify-center p-8">
-            <div className="text-center">
-              <h2 className="text-4xl font-bold text-white leading-tight">
-                Bem vindo
-                <br />
-                ao
-                <br />
-                Camaar
-              </h2>
-            </div>
-          </div>
+      <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">
+            Recuperar Senha
+          </h1>
+          <p className="text-sm text-gray-600 mb-8">
+            Digite seu e-mail ou matrícula e enviaremos um link para você redefinir sua senha.
+          </p>
         </div>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="space-y-2">
+            <Label htmlFor="login" className="text-sm font-medium text-gray-700">
+              Email ou Matrícula
+            </Label>
+            <Input
+              id="login"
+              name="login"
+              type="text"
+              value={login}
+              placeholder="Digite seu e-mail ou matrícula"
+              onChange={(e) => setLogin(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              required
+              disabled={isLoading || !!message}
+            />
+          </div>
+
+          {message && (
+            <p className="text-sm text-green-600 text-center bg-green-50 p-3 rounded-md">{message}</p>
+          )}
+          {error && (
+            <p className="text-sm text-red-600 text-center bg-red-50 p-3 rounded-md">{error}</p>
+          )}
+
+          <Button
+            type="submit"
+            className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200"
+            disabled={isLoading || !!message}
+          >
+            {isLoading ? 'Enviando...' : 'Enviar Link de Recuperação'}
+          </Button>
+
+          <div className="text-center mt-4">
+            <button
+              type="button"
+              onClick={() => router.push('/login')}
+              className="text-sm text-gray-600 hover:text-gray-800 underline transition-colors duration-200"
+            >
+              Voltar para o Login
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

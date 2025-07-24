@@ -1,5 +1,6 @@
 'use client';
 
+import { useAuth } from '@/contexts/AuthContext'; // <<< 1. Importe o nosso hook
 import { Search, Menu, X, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -30,6 +31,7 @@ interface Course {
 }
 
 export default function EnviarFormularioPage() {
+  const { logout } = useAuth(); // <<< 2. Obtenha a função de logout do contexto
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('gerenciamento');
   const [selectedTemplate, setSelectedTemplate] = useState('');
@@ -65,7 +67,7 @@ export default function EnviarFormularioPage() {
   ]);
 
   const handleLogout = () => {
-    console.log('Admin logout clicked');
+    logout(); // <<< 3. Chame a função de logout
   };
 
   const handleSectionChange = (section: string) => {

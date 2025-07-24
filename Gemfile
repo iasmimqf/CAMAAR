@@ -14,18 +14,20 @@ gem "solid_cache" # Adaptador para Rails.cache
 gem "solid_queue" # Adaptador para Active Job
 gem "solid_cable" # Adaptador para Action Cable
 
-gem "rubocop", require: false
-
-# Medir a Complexidade do Código
-gem "rubycritic", require: false
-
 # Autenticação
 gem "devise"
 gem "devise-jwt"
 gem "devise-i18n" # Internacionalização para Devise
-
+gem "devise-jwt"
 # CORS (Cross-Origin Resource Sharing)
 gem "rack-cors"
+gem 'csv'
+
+# Medir cobertura dos testes
+gem "rubocop", require: false
+
+# Medir a Complexidade do Código
+gem "rubycritic", require: false
 
 # Detecção de navegador (geralmente útil em todos os ambientes)
 gem "browser"
@@ -62,6 +64,7 @@ group :development, :test do
 
   # Static analysis for security vulnerabilities
   gem "brakeman", require: false
+
   # Omakase Ruby styling
   gem "rubocop-rails-omakase", require: false
 end
@@ -73,14 +76,12 @@ group :development do
 end
 
 group :test do
-  # Para testes BDD
   gem "cucumber-rails", require: false
   gem "database_cleaner-active_record"
-
-  # para teste de cobertura
-  gem "simplecov", require: false
-
-  # Use system testing
   gem "capybara"
   gem "selenium-webdriver"
+  gem "database_cleaner"
+  gem "factory_bot_rails"
+  gem "warden"
+  gem "shoulda-matchers"
 end

@@ -1,3 +1,4 @@
+# app/models/usuario.rb
 class Usuario < ApplicationRecord
   attr_writer :login
 
@@ -14,23 +15,35 @@ class Usuario < ApplicationRecord
     self.admin == true
   end
 
-  # Método para buscar formulários pendentes para o aluno
+  # ===============================================================
+  # ▼▼▼ MÉTODO ATUALIZADO COM FILTRO DE PRAZO ▼▼▼
+  # ===============================================================
   def formularios_pendentes
     return Formulario.none if self.turmas.empty?
 
-    # Busca formulários das turmas do aluno que ainda não foram respondidos
     formularios_das_turmas = Formulario.joins(:turmas)
-                                      .where(turmas: { id: self.turmas.pluck(:id) })
-                                      .distinct
+                                       .where(turmas: { id: self.turmas.pluck(:id) })
+                                       # Adiciona a condição para o prazo:
+                                       # O prazo deve ser NULO (sem prazo) OU estar no futuro.
+                                       .where("formularios.prazo IS NULL OR formularios.prazo > ?", Time.current)
+                                       .distinct
 
-    # Remove formulários já respondidos por este aluno
     formularios_respondidos_ids = self.resposta_formularios.pluck(:formulario_id)
     formularios_das_turmas.where.not(id: formularios_respondidos_ids)
   end
+  # ===============================================================
 
-  # ✅ Reativando o validatable!
   devise :database_authenticatable, :registerable,
-         :recoverable, :validatable
+         :recoverable, :validatable,
+         :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
+
+  class NullDenylist
+    def self.revoke_jti(jti, exp); end
+    def self.jti_revoked?(jti); false; end
+    def self.jwt_revoked?(payload, user); jti_revoked?(payload["jti"]); end
+  end
+
+  self.jwt_revocation_strategy = NullDenylist
 
   validates :password, password_complexity: true, if: -> { new_record? || password.present? }
 

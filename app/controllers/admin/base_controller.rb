@@ -1,29 +1,22 @@
-# Esta classe Admin::BaseController é a base para todas as ações administrativas
+# app/controllers/admin/base_controller.rb
 class Admin::BaseController < ApplicationController
-  # Requer autenticação e privilégios de administrador
+  # Usa os helpers padrão do Devise para autenticação baseada em cookie/sessão.
 
-  prepend_before_action :authenticate_admin_access!
+  # 1. Primeiro, garante que QUALQUER usuário esteja logado.
+  #    Se não estiver, o Devise o redireciona para a página de login.
+  before_action :authenticate_usuario!
+
+  # 2. Depois, executa nosso próprio método para verificar se o usuário é admin.
+  before_action :check_admin_privileges
 
   private
 
-  def authenticate_admin_access!
-    authenticated_user = warden.authenticate(scope: :usuario)
-    handle_unauthorized(authenticated_user)
-  end
-
-  def handle_unauthorized(user)
-    return if user&.admin?
-
-    if json_request?
-      render json: { error: "Acesso não autorizado. Requer privilégios de administrador." },
-             status: :forbidden
-    else
-      flash[:alert] = "Acesso não autorizado."
+  def check_admin_privileges
+    # Se o usuário logado (current_usuario) não for admin,
+    # ele é redirecionado para a página inicial com um alerta.
+    unless current_usuario.admin?
+      flash[:alert] = "Acesso não autorizado. Você não tem permissão de administrador."
       redirect_to root_path
     end
-  end
-
-  def json_request?
-    request.format.json?
   end
 end

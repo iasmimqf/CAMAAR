@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :formulario do
-    association :criador, factory: [ :usuario, :admin ]
+    association :criador, factory: :usuario
     association :template
 
     # Adicione outros atributos conforme necessário

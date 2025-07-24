@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :template do
-    sequence(:titulo) { |n| "Template de Teste #{n}" }
+    titulo { Faker::Lorem.sentence(word_count: 3) }
+    skip_questoes_validation { true }
     association :criador, factory: :usuario
 
     # Cria um template com pelo menos uma questão para passar na validação

@@ -58,10 +58,19 @@ RSpec.describe "API de Autenticação", type: :request do
       }.to_json
 
       post '/usuarios/sign_in', params: login_params, headers: headers
+      puts "RESPOSTA REAL: #{response.body}"
 
       delete '/usuarios/sign_out', headers: headers
+      puts "RESPOSTA REAL: #{response.body}"
 
       expect(response).to have_http_status(:ok)
+    end
+    it "desloga o usuário que não está deslogado (erro)" do
+
+      delete '/usuarios/sign_out', headers: headers
+      puts "RESPOSTA REAL: #{response.body}"
+
+      expect(response).to have_http_status(:unauthorized)
     end
   end
 end

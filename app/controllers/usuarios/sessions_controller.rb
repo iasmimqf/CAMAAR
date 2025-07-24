@@ -1,38 +1,37 @@
 # app/controllers/usuarios/sessions_controller.rb
 class Usuarios::SessionsController < Devise::SessionsController
-  # REMOVA QUALQUER LINHA 'include Devise::Controllers::Helpers' OU 'extend Devise::Controllers::Helpers' AQUI.
-
+  # Esta linha é a chave para dizer ao controller que ele deve responder em JSON.
   respond_to :json
-
-  # POST /usuarios/sign_in (Este método já usa warden.authenticate! e está OK)
-  def create
-    self.resource = warden.authenticate!(auth_options)
-    sign_in(resource_name, resource)
-    render json: { data: resource_data }, status: :ok
-  rescue Warden::Authentication::Failure
-    render json: { error: "Login ou senha inválidos." }, status: :unauthorized
-  end
-
-  # DELETE /usuarios/sign_out
-  def destroy
-    # >>> MUDANÇA CRUCIAL AQUI: Faz o logout explicitamente <<<
-    signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
-    if signed_out
-      render json: { message: "Logout bem-sucedido." }, status: :ok
-    else
-      # Se não conseguiu fazer logout (ex: sessão já expirada/inválida), retorna 401
-      render json: { error: "Nenhum utilizador para fazer logout ou sessão inválida." }, status: :unauthorized
-    end
-  end
 
   private
 
-  def resource_data
-    # Assumindo que 'resource' aqui já é o usuário autenticado pelo Devise.
-    { id: resource.id, email: resource.email, admin: resource.admin? }
+  # Este método é chamado automaticamente pelo Devise após um login bem-sucedido.
+  # A gem `devise-jwt` intercepta esta resposta e adiciona o token no cabeçalho.
+  def respond_with(resource, _opts = {})
+    render json: {
+      status: { code: 200, message: "Login realizado com sucesso." },
+      data: {
+        id: resource.id,
+        email: resource.email,
+        admin: resource.admin?
+      }
+    }, status: :ok
   end
 
+  # Este método é chamado automaticamente pelo Devise após um logout.
   def respond_to_on_destroy
-    # A resposta JSON já foi enviada no método destroy.
+    # A gem `devise-jwt` já cuidou de invalidar o token.
+    # Nós apenas confirmamos com uma mensagem de sucesso.
+    if request.headers["Authorization"].present?
+      render json: {
+        status: 200,
+        message: "Logout realizado com sucesso."
+      }, status: :ok
+    else
+      render json: {
+        status: 401,
+        message: "Não foi possível encontrar uma sessão ativa."
+      }, status: :unauthorized
+    end
   end
 end

@@ -1,7 +1,7 @@
 require_relative "boot"
 
 require "rails/all"
-require 'letter_opener_web'
+require "letter_opener_web"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -22,14 +22,14 @@ module Camaar
     # in config/environments, which are processed later.
     #
 
-    config.autoload_paths += %W(#{config.root}/app/validators)
-    config.eager_load_paths << Rails.root.join('app/validators')
+    config.autoload_paths += %W[#{config.root}/app/validators]
+    config.eager_load_paths << Rails.root.join("app/validators")
 
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
     # --- ADICIONADO: Define o Português como o idioma padrão da aplicação ---
-    config.i18n.available_locales = [:en, :'pt-BR']
+    config.i18n.available_locales = [ :en, :'pt-BR' ]
     config.i18n.default_locale = :'pt-BR'
     # --------------------------------------------------------------------
   end

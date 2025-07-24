@@ -1,8 +1,8 @@
 [
   {
-    "nome": "João da Silva",
-    "matricula": "123456789",
-    "email": "joao.silva@aluno.unb.br",
+    "nome": "Ana Clara Jordao Perna",
+    "matricula": "190084006",
+    "email": "190084006@malinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",
@@ -12,26 +12,513 @@
     ]
   },
   {
-    "nome": "Maria Oliveira",
-    "matricula": "987654321",
-    "email": "maria.oliveira@aluno.unb.br",
+    "nome": "Andre Carvalho de Roure",
+    "matricula": "200033522",
+    "email": "200033522@malinator.com",
     "turmas": [
       {
-        "disciplina_codigo": "CIC0105",
-        "codigo_turma": "TA",
-        "semestre": "2021.2"
-      },
-      {
-        "disciplina_codigo": "CIC0202",
+        "disciplina_codigo": "CIC0097",
         "codigo_turma": "TA",
         "semestre": "2021.2"
       }
     ]
   },
   {
-    "nome": "Pedro Souza",
-    "matricula": "112233445",
-    "email": "pedro.souza@aluno.unb.br",
+    "nome": "André Carvalho Marques",
+    "matricula": "150005491",
+    "email": "150005491@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Antonio Vinicius de Moura Rodrigues",
+    "matricula": "190084502",
+    "email": "190084502@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Arthur Barreiros de Oliveira Mota",
+    "matricula": "190102829",
+    "email": "190102829@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "ARTHUR RODRIGUES NEVES",
+    "matricula": "202014403",
+    "email": "202014403@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Bianca Glycia Boueri",
+    "matricula": "170161561",
+    "email": "170161561@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Caio Otávio Peluti Alencar",
+    "matricula": "190085312",
+    "email": "190085312@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Camila Frealdo Fraga",
+    "matricula": "170007561",
+    "email": "170007561@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Claudio Roberto Oliveira Peres de Barros",
+    "matricula": "190097591",
+    "email": "190097591@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Daltro Oliveira Vinuto",
+    "matricula": "160025966",
+    "email": "160025966@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Davi de Moura Amaral",
+    "matricula": "200016750",
+    "email": "200016750@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Eduardo Xavier Dantas",
+    "matricula": "190086530",
+    "email": "190086530@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Enzo Nunes Leal Sampaio",
+    "matricula": "190062789",
+    "email": "190062789@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Enzo Yoshio Niho",
+    "matricula": "190027304",
+    "email": "190027304@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Gabriel Faustino Lima da Rocha",
+    "matricula": "190013249",
+    "email": "190013249@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Gabriel Ligoski",
+    "matricula": "190087498",
+    "email": "190087498@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "GABRIEL MENDES CIRIATICO GUIMARÃES",
+    "matricula": "202033202",
+    "email": "202033202@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Gustavo Rodrigues dos Santos",
+    "matricula": "190014121",
+    "email": "190014121@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Gustavo Rodrigues Gualberto",
+    "matricula": "190108266",
+    "email": "190108266@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Igor David Morais",
+    "matricula": "180102141",
+    "email": "180102141@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Jefte Augusto Gomes Batista",
+    "matricula": "180057570",
+    "email": "180057570@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Karolina de Souza Silva",
+    "matricula": "190046791",
+    "email": "190046791@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Kléber Rodrigues da Costa Júnior",
+    "matricula": "200053680",
+    "email": "200053680@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Luca Delpino Barbabella",
+    "matricula": "180125559",
+    "email": "180125559@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Lucas de Almeida Abreu Faria",
+    "matricula": "170016668",
+    "email": "170016668@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Lucas Gonçalves Ramalho",
+    "matricula": "190098091",
+    "email": "190098091@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Lucas Monteiro Miranda",
+    "matricula": "170149684",
+    "email": "170149684@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Lucas Resende Silveira Reis",
+    "matricula": "180144421",
+    "email": "180144421@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Luis Fernando Freitas Lamellas",
+    "matricula": "190016841",
+    "email": "190016841@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Luiza de Araujo Nunes Gomes",
+    "matricula": "190112794",
+    "email": "190112794@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Marcelo Aiache Postiglione",
+    "matricula": "180126652",
+    "email": "180126652@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Marcelo Junqueira Ferreira",
+    "matricula": "200023624",
+    "email": "200023624@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "MARIA EDUARDA CARVALHO SANTOS",
+    "matricula": "190092556",
+    "email": "190092556@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Maria Eduarda Lacerda Dantas",
+    "matricula": "200067184",
+    "email": "200067184@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Maylla Krislainy de Sousa Silva",
+    "matricula": "190043873",
+    "email": "190043873@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Pedro Cesar Ribeiro Passos",
+    "matricula": "180139312",
+    "email": "180139312@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Rafael Mascarenhas Dal Moro",
+    "matricula": "170021041",
+    "email": "170021041@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Rodrigo Mamedio Arrelaro",
+    "matricula": "190095164",
+    "email": "190095164@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Thiago de Oliveira Albuquerque",
+    "matricula": "140177442",
+    "email": "140177442@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Thiago Elias dos Reis",
+    "matricula": "190126892",
+    "email": "190126892@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Victor Hugo Rodrigues Fernandes",
+    "matricula": "180132041",
+    "email": "180132041@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "Vinicius Lima Passos",
+    "matricula": "200028545",
+    "email": "200028545@malinator.com",
+    "turmas": [
+      {
+        "disciplina_codigo": "CIC0097",
+        "codigo_turma": "TA",
+        "semestre": "2021.2"
+      }
+    ]
+  },
+  {
+    "nome": "William Xavier dos Santos",
+    "matricula": "190075384",
+    "email": "190075384@malinator.com",
     "turmas": [
       {
         "disciplina_codigo": "CIC0097",

@@ -5,7 +5,7 @@ class CreateRespostaFormularios < ActiveRecord::Migration[7.1]
       t.references :respondente, null: false, foreign_key: { to_table: :usuarios }
       t.timestamps
     end
-    
-    add_index :resposta_formularios, [:formulario_id, :respondente_id], unique: true
+
+    add_index :resposta_formularios, [ :formulario_id, :respondente_id ], unique: true
   end
 end

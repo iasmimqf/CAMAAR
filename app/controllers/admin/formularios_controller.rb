@@ -22,7 +22,7 @@ class Admin::FormulariosController < Admin::BaseController
   def new
     @formulario = Formulario.new
     @templates = Template.includes(:questoes).order(:titulo)
-    @turmas = Turma.includes(:disciplina).order('disciplinas.nome, codigo_turma')
+    @turmas = Turma.includes(:disciplina).order("disciplinas.nome, codigo_turma")
   end
 
   # <<< MÉTODO CREATE MODIFICADO PARA FUNCIONAR COMO API >>>
@@ -45,7 +45,7 @@ class Admin::FormulariosController < Admin::BaseController
 
   def edit
     @templates = Template.includes(:questoes).order(:titulo)
-    @turmas = Turma.includes(:disciplina).order('disciplinas.nome, codigo_turma')
+    @turmas = Turma.includes(:disciplina).order("disciplinas.nome, codigo_turma")
   end
 
   def update
@@ -53,7 +53,7 @@ class Admin::FormulariosController < Admin::BaseController
       redirect_to admin_formularios_path, notice: "Formulário atualizado com sucesso"
     else
       @templates = Template.includes(:questoes).order(:titulo)
-      @turmas = Turma.includes(:disciplina).order('disciplinas.nome, codigo_turma')
+      @turmas = Turma.includes(:disciplina).order("disciplinas.nome, codigo_turma")
       render :edit, status: :unprocessable_entity
     end
   end

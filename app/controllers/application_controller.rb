@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     added_attrs = [:username, :email, :password, :password_confirmation, :remember_me]
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
-    devise_parameter_sanitizer.permit :sign_in, keys: [:login, :password]
+    devise_parameter_sanitizer.permit :sign_in, keys: [ :login, :password ]
   end
 
   private
@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   # Este método é para o "Mundo do Admin" (HTML) e está correto.
   def after_sign_in_path_for(resource)
     if resource.admin?
-      '/admin/dashboard'
+      "/admin/dashboard"
     else
       root_path
     end

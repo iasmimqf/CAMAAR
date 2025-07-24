@@ -3,11 +3,11 @@ class Formulario < ApplicationRecord
   has_and_belongs_to_many :turmas
 
   # Relação de um formulário que pertence a um criador (usuário).
-  belongs_to :criador, class_name: 'Usuario'
-  
+  belongs_to :criador, class_name: "Usuario"
+
   # Relação de um formulário que pertence a um template.
   belongs_to :template
-  
+
   # Relacionamento com respostas
   has_many :resposta_formularios, dependent: :destroy
 

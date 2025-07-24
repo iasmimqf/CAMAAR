@@ -15,7 +15,7 @@ Dado('existem templates de formulário cadastrados') do
   criador = @admin || @admin_user
   @template_avaliacao = create(:template, titulo: 'Avaliação Padrão', criador: criador)
   create(:questao, template: @template_avaliacao, enunciado: 'Como você avalia a disciplina?', tipo: 'Escala')
-  
+
   @template_outro = create(:template, titulo: 'Avaliação Detalhada', criador: criador)
   create(:questao, template: @template_outro, enunciado: 'Comentários sobre a disciplina', tipo: 'Texto')
 end
@@ -23,7 +23,7 @@ end
 Dado('existem turmas ativas para o semestre atual') do
   @disciplina1 = create(:disciplina, nome: 'Banco de Dados')
   @disciplina2 = create(:disciplina, nome: 'Engenharia de Software')
-  
+
   @turma01 = create(:turma, codigo_turma: 'Turma 01', disciplina: @disciplina1, semestre: '2025.1')
   @turma02 = create(:turma, codigo_turma: 'Turma 02', disciplina: @disciplina1, semestre: '2025.1')
   @turma03 = create(:turma, codigo_turma: 'Turma 03', disciplina: @disciplina2, semestre: '2025.1')
@@ -56,7 +56,7 @@ Quando('eu seleciono o template {string}') do |template_nome|
 end
 
 Quando('eu seleciono as turmas {string}, {string} e {string}') do |turma1, turma2, turma3|
-  [turma1, turma2, turma3].each do |turma_nome|
+  [ turma1, turma2, turma3 ].each do |turma_nome|
     turma = Turma.find_by(codigo_turma: turma_nome)
     check "turma_#{turma.id}" if turma
   end
@@ -93,7 +93,7 @@ Então('as turmas devem estar associadas ao novo formulário') do
   formulario = Formulario.last
   expect(formulario).to be_present
   expect(formulario.turmas.count).to be > 0
-  
+
   # Verifica se a página atual mostra o sucesso
   expect(current_path).to eq(admin_formularios_path)
 end

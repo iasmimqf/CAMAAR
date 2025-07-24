@@ -12,6 +12,14 @@ Usuario.find_or_create_by!(email: 'cauakamuratt@gmail.com') do |user|
   user.admin         = true
 end
 
+Usuario.find_or_create_by!(email: 'iasmimqf@gmail.com') do |user|
+  puts "Criando usuário admin..."
+  user.nome = 'Admin do Sistema'
+  user.password      = 'Password123!'
+  user.password_confirmation      = 'Password123!'
+  user.admin         = true
+end
+
 # --- Usuário Padrão (Aluno) ---
 Usuario.find_or_create_by!(email: 'aluno@email.com') do |user|
   puts "Criando usuário aluno..."
@@ -21,9 +29,3 @@ Usuario.find_or_create_by!(email: 'aluno@email.com') do |user|
   user.password_confirmation      = 'Password123!'
   user.admin         = false
 end
-
-puts "Usuários de teste criados com sucesso!"
-puts "----------------------------------------"
-puts "Admin: admin@email.com | Senha: Password123!"
-puts "Aluno: aluno@email.com | Senha: Password123!"
-puts "----------------------------------------"

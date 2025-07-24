@@ -13,33 +13,29 @@ class Api::V1::PasswordsController < ApplicationController
     if user.present?
       # Usa o método do Devise para gerar um token e enfileirar o e-mail de redefinição
       user.send_reset_password_instructions
-      # Retorna uma mensagem de sucesso genérica para o frontend
-      render json: { status: 'ok', message: 'Se o seu e-mail ou matrícula estiver em nossa base de dados, você receberá um link para redefinir sua senha.' }, status: :ok
-    else
-      # IMPORTANTE: Mesmo se o usuário não for encontrado, retornamos uma mensagem de sucesso.
-      # Isso é uma medida de segurança para evitar que alguém use esta API para descobrir
-      # quais e-mails ou matrículas estão cadastrados no sistema.
-      render json: { status: 'ok', message: 'Se o seu e-mail ou matrícula estiver em nossa base de dados, você receberá um link para redefinir sua senha.' }, status: :ok
     end
+
+    # IMPORTANTE: Mesmo se o usuário não for encontrado, retornamos uma mensagem de sucesso.
+    # Isso é uma medida de segurança para evitar que alguém use esta API para descobrir
+    # quais e-mails ou matrículas estão cadastrados no sistema.
+    render json: { status: "ok", message: "Se o seu e-mail ou matrícula estiver em nossa base de dados, você receberá um link para redefinir sua senha." }, status: :ok
   end
 
   # Ação para EFETIVAMENTE redefinir a senha com o token
   # Rota: PUT /api/v1/password
   def reset
     # Usa o método do Devise para encontrar o usuário pelo token e atualizar a senha
-    user = Usuario.reset_password_by_token(reset_password_params)
+    erros = Usuario.reset_password_by_token(reset_password_params).errors.full_messages
 
     # Verifica se houve erros no processo (token inválido, senhas não conferem, etc.)
-    if user.errors.empty?
+    if erros.empty?
       # Se não houver erros, a senha foi redefinida com sucesso
-      render json: { status: 'ok', message: 'Sua senha foi redefinida com sucesso.' }, status: :ok
+      render json: { status: "ok", message: "Sua senha foi redefinida com sucesso." }, status: :ok
     else
       # Se houver erros, retorna as mensagens para o frontend
-      render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: erros }, status: :unprocessable_entity
     end
   end
-  # O 'end' extra que estava aqui FOI REMOVIDO!
-  # A classe Api::V1::PasswordsController termina APENAS no último 'end' do arquivo.
 
   private
 

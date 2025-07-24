@@ -1,11 +1,11 @@
 # config/routes.rb
 Rails.application.routes.draw do
   devise_for :usuarios, controllers: {
-    sessions: 'usuarios/sessions'
+    sessions: "usuarios/sessions"
   }
   get "home/index"
 
-  resources :formularios, only: [:index, :show] do
+  resources :formularios, only: [ :index, :show ] do
     member do
       post :create_resposta
     end

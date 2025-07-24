@@ -11,6 +11,6 @@ class CreateQuestoes < ActiveRecord::Migration[7.1]
       t.timestamps
     end
 
-    add_index :questoes, [:template_id, :created_at]
+    add_index :questoes, [ :template_id, :created_at ]
   end
 end

@@ -3,13 +3,13 @@
 # --- DADO ---
 Dado('que estou autenticado como administrador') do
   @admin = create(:usuario, :admin, email: 'admin@email.com', password: 'password123')
-  
+
   # Login programático mais direto
   page.driver.post usuario_session_path, {
     'usuario[login]' => 'admin@email.com',
     'usuario[password]' => 'password123'
   }
-  
+
   # Visita uma página que requer autenticação para verificar se funcionou
   visit admin_templates_path
 end
@@ -34,9 +34,9 @@ end
 Quando('adiciono as seguintes questões:') do |table|
   # Como não temos JavaScript nos testes, vamos criar as questões usando uma abordagem diferente
   # Visitamos a página diretamente com parâmetros que simulam o formulário preenchido
-  
+
   titulo = find_field('Título do Template').value
-  
+
   questoes_params = {}
   table.hashes.each_with_index do |row, index|
     questoes_params[index.to_s] = {
@@ -46,7 +46,7 @@ Quando('adiciono as seguintes questões:') do |table|
       'obrigatoria' => row['Obrigatória'] == 'Sim' ? 'true' : 'false'
     }
   end
-  
+
   # Submete os dados diretamente usando o POST
   page.driver.post admin_templates_path, {
     'template' => {
@@ -54,14 +54,14 @@ Quando('adiciono as seguintes questões:') do |table|
       'questoes_attributes' => questoes_params
     }
   }
-  
+
   # Atualiza a página para mostrar o resultado
   visit current_path
 end
 
 Quando('clico em {string}') do |botao|
   # Se a página atual já contém mensagens de sucesso ou erro, não precisa clicar
-  if page.has_content?('salvo com sucesso') || 
+  if page.has_content?('salvo com sucesso') ||
      page.has_content?('Foram encontrados os seguintes erros:') ||
      page.has_content?('Já existe um template com este nome') ||
      page.has_content?('Use um título diferente')
@@ -71,7 +71,7 @@ Quando('clico em {string}') do |botao|
     if botao == 'Salvar Template'
       # Verifica se é o caso do template duplicado
       titulo = find_field('Título do Template').value rescue ''
-      
+
       if titulo == @existing_template&.titulo
         # Simula o envio do formulário com título duplicado
         page.driver.post admin_templates_path, {
@@ -90,7 +90,7 @@ Quando('clico em {string}') do |botao|
         visit current_path
       end
     end
-    
+
     puts "Clicando no botão #{botao}"
     click_button botao
   end
@@ -109,7 +109,7 @@ end
 Quando('adiciono uma questão do tipo {string} sem enunciado') do |tipo|
   # Como não temos JavaScript nos testes, vamos submeter diretamente
   titulo = find_field('Título do Template').value
-  
+
   # Submete uma questão sem enunciado diretamente
   page.driver.post admin_templates_path, {
     'template' => {
@@ -124,7 +124,7 @@ Quando('adiciono uma questão do tipo {string} sem enunciado') do |tipo|
       }
     }
   }
-  
+
   # Atualiza a página para mostrar o resultado
   visit current_path
 end

@@ -5,7 +5,7 @@ class PasswordResetToken < ApplicationRecord
 
   validates :token, presence: true, uniqueness: true
   validates :expires_at, presence: true
-  validates :used, inclusion: { in: [true, false] }
+  validates :used, inclusion: { in: [ true, false ] }
 
   def expired?
     expires_at < Time.current

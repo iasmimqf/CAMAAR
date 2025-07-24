@@ -3,9 +3,9 @@ class Usuario < ApplicationRecord
   attr_writer :login
 
   # Relacionamentos
-  has_many :resposta_formularios, foreign_key: 'respondente_id', dependent: :destroy
+  has_many :resposta_formularios, foreign_key: "respondente_id", dependent: :destroy
   has_and_belongs_to_many :turmas
-  has_many :formularios, foreign_key: 'criador_id', dependent: :destroy
+  has_many :formularios, foreign_key: "criador_id", dependent: :destroy
 
   def login
     @login || self.email || self.matricula

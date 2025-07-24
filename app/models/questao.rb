@@ -1,10 +1,10 @@
 # app/models/questao.rb
 class Questao < ApplicationRecord
-  self.table_name = 'questoes'
+  self.table_name = "questoes"
 
   # Associações
   belongs_to :template
-  has_many :resposta_questoes, class_name: 'RespostaQuestao', dependent: :destroy
+  has_many :resposta_questoes, class_name: "RespostaQuestao", dependent: :destroy
 
   # Validações
   validates :enunciado, presence: { message: "O enunciado é obrigatório" }
@@ -31,10 +31,11 @@ class Questao < ApplicationRecord
   # Métodos auxiliares para lidar com as opções
   def opcoes_array
     return [] if opcoes.blank?
-    opcoes.split(',').map(&:strip)
+    opcoes.split(",").map(&:strip)
   end
 
   def opcoes_array=(array)
-    self.opcoes = array.join(',') if array.present?
+    self.opcoes = array.join(",") if array.present?
   end
 end
+

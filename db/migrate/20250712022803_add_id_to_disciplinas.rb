@@ -11,6 +11,5 @@ class AddIdToDisciplinas < ActiveRecord::Migration[7.1]
     end
     # Adiciona o índice para garantir que cada 'codigo' seja único
     add_index :disciplinas, :codigo, unique: true
-
   end
 end

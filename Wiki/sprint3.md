@@ -105,8 +105,6 @@ As demais features não tiveram tempo hábil para revisão dos testes nesta spri
 ---
 ## Análise de Qualidade e Refatoração (Sprint 3)
 
-*(Esta seção deve ser preenchida após a finalização de todas as implementações e testes)*
-
 ### Cobertura de Testes (SimpleCov)
 
 * **Controllers:**
@@ -132,7 +130,7 @@ As demais features não tiveram tempo hábil para revisão dos testes nesta spri
     * `app/mailers/custom_devise_mailer.rb`: `[100%]`
 ### Complexidade de Código (RubyCritic)
 
-* Nenhum método implementado nesta sprint apresentou um ABC Score igual ou superior a 20. As refatorações realizadas (como no `Admin::BaseController`) foram focadas em manter a complexidade baixa. (Assim espero!!!!)
+*As refatorações realizadas (como no `Admin::BaseController`) foram focadas em manter a complexidade baixa. (Assim espero!!!!)
 * **Tabela de Refatorações Notáveis:**
     | Método Original | Complexidade ABC (Antes) | Complexidade ABC (Depois) | Justificativa |
     | :--- | :--- | :--- | :--- |

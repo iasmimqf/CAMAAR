@@ -33,7 +33,7 @@ end
 Quando('eu envio o arquivo {string} para o endpoint de importação de turmas') do |filename|
   file_path = Rails.root.join('features', 'support', 'test_files', filename)
   file = Rack::Test::UploadedFile.new(file_path, 'application/json')
-  
+
   # Usa o token capturado para fazer a requisição autenticada
   post '/admin/importacoes/importar_turmas', params: { file: file }, headers: @auth_headers
 end
@@ -51,14 +51,14 @@ end
 
 Então('a resposta da API deve ser de sucesso') do
   # Adiciona um puts de depuração em caso de falha para vermos a resposta
-  puts "DEBUG: Resposta da API com falha: #{last_response.body}" unless [200, 201].include?(last_response.status)
-  
-  expect(last_response.status).to be_in([200, 201]) # OK ou Created
+  puts "DEBUG: Resposta da API com falha: #{last_response.body}" unless [ 200, 201 ].include?(last_response.status)
+
+  expect(last_response.status).to be_in([ 200, 201 ]) # OK ou Created
 end
 
 Então('a resposta da API deve ser um erro com a mensagem {string}') do |message|
-  expect(last_response.status).to be_in([400, 422]) # Bad Request ou Unprocessable Entity
-  
+  expect(last_response.status).to be_in([ 400, 422 ]) # Bad Request ou Unprocessable Entity
+
   json_response = JSON.parse(last_response.body)
   response_message = json_response['alert'] || json_response['errors']&.first
   expect(response_message).to include(message)

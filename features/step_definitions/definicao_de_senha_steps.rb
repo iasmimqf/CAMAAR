@@ -2,7 +2,7 @@
 
 Dado('que o usuário {string} solicitou uma redefinição de senha') do |email|
   # Este passo continua o mesmo, pois prepara os dados no banco.
-  @user = FactoryBot.create(:usuario, email: email, password:"SenhaEsquecida!123")
+  @user = FactoryBot.create(:usuario, email: email, password: "SenhaEsquecida!123")
   @reset_token = @user.send_reset_password_instructions
 end
 

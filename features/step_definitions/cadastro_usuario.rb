@@ -22,40 +22,40 @@ Quando('o administrador importa um arquivo de alunos para a turma {string} conte
   raise "A variável @turma não foi definida no passo 'Dado'. Verifique o seu teste." unless @turma
 
   # Usa a @turma e a @disciplina que foram criadas no passo 'Dado'
-  dados_json = [{
+  dados_json = [ {
     # --- A LINHA CORRIGIDA ESTÁ AQUI ---
     "code" => @disciplina.codigo, # Trocado de .code para .codigo
     "classCode" => @turma.codigo_turma, # Verifique se este é o nome correto da coluna na tabela turmas
     "semester" => @turma.semestre,
-    "dicente" => [{ "nome" => "Aluno Teste", "matricula" => "123456", "email" => email_aluno }]
-  }]
-  
+    "dicente" => [ { "nome" => "Aluno Teste", "matricula" => "123456", "email" => email_aluno } ]
+  } ]
+
   arquivo_simulado = double(read: dados_json.to_json)
-  
+
   # Executa o serviço de importação
   @resultado_importacao = AlunoImporterService.new(arquivo_simulado).call
 end
 
 Quando('o administrador importa um arquivo de alunos com um e-mail inválido') do
-  dados_json = [{
+  dados_json = [ {
     "code" => @turma.disciplina.code,
     "classCode" => @turma.class_code,
     "semester" => @turma.semester,
-    "dicente" => [{ "nome" => "Aluno Invalido", "matricula" => "654321", "email" => "email-invalido" }] # E-mail inválido
-  }]
-  
+    "dicente" => [ { "nome" => "Aluno Invalido", "matricula" => "654321", "email" => "email-invalido" } ] # E-mail inválido
+  } ]
+
   arquivo_simulado = double(read: dados_json.to_json)
   @resultado_importacao = AlunoImporterService.new(arquivo_simulado).call
 end
 
 Quando('o administrador importa um arquivo de alunos para a turma {string}') do |codigo_turma_invalida|
-  dados_json = [{
+  dados_json = [ {
     "code" => "CODIGO_FALSO",
     "classCode" => codigo_turma_invalida,
     "semester" => "2025.1",
-    "dicente" => [{ "nome" => "Aluno Teste", "matricula" => "123456", "email" => "aluno.teste@email.com" }]
-  }]
-  
+    "dicente" => [ { "nome" => "Aluno Teste", "matricula" => "123456", "email" => "aluno.teste@email.com" } ]
+  } ]
+
   arquivo_simulado = double(read: dados_json.to_json)
   @resultado_importacao = AlunoImporterService.new(arquivo_simulado).call
 end

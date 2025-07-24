@@ -8,14 +8,14 @@ Warden::JWTAuth.configure do |config|
   # Ela diz ao devise-jwt: "Quando uma requisição POST for bem-sucedida
   # na rota /usuarios/sign_in, você DEVE gerar e enviar um token."
   config.dispatch_requests = [
-    ['POST', %r{^/usuarios/sign_in$}]
+    [ "POST", %r{^/usuarios/sign_in$} ]
   ]
 
   # Esta regra lida com o logout
   config.revocation_requests = [
-    ['DELETE', %r{^/usuarios/sign_out$}]
+    [ "DELETE", %r{^/usuarios/sign_out$} ]
   ]
-  
+
   # Define o tempo de expiração do token
   config.expiration_time = 1.day.to_i
 end

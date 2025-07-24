@@ -69,56 +69,6 @@ O objetivo desta feature é permitir que um administrador importe dados de Turma
     * Tratamento de erros de dados (turma inexistente, dados de usuário inválidos).
 
 
-### Feature 3: Importação de Dados do SIGAA
-
-**Responsáveis:** `[Iasmim e Hudson]`
-
-O objetivo desta feature é permitir que um administrador importe dados de Turmas e Alunos/Professores a partir de arquivos JSON, populando a base de dados do sistema.
-
-* **Lógica de Negócio Implementada:**
-    * O sistema utiliza uma lógica "encontre ou crie" para evitar a duplicação de `Disciplinas`, `Turmas` e `Usuarios`.
-    * Ao criar um **novo usuário** (aluno ou professor) através da importação, o sistema automaticamente dispara um **e-mail para a definição de senha**, cumprindo um requisito chave da funcionalidade.
-
-* **Testes (RSpec):** Os testes de aceitação para esta feature foram implementados como **testes de serviço** em RSpec (`spec/services/`). Foram verificados varios **Happy Paths e Sad Paths**, como:
-    * Criação correta de novos registros (turmas, alunos, professores).
-    * Associação correta de alunos e professores às turmas.
-    * Envio do e-mail de definição de senha apenas para novos usuários.
-    * Tratamento de erros de ficheiro (JSON malformado, formato inválido).
-    * Tratamento de erros de dados (turma inexistente, dados de usuário inválidos).
-
-### Feature 4: Criação de Templates
-
-**Responsáveis:** `[Iasmim e Hudson]`
-
-Implementamos testes RSpec para a API de templates, cobrindo:
-
-- Validações de campos obrigatórios (título e questões)
-- Fluxos principais de criação, edição e exclusão
-- Sad Paths (títulos vazios, templates sem questões, erros de autorização)
-- Códigos de status HTTP adequados (400, 422)
-
-*Testes de aceitação via Cucumber foram postergados para focar nos testes de integração. A feature está funcional e integrada em `develop`.*
-
-### Feature 5: CRUD Templates
-
-**Responsáveis:** `[Marcus e Hudson]` 
-
-Os testes desta feature foram implementados por Marcus...
-
-### Feature 6: Criação de Formulários
-
-**Responsáveis:** `[Iasmim e Hudson]`
-
-Foram implementados testes automatizados utilizando RSpec, cobrindo:
-
-- Testes de model para validação dos atributos do formulário
-- Testes de requests para os endpoints de criação, edição e envio de respostas de formulários
-- Validação dos fluxos principais e dos Sad Paths (dados inválidos, erros de autorização, etc.)
-
-### Status das demais features
-
-As demais features não tiveram tempo hábil para revisão dos testes nesta sprint.
-
 ---
 ## Análise de Qualidade e Refatoração (Sprint 3)
 

@@ -6,8 +6,8 @@ class Api::V1::TurmasController < Api::V1::BaseController
   # GET /api/v1/turmas
   def index
     # Busca todas as turmas, incluindo a informação da disciplina para ser mais eficiente
-    turmas = Turma.includes(:disciplina).order('disciplinas.nome ASC')
-    
+    turmas = Turma.includes(:disciplina).order("disciplinas.nome ASC")
+
     # Formata a resposta para ser fácil de usar no frontend
     render json: turmas.map { |turma|
       {

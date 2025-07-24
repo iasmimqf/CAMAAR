@@ -1,10 +1,10 @@
 # Caminho: app/controllers/admin/formularios_controller.rb
 class Admin::FormulariosController < Admin::BaseController
   # O seu BaseController já deve ter o filtro de segurança para admin.
-  
+
   # <<< ADICIONADO: Desativa a verificação de token CSRF apenas para a ação 'create',
   # pois ela será usada como um endpoint de API pelo React.
-  skip_before_action :verify_authenticity_token, only: [:create]
+  skip_before_action :verify_authenticity_token, only: [ :create ]
 
   before_action :set_formulario, only: [:show, :edit, :update, :destroy]
 
@@ -90,13 +90,13 @@ class Admin::FormulariosController < Admin::BaseController
                                .distinct
 
     if turmas_ja_avaliadas.any?
-      nomes_turmas = turmas_ja_avaliadas.map(&:nome_completo).join(', ')
+      nomes_turmas = turmas_ja_avaliadas.map(&:nome_completo).join(", ")
       @formulario.errors.add(:base, "As seguintes turmas já foram avaliadas neste semestre: #{nomes_turmas}")
       return false
     end
 
     true
   end
-  
+
   # O seu método ensure_admin foi removido daqui pois a lógica já deve estar no Admin::BaseController
 end

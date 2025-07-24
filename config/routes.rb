@@ -29,17 +29,17 @@ Rails.application.routes.draw do
       
       resources :turmas, only: [:index]
 
-      resources :formularios, only: [:index, :show, :create] do
+      resources :formularios, only: [ :index, :show, :create ] do
         member do
           post :responder
         end
       end
 
-      resources :templates, only: [:index, :create, :show, :update, :destroy]
-      post 'password', to: 'passwords#forgot'
-      put 'password', to: 'passwords#reset'
+      resources :templates, only: [ :index, :create, :show, :update, :destroy ]
+      post "password", to: "passwords#forgot"
+      put "password", to: "passwords#reset"
 
-      resources :resultados, only: [:index] do
+      resources :resultados, only: [ :index ] do
         collection do
           get :exportar
         end

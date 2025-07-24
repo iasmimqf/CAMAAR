@@ -42,7 +42,7 @@ class Api::V1::FormulariosController < Api::V1::BaseController
       end
     }
   rescue ActiveRecord::RecordNotFound
-    render json: { error: 'Formulário não encontrado' }, status: :not_found
+    render json: { error: "Formulário não encontrado" }, status: :not_found
   end
 
   def responder
@@ -135,9 +135,9 @@ class Api::V1::FormulariosController < Api::V1::BaseController
     formulario.criador = current_usuario
 
     if formulario.save
-      render json: { mensagem: 'Formulário enviado com sucesso!' }, status: :created
+      render json: { mensagem: "Formulário enviado com sucesso!" }, status: :created
     else
-      render json: { erro: formulario.errors.full_messages.join(', ') }, status: :unprocessable_entity
+      render json: { erro: formulario.errors.full_messages.join(", ") }, status: :unprocessable_entity
     end
   end
 

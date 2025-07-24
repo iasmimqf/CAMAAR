@@ -1,4 +1,7 @@
 {
+<<<<<<< HEAD
+  "pages": {}
+=======
   "pages": {
     "/layout": [
       "static/chunks/webpack.js",
@@ -7,7 +10,10 @@
       "static/chunks/app/layout.js"
     ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 2f1fae4a69bb3a1b343b956ccdd1ad03671aa433
     "/login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -25,11 +31,14 @@
       "static/chunks/app/admin/page.js"
     ],
 <<<<<<< HEAD
+<<<<<<< HEAD
     "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
 =======
+=======
+>>>>>>> 2f1fae4a69bb3a1b343b956ccdd1ad03671aa433
     "/admin/gerenciamento/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -71,7 +80,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
+<<<<<<< HEAD
 >>>>>>> develop
+=======
+>>>>>>> 2f1fae4a69bb3a1b343b956ccdd1ad03671aa433
     ]
   }
+>>>>>>> develop
 }

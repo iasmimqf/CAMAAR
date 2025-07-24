@@ -47,10 +47,10 @@ module Api
           # A regra `restrict_with_error` adiciona o erro ao atributo :base do modelo.
           error_message = if @template.errors.key?(:base)
                             "Este template não pode ser excluído porque já está a ser utilizado por um ou mais formulários."
-                          else
+          else
                             # Para outros erros de validação, usa a mensagem padrão.
-                            @template.errors.full_messages.join(', ')
-                          end
+                            @template.errors.full_messages.join(", ")
+          end
           render json: { erro: error_message }, status: :unprocessable_entity
         end
       end

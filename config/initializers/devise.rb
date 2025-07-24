@@ -27,11 +27,11 @@ Devise.setup do |config|
     jwt.secret = Rails.application.credentials.devise_jwt_secret_key!
 
     # Define para quais requisições o JWT deve ser despachado (login)
-    jwt.dispatch_requests = [['POST', %r{^/usuarios/sign_in$}]]
+    jwt.dispatch_requests = [ [ "POST", %r{^/usuarios/sign_in$} ] ]
 
     # Define para quais requisições o JWT deve ser revogado (logout)
-    jwt.revocation_requests = [['DELETE', %r{^/usuarios/sign_out$}]]
-    
+    jwt.revocation_requests = [ [ "DELETE", %r{^/usuarios/sign_out$} ] ]
+
     # Define o tempo de expiração do token
     jwt.expiration_time = 1.day.to_i
   end

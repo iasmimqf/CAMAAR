@@ -1,6 +1,8 @@
 pt-BR:
   activerecord:
     attributes:
+        template:
+          criador: "Criador"
         usuario:
           password: "Senha"
           password_confirmation: "Confirmação de Senha"
@@ -22,6 +24,7 @@ pt-BR:
 
   errors:
     messages:
+      required: "é obrigatório(a)" 
       confirmation: "não corresponde à %{attribute}"
       record_invalid: "A validação falhou: %{errors}"
       taken: "já está em uso."

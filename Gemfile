@@ -82,4 +82,5 @@ group :test do
   # Use system testing
   gem "capybara"
   gem "selenium-webdriver"
+  gem 'shoulda-matchers'
 end

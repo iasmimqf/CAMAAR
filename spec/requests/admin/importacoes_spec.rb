@@ -4,9 +4,11 @@ require 'rails_helper'
 RSpec.describe "Admin::ImportacoesController", type: :request do
   let(:admin) { FactoryBot.create(:usuario, :admin, password: "Password@123") }
 
-  # Autentica o admin antes de cada teste neste bloco
-  before do
-    sign_in admin
+  # Gera um token de autenticação válido para o admin
+  let(:auth_headers) do
+    # Simula um login para obter um token JWT real
+    post '/usuarios/sign_in', params: { usuario: { login: admin.email, password: admin.password } }, as: :json
+    { 'Authorization' => response.headers['Authorization'] }
   end
 
   # --- TESTES PARA A IMPORTAÇÃO DE TURMAS ---
@@ -24,7 +26,7 @@ RSpec.describe "Admin::ImportacoesController", type: :request do
         allow(importer_double).to receive(:call).and_return({ success: true, turmas_criadas: 3 })
 
         # 3. Ação: Faz a requisição para o controller
-        post '/admin/importacoes/importar_turmas', params: { file: file }
+        post '/admin/importacoes/importar_turmas', params: { file: file }, headers: auth_headers
 
         # 4. Verificação: O controller chamou o serviço e renderizou a resposta correta?
         expect(TurmaImporterService).to have_received(:new)
@@ -42,7 +44,7 @@ RSpec.describe "Admin::ImportacoesController", type: :request do
         # Simula o serviço retornando um erro
         allow(importer_double).to receive(:call).and_return({ success: false, errors: [ "JSON inválido" ] })
 
-        post '/admin/importacoes/importar_turmas', params: { file: file }
+        post '/admin/importacoes/importar_turmas', params: { file: file }, headers: auth_headers
 
         expect(response).to have_http_status(:unprocessable_entity)
         expect(JSON.parse(response.body)['errors']).to include("JSON inválido")
@@ -68,7 +70,7 @@ RSpec.describe "Admin::ImportacoesController", type: :request do
         allow(importer_double).to receive(:call).and_return({ status: :success, details: { alunos_criados: 1, docentes_criados: 1 } })
 
         # 4. Ação: Faz a requisição para o controller
-        post '/admin/importacoes/importar_alunos', params: { file: file }
+        post '/admin/importacoes/importar_alunos', params: { file: file }, headers: auth_headers
 
         # 5. Verificação: O controller chamou o serviço como esperado?
         expect(AlunoImporterService).to have_received(:new).with(an_instance_of(ActionDispatch::Http::UploadedFile))
@@ -87,7 +89,7 @@ RSpec.describe "Admin::ImportacoesController", type: :request do
         # Simula o serviço retornando um erro
         allow(importer_double).to receive(:call).and_return({ status: :error, errors: [ "Turma não encontrada" ] })
 
-        post '/admin/importacoes/importar_alunos', params: { file: file }
+        post '/admin/importacoes/importar_alunos', params: { file: file }, headers: auth_headers
 
         expect(response).to have_http_status(:unprocessable_entity)
         expect(JSON.parse(response.body)['errors']).to include("Turma não encontrada")

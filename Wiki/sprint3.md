@@ -110,11 +110,26 @@ As demais features não tiveram tempo hábil para revisão dos testes nesta spri
 ### Cobertura de Testes (SimpleCov)
 
 * **Controllers:**
-    * `Usuarios::SessionsController`: `[Preencher %]`
-    * `Api::V1::PasswordsController`: `[Preencher %]`
+    * `app/controllers/home_controller.rb`: `[100%]`
+    * `app/controllers/application_controller.rb`: `[100%]`
+    * `app/controllers/api/v1/passwords_controller.rb`: `[100%]`
+    * `app/controllers/admin/base_controller.rb`: `[100%]`
+    * `app/controllers/usuarios/sessions_controller.rb`: `[88,89%]`
+    * `app/controllers/api/v1/templates_controller.rb`: `[87,50%]`
+    * `app/controllers/api/v1/base_controller.rb`: `[85,71%]`
+    * `app/controllers/admin/formularios_controller.rb`: `[44,19%]`
 * **Models:**
-    * `Usuario`: `[Preencher %]`
-
+    * `app/models/template.rb`: `[100%]`
+    * `app/models/formulario.rb`: `[100%]`
+    * `app/models/disciplina.rb`: `[100%]`
+    * `app/models/turma.rb`: `[88,89%]`
+    * `app/models/questao.rb`: `[87,50%]`
+    * `app/models/resposta_questao.rb`: `[30,30%]`
+* **Services:**
+    * `app/services/aluno_importer_service.rb`: `[92%]`
+    * `app/services/aluno_importer_service.rb`: `[85,71%]`
+* **Mailers:**
+    * `app/mailers/custom_devise_mailer.rb`: `[100%]`
 ### Complexidade de Código (RubyCritic)
 
 * Nenhum método implementado nesta sprint apresentou um ABC Score igual ou superior a 20. As refatorações realizadas (como no `Admin::BaseController`) foram focadas em manter a complexidade baixa. (Assim espero!!!!)

@@ -12,9 +12,9 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get "dashboard", to: "dashboard#index", as: "dashboard"
+    get 'dashboard', to: 'dashboard#index' , as: 'dashboard'
     # As rotas de importação foram REMOVIDAS daqui
-    resources :templates, only: [ :index, :create ]
+    resources :templates, only: [:index, :create]
     resources :formularios do
       collection do
         get :resultados
@@ -25,9 +25,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      get "/sessions/current_user", to: "sessions#current_user"
-
-      resources :turmas, only: [ :index ]
+      get '/sessions/current_user', to: 'sessions#current_user'
+      
+      resources :turmas, only: [:index]
 
       resources :formularios, only: [ :index, :show, :create ] do
         member do

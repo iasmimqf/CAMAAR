@@ -1,13 +1,13 @@
 # Caminho: config/initializers/devise.rb
 Devise.setup do |config|
-  config.mailer_sender = "camaarkk@gmail.com"
-  config.mailer = "CustomDeviseMailer"
-  require "devise/orm/active_record"
-  config.authentication_keys = [ :login ]
-  config.case_insensitive_keys = [ :email ]
-  config.strip_whitespace_keys = [ :email ]
-  # Linha correta:
-  config.skip_session_storage = [ :jwt ]
+  config.mailer_sender = 'camaarkk@gmail.com'
+  config.mailer = 'CustomDeviseMailer'
+  require 'devise/orm/active_record'
+  config.authentication_keys = [:login]
+  config.case_insensitive_keys = [:email]
+  config.strip_whitespace_keys = [:email]
+# Linha correta:
+  config.skip_session_storage = [:jwt]
   config.password_length = 10..128
   config.email_regexp = /\A[^@\s]+@[^@\s]+\z/
   config.reconfirmable = true

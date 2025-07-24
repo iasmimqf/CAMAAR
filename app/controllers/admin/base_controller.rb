@@ -1,4 +1,4 @@
-# app/controllers/admin/base_controller.rb
+# Esta classe Admin::BaseController é a base para todas as ações administrativas
 class Admin::BaseController < ApplicationController
   # Usa os helpers padrão do Devise para autenticação baseada em cookie/sessão.
 

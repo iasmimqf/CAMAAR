@@ -9,11 +9,17 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 2f1fae4a69bb3a1b343b956ccdd1ad03671aa433
     "/login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/login/page.js"
     ],
+>>>>>>> develop
     "/admin/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -24,20 +30,60 @@
       "static/chunks/main-app.js",
       "static/chunks/app/admin/page.js"
     ],
+<<<<<<< HEAD
+<<<<<<< HEAD
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/page.js"
+=======
+=======
+>>>>>>> 2f1fae4a69bb3a1b343b956ccdd1ad03671aa433
     "/admin/gerenciamento/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/admin/gerenciamento/page.js"
+>>>>>>> develop
     ],
     "/admin/gerenciamento-templates/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/admin/gerenciamento-templates/page.js"
     ],
+<<<<<<< HEAD
+    "/login/recuperar-senha/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/login/recuperar-senha/page.js"
+    ],
+    "/admin/gerenciamento/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/admin/gerenciamento/page.js"
+    ],
+    "/definir-senha/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/definir-senha/page.js"
+    ],
+    "/admin/enviar-formulario/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/admin/enviar-formulario/page.js"
+    ],
+    "/admin/gerenciamento-templates/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/admin/gerenciamento-templates/page.js"
+=======
     "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
+<<<<<<< HEAD
+>>>>>>> develop
+=======
+>>>>>>> 2f1fae4a69bb3a1b343b956ccdd1ad03671aa433
     ]
   }
 >>>>>>> develop

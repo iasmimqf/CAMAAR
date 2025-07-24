@@ -6,7 +6,7 @@ class Admin::FormulariosController < Admin::BaseController
   # pois ela será usada como um endpoint de API pelo React.
   skip_before_action :verify_authenticity_token, only: [ :create ]
 
-  before_action :set_formulario, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_formulario, only: [:show, :edit, :update, :destroy]
 
   def index
     @formularios = Formulario.includes(:template, :turmas, :criador).order(created_at: :desc)
@@ -39,7 +39,7 @@ class Admin::FormulariosController < Admin::BaseController
       render json: { mensagem: "Formulário criado com sucesso" }, status: :created
     else
       # Se houver erros, junta todas as mensagens e devolve como JSON
-      render json: { erro: @formulario.errors.full_messages.join(", ") }, status: :unprocessable_entity
+      render json: { erro: @formulario.errors.full_messages.join(', ') }, status: :unprocessable_entity
     end
   end
 

@@ -1,3 +1,4 @@
+# app/models/turma.rb
 class Turma < ApplicationRecord
   belongs_to :disciplina,
              foreign_key: :disciplina_id,
@@ -9,7 +10,7 @@ class Turma < ApplicationRecord
   # Relacionamento Muitos-para-Muitos: uma turma pode ter vários formulários
   has_and_belongs_to_many :formularios
 
-  # Relacionamento muitos-para-muitos com usuários (alunos)
+  # Relacionamento Muitos-para-Muitos: uma turma pode ter vários utilizadores (alunos)
   has_and_belongs_to_many :usuarios
 
   validates :codigo_turma, :semestre, :disciplina_id, presence: true
@@ -20,3 +21,4 @@ class Turma < ApplicationRecord
     "#{disciplina.nome} - #{codigo_turma} (#{semestre})"
   end
 end
+

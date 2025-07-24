@@ -2,12 +2,28 @@
 {}
 =======
 {
+<<<<<<< HEAD
+<<<<<<< HEAD
+  "/login/recuperar-senha/page": "app/login/recuperar-senha/page.js",
+  "/login/page": "app/login/page.js",
+  "/definir-senha/page": "app/definir-senha/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/admin/gerenciamento-templates/page": "app/admin/gerenciamento-templates/page.js",
+  "/admin/enviar-formulario/page": "app/admin/enviar-formulario/page.js",
+  "/admin/gerenciamento/page": "app/admin/gerenciamento/page.js"
+=======
+=======
+>>>>>>> 2f1fae4a69bb3a1b343b956ccdd1ad03671aa433
   "/login/page": "app/login/page.js",
   "/page": "app/page.js",
 <<<<<<< HEAD
   "/admin/page": "app/admin/page.js",
   "/admin/gerenciamento/page": "app/admin/gerenciamento/page.js",
   "/admin/gerenciamento-templates/page": "app/admin/gerenciamento-templates/page.js"
+<<<<<<< HEAD
+>>>>>>> develop
+}
+=======
 }
 >>>>>>> develop
 =======
@@ -16,3 +32,4 @@
   "/admin/page": "app/admin/page.js"
 }
 >>>>>>> d800cc5c481ade95ee938bf56e4de35b83aa96b9
+>>>>>>> 2f1fae4a69bb3a1b343b956ccdd1ad03671aa433

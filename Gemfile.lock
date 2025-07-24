@@ -144,6 +144,8 @@ GEM
       cucumber (>= 5, < 10)
       railties (>= 5.2, < 9)
     cucumber-tag-expressions (6.1.2)
+    database_cleaner (2.1.0)
+      database_cleaner-active_record (>= 2, < 3)
     database_cleaner-active_record (2.2.1)
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
@@ -501,6 +503,8 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     sexp_processor (4.17.3)
+    shoulda-matchers (6.5.0)
+      activesupport (>= 5.2.0)
     simplecov (0.22.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -599,6 +603,7 @@ DEPENDENCIES
   capybara
   cocoon
   cucumber-rails
+  database_cleaner
   database_cleaner-active_record
   debug
   devise
@@ -623,6 +628,7 @@ DEPENDENCIES
   rubocop-rails-omakase
   rubycritic
   selenium-webdriver
+  shoulda-matchers
   solid_cable
   solid_cache
   solid_queue
@@ -631,6 +637,7 @@ DEPENDENCIES
   thruster
   turbo-rails
   tzinfo-data
+  warden
   web-console
 
 BUNDLED WITH

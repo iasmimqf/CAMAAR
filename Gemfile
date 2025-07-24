@@ -74,11 +74,12 @@ group :development do
 end
 
 group :test do
-  # Para testes BDD
   gem "cucumber-rails", require: false
   gem "database_cleaner-active_record"
-
-  # Use system testing
   gem "capybara"
   gem "selenium-webdriver"
+  gem 'database_cleaner'
+  gem 'factory_bot_rails'
+  gem 'warden'
+  gem 'shoulda-matchers'
 end

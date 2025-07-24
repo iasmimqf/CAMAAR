@@ -2,6 +2,7 @@
 class Template < ApplicationRecord
   # Associações
   # Se um formulário estiver a usar este template, a exclusão será impedida.
+  belongs_to :criador, class_name: 'Usuario'
   has_many :formularios, dependent: :restrict_with_error
   has_many :questoes, class_name: 'Questao', dependent: :destroy
 

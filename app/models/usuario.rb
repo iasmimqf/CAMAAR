@@ -35,7 +35,7 @@ class Usuario < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :validatable,
-         :jwt_authenticatable, jwt_revocation_strategy: self
+         :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
 
   class NullDenylist
     def self.revoke_jti(jti, exp); end

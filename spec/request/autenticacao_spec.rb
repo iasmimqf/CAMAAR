@@ -61,7 +61,7 @@ RSpec.describe "API de Autenticação", type: :request do
 
       delete '/usuarios/sign_out', headers: headers
 
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(:unauthorized)
     end
   end
 end

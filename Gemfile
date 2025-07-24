@@ -21,6 +21,12 @@ gem 'devise-jwt'
 # CORS (Cross-Origin Resource Sharing)
 gem 'rack-cors'
 
+# Medir cobertura dos testes
+gem "rubocop", require: false
+
+# Medir a Complexidade do Código
+gem "rubycritic", require: false
+
 # Detecção de navegador (geralmente útil em todos os ambientes)
 gem 'browser'
 

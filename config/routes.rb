@@ -1,3 +1,4 @@
+# config/routes.rb
 Rails.application.routes.draw do
   devise_for :usuarios, controllers: {
     sessions: "usuarios/sessions"
@@ -11,12 +12,9 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get "dashboard", to: "dashboard#index", as: "dashboard"
-    get "importacoes/turmas/new", to: "importacoes#new_turma", as: "new_import_turma"
-    get "importacoes/alunos/new", to: "importacoes#new_aluno", as: "new_import_aluno"
-    post "importacoes/importar_turmas", to: "importacoes#importar_turmas"
-    post "importacoes/importar_alunos", to: "importacoes#importar_alunos"
-    resources :templates, only: [ :index, :new, :create, :show, :edit, :update, :destroy ]
+    get 'dashboard', to: 'dashboard#index' , as: 'dashboard'
+    # As rotas de importação foram REMOVIDAS daqui
+    resources :templates, only: [:index, :create]
     resources :formularios do
       collection do
         get :resultados
@@ -27,11 +25,31 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      get "/sessions/current_user", to: "sessions#current_user"
-      resources :formularios, only: [ :index ]
+      get '/sessions/current_user', to: 'sessions#current_user'
+      
+      resources :turmas, only: [:index]
+
+      resources :formularios, only: [ :index, :show, :create ] do
+        member do
+          post :responder
+        end
+      end
+
       resources :templates, only: [ :index, :create, :show, :update, :destroy ]
       post "password", to: "passwords#forgot"
       put "password", to: "passwords#reset"
+
+      resources :resultados, only: [ :index ] do
+        collection do
+          get :exportar
+        end
+      end
+
+      # As rotas de importação foram MOVIDAS para cá
+      namespace :importacoes do
+        post :importar_turmas
+        post :importar_alunos
+      end
     end
   end
 

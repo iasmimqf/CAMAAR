@@ -1,11 +1,9 @@
 # Caminho: app/controllers/api/v1/templates_controller.rb
 module Api
   module V1
-    # <<< ALTERADO: Agora herda do nosso novo BaseController
     class TemplatesController < Api::V1::BaseController
-      # O filtro de segurança agora vem do BaseController.
-      before_action :authenticate_admin!
-      before_action :set_template, only: [ :show, :update, :destroy ]
+      before_action :authenticate_admin_access!
+      before_action :set_template, only: [:show, :update, :destroy]
 
       # GET /api/v1/templates
       def index
@@ -37,11 +35,26 @@ module Api
         end
       end
 
+      # ===============================================================
+      # ▼▼▼ MÉTODO DESTROY CORRIGIDO COM MENSAGEM AMIGÁVEL ▼▼▼
+      # ===============================================================
       # DELETE /api/v1/templates/:id
       def destroy
-        @template.destroy
-        render json: { mensagem: "Template '#{@template.titulo}' excluído com sucesso" }, status: :ok
+        if @template.destroy
+          render json: { mensagem: "Template '#{@template.titulo}' excluído com sucesso" }, status: :ok
+        else
+          # Personaliza a mensagem de erro para ser mais clara para o utilizador.
+          # A regra `restrict_with_error` adiciona o erro ao atributo :base do modelo.
+          error_message = if @template.errors.key?(:base)
+                            "Este template não pode ser excluído porque já está a ser utilizado por um ou mais formulários."
+          else
+                            # Para outros erros de validação, usa a mensagem padrão.
+                            @template.errors.full_messages.join(", ")
+          end
+          render json: { erro: error_message }, status: :unprocessable_entity
+        end
       end
+      # ===============================================================
 
       private
 
@@ -59,8 +72,6 @@ module Api
           ]
         )
       end
-
-      # <<< REMOVIDO: A lógica de authenticate_admin! foi movida para o BaseController
     end
   end
 end

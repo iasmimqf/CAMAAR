@@ -20,10 +20,9 @@ gem "rubocop", require: false
 gem "rubycritic", require: false
 
 # Autenticação
-gem "devise"
-gem "devise-jwt"
-gem "devise-i18n" # Internacionalização para Devise
-
+gem 'devise'
+gem 'devise-i18n' # Internacionalização para Devise
+gem 'devise-jwt'
 # CORS (Cross-Origin Resource Sharing)
 gem "rack-cors"
 
@@ -83,4 +82,5 @@ group :test do
   # Use system testing
   gem "capybara"
   gem "selenium-webdriver"
+  gem 'shoulda-matchers'
 end

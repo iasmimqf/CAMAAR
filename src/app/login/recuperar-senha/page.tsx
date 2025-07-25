@@ -3,48 +3,53 @@
 import type React from 'react';
 import { useState } from 'react';
 import { useRouter } from "next/navigation";
-
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { toast } from 'sonner'; // <<< 1. Importe o toast
+import { Loader2 } from 'lucide-react';
 
 export default function RecoverPasswordPage() {
   const [login, setLogin] = useState('');
-  const [message, setMessage] = useState('');
-  const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false); // Estado para desabilitar o form após sucesso
   const router = useRouter();
 
+  // ===============================================================
+  // ▼▼▼ FUNÇÃO ATUALIZADA PARA USAR 'toast' ▼▼▼
+  // ===============================================================
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
-    setMessage('');
     setIsLoading(true);
 
     try {
+      // A chamada à API continua a mesma
       const response = await fetch('http://localhost:3000/api/v1/password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
         body: JSON.stringify({
-          login: login, // Enviando o e-mail ou matrícula
+          login: login,
         }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        setMessage(data.message);
+        toast.success(data.message);
+        setIsSuccess(true); // Desabilita o formulário após o sucesso
       } else {
-        setError(data.error || 'Ocorreu um erro. Tente novamente.');
+        toast.error(data.error || 'Ocorreu um erro. Tente novamente.');
       }
     } catch (err) {
-      setError('Não foi possível conectar ao servidor. Tente novamente mais tarde.');
+      toast.error('Não foi possível conectar ao servidor. Tente novamente mais tarde.');
     } finally {
       setIsLoading(false);
     }
   };
+  // ===============================================================
 
   return (
     <div className="min-h-screen bg-gray-300 flex items-center justify-center p-4">
@@ -72,23 +77,19 @@ export default function RecoverPasswordPage() {
               onChange={(e) => setLogin(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
               required
-              disabled={isLoading || !!message}
+              disabled={isLoading || isSuccess}
             />
           </div>
 
-          {message && (
-            <p className="text-sm text-green-600 text-center bg-green-50 p-3 rounded-md">{message}</p>
-          )}
-          {error && (
-            <p className="text-sm text-red-600 text-center bg-red-50 p-3 rounded-md">{error}</p>
-          )}
+          {/* Os elementos de mensagem e erro foram removidos daqui */}
 
           <Button
             type="submit"
             className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200"
-            disabled={isLoading || !!message}
+            disabled={isLoading || isSuccess}
           >
-            {isLoading ? 'Enviando...' : 'Enviar Link de Recuperação'}
+            {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+            {isSuccess ? 'Link Enviado!' : (isLoading ? 'Enviando...' : 'Enviar Link de Recuperação')}
           </Button>
 
           <div className="text-center mt-4">

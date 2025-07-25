@@ -1,0 +1,42 @@
+[
+  {
+    "nome": "Beatriz Costa",
+    "email": "beatriz.costa@aluno.unb.br",
+    "matricula": "200012345",
+    "admin": false,
+    "password": "Mudar@1234",
+    "turmas": ["T01"]
+  },
+  {
+    "nome": "Carlos Santos",
+    "email": "carlos.santos@aluno.unb.br",
+    "matricula": "200012346",
+    "admin": false,
+    "password": "Mudar@1234",
+    "turmas": ["T01", "T02"]
+  },
+  {
+    "nome": "Daniela Pereira",
+    "email": "daniela.pereira@aluno.unb.br",
+    "matricula": "200012347",
+    "admin": false,
+    "password": "Mudar@1234",
+    "turmas": ["T02"]
+  },
+  {
+    "nome": "Eduardo Almeida",
+    "email": "eduardo.almeida@aluno.unb.br",
+    "matricula": "200012348",
+    "admin": false,
+    "password": "Mudar@1234",
+    "turmas": ["T01"]
+  },
+  {
+    "nome": "Fernanda Lima",
+    "email": "fernanda.lima@aluno.unb.br",
+    "matricula": "200012349",
+    "admin": false,
+    "password": "Mudar@1234",
+    "turmas": ["T01"]
+  }
+]

@@ -1,13 +1,16 @@
 # app/models/template.rb
 class Template < ApplicationRecord
-  # Associação com o criador do template
-  belongs_to :criador, class_name: 'Usuario'
+  # Associações
+  # Se um formulário estiver a usar este template, a exclusão será impedida.
+  belongs_to :criador, class_name: "Usuario"
+  has_many :formularios, dependent: :restrict_with_error
+  has_many :questoes, class_name: 'Questao', dependent: :destroy
 
-  has_many :questoes, class_name: "Questao", dependent: :destroy
-  has_many :formularios # Confirme se 'formularios' existe no seu banco e modelo.
-
+  # Validações
   validates :titulo, presence: { message: "O título do template é obrigatório" }, uniqueness: { message: "Já existe um template com este nome. Use um título diferente." }
+  validate :questoes_presentes
 
+<<<<<<< HEAD
   # MODIFICADO: Unifique a lógica de validação de questoes_presentes
   validate :questoes_presentes, unless: :skip_questoes_validation
 
@@ -22,21 +25,16 @@ class Template < ApplicationRecord
 
   # Scope para templates de um criador específico
   # scope :do_criador, ->(usuario) { where(criador: usuario) }
+=======
+  # Atributos aninhados para questões
+  accepts_nested_attributes_for :questoes, allow_destroy: true, reject_if: proc { |attributes| attributes['enunciado'].blank? }
+>>>>>>> 45470b0075447feb0d3b821b202008e316924ac0
 
   private
 
-  # MODIFICADO: Lógica corrigida para 'questoes_presentes'
   def questoes_presentes
-    # Uma questão é considerada "válida" se:
-    # 1. Não está marcada para _destroy (ignorar as que serão excluídas) E
-    # 2. Tem um enunciado preenchido (não é vazia).
-    # O `new_record?` é importante para saber se a questão já existia no banco ou é nova.
-
-    valid_questoes = questoes.reject do |q|
-      q._destroy || # Se está marcada para ser destruída, não conta como presente.
-      (q.enunciado.blank? && q.tipo.blank?) # Se enunciado está vazio, é inválida para contagem.
-    end
-
+    # Garante que o template tenha pelo menos uma questão válida (não marcada para exclusão).
+    valid_questoes = questoes.reject(&:marked_for_destruction?)
     errors.add(:base, "Adicione pelo menos uma questão ao template") if valid_questoes.empty?
   end
-end # Fim da classe Template (deve ser o ÚNICO 'end' final)
+end

@@ -12,9 +12,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "dashboard", to: "dashboard#index", as: "dashboard"
+    get "importacoes/turmas/new", to: "importacoes#new_turma", as: "new_import_turma"
+    get "importacoes/alunos/new", to: "importacoes#new_aluno", as: "new_import_aluno"
     post "importacoes/importar_turmas", to: "importacoes#importar_turmas"
     post "importacoes/importar_alunos", to: "importacoes#importar_alunos"
-    resources :templates, only: [ :index, :create ]
+    resources :templates, only: [ :index, :new, :create, :show, :edit, :update, :destroy ]
     resources :formularios do
       collection do
         get :resultados

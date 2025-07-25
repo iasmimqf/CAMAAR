@@ -8,15 +8,23 @@ Before do
 end
 
 # --- DADO ---
-# Reutiliza o step de autenticação do template_steps.rb
+Dado('que estou autenticado como administrador') do
+  # Procura por um admin existente ou cria um novo
+  @admin = Usuario.find_by(email: 'admin@email.com') || create(:usuario, :admin, email: 'admin@email.com', password: 'Password123!')
+
+  # Login programático mais direto
+  page.driver.post usuario_session_path, {
+    'usuario[login]' => 'admin@email.com',
+    'usuario[password]' => 'Password123!'
+  }
+end
 
 Dado('existem templates de formulário cadastrados') do
-  # Usa @admin ou @admin_user dependendo de qual está definido
-  criador = @admin || @admin_user
-  @template_avaliacao = create(:template, titulo: 'Avaliação Padrão', criador: criador)
+  # Criando templates com criador
+  @template_avaliacao = create(:template, titulo: 'Avaliação Padrão', criador: @admin)
   create(:questao, template: @template_avaliacao, enunciado: 'Como você avalia a disciplina?', tipo: 'Escala')
 
-  @template_outro = create(:template, titulo: 'Avaliação Detalhada', criador: criador)
+  @template_outro = create(:template, titulo: 'Avaliação Detalhada', criador: @admin)
   create(:questao, template: @template_outro, enunciado: 'Comentários sobre a disciplina', tipo: 'Texto')
 end
 
@@ -84,7 +92,7 @@ Então('devo ver mensagem de erro de formulário {string}') do |mensagem_erro|
   expect(page).to have_content(mensagem_erro)
 end
 
-Então('eu devo ver a mensagem {string}') do |mensagem|
+Então('eu devo ver a mensagem de sucesso do formulário {string}') do |mensagem|
   expect(page).to have_content(mensagem)
 end
 

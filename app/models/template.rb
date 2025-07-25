@@ -1,10 +1,7 @@
 # app/models/template.rb
 class Template < ApplicationRecord
-  # COMENTE ESTA LINHA POR ENQUANTO. Ela exige um criador que não está sendo passado.
-  # belongs_to :criador, class_name: 'Usuario'
-
-  # Se você tiver uma coluna 'criador_id' no banco, mas não está preenchendo agora:
-  # validates :criador_id, presence: false, allow_nil: true # Isso é um exemplo, se a coluna existir
+  # Associação com o criador do template
+  belongs_to :criador, class_name: 'Usuario'
 
   has_many :questoes, class_name: "Questao", dependent: :destroy
   has_many :formularios # Confirme se 'formularios' existe no seu banco e modelo.
@@ -24,7 +21,7 @@ class Template < ApplicationRecord
   scope :com_questoes, -> { joins(:questoes).distinct }
 
   # Scope para templates de um criador específico
-  scope :do_criador, ->(usuario) { where(criador: usuario) }
+  # scope :do_criador, ->(usuario) { where(criador: usuario) }
 
   private
 

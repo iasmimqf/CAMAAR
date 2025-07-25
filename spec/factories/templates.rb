@@ -5,10 +5,14 @@ FactoryBot.define do
     skip_questoes_validation { true }
     association :criador, factory: :usuario
 
-    # Cria um template com questões
-    trait :com_questoes do
-      after(:create) do |template|
-        create_list(:questao, 2, template: template)
+    trait :with_questions do
+      transient do
+        questions_count { 2 }
+      end
+
+      after(:create) do |template, evaluator|
+        create_list(:questao, evaluator.questions_count, template: template)
+        template.reload
       end
     end
   end

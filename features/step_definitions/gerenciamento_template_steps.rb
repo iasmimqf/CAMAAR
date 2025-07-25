@@ -3,12 +3,12 @@
 # --- DADOS BASE ---
 
 Dado('que eu sou um administrador autenticado') do
-  @admin_user = create(:usuario, :admin, email: 'admin@email.com', password: 'password123')
+  @admin_user ||= create(:usuario, :admin, email: 'admin@email.com', password: 'Password123!')
 
   # Login programático
   page.driver.post usuario_session_path, {
     'usuario[login]' => 'admin@email.com',
-    'usuario[password]' => 'password123'
+    'usuario[password]' => 'Password123!'
   }
 
   # Verifica se o login funcionou
@@ -24,10 +24,14 @@ Dado('que eu esteja na página de {string}') do |nome_pagina|
   end
 end
 
+Dado('que existe um template chamado {string}') do |titulo|
+  @existing_template = Template.find_by(titulo: titulo) || create(:template, :with_questions, questions_count: 1, titulo: titulo)
+end
+
 Dado('que já existem formulários criados a partir desse template') do
-  # Cria alguns formulários baseados no template
-  @formulario1 = create(:formulario, template: @existing_template)
-  @formulario2 = create(:formulario, template: @existing_template)
+  turma = create(:turma) # Garante que existe uma turma
+  @formulario1 = create(:formulario, template: @existing_template, turmas: [turma])
+  @formulario2 = create(:formulario, template: @existing_template, turmas: [turma])
 end
 
 # --- AÇÕES ---
@@ -67,6 +71,10 @@ Quando('apago o conteúdo do campo {string}') do |nome_campo|
   else
     raise "Campo desconhecido: #{nome_campo}"
   end
+end
+
+Quando('clico em {string}') do |button_name|
+  click_on(button_name)
 end
 
 Quando('confirmo a exclusão') do

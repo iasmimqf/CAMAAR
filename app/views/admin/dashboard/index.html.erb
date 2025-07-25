@@ -31,8 +31,8 @@
     <h3>Selecione o Tipo de Importação</h3>
     <p>Para qual finalidade é a importação de dados?</p>
 
-    <%= link_to "Importar Turmas", new_admin_import_turma_path, class: "button", data: { turbo: false } %>
-    <%= link_to "Importar Alunos", new_admin_import_aluno_path, class: "button", data: { turbo: false } %>
+    <%= link_to "Importar Turmas", admin_new_import_turma_path, class: "button", data: { turbo: false } %>
+    <%= link_to "Importar Alunos", admin_new_import_aluno_path, class: "button", data: { turbo: false } %>
 
     <button type="button" data-action="click->modal#close">Cancelar</button>
   </div>

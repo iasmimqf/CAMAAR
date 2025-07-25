@@ -4,18 +4,13 @@ Dado('que estou logado como usuário') do
   # Cria um usuário comum (não admin)
   @usuario = Usuario.create!(
     email: 'usuario@teste.com',
-    password: 'password123',
-    password_confirmation: 'password123',
+    password: 'Password123!',
+    password_confirmation: 'Password123!',
     admin: false
   )
 
-  # Simula login manual via Capybara
-  visit '/usuarios/sign_in'
-  fill_in 'usuario[login]', with: @usuario.email
-  fill_in 'usuario[password]', with: 'password123'
-  click_button 'Entrar'
-
-  expect(page).to have_content('Login efetuado com sucesso')
+  # Login usando a abordagem programática (como nos outros step definitions)
+  login_as(@usuario, scope: :usuario)
 end
 
 Dado('existem formulários não respondidos para minhas turmas:') do |table|
@@ -117,6 +112,10 @@ Então('devo ver uma lista contendo:') do |string|
 end
 
 Então('devo ver a mensagem de formulários pendentes {string}') do |mensagem|
+  expect(page).to have_content(mensagem)
+end
+
+Então('devo ver a mensagem {string}') do |mensagem|
   expect(page).to have_content(mensagem)
 end
 

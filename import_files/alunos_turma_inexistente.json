@@ -1,0 +1,15 @@
+[
+    {
+        "code": "XYZ",
+        "classCode": "TA",
+        "semester": "2021.2",
+        "dicente": [
+            {
+                "nome": "João da Silva",
+                "curso": "CIÊNCIA DA COMPUTAÇÃO/CIC",
+                "matricula": "190000001",
+                "email": "joao@unb.br"
+            }
+        ]
+    }
+]

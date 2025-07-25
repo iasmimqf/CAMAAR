@@ -6,7 +6,7 @@ class Admin::TemplatesController < ApplicationController
   layout proc { Rails.env.test? ? "test" : "application" }
 
   def index
-    @templates = Template.includes(:criador).order(:titulo)
+    @templates = Template.order(:titulo)
   end
 
   def show
@@ -19,7 +19,7 @@ class Admin::TemplatesController < ApplicationController
 
   def create
     @template = Template.new(template_params)
-    @template.criador = current_usuario
+    # @template.criador = current_usuario  # Comentando por enquanto
 
     if @template.save
       redirect_to admin_templates_path, notice: "Template '#{@template.titulo}' salvo com sucesso"

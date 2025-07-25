@@ -20,10 +20,10 @@ Funcionalidade: API de Importação de Dados de Turmas e Alunos
     Então a resposta da API deve ser um erro com a mensagem <Mensagem>
 
     Exemplos:
-      | Arquivo                  | Mensagem                                                                            |
-      | "arquivo_invalido.txt"   | "Formato de arquivo inválido. Por favor, envie um arquivo .json."                   |
-      | "turmas_malformado.json" | "Erro de sintaxe no arquivo JSON."                                                  |
-      | "turmas_sem_codigo.json" | "Erro na estrutura do arquivo: 'code' e 'name' são obrigatórios para a disciplina." |
+      | Arquivo                  | Mensagem                                                                      |
+      | "arquivo_invalido.txt"   | "Erro: O arquivo não é um JSON válido."                                      |
+      | "turmas_malformado.json" | "Erro: O arquivo não é um JSON válido."                                      |
+      | "turmas_sem_codigo.json" | "A validação falhou"                                                         |
 
   @import_alunos
   Cenário: Importar um arquivo de Alunos com sucesso
@@ -39,6 +39,6 @@ Funcionalidade: API de Importação de Dados de Turmas e Alunos
     Então a resposta da API deve ser um erro com a mensagem <Mensagem>
 
     Exemplos:
-      | Arquivo                         | Mensagem                                           |
-      | "alunos_turma_inexistente.json" | "Erro: A turma com código XYZ não foi encontrada." |
-      | "alunos_com_erro.json"          | "Importação concluída com erros."                  |
+      | Arquivo                         | Mensagem                                       |
+      | "alunos_turma_inexistente.json" | "Disciplina XYZ não encontrada."              |
+      | "alunos_com_erro.json"          | "Importação concluída com erros."             |

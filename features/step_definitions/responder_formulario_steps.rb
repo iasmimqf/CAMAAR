@@ -3,12 +3,12 @@
 # --- DADO ---
 
 Dado('que estou autenticado como aluno') do
-  @aluno = create(:usuario, email: "aluno@test.com", password: 'password123', admin: false)
+  @aluno = create(:usuario, email: "aluno@test.com", password: 'Password123!', admin: false)
 
   # Fazer login manual via Capybara
   visit '/usuarios/sign_in'
   fill_in 'usuario[login]', with: @aluno.email
-  fill_in 'usuario[password]', with: 'password123'
+  fill_in 'usuario[password]', with: 'Password123!'
   click_button 'Entrar'
 end
 
@@ -26,8 +26,8 @@ Dado('existe um formulário disponível para a turma {string}') do |nome_turma|
   # Cria admin para ser criador
   admin = create(:usuario, :admin, email: "admin_resp@test.com")
 
-  # Cria template e questões
-  @template = create(:template, titulo: 'Avaliação de Disciplina', criador: admin)
+  # Cria template e questões (sem criador por enquanto)
+  @template = create(:template, titulo: 'Avaliação de Disciplina')
 
   # Cria formulário
   @formulario = Formulario.new(template: @template, criador: admin)
@@ -68,8 +68,8 @@ Dado('existe um formulário disponível para minha turma') do
   # Cria admin para ser criador
   admin = create(:usuario, :admin, email: "admin_resp2@test.com")
 
-  # Cria template com questões obrigatórias e opcionais
-  @template = create(:template, titulo: 'Avaliação Geral', criador: admin)
+  # Cria template com questões obrigatórias e opcionais (sem criador por enquanto)
+  @template = create(:template, titulo: 'Avaliação Geral')
   @questao_obrigatoria = create(:questao,
     template: @template,
     enunciado: "Questão obrigatória",
@@ -115,6 +115,10 @@ Quando('seleciono o formulário da turma {string}') do |nome_turma|
   click_link 'Responder'
 end
 
+Quando('clico no botão de enviar respostas') do
+  click_button "Enviar"
+end
+
 Quando('preencho todas as questões obrigatórias') do
   # Preenche questões de escala (obrigatórias)
   # Busca todos os grupos de radio buttons únicos
@@ -156,4 +160,9 @@ end
 Então('deve manter minhas outras respostas preenchidas') do
   # Verifica se os campos preenchidos mantêm os valores
   expect(page).to have_field("resposta_formulario[respostas_questoes_attributes][1][texto_resposta]", with: "Resposta da questão opcional")
+end
+
+Então('deve destacar a questão {int} em vermelho') do |numero_questao|
+  # Verifica se há indicação de erro para a questão
+  expect(page).to have_css('.field_with_errors, .error, .invalid', minimum: 1)
 end

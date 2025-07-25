@@ -28,8 +28,8 @@ class AlunoImporterService
       else
         {
           status: :partial_success,
-          erros: erros,
-          sucesso: {
+          errors: erros,
+          success_summary: {
             alunos_criados: @novos_alunos,
             docentes_criados: @novos_docentes
           }

@@ -10,9 +10,13 @@ Dado('existem os seguintes templates: {string}') do |templates_string|
   template_names.each do |nome|
     # Usa @admin ou @admin_user dependendo de qual está definido
     criador = @admin || @admin_user
-    template = create(:template, titulo: nome, criador: criador)
-    # Adiciona uma questão para satisfazer a validação
-    create(:questao, template: template, enunciado: 'Questão de exemplo', tipo: 'Texto')
+    
+    # Cria o template diretamente no banco
+    template = Template.create!(
+      titulo: nome, 
+      criador: criador, 
+      skip_questoes_validation: true
+    )
   end
 end
 

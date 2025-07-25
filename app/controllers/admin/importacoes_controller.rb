@@ -48,5 +48,15 @@ module Admin
         render json: { alert: "Falha na importação.", errors: resultado[:errors] }, status: :unprocessable_entity
       end
     end
+
+    def new_turma
+      # Método para renderizar a página de importação de turmas
+      render :new_turma
+    end
+
+    def new_aluno
+      # Método para renderizar a página de importação de alunos
+      render :new_aluno
+    end
   end
 end

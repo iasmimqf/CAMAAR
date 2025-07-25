@@ -40,11 +40,11 @@ rails db:reset
 ### 3. Iniciar a Aplicação
 
 * **No Terminal 1 (Backend):**
-  Inicie o servidor Rails na porta `3001`.
+  Inicie o servidor Rails na porta `3000`.
 
     ```bash
     # Na pasta raiz do projeto
-    rails server -p 3001
+    rails server
     ```
 
 * **No Terminal 2 (Frontend):**
@@ -62,9 +62,9 @@ rails db:reset
 
 Com os dois servidores rodando, abra seu navegador e acesse o endereço do **frontend**:
 
-**`http://localhost:3000`**
+**`http://localhost:3002`**
 
-A aplicação estará funcionando. O frontend em `localhost:3000` fará as chamadas de API para o seu backend em `localhost:3001`.
+A aplicação estará funcionando. O frontend em `localhost:3002` fará as chamadas de API para o seu backend em `localhost:3000`.
 
 ---
 ## Tecnologias Utilizadas

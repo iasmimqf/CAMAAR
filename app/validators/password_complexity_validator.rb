@@ -1,5 +1,28 @@
-# app/validators/password_complexity_validator.rb
+# Caminho: app/validators/password_complexity_validator.rb
+
+##
+# Validador customizado para complexidade de senha.
+#
+# Descrição: Este validador garante que uma senha atenda a critérios mínimos de
+#    complexidade, como comprimento mínimo, presença de letras minúsculas,
+#    maiúsculas, dígitos e caracteres especiais. Ele é projetado para ser
+#    usado com `ActiveModel::EachValidator`.
 class PasswordComplexityValidator < ActiveModel::EachValidator
+  ##
+  # Valida cada atributo de senha para complexidade.
+  #
+  # Descrição: Este método é chamado para cada atributo (geralmente `:password`)
+  #    que utiliza este validador. Ele verifica se a senha fornecida atende aos
+  #    requisitos de comprimento, e se contém pelo menos uma letra minúscula,
+  #    uma maiúscula, um dígito e um caractere especial. Adiciona erros ao
+  #    registro se algum critério não for atendido.
+  # Argumentos:
+  #    - `record`: O objeto do modelo que está sendo validado (e.g., `Usuario`).
+  #    - `attribute`: O nome do atributo que está sendo validado (e.g., `:password`).
+  #    - `value`: O valor do atributo (a senha em si).
+  # Retorno: Nenhum valor explícito.
+  # Efeitos colaterais: Adiciona mensagens de erro ao objeto `record.errors`
+  #    se a senha não atender aos critérios de complexidade.
   def validate_each(record, attribute, value)
     return if value.blank?
 

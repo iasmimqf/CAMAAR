@@ -130,17 +130,73 @@ As demais features não tiveram tempo hábil para revisão dos testes nesta spri
     * `app/mailers/custom_devise_mailer.rb`: `[100%]`
 ### Complexidade de Código (RubyCritic)
 
-*As refatorações realizadas (como no `Admin::BaseController`) foram focadas em manter a complexidade baixa. (Assim espero!!!!)
-* **Tabela de Refatorações Notáveis:**
-    | Método Original | Complexidade ABC (Antes) | Complexidade ABC (Depois) | Justificativa |
-    | :--- | :--- | :--- | :--- |
-    | `Admin::BaseController#authenticate_admin_access!` | 20.43 | `[Preencher]` | O método foi reescrito de forma mais linear, utilizando helpers do Devise e `respond_to`, o que reduziu o número de ramificações e condições. |
-    | `[Outro método, se houver]` | `...` | `...` | `...` |
+* **Overview RubyCritic:**
+ overview foto 
 
+* **Code RubyCritic:**
+| Rating | Name                          | Churn | Complexity | Duplication | Smells |
+|--------|-------------------------------|-------|------------|-------------|--------|
+| F      | ImportacoesController         | 3     | 450.37     | 284         | 63     |
+| D      | FormulariosController         | 6     | 213.39     | 38          | 25     |
+| D      | FormulariosController         | 2     | 137.89     | 44          | 21     |
+| C      | AlunoImporterService          | 2     | 93.15      | 92          | 21     |
+| B      | RespostaQuestao               | 3     | 85.92      | 0           | 7      |
+| B      | ResultadosController          | 3     | 78.13      | 0           | 9      |
+| B      | FormulariosController         | 5     | 75.49      | 0           | 3      |
+| B      | TemplatesController           | 10    | 52.25      | 0           | 4      |
+| A      | TemplatesController           | 6     | 45.02      | 0           | 3      |
+| A      | ImportacoesController         | 12    | 44.66      | 0           | 7      |
+| A      | Usuario                       | 18    | 41.58      | 0           | 11     |
+| A      | TurmasController              | 4     | 37.14      | 0           | 7      |
+| A      | TurmaImporterService          | 2     | 34.07      | 0           | 8      |
+| A      | PasswordsController           | 3     | 22.9       | 0           | 1      |
+| A      | PasswordComplexityValidator   | 1     | 16.92      | 0           | 4      |
+| A      | Questao                       | 8     | 14.06      | 0           | 1      |
+| A      | SessionsController            | 6     | 13.11      | 0           | 2      |
+| A      | TurmasController              | 2     | 11.21      | 0           | 1      |
+| A      | ApplicationController         | 18    | 9.0        | 0           | 1      |
+| A      | SessionsController            | 4     | 8.8        | 0           | 1      |
+| A      | Template                      | 13    | 6.95       | 0           | 1      |
+| A      | BaseController                | 7     | 6.2        | 0           | 0      |
+| A      | PasswordResetToken            | 2     | 5.4        | 0           | 2      |
+| A      | DashboardController           | 3     | 4.81       | 0           | 2      |
+| A      | Formulario                    | 6     | 4.71       | 0           | 1      |
+| A      | Turma                         | 8     | 4.2        | 0           | 1      |
+| A      | BaseController                | 4     | 3.45       | 0           | 2      |
+| A      | CustomDeviseMailer            | 3     | 3.0        | 0           | 2      |
+| A      | PasswordResetsController      | 5     | 1.0        | 0           | 2      |
+| A      | AlunosController              | 4     | 0.0        | 0           | 1      |
+| A      | HomeController                | 2     | 0.0        | 0           | 1      |
+| A      | PagesController               | 2     | 0.0        | 0           | 1      |
+| A      | ApplicationHelper             | 2     | 0.0        | 0           | 1      |
+| A      | HomeHelper                    | 2     | 0.0        | 0           | 1      |
+| A      | ApplicationJob                | 2     | 0.0        | 0           | 1      |
+| A      | ApplicationMailer             | 3     | 0.0        | 0           | 1      |
+| A      | ApplicationRecord             | 2     | 0.0        | 0           | 1      |
+| A      | Disciplina                    | 3     | 0.0        | 0           | 1      |
+| A      | JwtDenylist                   | 2     | 0.0        | 0           | 1      |
+| A      | RespostaFormulario            | 2     | 0.0        | 0           | 1      |
 
 ### Documentação (RDoc)
 
-* Todos os métodos criados ou significativamente alterados nos controllers e models da aplicação foram documentados seguindo o padrão RDoc, explicando sua finalidade, argumentos, retornos e efeitos colaterais.
+**Responsável:** `[Luis Gustavo]`
+
+* Nem todos os métodos criados ou significativamente alterados nos controllers e models da aplicação foram devidamente documentados seguindo o padrão RDoc, porém todos foram comentados explicando sua finalidade, argumentos, retornos e efeitos colaterais. 
+
+**Cobertura de Documentação:** 59.91%  
+**Arquivos Analisados:** 270  
+**Itens Documentados:** 136/227  
+
+| Categoria | Total | Não Documentados | % Coberto |
+|-----------|-------|------------------|-----------|
+| Classes   | 71    | 36               | 49.3%     |
+| Modules   | 9     | 4                | 55.6%     |
+| Methods   | 144   | 50               | 65.3%     |
+| Constants | 2     | 1                | 50%       |
+
+* Total: 227 (91 não documentado)
+    59.91% documentado
+
 
 ## Considerações Finais do Trabalho
 

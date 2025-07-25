@@ -1,4 +1,16 @@
 class Api::V1::FormulariosController < Api::V1::BaseController
+  ##
+  # Lista os formulários disponíveis para o usuário atual.
+  #
+  # Descrição: Retorna uma lista formatada de formulários. Se o usuário for um administrador,
+  #    lista todos os formulários. Caso contrário, lista apenas os formulários pendentes
+  #    do usuário atual. Inclui associações para otimizar as consultas.
+  # Argumentos: Nenhum.
+  # Retorno:
+  #    - `JSON`: Uma array de objetos JSON, onde cada objeto representa um formulário
+  #      com `id`, `nome`, `prazo`, `disciplina` e `turma`.
+  # Efeitos colaterais: Nenhum efeito colateral observável no banco de dados.
+  #    - Comunicação via API: Envia uma resposta JSON ao cliente.
   def index
     formularios = if current_usuario.admin?
       Formulario.includes(:template, turmas: :disciplina).order(created_at: :desc)
@@ -20,6 +32,22 @@ class Api::V1::FormulariosController < Api::V1::BaseController
     render json: formularios_formatados
   end
 
+  ##
+  # Exibe os detalhes de um formulário específico para ser respondido.
+  #
+  # Descrição: Busca um formulário pelo seu ID, incluindo suas questões.
+  #    Verifica se o prazo do formulário expirou. Se sim, retorna um erro 403.
+  #    Caso contrário, retorna os detalhes do formulário e suas questões formatadas.
+  # Argumentos:
+  #    - `params[:id]`: O ID do formulário a ser exibido.
+  # Retorno:
+  #    - `JSON`: Um objeto JSON contendo `id`, `nome_template` e uma array de `questoes`
+  #      (com `id`, `texto`, `tipo`, `opcoes`).
+  #    - `JSON`: Retorna um JSON com `error` e status `:forbidden` (403) se o formulário expirou.
+  #    - `JSON`: Retorna um JSON com `error: "Formulário não encontrado"` e status `:not_found` (404)
+  #      se o formulário não for encontrado.
+  # Efeitos colaterais: Nenhum efeito colateral observável no banco de dados.
+  #    - Comunicação via API: Envia respostas JSON ao cliente.
   def show
     formulario = Formulario.includes(template: :questoes).find(params[:id])
 
@@ -45,6 +73,31 @@ class Api::V1::FormulariosController < Api::V1::BaseController
     render json: { error: "Formulário não encontrado" }, status: :not_found
   end
 
+  ##
+  # Permite que um usuário responda a um formulário.
+  #
+  # Descrição: Recebe as respostas de um formulário via parâmetros, valida o prazo
+  #    do formulário, e salva as respostas no banco de dados dentro de uma transação.
+  #    Lida com diferentes tipos de questões (Texto, Escala, Checkbox) e trata erros
+  #    de validação ou outros erros inesperados.
+  # Argumentos:
+  #    - `params[:id]`: O ID do formulário que está sendo respondido.
+  #    - `params[:respostas]`: Um hash de respostas, onde a chave é o ID da questão
+  #      e o valor é a resposta do usuário.
+  # Retorno:
+  #    - `JSON`: Retorna um JSON com `message: 'Formulário respondido com sucesso!'`
+  #      e `resposta_id` e status `:created` (201) em caso de sucesso.
+  #    - `JSON`: Retorna um JSON com `error` e status `:forbidden` (403) se o formulário expirou.
+  #    - `JSON`: Retorna um JSON com `error` e status `:unprocessable_entity` (422)
+  #      em caso de erro de validação (`ActiveRecord::RecordInvalid`).
+  #    - `JSON`: Retorna um JSON com `error` e status `:not_found` (404) se o formulário ou questão
+  #      não for encontrado (`ActiveRecord::RecordNotFound`).
+  #    - `JSON`: Retorna um JSON com `error` e status `:internal_server_error` (500)
+  #      para erros inesperados.
+  # Efeitos colaterais:
+  #    - Alterações no banco de dados: Cria ou atualiza registros em `RespostaFormulario`
+  #      e `RespostaQuestao`.
+  #    - Comunicação via API: Envia respostas JSON ao cliente.
   def responder
     formulario = Formulario.find(params[:id])
 
@@ -130,6 +183,23 @@ class Api::V1::FormulariosController < Api::V1::BaseController
     render json: { error: "Erro inesperado: #{e.message}" }, status: :internal_server_error
   end
 
+  ##
+  # Cria um novo formulário.
+  #
+  # Descrição: Recebe os parâmetros para a criação de um novo formulário,
+  #    associa o formulário ao usuário criador (`current_usuario`) e tenta salvá-lo
+  #    no banco de dados. Retorna uma resposta JSON indicando sucesso ou falha.
+  # Argumentos:
+  #    - `formulario_params`: Parâmetros permitidos para a criação do formulário,
+  #      incluindo `template_id`, `prazo` e `turma_ids`.
+  # Retorno:
+  #    - `JSON`: Retorna um JSON com `mensagem: "Formulário enviado com sucesso!"`
+  #      e status `:created` (201) em caso de sucesso.
+  #    - `JSON`: Retorna um JSON com `erro` e status `:unprocessable_entity` (422)
+  #      em caso de falha no salvamento (erros de validação).
+  # Efeitos colaterais:
+  #    - Alterações no banco de dados: Cria um novo registro na tabela `formularios`.
+  #    - Comunicação via API: Envia respostas JSON ao cliente.
   def create
     formulario = Formulario.new(formulario_params)
     formulario.criador = current_usuario
@@ -143,6 +213,16 @@ class Api::V1::FormulariosController < Api::V1::BaseController
 
   private
 
+  ##
+  # Define os parâmetros permitidos para o objeto `Formulario`.
+  #
+  # Descrição: Método auxiliar que utiliza o `strong_parameters` do Rails para
+  #    garantir que apenas os atributos `template_id`, `prazo` e `turma_ids`
+  #    (como um array) possam ser atribuídos ao formulário, prevenindo ataques
+  #    de atribuição em massa.
+  # Argumentos: Nenhum.
+  # Retorno: Um hash de parâmetros filtrados.
+  # Efeitos colaterais: Nenhum.
   def formulario_params
     params.require(:formulario).permit(:template_id, :prazo, turma_ids: [])
   end

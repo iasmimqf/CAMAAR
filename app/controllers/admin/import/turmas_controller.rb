@@ -1,4 +1,32 @@
 class Admin::Import::TurmasController < Admin::BaseController
+  ##
+  # Processa o arquivo de importação de turmas enviado pelo formulário.
+  #
+  # Descrição: Recebe um arquivo (espera-se JSON) contendo dados de disciplinas
+  #    e turmas, parseia o conteúdo e persiste as informações no banco de dados.
+  #    Para cada entrada, ele tenta encontrar ou criar a disciplina e, em seguida,
+  #    encontrar ou criar a turma associada a essa disciplina.
+  # Argumentos:
+  #    - `params`: Hash de parâmetros da requisição. Espera-se que contenha
+  #      `params[:file]`, que é o objeto `UploadedFile` do arquivo JSON enviado.
+  # Retorno:
+  #    - Redireciona para `new_admin_import_turma_path` com uma mensagem de `alert`
+  #      se nenhum arquivo for enviado.
+  #    - Redireciona para `new_admin_import_turma_path` com uma mensagem de `notice`
+  #      em caso de processamento bem-sucedido do arquivo.
+  #    - Redireciona para `new_admin_import_turma_path` com uma mensagem de `alert`
+  #      se ocorrer um erro de parseamento JSON (`JSON::ParserError`).
+  #    - Redireciona para `new_admin_import_turma_path` com uma mensagem de `alert`
+  #      se ocorrer um erro de validação do ActiveRecord (`ActiveRecord::RecordInvalid`).
+  # Efeitos colaterais:
+  #    - Redirecionamentos de página: Sempre redireciona para `new_admin_import_turma_path`
+  #      após a tentativa de processamento, com diferentes mensagens flash (alert/notice).
+  #    - Alterações no banco de dados:
+  #      - Criação ou localização de registros na tabela `disciplinas` (via `Disciplina.find_or_create_by!`).
+  #      - Criação ou localização de registros na tabela `turmas` (via `disciplina.turmas.find_or_create_by!`).
+  #      - Podem ocorrer exceções (`ActiveRecord::RecordInvalid`) se os dados do arquivo
+  #        não atenderem às validações do modelo.
+  #    - Outros impactos observáveis: Exibição de mensagens flash (sucesso ou erro) para o usuário.
   def create
     file = params[:file]
     unless file

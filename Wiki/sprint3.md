@@ -131,7 +131,8 @@ As demais features não tiveram tempo hábil para revisão dos testes nesta spri
 ### Complexidade de Código (RubyCritic)
 
 * **Overview RubyCritic:**
- overview foto 
+  
+![overview](https://github.com/user-attachments/assets/8f7f39d1-0f56-46a8-a81c-d7b527973ed9)
 
 * **Code RubyCritic:**
 | Rating | Name                          | Churn | Complexity | Duplication | Smells |
